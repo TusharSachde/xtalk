@@ -1,0 +1,20 @@
+<ion-view view-title="SpingR">
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-remove-animate item-avatar" ng-repeat="contact in contacts" type="item-text-wrap">
+                <img ng-src="{{contact.image}}">
+                <h2 class="positive">{{contact.name}}</h2>
+                <p class="stable">
+                    {{contact.company}}
+                    <br>{{contact.area}}
+                </p>
+
+                <ion-option-button class="button-positive ln-comments"></ion-option-button>
+                <ion-option-button class="button-positive ln-phone" href="tel:{{contact.number}}"></ion-option-button>
+                <ion-option-button class="button-positive ln-comment" href="sms:{{contact.number}}"></ion-option-button>
+                <ion-option-button class="button-positive ln-envelope" href="tel:{{contact.email}}"></ion-option-button>
+
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

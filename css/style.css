@@ -1,1 +1,37 @@
 /* Empty. Add your own CSS if you like */
+
+/* Open Sans */
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Bold.ttf');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Semibold.ttf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Regular.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('../fonts/OpenSans-Light.ttf');
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Light.ttf');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/OpenSans-Thin.ttf');
+    font-weight: 100;
+}
+.nav-bar-tabs-top .bar {
+    border-bottom-width: 0px;
+    background-image: none;
+}
