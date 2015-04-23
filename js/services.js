@@ -28,7 +28,7 @@ angular.module('starter.services', [])
     }, {
         id: 3,
         name: 'Nayan Bheda',
-        company: 'Roots2Wings Ideas Pvt. Ltd',
+        company: 'Roots2Wings Ideas',
         area: 'Mumbai',
         image: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg',
         number: '+919004121212',
@@ -36,7 +36,7 @@ angular.module('starter.services', [])
     }, {
         id: 4,
         name: 'Nilesh Halde',
-        company: 'Roots2Wings Ideas Pvt. Ltd',
+        company: 'Roots2Wings Ideas',
         area: 'Mumbai',
         image: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg',
         number: '+919820752510',

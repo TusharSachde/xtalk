@@ -1,18 +1,105 @@
 <ion-view view-title="SpingR">
+    <div class="dialer" ng-class="{'hidden': showdailer==false}">
+        <div class="dialer-bar">
+            <input type="text" disabled>
+            <button class="button-icon button ln-delete"></button>
+        </div>
+        <div class="row">
+            <div class="col button">
+                <div class="number-holder">
+                    <h2 class="positive">1</h2><span class="light-content">#</span>
+                </div>
+            </div>
+            <div class="col button">
+                <div class="number-holder">
+                    <h2 class="positive">2</h2><span class="light-content">ABC</span>
+                </div>
+            </div>
+            <div class="col button">
+                <div class="number-holder">
+                    <h2 class="positive">3</h2><span class="light-content">DEF</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col button">
+                <div class="number-holder">
+                    <h2 class="positive">4</h2><span class="light-content">GHI</span>
+                </div>
+            </div>
+            <div class="col button">
+                <div class="number-holder">
+                    <h2 class="positive">5</h2><span class="light-content">JKL</span>
+                </div>
+            </div>
+            <div class="col button">
+                <div class="number-holder">
+                    <h2 class="positive">6</h2><span class="light-content">MNO</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col button">
+                <div class="number-holder">
+                    <h2 class="positive">7</h2><span class="light-content">PQRS</span>
+                </div>
+            </div>
+            <div class="col button">
+                <div class="number-holder">
+                    <h2 class="positive">8</h2><span class="light-content">TUV</span>
+                </div>
+            </div>
+            <div class="col button">
+                <div class="number-holder">
+                    <h2 class="positive">9</h2><span class="light-content">WXYZ</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col button">
+                <div class="number-holder number-center">
+                    <h2 class="positive" style="margin-top: 5px;">*</h2>
+                </div>
+            </div>
+            <div class="col button">
+                <div class="number-holder">
+                    <h2 class="positive">0</h2><span class="light-content">+</span>
+                </div>
+            </div>
+            <div class="col button">
+                <div class="number-holder number-center">
+                    <h2 class="positive icon ion-ios-telephone"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--DIAL BUTTON-->
+    <button class="button button-round button-fixed ln-icons button-positive" ng-click="showdailer = !showdailer;"></button>
+    <!--DIAL BUTTON-->
+
     <ion-content>
         <ion-list>
-            <ion-item class="item-remove-animate item-avatar" ng-repeat="contact in contacts" type="item-text-wrap">
-                <img ng-src="{{contact.image}}">
-                <h2 class="positive">{{contact.name}}</h2>
-                <p class="stable">
-                    {{contact.company}}
-                    <br>{{contact.area}}
-                </p>
+            <ion-item class="item-remove-animate item-avatar2" ng-repeat="contact in contacts" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.number);">
 
-                <ion-option-button class="button-positive ln-comments"></ion-option-button>
-                <ion-option-button class="button-positive ln-phone" href="tel:{{contact.number}}"></ion-option-button>
-                <ion-option-button class="button-positive ln-comment" href="sms:{{contact.number}}"></ion-option-button>
-                <ion-option-button class="button-positive ln-envelope" href="tel:{{contact.email}}"></ion-option-button>
+                <div class="picture" style="background-image: url('{{contact.image}}');"></div>
+
+                <div class="card-style">
+                    <h2 class="positive">{{contact.name}}</h2>
+
+                    <p class="stable">
+                        {{contact.company}}
+                        <br>{{contact.area}}
+                    </p>
+
+                    <div class="company" style="background-image: url('{{contact.image}}');"></div>
+                </div>
+
+                <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
+                <ion-option-button class="button-large button-positive ln-phone" ng-click="call(contact.number);">
+                </ion-option-button>
+                <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(contact.number);"></ion-option-button>
+                <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(contact.email);"></ion-option-button>
 
             </ion-item>
         </ion-list>
