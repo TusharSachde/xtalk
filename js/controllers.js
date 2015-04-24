@@ -23,6 +23,17 @@ angular.module('starter.controllers', [])
         document.location.href = "mailto:" +email;
         console.log('Mail');
     };
+    $scope.phone={};
+    $scope.phone.number="";
+    
+    $scope.phonenum=function(number) {
+        console.log("number presses "+number);
+        $scope.phone.number+=""+number;
+    };
+    $scope.phoneback=function() {
+        $scope.phone.number=$scope.phone.number.slice(0, -1);
+    };
+    
 })
 
 .controller('NewsCtrl', function($scope) {

@@ -214,3 +214,16 @@ span.light-content {
 .item-avatar2.activated .card-style {
     background: #f8f8f8
 }
+.dialer h2.positive.icon.ion-ios-telephone {
+    color: white;
+}
+.dialer .button.button-balanced {
+    border-color: #28a54c;
+    background-color: #33cd5f;
+    color: #fff !important;
+}
+
+input.phone.number {
+  font-size: 32px;
+  color: #333;
+}
