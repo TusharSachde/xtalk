@@ -1,11 +1,11 @@
 <ion-view view-title="SpingR">
-    <div class="dialer" ng-class="{'hidden': showdailer==false}">
+    <div class="dialer" ng-class="{'showen': showdailer==true}">
         <div class="dialer-bar">
             <input type="text" class="phone number" ng-model="phone.number" disabled>
             <button class="button-icon button ln-delete" ng-click="phoneback();"></button>
         </div>
         <div class="row">
-            <div class="col button" ng-click="phonenum(1);">
+            <div class="col button" ng-click="phonenum(1);" on-hold="phonenum('#');">
                 <div class="number-holder" >
                     <h2 class="positive">1</h2><span class="light-content">#</span>
                 </div>
@@ -61,7 +61,7 @@
                     <h2 class="positive" style="margin-top: 5px;">*</h2>
                 </div>
             </div>
-            <div class="col button" ng-click="phonenum(0);">
+            <div class="col button" ng-click="phonenum(0);" on-hold="phonenum('+');">
                 <div class="number-holder" >
                     <h2 class="positive">0</h2><span class="light-content">+</span>
                 </div>
@@ -80,7 +80,7 @@
 
     <ion-content>
         <ion-list>
-            <ion-item class="item-remove-animate item-avatar2" ng-repeat="contact in contacts" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.number);">
+            <ion-item class="item-remove-animate item-avatar2" ng-repeat="contact in contacts" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.number);" href="#/tab/spingbook/{{contact.id}}">
 
                 <div class="picture" style="background-image: url('{{contact.image}}');"></div>
 
@@ -92,7 +92,7 @@
                         <br>{{contact.area}}
                     </p>
 
-                    <div class="company" style="background-image: url('{{contact.image}}');"></div>
+                    <div class="company" style="background-image: url('{{contact.logo}}');"></div>
                 </div>
 
                 <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>

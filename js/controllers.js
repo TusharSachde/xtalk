@@ -44,8 +44,10 @@ angular.module('starter.controllers', [])
         $scope.phone.number = $scope.phone.number.slice(0, -1);
     };
 
+})
 
-
+.controller('InSpingbookCtrl', function($scope, MyServices, $stateParams) {
+    $scope.contact = MyServices.get($stateParams.Id);
 })
 
 .controller('NewsCtrl', function($scope) {

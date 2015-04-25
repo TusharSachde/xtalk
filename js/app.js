@@ -12,8 +12,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider,$httpProvider) {
-    $ionicConfigProvider.views.transition('none');
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
+    //$ionicConfigProvider.views.transition('none');
     $httpProvider.defaults.withCredentials = true;
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $stateProvider
@@ -63,9 +63,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
-    ;
+
+    .state('tab.spingbook-detail', {
+        url: '/spingbook/:Id',
+        views: {
+            'tab-spingbook': {
+                templateUrl: 'templates/spingbook-detail.html',
+                controller: 'InSpingbookCtrl'
+            }
+        }
+    });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/dash');
+    $urlRouterProvider.otherwise('/tab/spingbook');
 
 });
