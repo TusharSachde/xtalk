@@ -409,12 +409,30 @@ a.button-50 {
 .item-avatar2 .checkbox .checkbox-icon:before {
     border-color: #9B59B6;
 }
-.item-avatar2 .checkbox input,.item-avatar2 .checkbox-icon {
+.item-avatar2 .checkbox input,
+.item-avatar2 .checkbox-icon {
     float: right;
     margin-right: 10px;
 }
-
 input.mobileno {
-  padding-left: 10px;
-  padding-bottom: 5px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+.withbutton .card-style {
+    padding: 5px 5px 5px 40px;
+}
+.withbutton .picture {
+    left: 5px;
+    top: 10px;
+}
+.withbutton {
+    padding: 0 10px 0 40px;
+    height: auto;
+}
+.withbutton .buttoner {
+    margin: 5px 0 0;
+}
+.withbutton .buttoner .button {
+    padding-left: 10px;
+    padding-right: 10px;
 }

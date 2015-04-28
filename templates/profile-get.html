@@ -14,18 +14,19 @@
         <div class="heading">Share my profile with</div>
 
         <ion-list>
-            <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in contacts" type="item-text-wrap">
-
-                <label class="checkbox">
-                    <input type="checkbox" checked>
-                </label>
+            <ion-item class="item-avatar2 withbutton" ng-repeat="contact in contacts" type="item-text-wrap">
 
                 <div class="picture" style="background-image: url('{{contact.image}}');"></div>
 
                 <div class="card-style">
                     <h2 class="positive">{{contact.name}}</h2>
                     <p class="stable">{{contact.company}}</p>
+                    <div class="buttoner">
+                        <button class="button button-outline button-positive button-small">ADD</button>
+                        <button class="button button-outline button-positive button-small">ADD &amp; SHARE</button>
+                    </div>
                 </div>
+
             </ion-item>
         </ion-list>
 
