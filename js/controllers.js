@@ -1,5 +1,28 @@
 angular.module('starter.controllers', [])
 
+.controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate) {
+
+    $scope.next = function() {
+        $ionicSlideBoxDelegate.next();
+    };
+    $scope.previous = function() {
+        $ionicSlideBoxDelegate.previous();
+    };
+
+    // Called each time the slide changes
+    $scope.slideChanged = function(index) {
+        $scope.slideIndex = index;
+    };
+
+})
+
+.controller('ProfileCtrl', function($scope) {})
+
+.controller('ProfileShareCtrl', function($scope, MyServices) {
+    $scope.contacts = MyServices.all();
+
+})
+
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope) {})
@@ -42,6 +65,10 @@ angular.module('starter.controllers', [])
     };
     $scope.phoneback = function() {
         $scope.phone.number = $scope.phone.number.slice(0, -1);
+    };
+
+    $scope.phonedelete = function() {
+        $scope.phone.number = "";
     };
 
 })

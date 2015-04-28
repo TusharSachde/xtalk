@@ -252,20 +252,20 @@ input.phone.number {
     padding-right: 130px;
 }
 .vcard h1 {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     margin: 0;
     line-height: 150%;
 }
 .vcard h2 {
     font-weight: 400;
-    font-size: 15px;
+    font-size: 14px;
     margin: 0;
     line-height: 150%;
 }
 .vcard h3 {
     font-weight: 100;
-    font-size: 15px;
+    font-size: 14px;
     margin: 0;
     line-height: 150%;
 }
@@ -287,4 +287,129 @@ input.phone.number {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+}
+.slider {
+    height: 100%;
+}
+.phone-bg {
+    background: url('../img/phones.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.logo {
+    max-width: 70%;
+    width: 30%;
+}
+.input-holder {
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.bold {
+    font-weight: 600;
+}
+.thin {
+    font-weight: 300;
+}
+.input-holder input {
+    background: transparent;
+    border: 1px solid #9b59b6;
+    color: white;
+    padding: 21px 5px 19px;
+    width: 100%;
+}
+.padder {
+    padding: 13% 0;
+}
+button.button-50,
+a.button-50 {
+    width: 40%;
+    margin: 0 auto;
+}
+.slider-pager .slider-pager-page {
+    color: #9B59B6;
+}
+.auto-margin {
+    margin: 0 auto;
+}
+.addlogo {
+    width: 100px;
+    height: 100px;
+    line-height: 130%;
+    border: 1px solid #9B59B6;
+    padding: 10px 5px;
+    text-align: center;
+    font-size: 11px;
+    background-color: white;
+    padding-top: 35px;
+    margin: 5px auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.card-effect .item {
+    border: 0px;
+    padding: 0px;
+    border-bottom: 1px solid #9B59B6;
+    margin: 0px;
+}
+.card-effect+.card-effect {
+    margin-top: 15px;
+}
+.card-effect {
+    padding: 10px;
+    background: white;
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+}
+.heading {
+    color: #9B59B6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    border-bottom: 1px solid #9B59B6;
+    margin: 0 -5px;
+    margin-bottom: 5px;
+}
+.card-effect input {
+    padding-top: 15px;
+    padding-left: 0;
+    height: auto;
+    color: #111;
+    vertical-align: bottom;
+    font-size: 14px;
+    line-height: 100%;
+    padding-right: 0px;
+}
+.item-avatar2.item-checkbox {
+    padding-left: 40px;
+    height: 78px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 10px;
+}
+.item-avatar2.item-checkbox .picture {
+    top: 8px;
+    height: 60px;
+    width: 60px;
+}
+.item-avatar2.item-checkbox .checkbox {
+    height: 78px;
+    top: 0;
+    margin-top: 0;
+    padding-top: 25px;
+}
+.item-avatar2 .checkbox input:before,
+.item-avatar2 .checkbox .checkbox-icon:before {
+    border-color: #9B59B6;
+}
+.item-avatar2 .checkbox input,.item-avatar2 .checkbox-icon {
+    float: right;
+    margin-right: 10px;
 }

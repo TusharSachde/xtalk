@@ -2,7 +2,7 @@
     <div class="dialer" ng-class="{'showen': showdailer==true}">
         <div class="dialer-bar">
             <input type="text" class="phone number" ng-model="phone.number" disabled>
-            <button class="button-icon button ln-delete" ng-click="phoneback();"></button>
+            <button class="button-icon button ln-delete" ng-click="phoneback();" on-hold="phonedelete();"></button>
         </div>
         <div class="row">
             <div class="col button" ng-click="phonenum(1);" on-hold="phonenum('#');">

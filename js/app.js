@@ -18,6 +18,44 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $stateProvider
 
+    .state('enter', {
+        url: "/enter",
+        controller: 'EnterCtrl',
+        templateUrl: "templates/enter.html"
+    })
+
+    .state('profile', {
+        url: "/profile",
+        controller: 'ProfileCtrl',
+        templateUrl: "templates/profile.html"
+    })
+
+    .state('profile.mycard', {
+        url: '/mycard',
+        views: {
+            'profile-mycard': {
+                templateUrl: 'templates/profile-mycard.html',
+                controller: 'ProfileCtrl'
+            }
+        }
+    })
+
+    .state('profile.personal', {
+        url: '/personal',
+        views: {
+            'profile-personal': {
+                templateUrl: 'templates/profile-personal.html',
+                controller: 'ProfileCtrl'
+            }
+        }
+    })
+
+    .state('sharewith', {
+        url: '/profile/sharewith',
+        templateUrl: 'templates/profile-sharewith.html',
+        controller: 'ProfileShareCtrl'
+    })
+
     .state('tab', {
         url: "/tab",
         abstract: true,
@@ -75,6 +113,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/spingbook');
+    $urlRouterProvider.otherwise('/enter');
 
 });
