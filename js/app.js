@@ -56,6 +56,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'ProfileShareCtrl'
     })
 
+    .state('profileget', {
+        url: '/profile/get',
+        templateUrl: 'templates/profile-get.html',
+        controller: 'ProfileGetCtrl'
+    })
+
     .state('tab', {
         url: "/tab",
         abstract: true,
