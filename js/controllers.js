@@ -21,15 +21,23 @@ angular.module('starter.controllers', [])
 .controller('ProfileShareCtrl', function($scope, MyServices) {
     $scope.contacts = MyServices.all();
 })
-.controller('ProfileGetCtrl', function($scope, MyServices) {
-    $scope.contacts = MyServices.all();
-})
+    .controller('ProfileGetCtrl', function($scope, MyServices) {
+        $scope.contacts = MyServices.all();
+    })
 
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope) {})
 
-.controller('SpingbookCtrl', function($scope, MyServices) {
+.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover) {
+
+    $scope.search = false;
+
+    $scope.showsearch = function() {
+        console.log('Clicked');
+        $scope.search = !$scope.search;
+    };
+
     $scope.contacts = MyServices.all();
     $scope.showdailer = false;
     $scope.hidedialer = function() {
@@ -71,6 +79,21 @@ angular.module('starter.controllers', [])
 
     $scope.phonedelete = function() {
         $scope.phone.number = "";
+    };
+
+
+    $ionicPopover.fromTemplateUrl('templates/popover.html', {
+        scope: $scope
+    }).then(function(popover) {
+        $scope.popover = popover;
+    });
+
+
+    $scope.openPopover = function($event) {
+        $scope.popover.show($event);
+    };
+    $scope.closePopover = function() {
+        $scope.popover.hide();
     };
 
 })
