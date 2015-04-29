@@ -475,6 +475,17 @@ input.mobileno {
     -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
 }
+.platform-ios .popover {
+    height: 120px;
+    top: 25px;
+    right: 3px;
+}
+.platform-android .popover {
+    top: 70px;
+}
 .popover-backdrop.active .popover {
     opacity: 1;
+}
+.platform-ios .popover-arrow {
+    right: 0;
 }
