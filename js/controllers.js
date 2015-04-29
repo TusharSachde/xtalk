@@ -21,9 +21,10 @@ angular.module('starter.controllers', [])
 .controller('ProfileShareCtrl', function($scope, MyServices) {
     $scope.contacts = MyServices.all();
 })
-    .controller('ProfileGetCtrl', function($scope, MyServices) {
-        $scope.contacts = MyServices.all();
-    })
+
+.controller('ProfileGetCtrl', function($scope, MyServices) {
+    $scope.contacts = MyServices.all();
+})
 
 .controller('DashCtrl', function($scope) {})
 
