@@ -556,3 +556,7 @@ input.mobileno {
 .filter-modal input[type="checkbox"]:checked:before {
     opacity: 1;
 }
+.filter-modal .active.item {
+    color: #9B59B6;
+    font-weight: 600;
+}
