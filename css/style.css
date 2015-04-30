@@ -489,3 +489,70 @@ input.mobileno {
 .platform-ios .popover-arrow {
     right: 0;
 }
+.filter-modal .item {
+    padding: 10px 5px;
+    font-size: 14px;
+    border: 0;
+    border-bottom: 1px solid #DDD;
+    margin: 0;
+    background: transparent;
+}
+.filter-modal .right .item {
+    padding: 0px;
+}
+.filter-modal .right label {
+    padding: 10px 5px;
+    width: 100%;
+    display: block;
+}
+.row.filter-modal .col {
+    padding: 0px 5px;
+}
+.bg-filter {
+    background: -webkit-linear-gradient(0deg, white 49.5%, #ccc 50%, #EFEFEF 50%);
+    background: -o-linear-gradient(0deg, white 49.5%, #ccc 50%, #EFEFEF 50%);
+    background: -moz-linear-gradient(0deg, white 49.5%, #ccc 50%, #EFEFEF 50%);
+    background: linear-gradient(90deg, white 49.5%, #ccc 50%, #EFEFEF 50%);
+}
+.filter-modal input[type="checkbox"] {
+    background: transparent;
+    border: 1px rgb(155, 89, 182) solid;
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+    color: #9B59B6;
+    font-family: Ionicons;
+    text-align: center;
+}
+.filter-modal .col {
+    top: 44px;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    bottom: 30px;
+    height: auto;
+    overflow-y: scroll;
+}
+.filter-modal .col.right {
+    right: 0;
+    left: auto;
+}
+.bottom-stick {
+    position: absolute;
+    bottom: 0px;
+    z-index: 9;
+    right: 0px;
+}
+.filter-modal input[type="checkbox"]:before {
+    content: '\f121';
+    opacity: 0;
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+}
+.filter-modal input[type="checkbox"]:checked:before {
+    opacity: 1;
+}

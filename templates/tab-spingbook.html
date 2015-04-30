@@ -1,14 +1,17 @@
 <ion-view>
 
     <ion-nav-buttons side="right">
-        <button class="button button-icon ion-ios-search small-icon" ng-click="showsearch();"></button>
+        <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showsearch();" ng-if="filterbtn == false;"></button>
+
+        <button class="button button-icon ln-funnel small-icon animate-if" ng-click="openfilter();" ng-if="filterbtn == true;"></button>
+
         <button class="button button-icon ion-android-more-vertical small-icon" ng-click="openPopover();"></button>
     </ion-nav-buttons>
 
     <ion-nav-title>
         <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
         <div class="animate-if headersearch" ng-if="search == true;">
-            <input type="text">
+            <input type="text" ng-keypress="filtertoggle($event);">
         </div>
     </ion-nav-title>
 

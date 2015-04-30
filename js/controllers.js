@@ -30,13 +30,22 @@ angular.module('starter.controllers', [])
 
 .controller('ChatsCtrl', function($scope) {})
 
-.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover) {
+.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal) {
 
     $scope.search = false;
-
+    $scope.filterbtn = false;
     $scope.showsearch = function() {
-        console.log('Clicked');
+        console.log('Search Clicked');
         $scope.search = !$scope.search;
+    };
+    $scope.filtertoggle = function(keyEvent) {
+        if (keyEvent.which === 13) {
+            console.log('Filter Enter Clicked');
+            $scope.filterbtn = true;
+        } else {
+            $scope.filterbtn = false;
+
+        }
     };
 
     $scope.contacts = MyServices.all();
@@ -100,14 +109,23 @@ angular.module('starter.controllers', [])
     $scope.$on('$destroy', function() {
         $scope.popover.remove();
     });
-    // Execute action on hide popover
-    $scope.$on('popover.hidden', function() {
-        // Execute action
+
+
+    //Filter Modal
+    $ionicModal.fromTemplateUrl('templates/modal-filter.html', {
+        id: '1',
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.oModal1 = modal;
     });
-    // Execute action on remove popover
-    $scope.$on('popover.removed', function() {
-        // Execute action
-    });
+
+    $scope.openfilter = function() {
+        $scope.oModal1.show();
+    }
+    $scope.closefilter = function() {
+        $scope.oModal1.hide();
+    };
 
 })
 
