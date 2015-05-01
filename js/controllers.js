@@ -18,6 +18,23 @@ angular.module('starter.controllers', [])
 
 .controller('ProfileCtrl', function($scope) {})
 
+.controller('Circle1Ctrl', function($scope) {})
+
+.controller('Circle2Ctrl', function($scope) {})
+
+.controller('Circle3Ctrl', function($scope) {})
+
+.controller('TabCtrl', function($scope, $location) {
+    $scope.searched = false;
+
+    $scope.searchpage = function() {
+        $scope.searched = !$scope.searched;
+//        $location.path('tab/circle1');
+        window.location.href = '#/tab/circle1';
+    }
+
+})
+
 .controller('ProfileShareCtrl', function($scope, MyServices) {
     $scope.contacts = MyServices.all();
 })
@@ -30,7 +47,7 @@ angular.module('starter.controllers', [])
 
 .controller('ChatsCtrl', function($scope) {})
 
-.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal) {
+.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location) {
 
     $scope.search = false;
     $scope.filterbtn = false;
@@ -38,13 +55,13 @@ angular.module('starter.controllers', [])
         console.log('Search Clicked');
         $scope.search = !$scope.search;
     };
+
     $scope.filtertoggle = function(keyEvent) {
         if (keyEvent.which === 13) {
             console.log('Filter Enter Clicked');
             $scope.filterbtn = true;
         } else {
             $scope.filterbtn = false;
-
         }
     };
 
@@ -125,6 +142,22 @@ angular.module('starter.controllers', [])
     }
     $scope.closefilter = function() {
         $scope.oModal1.hide();
+    };
+
+    //Advanced Search Modal
+    $ionicModal.fromTemplateUrl('templates/modal-advanced.html', {
+        id: '2',
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.oModal2 = modal;
+    });
+
+    $scope.openadvance = function() {
+        $scope.oModal2.show();
+    }
+    $scope.closeadvance = function() {
+        $scope.oModal2.hide();
     };
 
 })

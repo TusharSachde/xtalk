@@ -9,7 +9,7 @@
     </ion-nav-buttons>
 
     <ion-nav-title>
-        <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
+        <h1 class="title animate-if" ng-if="search == false;" ng-click="searchpage();">SpingR</h1>
         <div class="animate-if headersearch" ng-if="search == true;">
             <input type="text" ng-keypress="filtertoggle($event);">
         </div>

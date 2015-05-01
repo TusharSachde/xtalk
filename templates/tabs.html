@@ -11,20 +11,32 @@ navigation history that also transitions its views in and out.
 
 <ion-tabs class="tabs-striped tabs-top tabs-background-positive tabs-color-light">
 
-    <ion-tab title="Newsfeed" href="#/tab/news">
+    <ion-tab title="Newsfeed" href="#/tab/news" ng-if="searched == false">
         <ion-nav-view name="tab-news"></ion-nav-view>
     </ion-tab>
 
-    <ion-tab title="Spingbook" href="#/tab/spingbook">
+    <ion-tab title="Spingbook" href="#/tab/spingbook" ng-if="searched == false">
         <ion-nav-view name="tab-spingbook"></ion-nav-view>
     </ion-tab>
 
-    <ion-tab title="Chats" href="#/tab/chats">
+    <ion-tab title="Chats" href="#/tab/chats" ng-if="searched == false">
         <ion-nav-view name="tab-chats"></ion-nav-view>
     </ion-tab>
 
-    <ion-tab title="Dashboard" href="#/tab/dash">
+    <ion-tab title="Dashboard" href="#/tab/dash" ng-if="searched == false">
         <ion-nav-view name="tab-dash"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Circle 1" href="#/tab/circle1" ng-if="searched == true">
+        <ion-nav-view name="tab-circle1"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Circle 2" href="#/tab/circle2" ng-if="searched == true">
+        <ion-nav-view name="tab-circle2"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Circle 3" href="#/tab/circle3" ng-if="searched == true">
+        <ion-nav-view name="tab-circle3"></ion-nav-view>
     </ion-tab>
 
 </ion-tabs>

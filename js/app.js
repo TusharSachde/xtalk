@@ -65,6 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab', {
         url: "/tab",
         abstract: true,
+        controller: 'TabCtrl',
         templateUrl: "templates/tabs.html"
     })
 
@@ -108,11 +109,71 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
+    .state('tab.circle1', {
+        url: '/circle1',
+        views: {
+            'tab-circle1': {
+                templateUrl: 'templates/tab-circle1.html',
+                controller: 'SpingbookCtrl'
+            }
+        }
+    })
+
+    .state('tab.circle2', {
+        url: '/circle2',
+        views: {
+            'tab-circle2': {
+                templateUrl: 'templates/tab-circle2.html',
+                controller: 'SpingbookCtrl'
+            }
+        }
+    })
+
+    .state('tab.circle3', {
+        url: '/circle3',
+        views: {
+            'tab-circle3': {
+                templateUrl: 'templates/tab-circle3.html',
+                controller: 'SpingbookCtrl'
+            }
+        }
+    })
+
     .state('tab.spingbook-detail', {
         url: '/spingbook/:Id',
         views: {
             'tab-spingbook': {
                 templateUrl: 'templates/spingbook-detail.html',
+                controller: 'InSpingbookCtrl'
+            }
+        }
+    })
+
+    .state('tab.circle1-detail', {
+        url: '/circle1/:Id',
+        views: {
+            'tab-circle1': {
+                templateUrl: 'templates/spingbook-detail.html',
+                controller: 'InSpingbookCtrl'
+            }
+        }
+    })
+
+    .state('tab.circle2-detail', {
+        url: '/circle2/:Id',
+        views: {
+            'tab-circle2': {
+                templateUrl: 'templates/circle2-detail.html',
+                controller: 'InSpingbookCtrl'
+            }
+        }
+    })
+
+    .state('tab.circle3-detail', {
+        url: '/circle3/:Id',
+        views: {
+            'tab-circle3': {
+                templateUrl: 'templates/circle3-detail.html',
                 controller: 'InSpingbookCtrl'
             }
         }

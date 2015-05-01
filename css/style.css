@@ -203,7 +203,7 @@ span.light-content {
     border: 0px;
 }
 .dialer div.button.activated {
-    background: #F7F7F7;
+    background: #dfdfdf;
 }
 .number-holder {
     text-align: left;
@@ -220,7 +220,7 @@ span.light-content {
 }
 .item-avatar2.activated .card-style,
 .item .item-content.activated .card-style {
-    background: #f8f8f8
+    background: #dfdfdf
 }
 .dialer h2.positive.icon.ion-ios-telephone {
     color: white;
@@ -468,7 +468,7 @@ input.mobileno {
     top: 10px;
     left: auto;
     right: 10px;
-    height: 110px;
+    height: 160px;
     width: 220px;
     -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
     -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
@@ -476,7 +476,7 @@ input.mobileno {
     transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
 }
 .platform-ios .popover {
-    height: 120px;
+    height: 1170px;
     top: 25px;
     right: 3px;
 }
@@ -559,4 +559,48 @@ input.mobileno {
 .filter-modal .active.item {
     color: #9B59B6;
     font-weight: 600;
+}
+.spacing+.spacing {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.specialcard .company {
+    left: 20px;
+    right: auto;
+}
+.specialcard {
+    padding: 30px 0;
+    padding-right: 20px;
+    padding-left: 165px;
+    min-height: 155px;
+    margin-bottom: 20px;
+}
+.vcard.withheading {
+    padding: 20px;
+    padding-top: 10px;
+}
+.vcard.withheading .picture {
+    position: static;
+    margin: 10px auto;
+    height: 110px;
+    width: 110px;
+}
+.one+.one {
+    display: block;
+    margin-left: 0;
+}
+.two+.one {
+    display: block;
+    margin-left: 0;
+}
+.withheading .row+.row {
+    border-top: 1px solid #dfdfdf;
+    padding-top: 10px;
+    margin-top: 5px;
+}
+.card-effect.nobg {
+    background: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
