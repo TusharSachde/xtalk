@@ -28,9 +28,15 @@ angular.module('starter.controllers', [])
     $scope.searched = false;
 
     $scope.searchpage = function() {
-        $scope.searched = !$scope.searched;
-//        $location.path('tab/circle1');
+        $scope.searched = true;
+        //$location.path('tab/circle1');
         window.location.href = '#/tab/circle1';
+    }
+
+    $scope.spingpage = function() {
+        $scope.searched = false;
+        //$location.path('tab/spingbook');
+        window.location.href = '#/tab/spingbook';
     }
 
 })
