@@ -605,3 +605,6 @@ input.mobileno {
     -moz-box-shadow: none;
     box-shadow: none;
 }
+.platform-ios.platform-cordova:not(.fullscreen) .filter-modal .col {
+    top: 64px;
+}
