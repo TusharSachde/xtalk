@@ -232,7 +232,7 @@ span.light-content {
 }
 input.phone.number {
     font-size: 32px;
-    color: #333;
+    color: #9B59B6 !important;
 }
 .small-icon:before {
     font-size: 23px !important;
@@ -607,4 +607,26 @@ input.mobileno {
 }
 .platform-ios.platform-cordova:not(.fullscreen) .filter-modal .col {
     top: 64px;
+}
+.myprofile-card.card-effect {
+    padding-left: 160px;
+}
+.personal-card.card-effect {
+    padding-left: 130px;
+}
+.myprofile-card .addlogo {
+    position: absolute;
+    top: 10px;
+    height: 140px;
+    width: 140px;
+    left: 10px;
+    padding-top: 65px;
+}
+.personal-card .addlogo {
+    position: absolute;
+    top: 10px;
+    height: 104px;
+    width: 104px;
+    left: 10px;
+    padding-top: 40px;
 }
