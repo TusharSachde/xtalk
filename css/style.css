@@ -657,3 +657,7 @@ span.linked {
     -moz-border-radius: 0px;
     border-radius: 0px;
 }
+.dialUP {
+    position: absolute;
+  top: -70px;
+}

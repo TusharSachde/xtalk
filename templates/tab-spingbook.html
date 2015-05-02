@@ -17,6 +17,9 @@
 
     <!--  Dialer UI  -->
     <div class="dialer" ng-class="{'showen': showdailer==true}">
+       <!--DIAL BUTTON-->
+    <button class="button button-round button-fixed ln-icons button-positive dialUP" ng-click="showdailer = !showdailer;"></button>
+    <!--DIAL BUTTON-->
         <div class="dialer-bar">
             <input type="text" class="phone number" ng-model="phone.number" disabled>
             <button class="button-icon button ln-delete" ng-click="phoneback();" on-hold="phonedelete();"></button>
