@@ -630,3 +630,24 @@ input.mobileno {
     left: 10px;
     padding-top: 40px;
 }
+span.linked {
+    color: white;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-right: 10px;
+}
+.popup-container .popup {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid #9B59B6;
+}
+.popup-head,
+.popup-head>* {
+    border-color: #9B59B6;
+    color: white;
+}
+.popup-buttons .button {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}

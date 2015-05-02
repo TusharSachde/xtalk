@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate) {
+.controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate, $ionicPopup) {
 
     $scope.next = function() {
         $ionicSlideBoxDelegate.next();
@@ -14,6 +14,21 @@ angular.module('starter.controllers', [])
         $scope.slideIndex = index;
     };
 
+    $scope.showAlert = function() {
+        var alertPopup = $ionicPopup.alert({
+            title: "Didn't get the OTP ?",
+            template: 'Please try resending the OTP.',
+            buttons: [{
+                text: 'Resend',
+                type: 'button-positive button-outline'
+            }],
+        });
+        alertPopup.then(function(res) {
+                console.log('OTP Resent !');
+            }
+
+        )
+    };
 })
 
 .controller('ProfileCtrl', function($scope) {})
