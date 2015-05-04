@@ -40,17 +40,6 @@ angular.module('starter.controllers', [])
 .controller('Circle3Ctrl', function($scope) {})
 
 .controller('TabCtrl', function($scope, $location) {
-    $scope.searched = false;
-
-    $scope.searchpage = function() {
-        $scope.searched = true;
-        //$location.url('/tab/circle1');
-    }
-
-    $scope.spingpage = function() {
-        $scope.searched = false;
-//        $location.url('/tab/spingbook');
-    }
 
 })
 
@@ -178,6 +167,17 @@ angular.module('starter.controllers', [])
     $scope.closeadvance = function() {
         $scope.oModal2.hide();
     };
+
+
+    $scope.searchpage = function() {
+        $location.url('/circle/circle1');
+        console.log('searchpage');
+    }
+
+    $scope.spingpage = function() {
+        $location.url('/tab/spingbook');
+        console.log('spingpage');
+    }
 
 })
 
