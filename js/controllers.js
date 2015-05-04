@@ -44,14 +44,12 @@ angular.module('starter.controllers', [])
 
     $scope.searchpage = function() {
         $scope.searched = true;
-        //$location.path('tab/circle1');
-        window.location.href = '#/tab/circle1';
+        //$location.url('/tab/circle1');
     }
 
     $scope.spingpage = function() {
         $scope.searched = false;
-        //$location.path('tab/spingbook');
-        window.location.href = '#/tab/spingbook';
+//        $location.url('/tab/spingbook');
     }
 
 })
