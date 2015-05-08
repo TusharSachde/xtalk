@@ -72,7 +72,7 @@ angular.module('starter.services', [])
         options.multiple = true;
         //        options.desiredFields = [navigator.contacts.fieldType.id];
         var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
-        navigator.contacts.find(onSuccess, onError, options);
+        navigator.contacts.find(fields, onSuccess, onError, options);
         return contacts1;
     };
     returnfunction.get = function (Id) {
