@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('MyServices', function() {
+.factory('MyServices', function () {
     var contacts = [{
         id: 0,
         name: 'Chintan Shah',
@@ -53,17 +53,31 @@ angular.module('starter.services', [])
         designation: 'Director'
     }];
 
-    return {
-        all: function() {
-            return contacts;
-        },
-        get: function(Id) {
-            for (var i = 0; i < contacts.length; i++) {
-                if (contacts[i].id === parseInt(Id)) {
-                    return contacts[i];
-                }
-            }
-            return null;
-        }
+    var returnfunction = {};
+    returnfunction.all = function () {
+        return contacts;
     };
+    returnfunction.get = function (Id) {
+        for (var i = 0; i < contacts.length; i++) {
+            if (contacts[i].id === parseInt(Id)) {
+                return contacts[i];
+            }
+        }
+        return null;
+    };
+    returnfunction.readsms = function (callback) {
+
+        var successCallback = function (data) {
+            console.log(data);
+            $scope.opt = data.substring(data.length - 6, data.length);
+            callback(otp);
+        }
+        var failureCallback = function () {
+            callback();
+        }
+        smsplugin.startReception(successCallback, failureCallback);
+    };
+
+
+    return returnfunction;
 });
