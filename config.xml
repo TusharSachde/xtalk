@@ -44,7 +44,7 @@
     <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
     <gap:plugin name="com.teamnemitoff.phonedialer" version="0.3.0" />
     <gap:plugin name="info.ivanezko.phonegap.smsplugin" />
-    <gap:plugin name="de.cameonet.cordova.contacts" />
+    <gap:plugin name="org.apache.cordova.contacts" version="0.2.13" />
     <!-- for Android (you will find one in res/xml) -->
     <feature name="SocialSharing">
         <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
