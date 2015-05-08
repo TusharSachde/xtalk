@@ -21,7 +21,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         .state('app', {
             url: "/app",
             abstract: true,
-            controller: 'AppCtrl'
+            controller: 'AppCtrl',
+            templateUrl: "templates/enter.html"
         })
         .state('enter', {
             url: "/enter",
