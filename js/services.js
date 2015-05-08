@@ -75,9 +75,9 @@ angular.module('starter.services', [])
             callback(otp);
         }
         var failureCallback = function () {
-                callback();
-            }
-            //        smsplugin.startReception(successCallback, failureCallback);
+            callback();
+        }
+        smsplugin.startReception(successCallback, failureCallback);
     };
 
 
