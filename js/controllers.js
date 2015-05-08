@@ -51,7 +51,11 @@ angular.module('starter.controllers', [])
     //    MyServices.readsms(readsmsCallback);
 })
 
-.controller('ProfileCtrl', function ($scope) {})
+.controller('ProfileCtrl', function ($scope, $location) {
+    $scope.next = function (); {
+        $location.path("/profile/sharewith");
+    }
+})
 
 .controller('Circle1Ctrl', function ($scope) {})
 
