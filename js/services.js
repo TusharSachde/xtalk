@@ -56,12 +56,12 @@ angular.module('starter.services', [])
     var returnfunction = {};
     returnfunction.all = function () {
 
-        var contacts1 = "":
-            var onSuccess = function (contacts) {
-                alert('Found ' + contacts.length + ' contacts.');
-                contacts1 = contacts;
-                console.log(contacts1);
-            };
+        var contacts1 = "";
+        var onSuccess = function (contacts) {
+            alert('Found ' + contacts.length + ' contacts.');
+            contacts1 = contacts;
+            console.log(contacts1);
+        };
 
         var onError = function (contactError) {
             alert('onError!');
