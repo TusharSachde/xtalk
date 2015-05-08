@@ -68,11 +68,11 @@ angular.module('starter.services', [])
 
         // find all contacts with 'Bob' in any name field
         var options = new ContactFindOptions();
-        options.filter = "A";
+        //        options.filter = "A";
         options.multiple = true;
-        options.desiredFields = [navigator.contacts.fieldType.id];
+        //        options.desiredFields = [navigator.contacts.fieldType.id];
         var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
-        navigator.contacts.find(fields, onSuccess, onError, options);
+        navigator.contacts.find(onSuccess, onError, options);
         return contacts1;
     };
     returnfunction.get = function (Id) {
