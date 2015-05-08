@@ -1,7 +1,7 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
-    $ionicPlatform.ready(function() {
+.run(function ($ionicPlatform) {
+    $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
         }
@@ -12,17 +12,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
     //$ionicConfigProvider.views.transition('none');
     $httpProvider.defaults.withCredentials = true;
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $stateProvider
 
-    .state('enter', {
-        url: "/enter",
-        controller: 'EnterCtrl',
-        templateUrl: "templates/enter.html"
-    })
+        .state('app', {
+            url: "/app",
+            abstract: true,
+            controller: 'AppCtrl'
+        })
+        .state('enter', {
+            url: "/enter",
+            controller: 'EnterCtrl',
+            templateUrl: "templates/enter.html"
+        })
 
     .state('profile', {
         url: "/profile",

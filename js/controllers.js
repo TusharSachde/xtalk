@@ -1,5 +1,17 @@
 angular.module('starter.controllers', [])
 
+.controller('AppCtrl', function ($scope, $ionicPopup, MyServices) {
+    var readsmsCallback = function (otp) {
+        if (!otp) {
+            conole.log("No Otp");
+        } else {
+            $scope.otp = otp;
+        }
+    };
+    MyServices.readsms(readsmsCallback);
+
+})
+
 .controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices) {
 
     $scope.next = function () {
@@ -27,15 +39,15 @@ angular.module('starter.controllers', [])
             console.log('OTP Resent !');
         })
     };
-
-    var readsmsCallback = function (otp) {
-        if (!otp) {
-            conole.log("No Otp");
-        } else {
-            $scope.otp = otp;
-        }
-    };
-    MyServices.readsms(readsmsCallback);
+//
+//    var readsmsCallback = function (otp) {
+//        if (!otp) {
+//            conole.log("No Otp");
+//        } else {
+//            $scope.otp = otp;
+//        }
+//    };
+//MyServices.readsms(readsmsCallback);
 })
 
 .controller('ProfileCtrl', function ($scope) {})
