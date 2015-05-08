@@ -69,7 +69,7 @@ angular.module('starter.services', [])
 
         var successCallback = function (data) {
             console.log(data);
-            $scope.opt = data.substring(data.length - 6, data.length);
+            var opt = data.substring(data.length - 6, data.length);
             callback(otp);
         }
         var failureCallback = function () {
