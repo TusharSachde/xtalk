@@ -74,6 +74,7 @@ angular.module('starter.controllers', [])
 
 .controller('ProfileGetCtrl', function ($scope, MyServices) {
     $scope.contacts = MyServices.all();
+    $scope.$apply();
 })
 
 .controller('DashCtrl', function ($scope) {})
