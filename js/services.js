@@ -55,7 +55,25 @@ angular.module('starter.services', [])
 
     var returnfunction = {};
     returnfunction.all = function () {
-        return contacts;
+        var onSuccess = function (contacts) {
+            alert('Found ' + contacts.length + ' contacts.');
+            var contacts1 = contacts;
+            console.log(contacts1);
+        };
+
+        var onError = function (contactError) {
+            alert('onError!');
+            var contacts1 = "";
+        };
+
+        // find all contacts with 'Bob' in any name field
+        var options = new ContactFindOptions();
+        options.filter = "";
+        options.multiple = true;
+        options.desiredFields = [navigator.contacts.fieldType.id];
+        var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
+        navigator.contacts.find(fields, onSuccess, onError, options);
+        return contacts1;
     };
     returnfunction.get = function (Id) {
         for (var i = 0; i < contacts.length; i++) {
