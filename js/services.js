@@ -55,15 +55,16 @@ angular.module('starter.services', [])
 
     var returnfunction = {};
     returnfunction.all = function () {
-        var onSuccess = function (contacts) {
-            alert('Found ' + contacts.length + ' contacts.');
-            var contacts1 = contacts;
-            console.log(contacts1);
-        };
+
+        var contacts1 = "":
+            var onSuccess = function (contacts) {
+                alert('Found ' + contacts.length + ' contacts.');
+                contacts1 = contacts;
+                console.log(contacts1);
+            };
 
         var onError = function (contactError) {
             alert('onError!');
-            var contacts1 = "";
         };
 
         // find all contacts with 'Bob' in any name field

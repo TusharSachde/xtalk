@@ -69,6 +69,7 @@ angular.module('starter.controllers', [])
 
 .controller('ProfileShareCtrl', function ($scope, MyServices) {
     $scope.contacts = MyServices.all();
+    console.log($scope.contacts);
 })
 
 .controller('ProfileGetCtrl', function ($scope, MyServices) {
