@@ -22,12 +22,13 @@
                     <input type="checkbox" checked>
                 </label>
 
-                <div class="picture" style="background-image: url('{{contact.image}}');"></div>
+                <!--                <div class="picture" style="background-image: url('{{contact.image}}');"></div>-->
+                <div class="picture">
 
-                <div class="card-style">
-                    <h2 class="positive">{{contact.name}}</h2>
-                    <p class="stable">{{contact.company}}</p>
-                </div>
+                    <div class="card-style">
+                        <h2 class="positive">{{contact.displayName}}</h2>
+                        <!--                    <p class="stable">{{contact.company}}</p>-->
+                    </div>
             </ion-item>
         </ion-list>
 
