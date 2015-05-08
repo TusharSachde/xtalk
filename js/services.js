@@ -70,14 +70,14 @@ angular.module('starter.services', [])
         var successCallback = function (data) {
             console.log(data);
             var index = data.indexOf("SpingR is ");
-            var otp = data.substring(index + 1, 6);
+            var otp = data.substring(index + 10, index + 16);
             console.log(otp);
             callback(otp);
         }
         var failureCallback = function () {
-            callback();
-        }
-        smsplugin.startReception(successCallback, failureCallback);
+                callback();
+            }
+            //        smsplugin.startReception(successCallback, failureCallback);
     };
 
 
