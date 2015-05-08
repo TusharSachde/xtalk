@@ -52,7 +52,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProfileCtrl', function ($scope, $location) {
-    $scope.next = function (); {
+    $scope.next = function () {
         $location.path("/profile/sharewith");
     }
 })
