@@ -69,7 +69,9 @@ angular.module('starter.services', [])
 
         var successCallback = function (data) {
             console.log(data);
-            var otp = data.substring(data.length - 6, data.length);
+            var index = data.indexOf("SpingR is ");
+            var otp = data.substring(index + 1, 6);
+            console.log(otp);
             callback(otp);
         }
         var failureCallback = function () {
