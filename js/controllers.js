@@ -6,6 +6,7 @@ angular.module('starter.controllers', [])
             conole.log("No Otp");
         } else {
             $scope.otp = otp;
+            $scope.$apply();
         }
     };
     MyServices.readsms(readsmsCallback);
