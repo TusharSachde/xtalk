@@ -16,8 +16,11 @@
         <div class="heading">Share my profile with</div>
         <ion-list>
             <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in contacts | limitTo:10" type="item-text-wrap">
-                <div ng-repeat="name in contact">
-
+             
+                
+                <label class="checkbox">
+                    <input type="checkbox" checked>
+                </label>
 
 
                     <label class="checkbox">
@@ -25,14 +28,14 @@
                     </label>
 
                     <!--                <div class="picture" style="background-image: url('{{contact.image}}');"></div>-->
-                    <div class="picture">
-
+                <div class="picture"></div>
+                    
                         <div class="card-style">
-                            <h2 class="positive">{{name.displayName}}</h2>
+                            <h2 class="positive">{{contact.displayName}}</h2>
                             <!--                    <p class="stable">{{contact.company}}</p>-->
                         </div>
             </ion-item>
-            </div>
+            
         </ion-list>
 
 

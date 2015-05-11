@@ -77,14 +77,15 @@ angular.module('starter.controllers', [])
 
 .controller('ProfileShareCtrl', function ($scope, MyServices) {
 
+    //var tempCon = [{displayName:"vishal",id:"1"},{displayName:"vishal"},{displayName:"vishal"}];
+    //$scope.contacts=tempCon;
     var contactCallback = function (contact) {
         if(contact)
         {
             $scope.contacts=contact;
-         //   $scope.$apply();
-//            console.log( " Contacts" + $scope.contacts.displayName);
-//            console.log($scope.contacts.[0]displayName);
-//            console.log("Contactsa with vv" + $scope.contacts[0].displayName);
+
+          
+
         }
     };
     MyServices.all(contactCallback);
