@@ -62,7 +62,7 @@ angular.module('starter.services', [])
     returnfunction.all = function (callback) {
 
         var onSuccess = function (contacts) {
-            alert('Found ' + contacts.length + ' contacts.');
+            //alert('Found ' + contacts.length + ' contacts.');
             //            console.log(contacts1);
             callback(contacts);
             console.log(contacts);

@@ -81,7 +81,7 @@ angular.module('starter.controllers', [])
         if(contact)
         {
             $scope.contacts=contact;
-            $scope.$apply();
+         //   $scope.$apply();
 //            console.log( " Contacts" + $scope.contacts.displayName);
 //            console.log($scope.contacts.[0]displayName);
 //            console.log("Contactsa with vv" + $scope.contacts[0].displayName);
