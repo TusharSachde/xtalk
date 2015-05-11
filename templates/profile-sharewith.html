@@ -16,7 +16,11 @@
         <div class="heading">Share my profile with</div>
         <ion-list>
             <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in contacts | limitTo:10" type="item-text-wrap">
-
+{{contact}}
+{{contact.displayName}}
+{{contact[0].displayName}}
+               
+               
                 <label class="checkbox">
                     <input type="checkbox" checked>
                 </label>
