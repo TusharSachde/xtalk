@@ -82,6 +82,8 @@ angular.module('starter.controllers', [])
         {
             $scope.contacts=contact;
             console.log($scope.contacts.displayName);
+          //  console.log($scope.contacts.[0]displayName);
+            console.log($scope.contacts[0].displayName);
             
         }
     };
