@@ -65,6 +65,7 @@ angular.module('starter.services', [])
             alert('Found ' + contacts.length + ' contacts.');
             //            console.log(contacts1);
             callback(contacts);
+            console.log(contacts);
         };
 
         var onError = function (contactError) {
