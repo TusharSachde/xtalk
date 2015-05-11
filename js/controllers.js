@@ -81,12 +81,10 @@ angular.module('starter.controllers', [])
         if(contact)
         {
             $scope.contacts=contact;
+            console.log($scope.contacts);
         }
     };
     MyServices.all(contactCallback);
-
-    
-    console.log($scope.contacts);
 })
 
 .controller('ProfileGetCtrl', function ($scope, MyServices) {

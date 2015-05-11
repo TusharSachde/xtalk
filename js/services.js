@@ -72,7 +72,6 @@ angular.module('starter.services', [])
             callback();
         };
 
-        // find all contacts with 'Bob' in any name field
         var options = new ContactFindOptions();
         //        options.filter = "A";
         options.multiple = true;
