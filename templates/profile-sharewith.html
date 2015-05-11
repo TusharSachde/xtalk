@@ -14,7 +14,7 @@
             You have <span class="bold">752</span> contacts in your phone book out of which <span class="bold">312</span> contacts are on SPingr. Your Business card will be updated into their SPingr. If you don’t want your details to get updated into their SPingr then deselect the from the list.
         </p>
         <div class="heading">Share my profile with</div>
-
+{{contacts}}
         <ion-list>
             <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in contacts" type="item-text-wrap">
 
@@ -26,7 +26,7 @@
                 <div class="picture">
 
                     <div class="card-style">
-                        <h2 class="positive">{{contact.displayName}}</h2>
+                        <h2 class="positive">{{contact[0].displayName}}</h2>
                         <!--                    <p class="stable">{{contact.company}}</p>-->
                     </div>
             </ion-item>
