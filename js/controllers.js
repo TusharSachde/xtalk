@@ -81,7 +81,8 @@ angular.module('starter.controllers', [])
         if(contact)
         {
             $scope.contacts=contact;
-            console.log($scope.contacts);
+            console.log($scope.contacts.displayName);
+            
         }
     };
     MyServices.all(contactCallback);
