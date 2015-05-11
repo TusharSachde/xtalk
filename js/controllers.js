@@ -18,6 +18,14 @@ angular.module('starter.controllers', [])
     $scope.next = function () {
         $ionicSlideBoxDelegate.next();
     };
+    var logload = function (data, length) {
+        for (var i = 0; i < length; i++) {
+            console.log(data.item(i));
+        }
+    };
+
+    MyServices.query("SELECT * FROM LOGS", logload);
+
     $scope.previous = function () {
         $ionicSlideBoxDelegate.previous();
     };
@@ -68,16 +76,28 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProfileShareCtrl', function ($scope, MyServices) {
-    $scope.contacts = MyServices.all();
+
+    var contactCallback = function (contact) {
+        if(contact)
+        {
+            $scope.contacts=contact;
+        }
+    };
+    MyServices.all(contactCallback);
+
+    
     console.log($scope.contacts);
 })
 
 .controller('ProfileGetCtrl', function ($scope, MyServices) {
     $scope.contacts = MyServices.all();
+    console.log($scope.contacts);
     $scope.$apply();
 })
 
-.controller('DashCtrl', function ($scope) {})
+.controller('DashCtrl', function ($scope) {
+
+})
 
 .controller('ChatsCtrl', function ($scope) {})
 
