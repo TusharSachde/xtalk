@@ -80,12 +80,9 @@ angular.module('starter.controllers', [])
     //var tempCon = [{displayName:"vishal",id:"1"},{displayName:"vishal"},{displayName:"vishal"}];
     //$scope.contacts=tempCon;
     var contactCallback = function (contact) {
-        if(contact)
-        {
-            $scope.contacts=contact;
-
-          
-
+        if (contact) {
+            $scope.contacts = contact;
+            $scope.$apply;
         }
     };
     MyServices.all(contactCallback);
