@@ -4,16 +4,16 @@
             <div class="addlogo">Add company logo</div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Your name">
+                    <input type="text" placeholder="Your name" ng-model="mycard.name">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Your designation">
+                    <input type="text" placeholder="Your designation" ng-model="mycard.designation">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Company name">
+                    <input type="text" placeholder="Company name" ng-model="mycard.companyname">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Line of business">
+                    <input type="text" placeholder="Line of business" ng-model="mycard.lob">
                 </label>
             </div>
         </div>
@@ -24,19 +24,19 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Address">
+                    <input type="text" placeholder="Address" ng-model="mycard.address">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="City/District">
+                    <input type="text" placeholder="City/District" ng-model="mycard.city">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="State/Provision">
+                    <input type="text" placeholder="State/Provision" ng-model="mycard.state">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="PinCode/Zipcode">
+                    <input type="text" placeholder="PinCode/Zipcode" ng-model="mycard.pincode">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Country">
+                    <input type="text" placeholder="Country" ng-model="mycard.country">
                 </label>
             </div>
         </div>
@@ -46,29 +46,30 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Mobile Number">
+                    <input type="text" placeholder="Mobile Number" ng-model="mycard.mobile">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Direct Landline">
+                    <input type="text" placeholder="Direct Landline" ng-model="mycard.dlandline">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Board Landline">
+                    <input type="text" placeholder="Board Landline" ng-model="mycard.blandline">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Extension">
+                    <input type="text" placeholder="Extension" ng-model="mycard.extension">
                 </label>
                 <label class="item item-input">
-                    <input type="email" placeholder="Email ID">
+                    <input type="email" placeholder="Email ID" ng-model="mycard.email">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Website">
+                    <input type="text" placeholder="Website" ng-model="mycard.website">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Record GPS">
+                    <input type="text" placeholder="Record GPS" ng-model="mycard.gps">
                 </label>
             </div>
         </div>
 
-        <a class="button button-positive button-outline button-block" href="#/profile/personal">Save &amp; Proceed</a>
+<!--        <a class="button button-positive button-outline button-block" href="#/profile/personal">Save &amp; Proceed</a>-->
+        <a class="button button-positive button-outline button-block" ng-click="CardDetails(mycard)">Save &amp; Proceed</a>
     </ion-content>
 </ion-view>

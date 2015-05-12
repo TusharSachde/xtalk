@@ -4,13 +4,13 @@
             <div class="addlogo">Upload profile picture</div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Birth Date">
+                    <input type="text" placeholder="Birth Date" ng-model="personal.dob">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Anniversary">
+                    <input type="text" placeholder="Anniversary" ng-model="personal.doa">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Company Name">
+                    <input type="text" placeholder="Company Name" ng-model="personal.companyname">
                 </label>
             </div>
         </div>
@@ -21,19 +21,19 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Address">
+                    <input type="text" placeholder="Address" ng-model="personal.address">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="City / District">
+                    <input type="text" placeholder="City / District" ng-model="personal.city">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="State / Province">
+                    <input type="text" placeholder="State / Province" ng-model="personal.state">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Pincode / Zipcode">
+                    <input type="text" placeholder="Pincode / Zipcode" ng-model="personal.pincode">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Country">
+                    <input type="text" placeholder="Country" ng-model="personal.country">
                 </label>
             </div>
         </div>
@@ -43,29 +43,30 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Mobile Number">
+                    <input type="text" placeholder="Mobile Number" ng-model="personal.mobile">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Home Landline">
+                    <input type="text" placeholder="Home Landline" ng-model="personal.landline">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Twitter Handle">
+                    <input type="text" placeholder="Twitter Handle" ng-model="personal.twitter">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Facebook Page">
+                    <input type="text" placeholder="Facebook Page" ng-model="personal.fb">
                 </label>
                 <label class="item item-input">
-                    <input type="email" placeholder="Email ID">
+                    <input type="email" placeholder="Email ID" ng-model="personal.email">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Website">
+                    <input type="text" placeholder="Website" ng-model="personal.website">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Record GPS">
+                    <input type="text" placeholder="Record GPS" ng-model="personal.gps">
                 </label>
             </div>
         </div>
 
-        <a class="button button-positive button-outline button-block" ng-click="next();" href="#/profile/sharewith">Save &amp; Proceed</a>
+<!--        <a class="button button-positive button-outline button-block" ng-click="PersonalDetails(personal);" href="#/profile/sharewith">Save &amp; Proceed</a>-->
+   <a class="button button-positive button-outline button-block" ng-click="PersonalDetails(personal);">Save &amp; Proceed</a>
     </ion-content>
 </ion-view>

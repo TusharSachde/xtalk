@@ -60,9 +60,18 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProfileCtrl', function ($scope, $location) {
-    $scope.next = function () {
-        $location.path("/profile/sharewith");
-    }
+    $scope.mycard={};
+    $scope.personal={};
+    $scope.CardDetails=function(card){
+        $scope.mycard=card;
+        console.log($scope.mycard);
+        $location.path("/profile/personal");
+    };
+    $scope.PersonalDetails=function(pdetails){
+        $scope.personal=pdetails;
+        console.log($scope.personal);
+//        $location.path("/profile/sharewith");
+    };
 })
 
 .controller('Circle1Ctrl', function ($scope) {})
