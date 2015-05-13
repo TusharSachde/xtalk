@@ -60,17 +60,21 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProfileCtrl', function ($scope, $location) {
-    $scope.mycard={};
-    $scope.personal={};
-    $scope.CardDetails=function(card){
-        $scope.mycard=card;
-        console.log($scope.mycard);
+
+    $scope.personal = {};
+    $scope.CardDetails = function (card) {
+        mycard1 = card;
+        //        console.log($scope.mycard);
         $location.path("/profile/personal");
     };
-    $scope.PersonalDetails=function(pdetails){
-        $scope.personal=pdetails;
-        console.log($scope.personal);
-        $location.path("/profile/sharewith");
+    $scope.PersonalDetails = function (card) {
+        $scope.mycard2 = card;
+        console.log(mycard1);
+        console.log($scope.mycard2);
+        $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
+        console.log($scope.mergecard);
+        //        console.log($scope.mycard);
+        //$location.path("/profile/sharewith");
     };
 })
 
@@ -85,13 +89,84 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProfileShareCtrl', function ($scope, MyServices) {
-
+    //
+    //    $scope.mycon = [{
+    //        address: "sfjk",
+    //        displayName: "Dhaval",
+    //        emails: [{
+    //            id: "66",
+    //            value: "dhaval@wohlig.com"
+    //        }, {
+    //            id: "66",
+    //            value: "dhaval@gmail.com"
+    //        }],
+    //        phoneNumbers: [{
+    //            id: "66",
+    //            value: "9029145077"
+    //        }, {
+    //            id: "66",
+    //            value: "8080567909"
+    //        }]
+    //    }, {
+    //        address: "",
+    //        displayName: "Dhairya",
+    //        emails: [{
+    //            id: "66",
+    //            value: "dhairya@wohlig.com"
+    //        }, {
+    //            id: "66",
+    //            value: "dhairya@gmail.com"
+    //        }],
+    //        phoneNumbers: [{
+    //            id: "66",
+    //            value: "7845124520"
+    //        }, {
+    //            id: "66",
+    //            value: "9658743252"
+    //        }]
+    //    }, {
+    //        address: "",
+    //        displayName: "Yash",
+    //        emails: [{
+    //            id: "66",
+    //            value: "yash@wohlig.com"
+    //        }, {
+    //            id: "66",
+    //            value: "dhairya@gmail.com"
+    //        }],
+    //        phoneNumbers: [{
+    //            id: "66",
+    //            value: "5897456321"
+    //        }, {
+    //            id: "66",
+    //            value: "9658743252"
+    //        }]
+    //    }];
+    //    console.log("Length=" + $scope.mycon.length);
+    //    for (var i = 0; i < ($scope.mycon.length); i++) {
+    //        console.log("for=" + i);
+    //        myconarr[i] = {
+    //            name: $scope.mycon[i].displayName,
+    //            email: $scope.mycon[i].emails[0].value,
+    //            contact: $scope.mycon[i].phoneNumbers[0].value
+    //        };
+    //    }
+    //    console.log(myconarr);
     //var tempCon = [{displayName:"vishal",id:"1"},{displayName:"vishal"},{displayName:"vishal"}];
     //$scope.contacts=tempCon;
+    var myconarr = [];
     var contactCallback = function (contact) {
         if (contact) {
             $scope.contacts = contact;
             $scope.$apply();
+            for (var i = 0; i < $scope.contacts.length; i++) {
+                myconarr[i] = {
+                    name: $scope.contacts[i].displayName,
+                    email: $scope.contacts[i].emails[0].value,
+                    contact: $scope.contacts[i].phoneNumbers[0].value
+                };
+            }
+            console.log(myconarr);
         }
     };
     MyServices.getallcontacts(contactCallback);

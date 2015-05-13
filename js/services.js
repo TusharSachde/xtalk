@@ -1,3 +1,4 @@
+var mycard1={};
 angular.module('starter.services', [])
 
 .factory('MyServices', function () {
