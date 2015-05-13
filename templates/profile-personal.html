@@ -4,13 +4,13 @@
             <div class="addlogo">Upload profile picture</div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Birth Date" ng-model="personal.dob">
+                    <input type="text" placeholder="Birth Date" ng-model="mycard.birthdate">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Anniversary" ng-model="personal.doa">
+                    <input type="text" placeholder="Anniversary" ng-model="mycard.anniversary">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Company Name" ng-model="personal.companyname">
+                    <input type="text" placeholder="Company Name" ng-model="mycard.companyname">
                 </label>
             </div>
         </div>
@@ -21,19 +21,19 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Address" ng-model="personal.address">
+                    <input type="text" placeholder="Address" ng-model="mycard.personaladdress">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="City / District" ng-model="personal.city">
+                    <input type="text" placeholder="City / District" ng-model="mycard.personalcity">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="State / Province" ng-model="personal.state">
+                    <input type="text" placeholder="State / Province" ng-model="mycard.personalstate">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Pincode / Zipcode" ng-model="personal.pincode">
+                    <input type="text" placeholder="Pincode / Zipcode" ng-model="mycard.personalpincode">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Country" ng-model="personal.country">
+                    <input type="text" placeholder="Country" ng-model="mycard.personalcountry">
                 </label>
             </div>
         </div>
@@ -43,30 +43,30 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Mobile Number" ng-model="personal.mobile">
+                    <input type="text" placeholder="Mobile Number" ng-model="mycard.personalcontact">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Home Landline" ng-model="personal.landline">
+                    <input type="text" placeholder="Home Landline" ng-model="mycard.homelandline">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Twitter Handle" ng-model="personal.twitter">
+                    <input type="text" placeholder="Twitter Handle" ng-model="mycard.twitter">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Facebook Page" ng-model="personal.fb">
+                    <input type="text" placeholder="Facebook Page" ng-model="mycard.facebook">
                 </label>
                 <label class="item item-input">
-                    <input type="email" placeholder="Email ID" ng-model="personal.email">
+                    <input type="email" placeholder="Email ID" ng-model="mycard.personalemail">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Website" ng-model="personal.website">
+                    <input type="text" placeholder="Website" ng-model="mycard.personalwebsite">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Record GPS" ng-model="personal.gps">
+                    <input type="text" placeholder="Record GPS" ng-model="mycard.homegps">
                 </label>
             </div>
         </div>
 
 <!--        <a class="button button-positive button-outline button-block" ng-click="PersonalDetails(personal);" href="#/profile/sharewith">Save &amp; Proceed</a>-->
-   <a class="button button-positive button-outline button-block" ng-click="PersonalDetails(personal);">Save &amp; Proceed</a>
+   <a class="button button-positive button-outline button-block" ng-click="PersonalDetails(mycard);">Save &amp; Proceed</a>
     </ion-content>
 </ion-view>
