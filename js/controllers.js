@@ -91,10 +91,10 @@ angular.module('starter.controllers', [])
     var contactCallback = function (contact) {
         if (contact) {
             $scope.contacts = contact;
-            $scope.$apply;
+            $scope.$apply();
         }
     };
-    MyServices.all(contactCallback);
+    MyServices.getallcontacts(contactCallback);
 })
 
 .controller('ProfileGetCtrl', function ($scope, MyServices) {

@@ -59,7 +59,7 @@ angular.module('starter.services', [])
     }];
 
     var returnfunction = {};
-    returnfunction.all = function (callback) {
+    returnfunction.getallcontacts = function (callback) {
 
         var onSuccess = function (contacts) {
             //alert('Found ' + contacts.length + ' contacts.');
