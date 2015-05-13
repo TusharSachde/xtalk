@@ -70,7 +70,7 @@ angular.module('starter.controllers', [])
     $scope.PersonalDetails=function(pdetails){
         $scope.personal=pdetails;
         console.log($scope.personal);
-//        $location.path("/profile/sharewith");
+        $location.path("/profile/sharewith");
     };
 })
 
