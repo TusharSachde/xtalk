@@ -118,7 +118,7 @@ angular.module('starter.controllers', [])
         }
         MyServices.createCard($scope.mergecard).success(createCardSucess);
         //        console.log($scope.mycard);
-        //$location.path("/profile/sharewith");
+        $location.path("/profile/sharewith");
     };
 })
 
