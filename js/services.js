@@ -2,6 +2,7 @@ var adminurl= "http://wohlig.co.in/spingr/index.php/json/"
 var mycard1={};
 var personalcontact='';
 var contact = [];
+var userid='';
 angular.module('starter.services', [])
 
 .factory('MyServices', function ($http) {
@@ -128,8 +129,9 @@ angular.module('starter.services', [])
    
     }
     returnfunction.sendContacts = function(contacts){
-        return $http.post(adminurl + "sendcontacts", contacts)
         console.log(contacts);
+        return $http.post(adminurl + "sendcontacts", contacts)
+        console.log( "Sending Contacts"+ contacts);
     }
 
     return returnfunction;

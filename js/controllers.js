@@ -24,6 +24,7 @@ angular.module('starter.controllers', [])
         personalcontact = p.phone;
         var registerSucces = function (data, status) {
             console.log(" Registered" + data);
+            userid = data;
         }
         MyServices.register(p.phone).success(registerSucces);
     }
@@ -75,24 +76,33 @@ angular.module('starter.controllers', [])
     var contactCallback = function (contact) {
         if (contact) {
             $scope.contacts = contact;
+            var myval = {
+                user: "",
+                name: "",
+                email: "",
+                contactno: ""
+            };
             for (var i = 0; i < $scope.contacts.length; i++) {
-                if ($scope.contacts[i].displayName!='' && $scope.contacts[i].emails.length > 0 && $scope.contacts[i].phoneNumbers.length > 0) {
-                    myconarr[i] = {
-                        name: $scope.contacts[i].displayName,
-                        email: $scope.contacts[i].emails[0].value,
-                        contact: $scope.contacts[i].phoneNumbers[0].value
-                    };
+                if ($scope.contacts[i].emails) {
+                    myval.email = $scope.contacts[i].emails[0].value;
                 }
+
+                if ($scope.contacts[i].phoneNumbers) {
+                    myval.contactno = $scope.contacts[i].phoneNumbers[0].value;
+                }
+                myval.name = $scope.contacts[i].displayName;
+                myval.user = userid;
+                myconarr[i] = myval;
             }
-            console.log(myconarr);
         }
+        console.log(myconarr);
         var sendContactsSuccess = function (data, success) {
             console.log("Contact already Registered" + data);
             contact = data;
             console.log(contact);
         }
         Myservices.sendContacts(myconarr).success(sendContactsSuccess);
-    };
+    }
     MyServices.getallcontacts(contactCallback);
 
     $scope.mergecard = {};
@@ -118,6 +128,7 @@ angular.module('starter.controllers', [])
         //        console.log($scope.mycard);
         $location.path("/profile/sharewith");
     };
+
 })
 
 .controller('Circle1Ctrl', function ($scope) {})

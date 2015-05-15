@@ -27,7 +27,8 @@
         </p>
         <div class="heading">Share my profile with</div>
         <ion-list>
-            <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in contacts | limitTo:10" type="item-text-wrap" ng-if="(contact.displayName)">
+
+            {{contacts}}            <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in contacts | limitTo:10" type="item-text-wrap" ng-if="(contact.displayName)">
 
 
                 <label class="checkbox">
