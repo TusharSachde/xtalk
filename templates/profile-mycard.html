@@ -5,15 +5,15 @@
             <div class="list">
                 <label class="item item-input">
                     <input type="text" placeholder="Your name" ng-model="mycard.name">
-                </label>   
+                </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Your designation" ng-model="mycard.designation">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Company name" ng-model="mycard.companyname">
-                </label>
-                <label class="item item-input">
                     <input type="text" placeholder="Line of business" ng-model="mycard.lineofbusiness">
+                </label>
+                <label class="item item-input last-input">
+                    <input type="text" placeholder="Company name" ng-model="mycard.companyname">
                 </label>
             </div>
         </div>
@@ -69,7 +69,7 @@
             </div>
         </div>
 
-<!--        <a class="button button-positive button-outline button-block" href="#/profile/personal">Save &amp; Proceed</a>-->
+        <!--        <a class="button button-positive button-outline button-block" href="#/profile/personal">Save &amp; Proceed</a>-->
         <a class="button button-positive button-outline button-block" ng-click="CardDetails(mycard);">Save &amp; Proceed</a>
     </ion-content>
 </ion-view>

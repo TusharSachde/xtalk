@@ -10,32 +10,44 @@
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content class="padding">
+
+        <ion-list class="reverse-padding">
+            <ion-item class="transparent-bg">
+                Phonebook contacts
+                <span class="badge badge-positive">752</span> 
+            </ion-item>
+            <ion-item class="transparent-bg">
+                SPingR contacts
+                <span class="badge badge-positive">312</span> 
+            </ion-item>
+        </ion-list>
+
         <p class="text-center">
-            You have <span class="bold">752</span> contacts in your phone book out of which <span class="bold">312</span> contacts are on SPingr. Your Business card will be updated into their SPingr. If you don’t want your details to get updated into their SPingr then deselect the from the list.
+            Your Business card will be updated into their SPingr. If you don’t want your details to get updated into their SPingr then deselect the from the list.
         </p>
         <div class="heading">Share my profile with</div>
         <ion-list>
             <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in contacts | limitTo:10" type="item-text-wrap" ng-if="(contact.displayName)">
-             
-                
+
+
                 <label class="checkbox">
                     <input type="checkbox" checked>
                 </label>
 
 
-                    <label class="checkbox">
-                        <input type="checkbox" checked>
-                    </label>
+                <label class="checkbox">
+                    <input type="checkbox" checked>
+                </label>
 
-                    <!--                <div class="picture" style="background-image: url('{{contact.image}}');"></div>-->
+                <!--                <div class="picture" style="background-image: url('{{contact.image}}');"></div>-->
                 <div class="picture"></div>
-                    
-                        <div class="card-style">
-                            <h2 class="positive">{{contact.displayName}}</h2>
-                            <!--                    <p class="stable">{{contact.company}}</p>-->
-                        </div>
+
+                <div class="card-style">
+                    <h2 class="positive">{{contact.displayName}}</h2>
+                    <!--                    <p class="stable">{{contact.company}}</p>-->
+                </div>
             </ion-item>
-            
+
         </ion-list>
 
 

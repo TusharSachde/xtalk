@@ -72,29 +72,29 @@ angular.module('starter.controllers', [])
 .controller('ProfileCtrl', function ($scope, $location,MyServices) {
 
 //Contacts Sending    
-    var myconarr = [];
-    var contactCallback = function (contact) {
-        if (contact) {
-            $scope.contacts = contact;
-            $scope.$apply();
-            for (var i = 0; i < $scope.contacts.length; i++) {
-                myconarr[i] = {
-                    name: $scope.contacts[i].displayName,
-                    email: $scope.contacts[i].emails[0].value,
-                    contact: $scope.contacts[i].phoneNumbers[0].value
-                };
-            }
-            console.log(myconarr);
-        }
-        var sendContactsSuccess = function(data,success)
-        {
-            console.log("Contact already Registered"+ data);
-            contact = data;
-            console.log(contact);
-        }
-        Myservices.sendContacts(myconarr).success(sendContactsSuccess);
-    };
-    MyServices.getallcontacts(contactCallback);
+//    var myconarr = [];
+//    var contactCallback = function (contact) {
+//        if (contact) {
+//            $scope.contacts = contact;
+//            $scope.$apply();
+//            for (var i = 0; i < $scope.contacts.length; i++) {
+//                myconarr[i] = {
+//                    name: $scope.contacts[i].displayName,
+//                    email: $scope.contacts[i].emails[0].value,
+//                    contact: $scope.contacts[i].phoneNumbers[0].value
+//                };
+//            }
+//            console.log(myconarr);
+//        }
+//        var sendContactsSuccess = function(data,success)
+//        {
+//            console.log("Contact already Registered"+ data);
+//            contact = data;
+//            console.log(contact);
+//        }
+//        Myservices.sendContacts(myconarr).success(sendContactsSuccess);
+//    };
+//    MyServices.getallcontacts(contactCallback);
 
     $scope.mergecard = {};
     $scope.personal = {};
