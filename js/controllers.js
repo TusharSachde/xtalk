@@ -101,7 +101,7 @@ angular.module('starter.controllers', [])
             contact = data;
             console.log(contact);
         }
-        Myservices.sendContacts(myconarr).success(sendContactsSuccess);
+        MyServices.sendContacts(myconarr).success(sendContactsSuccess);
     }
     MyServices.getallcontacts(contactCallback);
 
