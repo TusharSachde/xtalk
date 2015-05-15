@@ -1,7 +1,10 @@
+var adminurl= "http://wohlig.co.in/spingr/index.php/json/"
 var mycard1={};
+var personalcontact='';
+var contact = [];
 angular.module('starter.services', [])
 
-.factory('MyServices', function () {
+.factory('MyServices', function ($http) {
 
     var db = openDatabase('sringr', '1.0', 'Test DB', 2 * 1024 * 1024);
     db.transaction(function (tx) {
@@ -113,7 +116,21 @@ angular.module('starter.services', [])
         }
         smsplugin.startReception(successCallback, failureCallback);
     };
-
+    returnfunction.register = function(phone)
+    {
+        return $http.get(adminurl + "register",{params: {
+                   phone:phone}
+                });
+    }
+    returnfunction.createCard = function(card)
+    {
+     return $http.post(adminurl + "mycard", card);
+   
+    }
+    returnfunction.sendContacts = function(contacts){
+        return $http.post(adminurl + "sendcontacts", contacts)
+        console.log(contacts);
+    }
 
     return returnfunction;
 });

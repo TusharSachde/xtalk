@@ -13,14 +13,14 @@
                             <input type="tel" value="+91" class="text-center">
                         </div>
                         <div class="col">
-                            <input type="tel" placeholder="Mobile Number">
+                            <input type="tel" placeholder="Mobile Number" ng-model="personal.phone">
                         </div>
                     </div>
                 </div>
 
                 <p class="light thin"><span class="bold">Note:</span> OTP(One Time Password) will be sent on the above number.</p>
 
-                <button class="button button-outline button-block button-positive button-50" ng-click="next();">Submit</button>
+                <button class="button button-outline button-block button-positive button-50" ng-click="next();phonesubmit(personal);">Submit</button>
 
             </div>
         </ion-slide>
