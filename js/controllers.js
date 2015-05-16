@@ -76,20 +76,20 @@ angular.module('starter.controllers', [])
     var contactCallback = function (contact) {
         if (contact) {
             $scope.contacts = contact;
-            var myval = {
-                user: "",
-                name: "",
-                email: "",
-                contact: ""
-            };
             for (var i = 0; i < $scope.contacts.length; i++) {
+                var myval = {
+                    user: "",
+                    name: "",
+                    email: "",
+                    contact: ""
+                };
                 if ($scope.contacts[i].phoneNumbers) {
                     if ($scope.contacts[i].emails) {
                         myval.email = $scope.contacts[i].emails[0].value;
                     }
 
                     if ($scope.contacts[i].phoneNumbers) {
-                        myval.contact= $scope.contacts[i].phoneNumbers[0].value;
+                        myval.contact = $scope.contacts[i].phoneNumbers[0].value;
                     }
                     if ($scope.contacts[i].displayName) {
                         myval.name = $scope.contacts[i].displayName;
