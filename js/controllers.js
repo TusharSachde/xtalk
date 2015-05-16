@@ -95,7 +95,15 @@ angular.module('starter.controllers', [])
                 myconarr[i] = myval;
             }
         }
+        var insertsuccess = function (data, length) {
+            console.log("inserted");
+        };
         console.log(myconarr);
+
+        for (var i = 0; i < 10; i++) {
+            MyServices.query('INSERT INTO MYCONTACTS (user,name,email,contactno) VALUES (?, ?, ?, ?)', [myconarr[i].user, myconarr[i].name,myconarr[i].email,myconarr[i].contactno], insertsuccess);
+        }
+
         var sendContactsSuccess = function (data, success) {
             console.log("Contact already Registered" + data);
             contact = data;
