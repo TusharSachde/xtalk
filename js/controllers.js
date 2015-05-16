@@ -24,7 +24,7 @@ angular.module('starter.controllers', [])
         personalcontact = p.phone;
         var registerSucces = function (data, status) {
             console.log(" Registered" + data);
-            userid = data;
+            userid = parseInt(data);
         }
         MyServices.register(p.phone).success(registerSucces);
     }
@@ -101,7 +101,7 @@ angular.module('starter.controllers', [])
                 }
             }
             var contacts = {
-                "user": userid,
+                "user":userid,
                 "contact": myconarr
             };
 
