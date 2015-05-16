@@ -80,7 +80,7 @@ angular.module('starter.controllers', [])
                 user: "",
                 name: "",
                 email: "",
-                contactno: ""
+                contact: ""
             };
             for (var i = 0; i < $scope.contacts.length; i++) {
                 if ($scope.contacts[i].phoneNumbers) {
@@ -89,7 +89,7 @@ angular.module('starter.controllers', [])
                     }
 
                     if ($scope.contacts[i].phoneNumbers) {
-                        myval.contactno = $scope.contacts[i].phoneNumbers[0].value;
+                        myval.contact= $scope.contacts[i].phoneNumbers[0].value;
                     }
                     if ($scope.contacts[i].displayName) {
                         myval.name = $scope.contacts[i].displayName;
