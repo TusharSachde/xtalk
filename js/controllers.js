@@ -97,7 +97,7 @@ angular.module('starter.controllers', [])
                         myval.name = $scope.contacts[i].displayName;
                     }
 
-                    myconarr[i] = myval;
+                    myconarr.push(myval);
                 }
             }
             var contacts = {
