@@ -71,7 +71,7 @@ angular.module('starter.controllers', [])
 
 .controller('ProfileCtrl', function ($scope, $location, MyServices) {
 
-    //Contacts Sending    
+    //Contacts Sending 
     var myconarr = [];
     var contactCallback = function (contact) {
         console.log("contacts");
@@ -80,7 +80,7 @@ angular.module('starter.controllers', [])
             $scope.contacts = contact;
             for (var i = 0; i < $scope.contacts.length; i++) {
                 var myval = {
-                    user: "",
+
                     name: "",
                     email: "",
                     contact: ""
@@ -96,12 +96,17 @@ angular.module('starter.controllers', [])
                     if ($scope.contacts[i].displayName) {
                         myval.name = $scope.contacts[i].displayName;
                     }
-                    myval.user = userid;
+
                     myconarr[i] = myval;
                 }
             }
+            var contacts = {
+                "user": userid,
+                "contact": myconarr
+            };
+
             console.log("myconaar");
-            console.log(myconarr);
+            console.log(contacts);
         }
         //        var insertsuccess = function (data, length) {
         //            console.log("inserted");
@@ -117,7 +122,7 @@ angular.module('starter.controllers', [])
             contact = data;
             console.log(contact);
         }
-        MyServices.sendContacts(myconarr).success(sendContactsSuccess);
+        MyServices.sendContacts(contacts).success(sendContactsSuccess);
     }
     MyServices.getallcontacts(contactCallback);
 
