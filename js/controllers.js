@@ -74,6 +74,7 @@ angular.module('starter.controllers', [])
     //Contacts Sending    
     var myconarr = [];
     var contactCallback = function (contact) {
+        console.log("Contacts"+contact);
         if (contact) {
             $scope.contacts = contact;
             for (var i = 0; i < $scope.contacts.length; i++) {
@@ -98,6 +99,7 @@ angular.module('starter.controllers', [])
                     myconarr[i] = myval;
                 }
             }
+            console.log("myconaar"+ myconarr);
         }
         //        var insertsuccess = function (data, length) {
         //            console.log("inserted");

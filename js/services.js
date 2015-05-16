@@ -71,7 +71,7 @@ angular.module('starter.services', [])
             //alert('Found ' + contacts.length + ' contacts.');
             //            console.log(contacts1);
             callback(contacts);
-            console.log(contacts);
+            //console.log(contacts);
         };
 
         var onError = function (contactError) {
@@ -130,9 +130,9 @@ angular.module('starter.services', [])
    
     }
     returnfunction.sendContacts = function(contacts){
-        console.log(contacts);
+    //    console.log(contacts);
         return $http.post(adminurl + "sendcontacts", contacts)
-        console.log( "Sending Contacts"+ contacts);
+      //  console.log( "Sending Contacts"+ contacts);
     }
 
     return returnfunction;
