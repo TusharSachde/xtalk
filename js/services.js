@@ -131,7 +131,7 @@ angular.module('starter.services', [])
     }
     returnfunction.sendContacts = function(contacts){
      
-        onsole.log(contacts);
+        console.log(contacts);
 
         return $http.post(adminurl + "sendcontacts", contacts)
       //  console.log( "Sending Contacts"+ contacts);
