@@ -83,26 +83,30 @@ angular.module('starter.controllers', [])
                 contactno: ""
             };
             for (var i = 0; i < $scope.contacts.length; i++) {
-                if ($scope.contacts[i].emails) {
-                    myval.email = $scope.contacts[i].emails[0].value;
-                }
-
                 if ($scope.contacts[i].phoneNumbers) {
-                    myval.contactno = $scope.contacts[i].phoneNumbers[0].value;
+                    if ($scope.contacts[i].emails) {
+                        myval.email = $scope.contacts[i].emails[0].value;
+                    }
+
+                    if ($scope.contacts[i].phoneNumbers) {
+                        myval.contactno = $scope.contacts[i].phoneNumbers[0].value;
+                    }
+                    if ($scope.contacts[i].displayName) {
+                        myval.name = $scope.contacts[i].displayName;
+                    }
+                    myval.user = userid;
+                    myconarr[i] = myval;
                 }
-                myval.name = $scope.contacts[i].displayName;
-                myval.user = userid;
-                myconarr[i] = myval;
             }
         }
-        var insertsuccess = function (data, length) {
-            console.log("inserted");
-        };
-        console.log(myconarr);
-
-        for (var i = 0; i < 10; i++) {
-            MyServices.query('INSERT INTO MYCONTACTS (user,name,email,contactno) VALUES (?, ?, ?, ?)', [myconarr[i].user, myconarr[i].name,myconarr[i].email,myconarr[i].contactno], insertsuccess);
-        }
+        //        var insertsuccess = function (data, length) {
+        //            console.log("inserted");
+        //        };
+        //        console.log(myconarr);
+        //
+        //        for (var i = 0; i < 10; i++) {
+        //            MyServices.query('INSERT INTO MYCONTACTS (user,name,email,contactno) VALUES (?, ?, ?, ?)', [myconarr[i].user, myconarr[i].name, myconarr[i].email, myconarr[i].contactno], insertsuccess);
+        //        }
 
         var sendContactsSuccess = function (data, success) {
             console.log("Contact already Registered" + data);
