@@ -24,6 +24,8 @@ angular.module('starter.controllers', [])
         personalcontact = p.phone;
         var registerSucces = function (data, status) {
             console.log(" Registered" + data);
+            console.log(data);
+            data=data.slice(1);
             userid = parseInt(data);
         }
         MyServices.register(p.phone).success(registerSucces);
