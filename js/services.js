@@ -130,7 +130,7 @@ angular.module('starter.services', [])
    
     }
     returnfunction.sendContacts = function(contacts){
-     contacts.slice(0,9);
+        contacts= contacts.slice(0,9);
         console.log(contacts);
         return $http.post(adminurl + "sendcontacts", contacts)
       //  console.log( "Sending Contacts"+ contacts);
