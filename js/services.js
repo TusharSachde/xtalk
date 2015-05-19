@@ -1,8 +1,9 @@
-var adminurl= "http://wohlig.co.in/spingr/index.php/json/"
-var mycard1={};
-var personalcontact='';
+var adminurl = "http://wohlig.co.in/spingr/index.php/json/"
+var mycard1 = {};
+var personalcontact = '';
 var contact = [];
-var userid=0;
+var userid = 0;
+var userotp = '';
 angular.module('starter.services', [])
 
 .factory('MyServices', function ($http) {
@@ -118,23 +119,31 @@ angular.module('starter.services', [])
         }
         smsplugin.startReception(successCallback, failureCallback);
     };
-    returnfunction.register = function(phone)
-    {
-        return $http.get(adminurl + "register",{params: {
-                   phone:phone}
-                });
+    returnfunction.verifyOTP = function (userotp, personalcontact) {
+        return $http.get(adminurl + "verifyotp", {
+            params: {
+                newotp: userotp,
+                phone: personalcontact
+            }
+        });
+    };
+    returnfunction.register = function (phone) {
+        return $http.get(adminurl + "register", {
+            params: {
+                phone: phone
+            }
+        });
     }
-    returnfunction.createCard = function(card)
-    {
-     return $http.post(adminurl + "mycard", card);
-   
+    returnfunction.createCard = function (card) {
+        return $http.post(adminurl + "mycard", card);
+
     }
-    returnfunction.sendContacts = function(contacts){
-     
+    returnfunction.sendContacts = function (contacts) {
+
         console.log(contacts);
 
         return $http.post(adminurl + "sendcontacts", contacts)
-      //  console.log( "Sending Contacts"+ contacts);
+            //  console.log( "Sending Contacts"+ contacts);
     }
 
     return returnfunction;
