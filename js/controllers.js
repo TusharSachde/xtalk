@@ -92,8 +92,8 @@ angular.module('starter.controllers', [])
     //Contacts Sending 
     var myconarr = [];
     var contactCallback = function (contact) {
-        console.log("contacts");
-        console.log(contact);
+//        console.log("contacts");
+//        console.log(contact);
         if (contact) {
             $scope.contacts = contact;
             for (var i = 0; i < $scope.contacts.length; i++) {
@@ -123,15 +123,16 @@ angular.module('starter.controllers', [])
                 "contact": myconarr
             };
 
-            console.log("myconaar");
-            console.log(contacts);
+//            console.log("myconaar");
+//            console.log(contacts);
         }
         var insertsuccess = function (data, length) {
             console.log(data);
             console.log("inserted");
         };
 
-        for (var i = 0; i < myco.length; i++) {
+        for (var i = 0; i < myconarr.length; i++) {
+            console.log("for i="+i);
             MyServices.query('INSERT INTO MYCONTACTS (user,name,email,contactno) VALUES (?, ?, ?, ?)', [userid, myconarr[i].name, myconarr[i].email, myconarr[i].contactno], insertsuccess);
         }
 
