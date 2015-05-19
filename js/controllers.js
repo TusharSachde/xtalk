@@ -16,27 +16,28 @@ angular.module('starter.controllers', [])
 .controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices) {
 
     $scope.personal = {};
-    $scope.next = function () {
-        $ionicSlideBoxDelegate.next();
-    };
+//    $scope.next = function () {
+//        
+//    };
 
-    $scope.phonesubmit = function (p) {
-        personalcontact = p.phone;
-        var registerSucces = function (data, status) {
-            console.log(" Registered" + data);
-            console.log(data);
-            data=data.slice(1);
-            userid = parseInt(data);
+    var registerSuccess = function (data, status) {
+        console.log("Registered " + data);
+        userid = parseInt(data);
+    };
+    $scope.phonesubmit = function (phoneno) {
+        if (phoneno.phone.isNumber) {
+            personalcontact = phoneno.phone;
+            MyServices.register(phoneno.phone).success(registerSuccess);
+            $ionicSlideBoxDelegate.next();
         }
-        MyServices.register(p.phone).success(registerSucces);
     }
-    var logload = function (data, length) {
-        for (var i = 0; i < length; i++) {
-            console.log(data.item(i));
-        }
-    };
 
-    MyServices.query("SELECT * FROM LOGS", logload);
+    //    var logload = function (data, length) {
+    //        for (var i = 0; i < length; i++) {
+    //            console.log(data.item(i));
+    //        }
+    //    };
+    //    MyServices.query("SELECT * FROM LOGS", logload);
 
     $scope.previous = function () {
         $ionicSlideBoxDelegate.previous();
@@ -103,7 +104,7 @@ angular.module('starter.controllers', [])
                 }
             }
             var contacts = {
-                "user":userid,
+                "user": userid,
                 "contact": myconarr
             };
 
