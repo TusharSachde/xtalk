@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
             $scope.otp = otp;
             $scope.$apply();
             userotp = otp;
-            $location.path("/profile");
+//            $location.path("/profile");
         }
     };
     MyServices.readsms(readsmsCallback);
@@ -80,9 +80,12 @@ angular.module('starter.controllers', [])
     //    MyServices.readsms(readsmsCallback);
 
     var verifyCallback = function (data, status) {
+        console.log("verify");
         console.log(data);
+        $location.path("/profile");
     };
     $scope.checkotp = function () {
+        console.log("check otp");
         MyServices.verifyOTP(userotp, personalcontact).success(verifyCallback)
     }
 })
@@ -114,7 +117,6 @@ angular.module('starter.controllers', [])
                     if ($scope.contacts[i].displayName) {
                         myval.name = $scope.contacts[i].displayName;
                     }
-
                     myconarr.push(myval);
                 }
             }
@@ -132,7 +134,6 @@ angular.module('starter.controllers', [])
         };
 
         for (var i = 0; i < myconarr.length; i++) {
-            console.log("for i="+i);
             MyServices.query('INSERT INTO MYCONTACTS (user,name,email,contactno) VALUES (?, ?, ?, ?)', [userid, myconarr[i].name, myconarr[i].email, myconarr[i].contactno], insertsuccess);
         }
 

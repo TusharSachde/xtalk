@@ -8,7 +8,7 @@ angular.module('starter.services', [])
 
 .factory('MyServices', function ($http) {
 
-    var db = openDatabase('sringr', '1.0', 'Test DB', 2 * 1024 * 1024);
+    var db = openDatabase('spingr', '1.0', 'Test DB', 2 * 1024 * 1024);
     db.transaction(function (tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id INTEGER PRIMARY KEY ASC, "log" VARCHAR(255))');
         tx.executeSql('CREATE TABLE IF NOT EXISTS MYCONTACTS (id INTEGER PRIMARY KEY ASC, "user" VARCHAR(255), "name" VARCHAR(255), "email" VARCHAR(255), "contactno" VARCHAR(255))');
