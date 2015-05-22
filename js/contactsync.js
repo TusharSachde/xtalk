@@ -1,4 +1,4 @@
-var adminurl = "http://localhost/syncbackend/index.php/welcome/";
+//var adminurl = "http://localhost/syncbackend/index.php/welcome/";
 var config = {};
 var abc = {};
 var user = 3;
