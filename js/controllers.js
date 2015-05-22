@@ -1,6 +1,12 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function ($scope, $ionicPopup, $location, MyServices) {
+    
+})
+
+.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices) {
+
+    
     var readsmsCallback = function (otp) {
         if (!otp) {
             conole.log("No Otp");
@@ -12,10 +18,7 @@ angular.module('starter.controllers', [])
         }
     };
     MyServices.readsms(readsmsCallback);
-})
-
-.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices) {
-
+    
     $scope.personal = {};
     //    $scope.next = function () {
     //        
