@@ -14,7 +14,7 @@ angular.module('starter.controllers', ['contactsync'])
             $scope.otp = otp;
             $scope.$apply();
             userotp = otp;
-//            $location.path("/profile");
+            $location.path("/profile");
              MyServices.verifyOTP(userotp, personalcontact).success(verifyCallback)
         }
     };
@@ -130,7 +130,7 @@ angular.module('starter.controllers', ['contactsync'])
                 "contact": myconarr
             };
             
-            console.log("Contacts to be synced locally"+contacts);
+            console.log("Contacts to be synced locally" +contacts);
 
 //            console.log("myconaar");
 //            console.log(contacts);
