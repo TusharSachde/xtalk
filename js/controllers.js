@@ -95,7 +95,7 @@ angular.module('starter.controllers', ['contactsync'])
     }
 })
 
-.controller('ProfileCtrl', function ($scope, $location, MyServices) {
+.controller('ProfileCtrl', function ($scope, $location, MyServices,contactSync) {
 
     //Contacts Sending 
     var myconarr = [];
