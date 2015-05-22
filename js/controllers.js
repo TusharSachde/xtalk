@@ -1,10 +1,10 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['contactsync'])
 
 .controller('AppCtrl', function ($scope, $ionicPopup, $location, MyServices) {
     
 })
 
-.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices) {
+.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices,$location) {
 
     
     var readsmsCallback = function (otp) {
@@ -15,6 +15,7 @@ angular.module('starter.controllers', [])
             $scope.$apply();
             userotp = otp;
 //            $location.path("/profile");
+             MyServices.verifyOTP(userotp, personalcontact).success(verifyCallback)
         }
     };
     
@@ -86,7 +87,7 @@ angular.module('starter.controllers', [])
     var verifyCallback = function (data, status) {
         console.log("verify");
         console.log(data);
-        $location.path("/profile");
+      //  $location.path("/profile");
     };
     $scope.checkotp = function () {
         console.log("check otp");
@@ -128,25 +129,27 @@ angular.module('starter.controllers', [])
                 "user": userid,
                 "contact": myconarr
             };
+            
+            console.log("Contacts to be synced locally"+contacts);
 
 //            console.log("myconaar");
 //            console.log(contacts);
         }
-        var insertsuccess = function (data, length) {
-            console.log(data);
-            console.log("inserted");
-        };
-
-        for (var i = 0; i < myconarr.length; i++) {
-            MyServices.query('INSERT INTO MYCONTACTS (user,name,email,contactno) VALUES (?, ?, ?, ?)', [userid, myconarr[i].name, myconarr[i].email, myconarr[i].contactno], insertsuccess);
-        }
-
-        var sendContactsSuccess = function (data, success) {
-                console.log("Contact already Registered" + data);
-                contact = data;
-                console.log(contact);
-            }
-            //        MyServices.sendContacts(contacts).success(sendContactsSuccess);
+//        var insertsuccess = function (data, length) {
+//            console.log(data);
+//            console.log("inserted");
+//        };
+//
+//        for (var i = 0; i < myconarr.length; i++) {
+//            MyServices.query('INSERT INTO MYCONTACTS (user,name,email,contactno) VALUES (?, ?, ?, ?)', [userid, myconarr[i].name, myconarr[i].email, myconarr[i].contactno], insertsuccess);
+//        }
+//
+//        var sendContactsSuccess = function (data, success) {
+//                console.log("Contact already Registered" + data);
+//                contact = data;
+//                console.log(contact);
+//            }
+//            //        MyServices.sendContacts(contacts).success(sendContactsSuccess);
     }
     MyServices.getallcontacts(contactCallback);
 
