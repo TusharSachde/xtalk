@@ -17,7 +17,7 @@ angular.module('starter.controllers', [])
 //            $location.path("/profile");
         }
     };
-    MyServices.readsms(readsmsCallback);
+    
     
     $scope.personal = {};
     //    $scope.next = function () {
@@ -48,6 +48,7 @@ angular.module('starter.controllers', [])
     $scope.phonesubmit = function (phoneno) {
         //        if (phoneno.phone.isNumber) {
         personalcontact = phoneno.phone;
+        MyServices.readsms(readsmsCallback);
         MyServices.register(phoneno.phone).success(registerSuccess);
         $ionicSlideBoxDelegate.next();
         //        }
