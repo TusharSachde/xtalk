@@ -32,7 +32,7 @@ contactsync.factory('contactSync', function ($http) {
     var db = openDatabase('sync', '1.0', 'SyncTestDatabase', 2 * 1024 * 1024);
 
     db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS `users` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`serverid` INTEGER  )');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`serverid` INTEGER  )');
     });
     db.transaction(function (tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS `userslog` (`id` INTEGER PRIMARY KEY ASC, `timestamp` TIMESTAMP,`type` INTEGER,`user` INTEGER,`table` INTEGER,`serverid` INTEGER)');

@@ -49,7 +49,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.phonesubmit = function (phoneno) {
         //        if (phoneno.phone.isNumber) {
         personalcontact = phoneno.phone;
-        MyServices.readsms(readsmsCallback);
+        //MyServices.readsms(readsmsCallback);
         MyServices.register(phoneno.phone).success(registerSuccess);
         $ionicSlideBoxDelegate.next();
         //        }
