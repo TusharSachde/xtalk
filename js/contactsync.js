@@ -78,7 +78,7 @@ contactsync.factory('contactSync', function ($http) {
         switch (data.type) {
         case "1":
             {
-                returnval.query("INSERT INTO `users` (`id`, `name`,`email`,`serverid`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.id + "')", function (result, len) {
+                returnval.query("INSERT INTO `contacts ` (`id`, `name`,`email`,`serverid`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.id + "')", function (result, len) {
                     if (callback) {
                         callback();
                     }
@@ -87,19 +87,19 @@ contactsync.factory('contactSync', function ($http) {
             break;
         case "2":
             {
-                returnval.query("SELECT * FROM `users` WHERE `serverid`='" + data.id + "' ", function (result, len) {
+                returnval.query("SELECT * FROM `contacts ` WHERE `serverid`='" + data.id + "' ", function (result, len) {
                     if (len == 0) {
                         data.type = "1";
                         return updatelocal(data, status, callback);
                     } else {
-                        returnval.query("UPDATE `users` SET `name`='" + data.name + "',`email`='" + data.email + "' WHERE `id`='" + result.item(0).id + "'");
+                        returnval.query("UPDATE `contacts ` SET `name`='" + data.name + "',`email`='" + data.email + "' WHERE `id`='" + result.item(0).id + "'");
                     }
                 });
             }
             break;
         case "3":
             {
-                returnval.query("DELETE FROM `users` WHERE `serverid`='" + data.id + "'");
+                returnval.query("DELETE FROM `contacts ` WHERE `serverid`='" + data.id + "'");
             }
             break;
         }
@@ -110,7 +110,7 @@ contactsync.factory('contactSync', function ($http) {
     returnval.create = function (data, callback) {
         console.log(data);
 
-        returnval.query("INSERT INTO `users` (`id`, `name`,`email`, `personalMobile`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "')", function (result, len, id) {
+        returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`, `personalMobile`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "')", function (result, len, id) {
             id = id.insertId;
             var d = new Date();
             var n = d.getTime();
@@ -122,7 +122,7 @@ contactsync.factory('contactSync', function ($http) {
     };
     returnval.update = function (data, callback) {
 
-        returnval.query("UPDATE `users` SET `name`='" + data.name + "',`email`='" + data.email + "' WHERE `id`='" + data.id + "'", function (result, len) {
+        returnval.query("UPDATE `contacts` SET `name`='" + data.name + "',`email`='" + data.email + "' WHERE `id`='" + data.id + "'", function (result, len) {
 
             var d = new Date();
             var n = d.getTime();
@@ -134,23 +134,23 @@ contactsync.factory('contactSync', function ($http) {
     returnval.delete = function (data, callback) {
         var d = new Date();
         var n = d.getTime();
-        returnval.query("SELECT * FROM `users` WHERE `id` = '" + data.id + "'", function (result, len) {
+        returnval.query("SELECT * FROM `contacts` WHERE `id` = '" + data.id + "'", function (result, len) {
             var row = result.item(0);
             if (row.serverid == null) {
                 console.log("DELETE ALL THE RECORDS FROM LOGS AND OTHER");
-                returnval.query("DELETE FROM `users` WHERE `id`='" + data.id + "'");
+                returnval.query("DELETE FROM `contacts ` WHERE `id`='" + data.id + "'");
                 returnval.query("DELETE FROM `userslog` WHERE `table`='" + data.id + "'");
 
             } else {
                 console.log("STORE SERVER ID " + row.serverid);
-                returnval.query("DELETE FROM `users` WHERE `id`='" + data.id + "'");
+                returnval.query("DELETE FROM `contacts` WHERE `id`='" + data.id + "'");
                 returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`,`serverid`) VALUES (null,'" + n + "','" + 3 + "','" + user + "','" + data.id + "','" + row.serverid + "')", null);
             }
             callback();
 
         });
 
-        //        returnval.query("DELETE FROM `users` WHERE `id`='" + data.id + "'", function (result, len) {
+        //        returnval.query("DELETE FROM `contacts ` WHERE `id`='" + data.id + "'", function (result, len) {
         //            var d = new Date();
         //            var n = d.getTime();
         //            returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 3 + "','" + user + "','" + data.id + "')", null);
@@ -163,7 +163,7 @@ contactsync.factory('contactSync', function ($http) {
         if (!config.user.localtimestamp) {
             config.user.localtimestamp = 0;
         }
-        returnval.query("SELECT `table` as `id`,'" + user + "' as `user`,`serverid`,`name`,`email`,`timestamp` ,`type`,`serverid2` FROM (SELECT `userslog`.`table`,`users`.`name`,`users`.`email`, `userslog`.`timestamp`, `userslog`.`type`,`users`.`serverid`,`userslog`.`serverid` as `serverid2` FROM `userslog` LEFT OUTER JOIN `users` ON `users`.`id`=`userslog`.`table` WHERE `userslog`.`timestamp`>'" + config.user.localtimestamp + "' ORDER BY `userslog`.`timestamp` DESC) as `tab1` GROUP BY `tab1`.`table` ORDER BY `tab1`.`timestamp` LIMIT 0,1", callback);
+        returnval.query("SELECT `table` as `id`,'" + user + "' as `user`,`serverid`,`name`,`email`,`timestamp` ,`type`,`serverid2` FROM (SELECT `userslog`.`table`,`contacts `.`name`,`contacts `.`email`, `userslog`.`timestamp`, `userslog`.`type`,`contacts `.`serverid`,`userslog`.`serverid` as `serverid2` FROM `userslog` LEFT OUTER JOIN `contacts ` ON `contacts `.`id`=`userslog`.`table` WHERE `userslog`.`timestamp`>'" + config.user.localtimestamp + "' ORDER BY `userslog`.`timestamp` DESC) as `tab1` GROUP BY `tab1`.`table` ORDER BY `tab1`.`timestamp` LIMIT 0,1", callback);
     };
 
     returnval.synclocaltoserver = function (callback) {
@@ -176,7 +176,7 @@ contactsync.factory('contactSync', function ($http) {
                 var row = result.item(0);
                 $http.post(adminurl + "localtoserver", row).success(function (data) {
                     if (data.id) {
-                        returnval.query("UPDATE `users` SET `serverid`='" + data.id + "' WHERE `id`='" + row.id + "'");
+                        returnval.query("UPDATE `contacts ` SET `serverid`='" + data.id + "' WHERE `id`='" + row.id + "'");
                     }
                     console.log(row);
                     changelocaltimestamp(row.timestamp);
