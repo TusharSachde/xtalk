@@ -95,7 +95,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 })
 
-.controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer) {
+.controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer,contactSync) {
 
     //Contacts Sending
     var changecmpylogo = function (result) {
@@ -165,15 +165,18 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     if ($scope.contacts[i].displayName) {
                         myval.name = $scope.contacts[i].displayName;
                     }
+                    contactSync.create(myval);
                     myconarr.push(myval);
                 }
+                
             }
             var contacts = {
                 "user": userid,
                 "contact": myconarr
             };
 
-            console.log("Contacts to be synced locally" + contacts);
+            console.log("Contacts to be synced locally");
+            console.log(contacts);
 
             //            console.log("myconaar");
             //            console.log(contacts);
