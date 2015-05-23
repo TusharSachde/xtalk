@@ -1,7 +1,9 @@
 <ion-view view-title="SpingR">
     <ion-content class="padding">
         <div class="card-effect personal-card">
-            <div class="addlogo">Upload profile picture</div>
+            <div class="addlogo" ng-click="changecompanylogo()">Upload profile picture
+                <img src="{{profilelogo|serverimage}}">
+            </div>
             <div class="list">
                 <label class="item item-input">
                     <input type="text" placeholder="Birth Date" ng-model="personal.dob">

@@ -1,12 +1,12 @@
-angular.module('starter.controllers', ['contactsync'])
+angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('AppCtrl', function ($scope, $ionicPopup, $location, MyServices) {
-    
+
 })
 
-.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices,$location) {
+.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices, $location) {
 
-    
+
     var readsmsCallback = function (otp) {
         if (!otp) {
             conole.log("No Otp");
@@ -15,11 +15,11 @@ angular.module('starter.controllers', ['contactsync'])
             $scope.$apply();
             userotp = otp;
             $location.path("/profile");
-             MyServices.verifyOTP(userotp, personalcontact).success(verifyCallback)
+            MyServices.verifyOTP(userotp, personalcontact).success(verifyCallback)
         }
     };
-    
-    
+
+
     $scope.personal = {};
     //    $scope.next = function () {
     //        
@@ -87,7 +87,7 @@ angular.module('starter.controllers', ['contactsync'])
     var verifyCallback = function (data, status) {
         console.log("verify");
         console.log(data);
-      //  $location.path("/profile");
+        //  $location.path("/profile");
     };
     $scope.checkotp = function () {
         console.log("check otp");
@@ -95,13 +95,56 @@ angular.module('starter.controllers', ['contactsync'])
     }
 })
 
-.controller('ProfileCtrl', function ($scope, $location, MyServices,contactSync) {
+.controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer) {
 
-    //Contacts Sending 
+    //Contacts Sending
+    var changecmpylogo = function (result) {
+        $scope.companylogo = result.value;
+    }
+    $scope.changecompanylogo = function () {
+        console.log("take picture");
+
+        $cordovaCamera.getPicture(options).then(function (imageData) {
+            // Success! Image data is here
+            console.log("here in upload image");
+            console.log(imageData);
+            if (imageData.substring(0, 21) == "content://com.android") {
+                var photo_split = imageData.split("%3A");
+                imageData = "content://media/external/images/media/" + photo_split[1];
+            }
+            $scope.cameraimage = imageData;
+            $scope.uploadPhoto(adminurl + "imageuploadcompany?user=" + user.id, changecmpylogo);
+        }, function (err) {
+            // An error occured. Show a message to the user
+        });
+    };
+
+    var changeproflogo = function (result) {
+        $scope.profilelogo = result.value;
+    }
+    $scope.changeprofilelogo = function () {
+        console.log("take picture");
+
+        $cordovaCamera.getPicture(options).then(function (imageData) {
+            // Success! Image data is here
+            console.log("here in upload image");
+            console.log(imageData);
+            if (imageData.substring(0, 21) == "content://com.android") {
+                var photo_split = imageData.split("%3A");
+                imageData = "content://media/external/images/media/" + photo_split[1];
+            }
+            $scope.cameraimage = imageData;
+            $scope.uploadPhoto(adminurl + "imageuploadprofile?user=" + user.id, changeproflogo);
+        }, function (err) {
+            // An error occured. Show a message to the user
+        });
+    };
+
+
     var myconarr = [];
     var contactCallback = function (contact) {
-//        console.log("contacts");
-//        console.log(contact);
+        //        console.log("contacts");
+        //        console.log(contact);
         if (contact) {
             $scope.contacts = contact;
             for (var i = 0; i < $scope.contacts.length; i++) {
@@ -129,27 +172,27 @@ angular.module('starter.controllers', ['contactsync'])
                 "user": userid,
                 "contact": myconarr
             };
-            
-            console.log("Contacts to be synced locally" +contacts);
 
-//            console.log("myconaar");
-//            console.log(contacts);
+            console.log("Contacts to be synced locally" + contacts);
+
+            //            console.log("myconaar");
+            //            console.log(contacts);
         }
-//        var insertsuccess = function (data, length) {
-//            console.log(data);
-//            console.log("inserted");
-//        };
-//
-//        for (var i = 0; i < myconarr.length; i++) {
-//            MyServices.query('INSERT INTO MYCONTACTS (user,name,email,contactno) VALUES (?, ?, ?, ?)', [userid, myconarr[i].name, myconarr[i].email, myconarr[i].contactno], insertsuccess);
-//        }
-//
-//        var sendContactsSuccess = function (data, success) {
-//                console.log("Contact already Registered" + data);
-//                contact = data;
-//                console.log(contact);
-//            }
-//            //        MyServices.sendContacts(contacts).success(sendContactsSuccess);
+        //        var insertsuccess = function (data, length) {
+        //            console.log(data);
+        //            console.log("inserted");
+        //        };
+        //
+        //        for (var i = 0; i < myconarr.length; i++) {
+        //            MyServices.query('INSERT INTO MYCONTACTS (user,name,email,contactno) VALUES (?, ?, ?, ?)', [userid, myconarr[i].name, myconarr[i].email, myconarr[i].contactno], insertsuccess);
+        //        }
+        //
+        //        var sendContactsSuccess = function (data, success) {
+        //                console.log("Contact already Registered" + data);
+        //                contact = data;
+        //                console.log(contact);
+        //            }
+        //            //        MyServices.sendContacts(contacts).success(sendContactsSuccess);
     }
     MyServices.getallcontacts(contactCallback);
 

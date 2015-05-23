@@ -1,9 +1,10 @@
-var adminurl = "http://wohlig.co.in/spingr/index.php/json/"
+var adminurl = "http://wohlig.co.in/spingr/index.php/json/";
 var mycard1 = {};
 var personalcontact = '';
 var contact = [];
 var userid = 0;
 var userotp = '';
+var imgpath="http://wohlig.co.in/spingr/uploads/";
 angular.module('starter.services', [])
 
 .factory('MyServices', function ($http) {
