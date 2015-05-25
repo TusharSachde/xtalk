@@ -349,7 +349,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 })
 
 .controller('ProfileGetCtrl', function ($scope, MyServices) {
-    $scope.contacts = MyServices.all();
+    //$scope.contacts = MyServices.all();
     console.log($scope.contacts);
     $scope.$apply();
 })
@@ -368,17 +368,17 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log('Search Clicked');
         $scope.search = !$scope.search;
     };
-
+    $scope.searchquery="";
     $scope.filtertoggle = function (keyEvent) {
         if (keyEvent.which === 13) {
-            console.log('Filter Enter Clicked');
+            console.log($scope.searchquery);
             $scope.filterbtn = true;
         } else {
             $scope.filterbtn = false;
         }
     };
 
-    $scope.contacts = MyServices.all();
+  //  $scope.contacts = MyServices.all();
     $scope.showdailer = false;
     $scope.hidedialer = function () {
         $scope.showdailer = false;
