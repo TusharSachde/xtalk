@@ -74,6 +74,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer) {
 
+    var options = {
+        quality: 40,
+        destinationType: Camera.DestinationType.NATIVE_URI,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        encodingType: Camera.EncodingType.JPEG
+    };
+
     //Contacts Sending
     var changecmpylogo = function (result) {
         $scope.companylogo = result.value;
