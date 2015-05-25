@@ -142,7 +142,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     if ($scope.contacts[i].displayName) {
                         myval.name = $scope.contacts[i].displayName;
                     }
-                    contactSync.create(myval);
+                    contactSync.create(myval, function callback(){});
                     myconarr.push(myval);
                 }
 
