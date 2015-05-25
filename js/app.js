@@ -201,4 +201,30 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         return function (image) {
             return imgpath + image;
         };
+    })
+    .filter('matchsearch', function () {
+        return function (item, str) {
+            //            str="Dha";
+            //console.log(str);
+            var re = new RegExp("(.*?)" + str + "(.*?)", "i");
+            var newitem = _.filter(item, function (n) {
+                return re.test(n.name);
+            });
+
+            return newitem;
+        }
+    })
+    .filter('addhighlight', function () {
+        return function (str, searchkey) {
+            console.log(searchkey);
+            var newstr = str;
+            var num = 0;
+            if (searchkey != "") {
+                var re = new RegExp(searchkey, "i");
+                num = str.search(str, searchkey);
+                newstr = str.replace(re, "<span class='highlight'>" + str.slice(num, searchkey.length) + "</span>");
+            }
+            console.log(newstr);
+            return newstr;
+        }
     });

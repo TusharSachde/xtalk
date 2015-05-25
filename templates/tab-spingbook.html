@@ -11,7 +11,7 @@
     <ion-nav-title>
         <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
         <div class="animate-if headersearch" ng-if="search == true;">
-            <input type="text" ng-model="searchquery" ng-keypress="filtertoggle($event);">
+            <input type="text" ng-model="searchquery.search" >
         </div>
     </ion-nav-title>
 
@@ -97,17 +97,16 @@
 
     <ion-content>
         <ion-list>
-            {{myconarr}
-            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myconarr" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(myconarr.number);" href="#/tab/spingbook/{{myconarr.id}}">
-                {{myconarr}
+
+            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr | matchsearch:searchquery.search" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(myconarr.number);" href="#/tab/spingbook/{{myconarr.id}}">
                 <div class="picture" style="background-image: url('{{myconarr.image}}');"></div>
 
                 <div class="card-style">
-                    <h2 class="positive">{{myconarrs[0].name}}</h2>
+                    <h2 class="positive" ng-bind-html="myconarrs.name|addhighlight:searchquery.search"></h2>
 
                     <p class="stable">
                         {{myconarrs.company}}
-                        <br>{{myconarrs.area}}
+                        <br>{{myconarrs.area}}  {{myconarrs.number}}
                     </p>
 
                     <div class="company" style="background-image: url('{{myconarrs.logo}}');"></div>

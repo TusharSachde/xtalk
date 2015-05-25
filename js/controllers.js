@@ -362,6 +362,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location) {
 
+    $scope.myarr=myconarr;
+    console.log($scope.myarr);
     $scope.search = false;
     $scope.filterbtn = false;
     $scope.showsearch = function () {
@@ -377,7 +379,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             $scope.filterbtn = false;
         }
     };
+    $scope.getsearches=function(searchstring){
+        console.log(searchstring);
+//        _.filter(myconarr,function(n) {return /(.*?)dh(.*?)/i.test(n.name);});
+    }
 
+    $scope.searchquery={search:""};
+    
   //  $scope.contacts = MyServices.all();
     $scope.showdailer = false;
     $scope.hidedialer = function () {
