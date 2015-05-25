@@ -38,8 +38,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
     var registerSuccess = function (data, status) {
-        console.log("Registered " + data);
-        userid = parseInt(data);
+        console.log(data);
+        userid = parseInt(data.id);
         $ionicSlideBoxDelegate.next();
         MyServices.readsms(readsmsCallback);
     };
