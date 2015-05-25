@@ -241,11 +241,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log($scope.mergecard);
 
         var createCardSucess = function (data, status) {
-            console.log("HEy" + data)
+            console.log("HEy" + data);
+            $location.path("/tab/spingbook");
         }
         MyServices.createCard($scope.mergecard).success(createCardSucess);
         //        console.log($scope.mycard);
-        $location.path("/profile/sharewith");
+        //        $location.path("/profile/sharewith");
     };
 
 })
