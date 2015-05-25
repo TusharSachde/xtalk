@@ -110,8 +110,7 @@ angular.module('starter.services', [])
 
         var successCallback = function (data) {
             console.log(data);
-            var index = data.indexOf("SpingR is ");
-            var otp = data.substring(index + 10, index + 16);
+            var otp = data.substring(data.length-4, data.length);
             console.log(otp);
             callback(otp);
         }
