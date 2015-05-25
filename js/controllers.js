@@ -64,7 +64,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     var verifyCallback = function (data, status) {
         console.log("verify");
         console.log(data);
-        $location.path("/profile");
+        $location.path("/mycard");
     };
     $scope.checkotp = function () {
         console.log("check otp");
