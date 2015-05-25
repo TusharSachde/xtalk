@@ -14,17 +14,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             $scope.otp = otp;
             $scope.$apply();
             userotp = otp;
-            $location.path("/profile");
             MyServices.verifyOTP(userotp, personalcontact).success(verifyCallback)
         }
     };
 
 
     $scope.personal = {};
-    //    $scope.next = function () {
-    //        
-    //    };
-
     //Popup for dint get OTP
     $scope.showAlert = function () {
         console.log('Dint get OTP?');
@@ -45,22 +40,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     var registerSuccess = function (data, status) {
         console.log("Registered " + data);
         userid = parseInt(data);
+        $ionicSlideBoxDelegate.next();
+        MyServices.readsms(readsmsCallback);
     };
     $scope.phonesubmit = function (phoneno) {
-        //        if (phoneno.phone.isNumber) {
         personalcontact = phoneno.phone;
-        //MyServices.readsms(readsmsCallback);
         MyServices.register(phoneno.phone).success(registerSuccess);
-        $ionicSlideBoxDelegate.next();
-        //        }
     }
-
-    //    var logload = function (data, length) {
-    //        for (var i = 0; i < length; i++) {
-    //            console.log(data.item(i));
-    //        }
-    //    };
-    //    MyServices.query("SELECT * FROM LOGS", logload);
 
     $scope.disableSwipe = function () {
         $ionicSlideBoxDelegate.enableSlide(false);
@@ -75,15 +61,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.slideIndex = index;
     };
 
-    //    var readsmsCallback = function (otp) {
-    //        if (!otp) {
-    //            conole.log("No Otp");
-    //        } else {
-    //            $scope.otp = otp;
-    //        }
-    //    };
-    //    MyServices.readsms(readsmsCallback);
-
     var verifyCallback = function (data, status) {
         console.log("verify");
         console.log(data);
@@ -95,7 +72,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 })
 
-.controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer,contactSync) {
+.controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer) {
 
     //Contacts Sending
     var changecmpylogo = function (result) {
@@ -168,7 +145,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     contactSync.create(myval);
                     myconarr.push(myval);
                 }
-                
+
             }
             var contacts = {
                 "user": userid,
