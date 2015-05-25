@@ -117,8 +117,9 @@ contactsync.factory('contactSync', function ($http) {
             var n = d.getTime();
             returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 1 + "','" + user + "','" + id + "')", null);
             console.log(id);
-
-            callback();
+            if (callback) {
+                callback();
+            }
         });
     };
     returnval.update = function (data, callback) {
