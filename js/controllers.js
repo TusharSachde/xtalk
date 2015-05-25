@@ -153,7 +153,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
 
 
-    var myconarr = [];
+   
     var contactCallback = function (contact) {
         //        console.log("contacts");
         //        console.log(contact);
