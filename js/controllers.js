@@ -153,7 +153,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
 
 
-   
+
     var contactCallback = function (contact) {
         //        console.log("contacts");
         //        console.log(contact);
@@ -362,15 +362,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location) {
 
-    $scope.myarr=myconarr;
+    $scope.myarr = myconarr;
     console.log($scope.myarr);
     $scope.search = false;
     $scope.filterbtn = false;
     $scope.showsearch = function () {
         console.log('Search Clicked');
         $scope.search = !$scope.search;
+        console.log($scope.search);
     };
-    $scope.searchquery="";
+    $scope.searchquery = "";
     $scope.filtertoggle = function (keyEvent) {
         if (keyEvent.which === 13) {
             console.log($scope.searchquery);
@@ -379,14 +380,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             $scope.filterbtn = false;
         }
     };
-    $scope.getsearches=function(searchstring){
+    $scope.getsearches = function (searchstring) {
         console.log(searchstring);
-//        _.filter(myconarr,function(n) {return /(.*?)dh(.*?)/i.test(n.name);});
+        //        _.filter(myconarr,function(n) {return /(.*?)dh(.*?)/i.test(n.name);});
     }
 
-    $scope.searchquery={search:""};
-    
-  //  $scope.contacts = MyServices.all();
+    $scope.searchquery = {
+        search: ""
+    };
+
+    //  $scope.contacts = MyServices.all();
     $scope.showdailer = false;
     $scope.hidedialer = function () {
         $scope.showdailer = false;

@@ -227,4 +227,30 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             console.log(newstr);
             return newstr;
         }
+    })
+    .filter('numsearch', function () {
+        return function (item, str) {
+            //            str="Dha";
+            //console.log(str);
+            var re = new RegExp("(.*?)" + str + "(.*?)", "i");
+            var newitem = _.filter(item, function (n) {
+                return re.test(n.number);
+            });
+            return newitem;
+        }
+    })
+    .filter('addnumhighlight', function () {
+        return function (str, searchkey) {
+            console.log(str);
+            console.log(searchkey);
+            var newstr = str;
+            var num = 0;
+            if (searchkey != "") {
+                var re = new RegExp(searchkey, "i");
+                //num = str.search(str, searchkey);
+                newstr = str.replace(re, "<span class='highlight'>" + searchkey + "</span>");
+            }
+            console.log(newstr);
+            return newstr;
+        }
     });
