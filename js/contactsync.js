@@ -184,10 +184,10 @@ contactsync.factory('contactSync', function ($http) {
                 //        }
 
         var data=[];
-        var dataflag=true;
+        var dataflag=false;
         if(pageno==0)
         {
-            dataflag=false;
+            dataflag=true;
         }
         returnval.query("SELECT * FROM `contacts` WHERE 1 " + where + " ORDER BY `name` ASC LIMIT " + pageno + ",10 ",function(result,len) {
             

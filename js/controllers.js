@@ -391,18 +391,22 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 .controller('ChatsCtrl', function ($scope) {})
 
 .controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync) {
-  
+
     if (!$.jStorage.get("user")) {
         console.log("Jstorage not set");
         $location.url('/enter');
     }
-    if($scope.search == true && $scope.showdailer == true)
-    {
-        $scope.search=false;
+    if ($scope.search == true && $scope.showdailer == true) {
+        $scope.search = false;
     }
-
+    var populatecontacts = function (contacts, flag) {
+        if (flag) {
+            $scope.myarr = [];
+        }
+        $scope.myarr = $scope.myarr.concat(contacts);
+    };
     $scope.advanced = {};
-    $scope.myarr = myconarr;
+    $scope.myarr = contactSync.getcontact(undefined, undefined, {}, 0, populatecontacts);
     console.log($scope.myarr);
     $scope.search = false;
     $scope.filterbtn = false;
@@ -410,10 +414,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log('Search Clicked');
         $scope.search = !$scope.search;
         console.log($scope.search);
-        if(n==1)
-        {
-            if($scope.search==true)
-                $scope.search=false;
+        if (n == 1) {
+            if ($scope.search == true)
+                $scope.search = false;
         }
     };
     $scope.searchquery = "";
