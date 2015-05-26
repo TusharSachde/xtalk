@@ -123,7 +123,8 @@ contactsync.factory('contactSync', function ($http) {
 
     returnval.getcontact = function (str, number, advance, pageno, callback,populate) {
 
-
+        var rowcount=10;
+        pageno=pageno*rowcount;
         var where = '';
         if (str) {
             where += " AND `name` LIKE  '%" + str + "%' ";
@@ -190,7 +191,7 @@ contactsync.factory('contactSync', function ($http) {
         {
             dataflag=true;
         }
-        returnval.query("SELECT * FROM `contacts` WHERE 1 " + where + " ORDER BY `name` ASC LIMIT " + pageno + ",10 ",function(result,len) {
+        returnval.query("SELECT * FROM `contacts` WHERE 1 " + where + " ORDER BY `name` ASC LIMIT " + pageno + ","+rowcount ",function(result,len) {
             
             for(var i=0;i<len;i++)
             {

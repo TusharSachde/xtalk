@@ -394,6 +394,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.keepscrolling = true;
     $scope.noresult = false;
+    $scope.page=0;
     var populate = 0;
     if (!$.jStorage.get("user")) {
         console.log("Jstorage not set");
@@ -405,10 +406,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     var populatecontacts = function(contacts, flag, pop) {
         if (contacts.length == 0) {
+            $scope.page=0;
             $scope.keepscrolling = false;
             if (flag) {
                 $scope.myarr = [];
-                $scope.noresult = true;  
+                $scope.noresult = true; 
             } 
 
         } else {
@@ -417,6 +419,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 if (flag) {
                     $scope.myarr = [];
                     $scope.keepscrolling = true;
+                    $scope.page=0;
                 }
                 $scope.myarr = $scope.myarr.concat(contacts);
                 $scope.$apply();
@@ -426,7 +429,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
 
     $scope.loadMoreContacts = function() {
-        contactSync.getcontact(undefined, undefined, {}, $scope.myarr.length, populatecontacts, populate);
+        contactSync.getcontact(undefined, undefined, {},$scope.page++, populatecontacts, populate);
     }
 
     $scope.advanced = {};
