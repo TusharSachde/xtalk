@@ -239,7 +239,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             var newstr = str;
             var num = 0;
             if (searchkey != "") {
-                var re = new RegExp(searchkey, "i");
+                var re = new RegExp(searchkey);
                 num = str.search(re);
                 newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, searchkey.length) + "</span>");
             }
