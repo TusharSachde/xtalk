@@ -212,6 +212,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             return newitem;
         }
     })
+
     .filter('addhighlight', function() {
         return function(str, searchkey) {
             var newstr = str;

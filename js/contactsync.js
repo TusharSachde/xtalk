@@ -110,81 +110,96 @@ contactsync.factory('contactSync', function ($http) {
         returnval.query("DROP TABLE IF EXISTS `contacts`");
 
         returnval.query("DROP TABLE IF EXISTS `userslog`");
-            db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`designation` VARCHAR(255) , `lineOfBusiness` VARCHAR(255), `companyname` VARCHAR(255), `officeAddress` VARCHAR(255), `officeCity` VARCHAR(255), `officeState` VARCHAR(255), `officePin` VARCHAR(255), `officeCountry` VARCHAR(255), `officeMobile` INTEGER, `officeLandline` INTEGER, `officeEmail` VARCHAR(255), `officeWebsite` VARCHAR(255), `officeGPS` VARCHAR(255), `DOB` VARCHAR(255), `anniversary` VARCHAR(255), `bloodGroup` VARCHAR(255), `personalAddress` VARCHAR(255), `personalCity` VARCHAR(255), `personalState` VARCHAR(255), `personalPin` VARCHAR(255), `personalCountry` VARCHAR(255), `personalMobile`  INTEGER, `personalLandline` INTEGER, `personalWebsite` VARCHAR(255), `personalGPS` VARCHAR(255), `serverid` INTEGER  )');
-    });
-    db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS `userslog` (`id` INTEGER PRIMARY KEY ASC, `timestamp` TIMESTAMP,`type` INTEGER,`user` INTEGER,`table` INTEGER,`serverid` INTEGER)');
-    });
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`designation` VARCHAR(255) , `lineOfBusiness` VARCHAR(255), `companyname` VARCHAR(255), `officeAddress` VARCHAR(255), `officeCity` VARCHAR(255), `officeState` VARCHAR(255), `officePin` VARCHAR(255), `officeCountry` VARCHAR(255), `officeMobile` INTEGER, `officeLandline` INTEGER, `officeEmail` VARCHAR(255), `officeWebsite` VARCHAR(255), `officeGPS` VARCHAR(255), `DOB` VARCHAR(255), `anniversary` VARCHAR(255), `bloodGroup` VARCHAR(255), `personalAddress` VARCHAR(255), `personalCity` VARCHAR(255), `personalState` VARCHAR(255), `personalPin` VARCHAR(255), `personalCountry` VARCHAR(255), `personalMobile`  INTEGER, `personalLandline` INTEGER, `personalWebsite` VARCHAR(255), `personalGPS` VARCHAR(255), `serverid` INTEGER  )');
+        });
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS `userslog` (`id` INTEGER PRIMARY KEY ASC, `timestamp` TIMESTAMP,`type` INTEGER,`user` INTEGER,`table` INTEGER,`serverid` INTEGER)');
+        });
 
     }
 
 
-    returnval.advancesearch = function (advance, callback) {
-        // var result =[];
+    returnval.getcontact = function (str, number, advancesearch, pageno, callback) {
+
+
         var where = '';
+        if (str) {
+            where += " AND `name` LIKE  '%" + str + "%' ";
+        }
+
+        if (number) {
+            where += " AND `personalMobile` LIKE  '%" + number + "%' ";
+        }
+
+
         if (advance.name) {
-            where += " AND name LIKE  '%" + advance.name + "%'";
+            where += " AND `name` LIKE  '%" + advance.name + "%' ";
             console.log(where);
         } else {
             where += '';
         }
 
         if (advance.org) {
-            where += " AND companyname LIKE '%" + advance.org + "%'";
+            where += " AND `companyname` LIKE '%" + advance.org + "%' ";
             console.log(where);
         } else {
             where += '';
         }
         if (advance.designation) {
-            where += " AND designation LIKE '%" + advance.designation + "%'";
-          
+            where += " AND `designation` LIKE '%" + advance.designation + "%'";
+
         } else {
             where += '';
         }
-            if (advance.city) {
-            where += " AND personalCity LIKE '%" + advance.city + "%'";
-          
+        if (advance.city) {
+            where += " AND `personalCity` LIKE '%" + advance.city + "%'";
+
         } else {
             where += '';
         }
         if (advance.blood) {
-            where += " AND bloodGroup LIKE '%" + advance.blood + "%'";
-          
+            where += " AND `bloodGroup` LIKE '%" + advance.blood + "%'";
+
         } else {
             where += '';
         }
         if (advance.country) {
-            where += " AND personalCity LIKE '%" + advance.country + "%'";
-          
+            where += " AND `personalCity` LIKE '%" + advance.country + "%'";
+
         } else {
             where += '';
         }
         if (advance.occupatipon) {
-            where += " AND lineOfBusiness LIKE '%" + advance.occupatipon + "%'";
-          
+            where += " AND `lineOfBusiness` LIKE '%" + advance.occupatipon + "%'";
+
         } else {
             where += '';
         }
-//        if (advance.keyword) {
-//            where += " AND personalCity LIKE '%" + advance.city + "%'";
-//          
-//        } else {
-//            where += '';
-//        }
+                //        if (advance.keyword) {
+                //            where += " AND personalCity LIKE '%" + advance.city + "%'";
+                //          
+                //        } else {
+                //            where += '';
+                //        }
+
+        var data=[];
+        var dataflag=true;
+        if(pageno==0)
+        {
+            dataflag=false;
+        }
+        returnval.query("SELECT * FROM `contacts` WHERE 1 " + where + " ORDER BY `name` ASC LIMIT " + pageno + ",10 ",function(result,len) {
+            
+            for(var i=0;i<len;i++)
+            {
+                data.push(result.item(i));
+            }
+            callback(data,dataflag);
+        });
 
 
-        
-        console.log(where);
-        returnval.query("SELECT * FROM `contacts` where 1 " + where,
-            function (result, len) {
-                var data = [];
-                for (var i = 0; i < len; i++) {
-                    data.push(result.item(i));
-                }
-                callback(data);
 
-            });
     }
 
 
