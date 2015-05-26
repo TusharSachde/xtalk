@@ -423,7 +423,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 if (flag) { // new search with things in contact
                     $scope.myarr = [];
                     $scope.keepscrolling = true;
-                    $scope.page;
                 }
                 $scope.myarr = $scope.myarr.concat(contacts);
                 $scope.$apply();
