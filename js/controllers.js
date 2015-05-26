@@ -413,7 +413,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     //  $scope.contacts = MyServices.all();
     $scope.showdailer = false;
-    $scope.hidedialer = function() {
+    $scope.hidedialer = function(num) {
+        console.log(num);
+//        if(num)
+//        {
+//            console.log(num);
+//            $scope.call(num);
+//        }
         $scope.showdailer = false;
         console.log('Dialer Hidden');
     };
