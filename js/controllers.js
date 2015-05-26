@@ -407,12 +407,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         if (contacts.length == 0) {
             $scope.keepscrolling = false;
             if (flag) {
+                $scope.myarr = [];
                 $scope.noresult = true;  
             } 
 
         } else {
             if (pop == populate) {
-                $scope.noresult = true;
+                $scope.noresult = false;
                 if (flag) {
                     $scope.myarr = [];
                     $scope.keepscrolling = true;
