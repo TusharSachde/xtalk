@@ -211,8 +211,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 }
 
             }
-            
-   
+
+
             myconarr = _.uniq(myconarr, function(n) {
                 return n.name + n.contact;
             });
@@ -228,8 +228,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
 
- $scope.myarr = myconarr;
-    console.log($scope.myarr);
 
 
 
@@ -392,11 +390,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 .controller('ChatsCtrl', function($scope) {})
 
 .controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location,contactSync) {
-        
-  
-    if($.jStorage.get("user")!=userid)
+  var checkj = $.jStorage.get("user");
+    console.log(checckj)
+    if(check != userid)
+    {   
+        console.log("Jstorage not set");
         $location.url('/enter');
+    }
     $scope.advanced = {};
+    $scope.myarr = myconarr;
+    console.log($scope.myarr);
     $scope.search = false;
     $scope.filterbtn = false;
     $scope.showsearch = function() {
