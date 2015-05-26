@@ -391,7 +391,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location,contactSync) {
   var checkj = $.jStorage.get("user");
-    console.log(checckj)
     if(check != userid)
     {   
         console.log("Jstorage not set");
