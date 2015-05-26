@@ -106,16 +106,23 @@ contactsync.factory('contactSync', function ($http) {
         changeservertimestamp(data.timestamp);
     }
 
+    returnval.drop =function(){
+          returnval.query("DROP TABLE IF EXISTS `contacts`");
+
+        ;
+
+        returnval.query("DROP TABLE IF EXISTS `userslog`");
+    }
 
     returnval.create = function (data, callback) {
  //       console.log(data.name);
    //     console.log(data);
-        returnval.query("DROP TABLE`contacts`");
+      
         returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`,`personalMobile`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "')", function (result, len, id) {
             id = id.insertId;
             var d = new Date();
             var n = d.getTime();
-            returnval.query("DROP TABLE `userslog`");
+            
             returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 1 + "','" + user + "','" + id + "')", null);
  //           console.log(id);
             if (callback) {

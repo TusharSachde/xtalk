@@ -4,17 +4,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
  
 })
 
-.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices, $location) {
+.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices, $location,contactSync) {
 
-
+contactSync.drop();
     var readsmsCallback = function (otp) {
         if (!otp) {
             conole.log("No Otp");
         } else {
-            $scope.otp = otp;
+            $scope.otp ={};
             $scope.$apply();
-            userotp = otp;
-            MyServices.verifyOTP(userotp, personalcontact).success(verifyCallback)
+            
         }
     };
 
@@ -62,9 +61,27 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
 
     var verifyCallback = function (data, status) {
-        console.log("verify");
-        console.log(data);
+       // console.log("verify");
+        if(data)
+        {
+            console.log(data);
         $location.path("/profile/mycard");
+        }
+        else
+        {
+            consoel.log(data);
+         $scope.showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'INCORRECT OTP',
+     template: 'Please enter the correct OTP'
+   });
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+   });
+ };
+        }
+       
+        
     };
     var errorCallback = function()
     {
@@ -81,8 +98,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         
     }
     $scope.checkotp = function () {
-        console.log("check otp");
-        MyServices.verifyOTP(userotp, personalcontact).success(verifyCallback).error(errorCallback);
+        MyServices.verifyOTP($scope.otp.number, personalcontact).success(verifyCallback).error(errorCallback);
     }
 })
 
