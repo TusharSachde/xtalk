@@ -4,31 +4,32 @@ var personalcontact = '';
 var contact = [];
 var userid = 0;
 var userotp = '';
-var myconarr = [{
-    name: "Dhaval Gala",
-    number: "9029145077",
-    email:"dhaval@wohlig.com",
-    company:"Wohlig Technology",
-    area:"Grant Road"
-}, {
-    name: "Vishal",
-    number: "9819653210",
-    email:"dhaval@wohlig.com",
-    company:"",
-    area:""
-}, {
-    name: "Dhairya",
-    number: "9598113025",
-    email:"dhaval@wohlig.com",
-    company:"",
-    area:""
-}, {
-    name: "Yash",
-    number: "9325689741",
-    email:"dhaval@wohlig.com",
-    company:"",
-    area:""
-}];
+var myconarr = [];
+//{
+//    name: "Dhaval Gala",
+//    number: "9029145077",
+//    email:"dhaval@wohlig.com",
+//    company:"Wohlig Technology",
+//    area:"Grant Road"
+//}, {
+//    name: "Vishal",
+//    number: "9819653210",
+//    email:"dhaval@wohlig.com",
+//    company:"",
+//    area:""
+//}, {
+//    name: "Dhairya",
+//    number: "9598113025",
+//    email:"dhaval@wohlig.com",
+//    company:"",
+//    area:""
+//}, {
+//    name: "Yash",
+//    number: "9325689741",
+//    email:"dhaval@wohlig.com",
+//    company:"",
+//    area:""
+//}];
 var imgpath = "http://wohlig.co.in/spingr/uploads/";
 angular.module('starter.services', [])
 
