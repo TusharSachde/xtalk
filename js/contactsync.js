@@ -222,6 +222,7 @@ contactsync.factory('contactSync', function ($http) {
             }
         });
     };
+    abc.create=returnval.create;
     returnval.update = function (data, callback) {
 
         returnval.query("UPDATE `contacts` SET `name`='" + data.name + "',`email`='" + data.email + "' WHERE `id`='" + data.id + "'", function (result, len) {

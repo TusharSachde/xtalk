@@ -119,9 +119,10 @@
                 <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.email);"></ion-option-button>
             </ion-item>
             <div class="noresult" ng-show="noresult">No result found</div>
-            <ion-infinite-scroll on-infinite="loadMoreContacts()" ng-if="keepscrolling" distance="1%">
-            </ion-infinite-scroll>
-           
+
+
         </ion-list>
+        <ion-infinite-scroll on-infinite="loadMoreContacts()" ng-if="keepscrolling" distance="1%">
+        </ion-infinite-scroll>
     </ion-content>
 </ion-view>
