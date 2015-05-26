@@ -213,21 +213,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
     })
 
-    .filter('addhighlight', function() {
-        return function(str, searchkey) {
-            var newstr = str;
-            var num = 0;
-            console.log(str);
-            console.log(searchkey);
-            
-            if (searchkey && searchkey != "") {
-                var re = new RegExp(searchkey, "i");
-                num = str.search(re);
-                newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, searchkey.length) + "</span>");
-            }
-            return newstr;
+.filter('addhighlight', function() {
+    return function(str, searchkey) {
+        var newstr = str;
+        var num = 0;
+        console.log(str);
+        console.log(searchkey);
+
+        if (searchkey && searchkey != "") {
+            var re = new RegExp(searchkey, "i");
+            num = str.search(re);
+            newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, searchkey.length) + "</span>");
         }
-    })
+        return newstr;
+    }
+})
     .filter('numsearch', function() {
         return function(item, str) {
             var re = new RegExp("(.*?)" + str + "(.*?)", "i");
@@ -240,11 +240,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
     .filter('addnumhighlight', function() {
         return function(str, searchkey) {
-            str=str+"";
-            
+            str = str + "";
+
             var newstr = str;
             var num = 0;
-            if (searchkey != "") {
+            if (searchkey && searchkey != "") {
                 var re = new RegExp(searchkey);
                 num = str.search(re);
                 newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, searchkey.length) + "</span>");
