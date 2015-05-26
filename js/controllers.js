@@ -394,7 +394,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.keepscrolling = true;
     $scope.noresult = false;
-    $scope.page=1;
+    $scope.page = 1;
     var populate = 0;
     if (!$.jStorage.get("user")) {
         console.log("Jstorage not set");
@@ -405,40 +405,43 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 
     var populatecontacts = function(contacts, flag, pop) {
-        if (contacts.length == 0) {
-            $scope.page=0;
-            $scope.keepscrolling = false;
-            if (flag) {
-                $scope.myarr = [];
-                $scope.noresult = true; 
-            } 
-
-        } else {
-            if (pop == populate) {
+        if (pop == populate) {
+            if (contacts.length == 0) { // nothing in contact
+                $scope.page = 0;
+                $scope.keepscrolling = false;
+                if (flag) { // its new search and there is nothing in contacts
+                    $scope.myarr = [];
+                    $scope.noresult = true;
+                }
+                else // is old search new page but nothign in contact
+                {
+                    $scope.noresult = false;
+                    $scope.keepscrolling = false;
+                }
+            } else { // things in contacts
                 $scope.noresult = false;
-                if (flag) {
+                if (flag) { // new search with things in contact
                     $scope.myarr = [];
                     $scope.keepscrolling = true;
                     $scope.page;
                 }
                 $scope.myarr = $scope.myarr.concat(contacts);
                 $scope.$apply();
-                abc.scope = $scope;
             }
         }
     };
 
     $scope.loadMoreContacts = function() {
-        contactSync.getcontact(undefined, undefined, {},$scope.page++, populatecontacts, populate);
+        contactSync.getcontact(undefined, undefined, {}, $scope.page++, populatecontacts, populate);
     }
 
     $scope.advanced = {};
-    $scope.page=0;
+    $scope.page = 0;
     contactSync.getcontact(undefined, undefined, {}, $scope.page++, populatecontacts, ++populate);
     console.log($scope.myarr);
 
     $scope.namesearch = function() {
-        $scope.page=0;
+        $scope.page = 0;
         contactSync.getcontact($scope.searchquery.search, undefined, {}, $scope.page++, populatecontacts, ++populate);
     }
 
@@ -507,20 +510,20 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.phonenum = function(number) {
         console.log("number presses " + number);
         $scope.phone.number += "" + number;
-        $scope.page=0;
+        $scope.page = 0;
         contactSync.getcontact(undefined, $scope.phone.number, {}, $scope.page++, populatecontacts, ++populate);
 
     };
     $scope.phoneback = function() {
 
         $scope.phone.number = $scope.phone.number.slice(0, -1);
-        $scope.page=0;
+        $scope.page = 0;
         contactSync.getcontact(undefined, $scope.phone.number, {}, $scope.page++, populatecontacts, ++populate);
     };
 
     $scope.phonedelete = function() {
         $scope.phone.number = "";
-        $scope.page=0;
+        $scope.page = 0;
         contactSync.getcontact(undefined, undefined, {}, $scope.page++, populatecontacts, ++populate);
     };
 
@@ -581,7 +584,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     $scope.advancesearch = function() {
         //        contactSync.advancesearch($scope.advanced, advancesuccess);
-        $scope.page=0;
+        $scope.page = 0;
         contactSync.getcontact(undefined, undefined, $scope.advanced, $scope.page++, populatecontacts, ++populate);
 
     }
