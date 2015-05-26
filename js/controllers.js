@@ -407,6 +407,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             }
             $scope.myarr = $scope.myarr.concat(contacts);
             $scope.apply();
+            abc.scope=$scope;
         }
     };
     $scope.advanced = {};
