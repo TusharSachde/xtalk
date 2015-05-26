@@ -196,7 +196,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     email: "",
                     contact: ""
                 };
-                if ($scope.contacts[i].phoneNumbers && $scope.contacts[i].displayName && $scope.contacts[i].displayName!="") {
+                if ($scope.contacts[i].phoneNumbers && $scope.contacts[i].displayName && $scope.contacts[i].displayName != "") {
                     if ($scope.contacts[i].emails) {
                         myval.email = $scope.contacts[i].emails[0].value;
                     }
@@ -409,8 +409,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     contactSync.getcontact(undefined, undefined, {}, 0, populatecontacts);
     console.log($scope.myarr);
 
-    $scope.namesearch = function (name) {
-        contactSync.getcontact(name, undefined, {}, 0, populatecontacts);
+    $scope.namesearch = function () {
+        contactSync.getcontact($scope.searchquery.search, undefined, {}, 0, populatecontacts);
     }
 
     $scope.search = false;
@@ -482,11 +482,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     };
     $scope.phoneback = function () {
+        
         $scope.phone.number = $scope.phone.number.slice(0, -1);
+        contactSync.getcontact(undefined, $scope.phone.number, {}, 0, populatecontacts);
     };
 
     $scope.phonedelete = function () {
         $scope.phone.number = "";
+        contactSync.getcontact(undefined, undefined, {}, 0, populatecontacts);
     };
 
 
