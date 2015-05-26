@@ -7,6 +7,7 @@ var contactsync = angular.module('contactsync', []);
 contactsync.factory('contactSync', function ($http) {
 
     var returnval = {};
+
     config = $.jStorage.get("config");
     if (!config) {
         config = {
@@ -120,7 +121,7 @@ contactsync.factory('contactSync', function ($http) {
     }
 
 
-    returnval.getcontact = function (str, number, advance, pageno, callback) {
+    returnval.getcontact = function (str, number, advance, pageno, callback,populate) {
 
 
         var where = '';
@@ -195,7 +196,7 @@ contactsync.factory('contactSync', function ($http) {
             {
                 data.push(result.item(i));
             }
-            callback(data,dataflag);
+            callback(data,dataflag,populate);
         });
 
 
