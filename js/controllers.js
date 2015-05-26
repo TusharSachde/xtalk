@@ -406,8 +406,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.myarr = $scope.myarr.concat(contacts);
     };
     $scope.advanced = {};
-    $scope.myarr = contactSync.getcontact(undefined, undefined, {}, 0, populatecontacts);
+    contactSync.getcontact(undefined, undefined, {}, 0, populatecontacts);
     console.log($scope.myarr);
+
+    $scope.namesearch = function (name) {
+        contactSync.getcontact(name, undefined, {}, 0, populatecontacts);
+    }
+
     $scope.search = false;
     $scope.filterbtn = false;
     $scope.showsearch = function (n) {
@@ -473,6 +478,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.phonenum = function (number) {
         console.log("number presses " + number);
         $scope.phone.number += "" + number;
+        contactSync.getcontact(undefined, $scope.phone.number, {}, 0, populatecontacts);
+
     };
     $scope.phoneback = function () {
         $scope.phone.number = $scope.phone.number.slice(0, -1);
@@ -538,7 +545,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.oModal2.hide();
     };
     $scope.advancesearch = function () {
-        contactSync.advancesearch($scope.advanced, advancesuccess);
+        //        contactSync.advancesearch($scope.advanced, advancesuccess);
+        contactSync.getcontact(undefined, undefined, $scope.advanced, 0, populatecontacts);
 
     }
     $scope.searchpage = function () {
