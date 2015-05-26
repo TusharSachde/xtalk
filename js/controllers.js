@@ -1,7 +1,7 @@
 angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('AppCtrl', function ($scope, $ionicPopup, $location, MyServices) {
-
+ 
 })
 
 .controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices, $location) {
@@ -66,9 +66,23 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log(data);
         $location.path("/profile/mycard");
     };
+    var errorCallback = function()
+    {
+        
+    $scope.showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'INCORRECT OTP',
+     template: 'Please enter the correct OTP'
+   });
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+   });
+ };
+        
+    }
     $scope.checkotp = function () {
         console.log("check otp");
-        MyServices.verifyOTP(userotp, personalcontact).success(verifyCallback)
+        MyServices.verifyOTP(userotp, personalcontact).success(verifyCallback).error(errorCallback);
     }
 })
 
