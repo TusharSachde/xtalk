@@ -449,13 +449,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.searchquery = {};
     $scope.searchquery.search = "";
     $scope.phone = {};
-    $scope.phone.number = undefined;
+    $scope.phone.number = "";
     contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
     console.log($scope.myarr);
 
     $scope.namesearch = function() {
         $scope.page = 0;
-        $scope.phone.number = undefined;
+        $scope.phone.number = "";
         $scope.advanced = {};
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
     }
@@ -541,7 +541,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.phonedelete = function() {
         $scope.searchquery.search = "";
-        $scope.phone.number = undefined;
+        $scope.phone.number = "";
         $scope.page = 0;
         $scope.advanced = {};
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
@@ -606,7 +606,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         //        contactSync.advancesearch($scope.advanced, advancesuccess);
         $scope.page = 0;
         $scope.searchquery.search = "";
-        $scope.phone.number = undefined;
+        $scope.phone.number = "";
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
 
     }
