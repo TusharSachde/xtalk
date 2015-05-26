@@ -380,11 +380,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             $scope.filterbtn = false;
         }
     };
-    $scope.getsearches = function (searchstring) {
-        console.log(searchstring);
-        //        _.filter(myconarr,function(n) {return /(.*?)dh(.*?)/i.test(n.name);});
-    }
-
+   
     $scope.searchquery = {
         search: ""
     };
