@@ -97,27 +97,29 @@
 
     <ion-content>
         <ion-list>
-            <ion-infinite-scroll on-infinite="loadMoreContacts()" distance="1%">
-                <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr" type="item-text-wrap" ng-click="hidedialer(myconarrs.personalMobile);" on-hold="call(myconarrs.personalMobile);" href="#/tab/spingbook/{{myconarr.id}}">
-                    <div class="picture" style="background-image: url('{{myconarrs.image}}');"></div>
 
-                    <div class="card-style">
-                        <h2 class="positive" ng-bind-html="myconarrs.name|addhighlight:searchquery.search"></h2>
+            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr" type="item-text-wrap" ng-click="hidedialer(myconarrs.personalMobile);" on-hold="call(myconarrs.personalMobile);" href="#/tab/spingbook/{{myconarr.id}}">
+                <div class="picture" style="background-image: url('{{myconarrs.image}}');"></div>
 
-                        <p class="stable">
-                            {{myconarrs.company}}
-                            <br>{{myconarrs.area}} <span ng-bind-html="myconarrs.personalMobile|addnumhighlight:phone.number"></span>
-                        </p>
+                <div class="card-style">
+                    <h2 class="positive" ng-bind-html="myconarrs.name|addhighlight:searchquery.search"></h2>
 
-                        <div class="company" style="background-image: url('{{myconarrs.logo}}');"></div>
-                    </div>
+                    <p class="stable">
+                        {{myconarrs.company}}
+                        <br>{{myconarrs.area}} <span ng-bind-html="myconarrs.personalMobile|addnumhighlight:phone.number"></span>
+                    </p>
 
-                    <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
-                    <ion-option-button class="button-large button-positive ln-phone" ng-click="call(myconarrs.personalMobile);">
-                    </ion-option-button>
-                    <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(myconarrs.personalMobile);"></ion-option-button>
-                    <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.email);"></ion-option-button>
-                </ion-item>
+                    <div class="company" style="background-image: url('{{myconarrs.logo}}');"></div>
+                </div>
+
+                <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
+                <ion-option-button class="button-large button-positive ln-phone" ng-click="call(myconarrs.personalMobile);">
+                </ion-option-button>
+                <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(myconarrs.personalMobile);"></ion-option-button>
+                <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.email);"></ion-option-button>
+            </ion-item>
+            <div class="noresult" ng-show="noresult">No result found</div>
+            <ion-infinite-scroll on-infinite="loadMoreContacts()" ng-if="keepscrolling" distance="1%">
             </ion-infinite-scroll>
 
         </ion-list>

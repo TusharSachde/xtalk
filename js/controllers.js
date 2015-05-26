@@ -392,6 +392,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync) {
 
+    $scope.keepscrolling = true;
+    $scope.noresult = false;
     var populate = 0;
     if (!$.jStorage.get("user")) {
         console.log("Jstorage not set");
@@ -400,14 +402,25 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     if ($scope.search == true && $scope.showdailer == true) {
         $scope.search = false;
     }
+
     var populatecontacts = function(contacts, flag, pop) {
-        if (pop == populate) {
+        if (contacts.length == 0) {
+            $scope.keepscrolling = false;
             if (flag) {
-                $scope.myarr = [];
+                $scope.noresult = true;  
+            } 
+
+        } else {
+            if (pop == populate) {
+                $scope.noresult = true;
+                if (flag) {
+                    $scope.myarr = [];
+                    $scope.keepscrolling = true;
+                }
+                $scope.myarr = $scope.myarr.concat(contacts);
+                $scope.$apply();
+                abc.scope = $scope;
             }
-            $scope.myarr = $scope.myarr.concat(contacts);
-            $scope.$apply();
-            abc.scope = $scope;
         }
     };
 
