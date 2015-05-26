@@ -120,7 +120,7 @@ contactsync.factory('contactSync', function ($http) {
     }
 
 
-    returnval.getcontact = function (str, number, advancesearch, pageno, callback) {
+    returnval.getcontact = function (str, number, advance, pageno, callback) {
 
 
         var where = '';
