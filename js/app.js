@@ -217,7 +217,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         return function(str, searchkey) {
             var newstr = str;
             var num = 0;
-            if (searchkey != "") {
+            console.log(str);
+            console.log(searchkey);
+            
+            if (searchkey && searchkey != "") {
                 var re = new RegExp(searchkey, "i");
                 num = str.search(re);
                 newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, searchkey.length) + "</span>");
@@ -238,9 +241,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .filter('addnumhighlight', function() {
         return function(str, searchkey) {
             str=str+"";
-            console.log(str);
-            console.log(searchkey);
-            
             
             var newstr = str;
             var num = 0;
