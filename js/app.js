@@ -194,7 +194,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         });
 
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/enter');
+        $urlRouterProvider.otherwise('/tab/spingbook');
 
     })
     .filter('serverimage', function () {
@@ -204,19 +204,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
     .filter('matchsearch', function () {
         return function (item, str) {
-            //            str="Dha";
-            //console.log(str);
             var re = new RegExp("(.*?)" + str + "(.*?)", "i");
             var newitem = _.filter(item, function (n) {
                 return re.test(n.name);
             });
-
+            newitem=_.sortByOrder(newitem, ['name'], [true]);
             return newitem;
         }
     })
     .filter('addhighlight', function () {
         return function (str, searchkey) {
-            console.log(searchkey);
             var newstr = str;
             var num = 0;
             if (searchkey != "") {
@@ -224,25 +221,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 num = str.search(str, searchkey);
                 newstr = str.replace(re, "<span class='highlight'>" + str.slice(num, searchkey.length) + "</span>");
             }
-            console.log(newstr);
             return newstr;
         }
     })
     .filter('numsearch', function () {
         return function (item, str) {
-            //            str="Dha";
-            //console.log(str);
             var re = new RegExp("(.*?)" + str + "(.*?)", "i");
             var newitem = _.filter(item, function (n) {
                 return re.test(n.number);
             });
+            newitem=_.sortByOrder(newitem, ['name'], [true]);
             return newitem;
         }
     })
     .filter('addnumhighlight', function () {
         return function (str, searchkey) {
-            console.log(str);
-            console.log(searchkey);
             var newstr = str;
             var num = 0;
             if (searchkey != "") {
@@ -250,7 +243,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 //num = str.search(str, searchkey);
                 newstr = str.replace(re, "<span class='highlight'>" + searchkey + "</span>");
             }
-            console.log(newstr);
             return newstr;
         }
     });
