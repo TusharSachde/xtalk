@@ -98,7 +98,7 @@
     <ion-content>
         <ion-list>
 
-            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr| matchsearch:searchquery.search" type="item-text-wrap" ng-click="hidedialer(myconarrs.number);" on-hold="call(myconarrs.number);" href="#/tab/spingbook/{{myconarr.id}}" ng-if="showdailer == false">
+            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr| matchsearch:searchquery.search" type="item-text-wrap" ng-click="hidedialer(myconarrs.personalMobile);" on-hold="call(myconarrs.personalMobile);" href="#/tab/spingbook/{{myconarr.id}}" ng-if="showdailer == false">
                 <div class="picture" style="background-image: url('{{myconarrs.image}}');"></div>
 
                 <div class="card-style">
@@ -106,20 +106,20 @@
 
                     <p class="stable">
                         {{myconarrs.company}}
-                        <br>{{myconarrs.area}}  {{myconarrs.number}}
+                        <br>{{myconarrs.area}}  {{myconarrs.personalMobile}}
                     </p>
 
                     <div class="company" style="background-image: url('{{myconarrs.logo}}');"></div>
                 </div>
 
                 <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
-                <ion-option-button class="button-large button-positive ln-phone" ng-click="call(myconarrs.number);">
+                <ion-option-button class="button-large button-positive ln-phone" ng-click="call(myconarrs.personalMobile);">
                 </ion-option-button>
-                <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(myconarrs.number);"></ion-option-button>
+                <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(myconarrs.personalMobile);"></ion-option-button>
                 <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.email);"></ion-option-button>
 
             </ion-item>
-            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr | numsearch:phone.number" type="item-text-wrap" ng-click="hidedialer(myconarrs.number);" on-hold="call(myconarrs.number);" href="#/tab/spingbook/{{myconarr.id}}" ng-if="showdailer == true">
+            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr | numsearch:phone.number" type="item-text-wrap" ng-click="hidedialer(myconarrs.personalMobile);" on-hold="call(myconarrs.personalMobile);" href="#/tab/spingbook/{{myconarr.id}}" ng-if="showdailer == true">
                 <div class="picture" style="background-image: url('{{myconarrs.image}}');"></div>
 
                 <div class="card-style">
@@ -128,16 +128,16 @@
                     <p class="stable">
                         {{myconarrs.company}}
                         <br>{{myconarrs.area}}  
-                        <span ng-bind-html="myconarrs.number|addnumhighlight:phone.number">{{myconarrs.number}}</span>
+                        <span ng-bind-html="myconarrs.personalMobile|addnumhighlight:phone.number">{{myconarrs.personalMobile}}</span>
                     </p>
 
                     <div class="company" style="background-image: url('{{myconarrs.logo}}');"></div>
                 </div>
 
                 <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
-                <ion-option-button class="button-large button-positive ln-phone" ng-click="call(myconarrs.number);">
+                <ion-option-button class="button-large button-positive ln-phone" ng-click="call(myconarrs.personalMobile);">
                 </ion-option-button>
-                <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(myconarrs.number);"></ion-option-button>
+                <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(myconarrs.personalMobile);"></ion-option-button>
                 <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.email);"></ion-option-button>
 
             </ion-item>
