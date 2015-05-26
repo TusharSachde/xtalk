@@ -211,8 +211,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 }
 
             }
-
-
+            
+   
             myconarr = _.uniq(myconarr, function(n) {
                 return n.name + n.contact;
             });
@@ -228,6 +228,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
 
+ $scope.myarr = myconarr;
+    console.log($scope.myarr);
 
 
 
@@ -395,8 +397,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     if($.jStorage.get("user")!=userid)
         $location.url('/enter');
     $scope.advanced = {};
-    $scope.myarr = myconarr;
-    console.log($scope.myarr);
     $scope.search = false;
     $scope.filterbtn = false;
     $scope.showsearch = function() {
