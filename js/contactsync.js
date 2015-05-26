@@ -129,6 +129,45 @@ contactsync.factory('contactSync', function ($http) {
         } else {
             where += '';
         }
+        if (advance.designation) {
+            where += " AND designation LIKE '%" + advance.designation + "%'";
+          
+        } else {
+            where += '';
+        }
+            if (advance.city) {
+            where += " AND personalCity LIKE '%" + advance.city + "%'";
+          
+        } else {
+            where += '';
+        }
+        if (advance.blood) {
+            where += " AND bloodGroup LIKE '%" + advance.blood + "%'";
+          
+        } else {
+            where += '';
+        }
+        if (advance.country) {
+            where += " AND personalCity LIKE '%" + advance.country + "%'";
+          
+        } else {
+            where += '';
+        }
+        if (advance.occupatipon) {
+            where += " AND lineOfBusiness LIKE '%" + advance.occupatipon + "%'";
+          
+        } else {
+            where += '';
+        }
+//        if (advance.keyword) {
+//            where += " AND personalCity LIKE '%" + advance.city + "%'";
+//          
+//        } else {
+//            where += '';
+//        }
+
+
+        
         console.log(where);
         returnval.query("SELECT * FROM `contacts` where 1 " + where,
             function (result, len) {
