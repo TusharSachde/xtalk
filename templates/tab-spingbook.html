@@ -1,7 +1,7 @@
 <ion-view>
 
     <ion-nav-buttons side="right">
-        <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showsearch();hidedialer();" ng-if="filterbtn == false;"></button>
+        <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showsearch(0);hidedialer();" ng-if="filterbtn == false;"></button>
 
         <button class="button button-icon ln-funnel small-icon animate-if" ng-click="openfilter();" ng-if="filterbtn == true;"></button>
 
@@ -18,7 +18,7 @@
     <!--  Dialer UI  -->
     <div class="dialer" ng-class="{'showen': showdailer==true}">
        <!--DIAL BUTTON-->
-    <button class="button button-round button-fixed ln-icons button-positive dialUP" ng-click="showdailer = !showdailer;showsearch();"></button>
+    <button class="button button-round button-fixed ln-icons button-positive dialUP" ng-click="showdailer = !showdailer;showsearch(1);"></button>
     <!--DIAL BUTTON-->
         <div class="dialer-bar">
             <input type="text" class="phone number" ng-model="phone.number" disabled>

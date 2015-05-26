@@ -396,15 +396,25 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log("Jstorage not set");
         $location.url('/enter');
     }
+    if($scope.search == true && $scope.showdailer == true)
+    {
+        $scope.search=false;
+    }
+
     $scope.advanced = {};
     $scope.myarr = myconarr;
     console.log($scope.myarr);
     $scope.search = false;
     $scope.filterbtn = false;
-    $scope.showsearch = function () {
+    $scope.showsearch = function (n) {
         console.log('Search Clicked');
         $scope.search = !$scope.search;
         console.log($scope.search);
+        if(n==1)
+        {
+            if($scope.search==true)
+                $scope.search=false;
+        }
     };
     $scope.searchquery = "";
     $scope.filtertoggle = function (keyEvent) {
