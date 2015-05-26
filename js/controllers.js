@@ -407,9 +407,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             }
             $scope.myarr = $scope.myarr.concat(contacts);
             $scope.$apply();
-            abc.scope=$scope;
+            abc.scope = $scope;
         }
     };
+
+    $scope.loadMoreContacts = function() {
+        contactSync.getcontact(undefined, undefined, {}, $scope.myarr.length, populatecontacts, populate);
+    }
+
     $scope.advanced = {};
     contactSync.getcontact(undefined, undefined, {}, 0, populatecontacts, ++populate);
     console.log($scope.myarr);
