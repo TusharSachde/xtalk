@@ -121,7 +121,9 @@
             <div class="noresult" ng-show="noresult">No result found</div>
             <ion-infinite-scroll on-infinite="loadMoreContacts()" ng-if="keepscrolling" distance="1%">
             </ion-infinite-scroll>
-
+            <div>{{keepscrolling}}</div>
+            <div>{{noresult}}</div>
+            <div>{{page}}</div>
         </ion-list>
     </ion-content>
 </ion-view>
