@@ -196,7 +196,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     email: "",
                     contact: ""
                 };
-                if ($scope.contacts[i].phoneNumbers) {
+                if ($scope.contacts[i].phoneNumbers && $scope.contacts[i].displayName && $scope.contacts[i].displayName!="") {
                     if ($scope.contacts[i].emails) {
                         myval.email = $scope.contacts[i].emails[0].value;
                     }
