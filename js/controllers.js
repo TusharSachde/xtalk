@@ -43,7 +43,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     var registerSuccess = function(data, status) {
         console.log(data);
-        userid = parseInt(data.id);
+        //userid = parseInt(data.id);
         $ionicSlideBoxDelegate.next();
         MyServices.readsms(readsmsCallback);
     };
@@ -69,7 +69,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         // console.log("verify");
         if (data != "false") {
             console.log(data);
+            userid = data.id;
+            $.jStorage.set("user",data.id);
             $location.path("/profile/mycard");
+           
         } else {
             console.log(data);
             var alertPopup = $ionicPopup.alert({
@@ -387,6 +390,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 .controller('ChatsCtrl', function($scope) {})
 
 .controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location,contactSync) {
+        
+  
+    if($.jStorage.get("user")!=userid)
+        $location.url('/enter');
     $scope.advanced = {};
     $scope.myarr = myconarr;
     console.log($scope.myarr);
@@ -513,10 +520,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log(data);
     };
     $scope.closeadvance = function() {
-        console.log($scope.advanced);
-        contactSync.advancesearch($scope.advanced,advancesuccess);
         $scope.oModal2.hide();
     };
+    $scope.advancesearch = function(){
+         contactSync.advancesearch($scope.advanced,advancesuccess);
+
+    }
     $scope.searchpage = function() {
         $location.url('/circle/circle1');
         console.log('searchpage');
