@@ -191,7 +191,7 @@ contactsync.factory('contactSync', function ($http) {
         {
             dataflag=true;
         }
-        returnval.query("SELECT * FROM `contacts` WHERE 1 " + where + " ORDER BY `name` ASC LIMIT " + pageno + ","+rowcount ",function(result,len) {
+        returnval.query("SELECT * FROM `contacts` WHERE 1 " + where + " ORDER BY `name` ASC LIMIT " + pageno + ","+rowcount,function(result,len) {
             
             for(var i=0;i<len;i++)
             {
