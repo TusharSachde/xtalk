@@ -386,8 +386,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('ChatsCtrl', function($scope) {})
 
-.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location) {
-
+.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location,contactSync) {
+    $scope.advanced = {};
     $scope.myarr = myconarr;
     console.log($scope.myarr);
     $scope.search = false;
@@ -508,11 +508,15 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.openadvance = function() {
         $scope.oModal2.show();
     }
+    var advancesuccess=function(data) {
+        $scope.myarr=data;
+        console.log(data);
+    };
     $scope.closeadvance = function() {
+        console.log($scope.advanced);
+        contactSync.advancesearch($scope.advanced,advancesuccess);
         $scope.oModal2.hide();
     };
-
-
     $scope.searchpage = function() {
         $location.url('/circle/circle1');
         console.log('searchpage');
