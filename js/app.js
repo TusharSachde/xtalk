@@ -237,6 +237,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
     .filter('addnumhighlight', function() {
         return function(str, searchkey) {
+            str=str+"";
+            console.log(str);
+            console.log(searchkey);
+            
+            
             var newstr = str;
             var num = 0;
             if (searchkey != "") {
