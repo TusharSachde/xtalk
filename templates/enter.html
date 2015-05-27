@@ -7,20 +7,22 @@
                 <img class="logo" src="img/spingr.png">
                 <h5 class="light">Please enter your mobile number</h5>
 
-                <div class="input-holder">
-                    <div class="row">
-                        <div class="col col-20">
-                            <input type="tel" value="+91" class="text-center">
-                        </div>
-                        <div class="col">
-                            <input type="tel" placeholder="Mobile Number" ng-model="personal.phone" maxlength="10">
+               <form ng-submit="phonesubmit(personal);">
+                     <div class="input-holder">
+                        <div class="row">
+                            <div class="col col-20">
+                                <input type="tel" value="+91" class="text-center">
+                            </div>
+                            <div class="col">
+                                <input type="tel" placeholder="Mobile Number" ng-model="personal.phone" maxlength="10">
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <p class="light thin"><span class="bold">Note:</span> OTP(One Time Password) will be sent on the above number.</p>
-
-                <button class="button button-outline button-block button-positive button-50" ng-click="phonesubmit(personal);">Submit</button>
+                    
+                    <p class="light thin"><span class="bold">Note:</span> OTP(One Time Password) will be sent on the above number.</p>
+                    
+                    <button class="button button-outline button-block button-positive button-50" type="submit">Submit</button>
+                </form>
 
             </div>
         </ion-slide>
@@ -30,17 +32,19 @@
                 <img class="logo" src="img/spingr.png">
                 <h5 class="light">Please enter OTP</h5>
 
-                <div class="input-holder">
-                    <div class="row">
-                        <div class="col col-75 auto-margin">
-                            <input type="tel" placeholder="Enter OTP" class="text-center" ng-model="otp.number" maxlength="4">
+                <form ng-submit="checkotp();">
+                    <div class="input-holder">
+                        <div class="row">
+                            <div class="col col-75 auto-margin">
+                                <input type="tel" placeholder="Enter OTP" class="text-center" ng-model="otp.number" maxlength="4">
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <p class="light thin"><span class="bold">Note:</span> The OTP is send to your mobile number, please check your SMS inbox.</p>
-
-                <a class="button button-outline button-block button-positive button-50" ng-click="checkotp();">Submit</a>
+                    
+                    <p class="light thin"><span class="bold">Note:</span> The OTP is send to your mobile number, please check your SMS inbox.</p>
+                    
+                    <button class="button button-outline button-block button-positive button-50" type="submit">Submit</button>
+                </form>
 
             </div>
 
