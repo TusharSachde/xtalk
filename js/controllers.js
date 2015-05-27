@@ -613,7 +613,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.searchquery.search = "";
         $scope.phone.number = "";
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-
+        $scope.closeadvance();
+        $scope.closePopover();
     }
     $scope.searchpage = function() {
         $location.url('/circle/circle1');
