@@ -34,7 +34,6 @@ var myconarr = [];
 //    company:"",
 //    area:""
 //}];
-var imgpath = "http://wohlig.co.in/spingr/uploads/";
 angular.module('starter.services', [])
 
 .factory('MyServices', function($http) {

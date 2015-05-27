@@ -164,7 +164,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $cordovaFileTransfer.upload(serverpath, $scope.cameraimage, options)
             .then(function(result) {
                 console.log(result);
-                callback(result);
+                var data=JSON.parse(result.response);
+                callback(data);
                 $ionicLoading.hide();
                 //$scope.addretailer.store_image = $scope.filename2;
             }, function(err) {
