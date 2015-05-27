@@ -121,10 +121,10 @@ contactsync.factory('contactSync', function ($http) {
     }
 
 
-    returnval.getcontact = function (str, number, advance, pageno, callback,populate) {
+    returnval.getcontact = function (str, number, advance, pageno, callback, populate) {
 
-        var rowcount=10;
-        pageno=pageno*rowcount;
+        var rowcount = 10;
+        pageno = pageno * rowcount;
         var where = '';
         if (str) {
             where += " AND `name` LIKE  '%" + str + "%' ";
@@ -178,30 +178,38 @@ contactsync.factory('contactSync', function ($http) {
         } else {
             where += '';
         }
-                //        if (advance.keyword) {
-                //            where += " AND personalCity LIKE '%" + advance.city + "%'";
-                //          
-                //        } else {
-                //            where += '';
-                //        }
+        //        if (advance.keyword) {
+        //            where += " AND personalCity LIKE '%" + advance.city + "%'";
+        //          
+        //        } else {
+        //            where += '';
+        //        }
 
-        var data=[];
-        var dataflag=false;
-        if(pageno==0)
-        {
-            dataflag=true;
+        var data = [];
+        var dataflag = false;
+        if (pageno == 0) {
+            dataflag = true;
         }
-        returnval.query("SELECT * FROM `contacts` WHERE 1 " + where + " ORDER BY `name` ASC LIMIT " + pageno + ","+rowcount,function(result,len) {
-            
-            for(var i=0;i<len;i++)
-            {
+        returnval.query("SELECT * FROM `contacts` WHERE 1 " + where + " ORDER BY `name` ASC LIMIT " + pageno + "," + rowcount, function (result, len) {
+
+            for (var i = 0; i < len; i++) {
                 data.push(result.item(i));
             }
-            callback(data,dataflag,populate);
+            callback(data, dataflag, populate);
         });
 
 
 
+    }
+    returnval.getrecordcount = function (name, number, callback) {
+
+        returnval.query("SELECT * FROM `contacts` WHERE `name` LIKE %" + name + "% AND `personalMobile`=" + number, function (result, len) {
+            if (len > 0) {
+                callback(true);
+            } else {
+                callback(false);
+            }
+        });
     }
 
 
@@ -222,7 +230,7 @@ contactsync.factory('contactSync', function ($http) {
             }
         });
     };
-    abc.create=returnval.create;
+    abc.create = returnval.create;
     returnval.update = function (data, callback) {
 
         returnval.query("UPDATE `contacts` SET `name`='" + data.name + "',`email`='" + data.email + "' WHERE `id`='" + data.id + "'", function (result, len) {

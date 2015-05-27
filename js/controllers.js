@@ -234,31 +234,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             _.each(myconarr, function (n) {
                 contactSync.create(n);
             });
-
-
-
-
-
-
-
-            //            console.log("myconaar");
-            //            console.log(contacts);
         }
-        //        var insertsuccess = function (data, length) {
-        //            console.log(data);
-        //            console.log("inserted");
-        //        };
-        //
-        //        for (var i = 0; i < myconarr.length; i++) {
-        //            MyServices.query('INSERT INTO MYCONTACTS (user,name,email,contactno) VALUES (?, ?, ?, ?)', [userid, myconarr[i].name, myconarr[i].email, myconarr[i].contactno], insertsuccess);
-        //        }
-        //
-        //        var sendContactsSuccess = function (data, success) {
-        //                console.log("Contact already Registered" + data);
-        //                contact = data;
-        //                console.log(contact);
-        //            }
-        //            //        MyServices.sendContacts(contacts).success(sendContactsSuccess);
     }
     n++;
     if (n == 1) {
@@ -358,9 +334,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     $scope.keepscrolling = true;
                 }
                 $scope.myarr = $scope.myarr.concat(contacts);
-
             }
-
         }
         console.log(flag);
         console.log(contacts);
