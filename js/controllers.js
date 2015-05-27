@@ -137,7 +137,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
 
     var changeproflogo = function (result) {
-        console.log(profile);
+        console.log(result);
         $scope.profilelogo = result.value;
     }
     $scope.changeprofilelogo = function () {
