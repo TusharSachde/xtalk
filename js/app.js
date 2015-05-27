@@ -198,8 +198,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 })
     .filter('serverimage', function() {
+
         return function(image) {
-            return imgpath + image;
+            if (image || image != "") {
+                return imgpath + image;
+            }
+            else
+            {
+                return "img/logo.jpg";
+            }
+            
         };
     })
     .filter('matchsearch', function() {
