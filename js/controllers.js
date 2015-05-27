@@ -105,7 +105,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 .controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
     $scope.companylogo = 'img/logo.jpg';
     $scope.profilelogo = 'img/logo.jpg';
-    n++;
     var options = {
         quality: 40,
         destinationType: Camera.DestinationType.NATIVE_URI,
@@ -261,7 +260,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         //            }
         //            //        MyServices.sendContacts(contacts).success(sendContactsSuccess);
     }
-    if (n == 0) {
+    n++;
+    if (n == 1) {
+        console.log("Hey");
         MyServices.getallcontacts(contactCallback);
     }
 
