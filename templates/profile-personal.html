@@ -2,7 +2,7 @@
     <ion-content class="padding">
         <div class="card-effect personal-card">
             <div class="addlogo" ng-click="changeproflogo()" style="background-image:url('{{profilelogo|serverimage}}')">
-               <span ng-if="profilelogo=='img/logo.jpg'">Upload profile picture</span>
+               <span ng-if="profilelogo|serverimage=='img/logo.jpg'">Upload profile picture</span>
             </div>
             <div class="list">
                 <label class="item item-input">
