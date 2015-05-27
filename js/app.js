@@ -200,7 +200,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .filter('serverimage', function() {
 
         return function(image) {
-            if (image || image != "") {
+            if (image && image != "") {
                 return imgpath + image;
             }
             else
