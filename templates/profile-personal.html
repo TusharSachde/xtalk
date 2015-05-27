@@ -1,8 +1,8 @@
 <ion-view view-title="SpingR">
     <ion-content class="padding">
         <div class="card-effect personal-card">
-            <div class="addlogo" ng-click="changecompanylogo()">Upload profile picture
-                <img ng-src="{{profilelogo|serverimage}}">
+            <div class="addlogo" ng-click="changeproflogo()" style="background-image:url('{{profilelogo|serverimage}}')">
+               <span ng-if="profilelogo=='img/logo.jpg'">Upload profile picture</span>
             </div>
             <div class="list">
                 <label class="item item-input">
