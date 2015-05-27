@@ -681,3 +681,5 @@ span.linked {
     margin: 0 auto;
     padding: 100px 0;
 }
+.add-logo {background-image: url('../img/add_logo.png');}
+.upload-image {background-image: url('../img/upload_picture.png');}
