@@ -113,6 +113,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     //Contacts Sending
     var changecmpylogo = function(result) {
+        console.log(result);
         $scope.companylogo = result.value;
     }
     $scope.changecompanylogo = function() {
@@ -122,6 +123,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             // Success! Image data is here
             console.log("here in upload image");
             console.log(imageData);
+           
             if (imageData.substring(0, 21) == "content://com.android") {
                 var photo_split = imageData.split("%3A");
                 imageData = "content://media/external/images/media/" + photo_split[1];
@@ -134,6 +136,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
 
     var changeproflogo = function(result) {
+        console.log(profile);
         $scope.profilelogo = result.value;
     }
     $scope.changeprofilelogo = function() {
@@ -143,6 +146,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             // Success! Image data is here
             console.log("here in upload image");
             console.log(imageData);
+           
             if (imageData.substring(0, 21) == "content://com.android") {
                 var photo_split = imageData.split("%3A");
                 imageData = "content://media/external/images/media/" + photo_split[1];

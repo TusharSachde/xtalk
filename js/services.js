@@ -1,4 +1,6 @@
-var adminurl = "http://wohlig.co.in/spingr/index.php/json/";
+var serveradmin = "http://wohlig.co.in/spingr/";
+var adminurl = serveradmin + "index.php/json/";
+var imgpath = serveradmin + "uploads/";
 var mycard1 = {};
 var personalcontact = '';
 var contact = [];
@@ -35,7 +37,7 @@ var myconarr = [];
 var imgpath = "http://wohlig.co.in/spingr/uploads/";
 angular.module('starter.services', [])
 
-.factory('MyServices', function ($http) {
+.factory('MyServices', function($http) {
     //
     //    var db = openDatabase('spingr', '1.0', 'Test DB', 2 * 1024 * 1024);
     //    db.transaction(function (tx) {
@@ -95,16 +97,16 @@ angular.module('starter.services', [])
     //    }];
 
     var returnfunction = {};
-    returnfunction.getallcontacts = function (callback) {
+    returnfunction.getallcontacts = function(callback) {
 
-        var onSuccess = function (contacts) {
+        var onSuccess = function(contacts) {
             //alert('Found ' + contacts.length + ' contacts.');
             //            console.log(contacts1);
             callback(contacts);
             //console.log(contacts);
         };
 
-        var onError = function (contactError) {
+        var onError = function(contactError) {
             alert('onError!');
             callback();
         };
@@ -116,9 +118,9 @@ angular.module('starter.services', [])
         var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
         navigator.contacts.find(fields, onSuccess, onError, options);
     };
-    returnfunction.query = function (querystr, callback) {
-        db.transaction(function (tx) {
-            tx.executeSql(querystr, [], function (tx, results) {
+    returnfunction.query = function(querystr, callback) {
+        db.transaction(function(tx) {
+            tx.executeSql(querystr, [], function(tx, results) {
                 var len = results.rows.length;
                 if (callback) {
                     callback(results.rows, len);
@@ -126,7 +128,7 @@ angular.module('starter.services', [])
             }, null);
         });
     };
-    returnfunction.get = function (Id) {
+    returnfunction.get = function(Id) {
         for (var i = 0; i < contacts.length; i++) {
             if (contacts[i].id === parseInt(Id)) {
                 return contacts[i];
@@ -134,22 +136,22 @@ angular.module('starter.services', [])
         }
         return null;
     };
-    returnfunction.readsms = function (callback) {
+    returnfunction.readsms = function(callback) {
 
-        var successCallback = function (data) {
+        var successCallback = function(data) {
             console.log(data);
             var otp = data.substring(data.length - 4, data.length);
             console.log(otp);
             callback(otp);
         }
-        var failureCallback = function () {
+        var failureCallback = function() {
             callback();
         }
         if (smsplugin) {
             smsplugin.startReception(successCallback, failureCallback);
         }
     };
-    returnfunction.verifyOTP = function (userotp, personalcontact) {
+    returnfunction.verifyOTP = function(userotp, personalcontact) {
         return $http.get(adminurl + "verifyotp", {
             params: {
                 newotp: userotp,
@@ -157,23 +159,23 @@ angular.module('starter.services', [])
             }
         });
     };
-    returnfunction.register = function (phone) {
+    returnfunction.register = function(phone) {
         return $http.get(adminurl + "register", {
             params: {
                 phone: phone
             }
         });
     }
-    returnfunction.createCard = function (card) {
+    returnfunction.createCard = function(card) {
         return $http.post(adminurl + "mycard", card);
 
     }
-    returnfunction.sendContacts = function (contacts) {
+    returnfunction.sendContacts = function(contacts) {
 
         console.log(contacts);
 
         return $http.post(adminurl + "sendcontacts", contacts)
-            //  console.log( "Sending Contacts"+ contacts);
+        //  console.log( "Sending Contacts"+ contacts);
     }
 
     return returnfunction;
