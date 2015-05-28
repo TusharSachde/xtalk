@@ -303,6 +303,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.noresult = false;
     $scope.page = 1;
     abc.scope = $scope;
+    $scope.myarr=[];
     var populate = 0;
     if (!$.jStorage.get("user")) {
         console.log("Jstorage not set");
