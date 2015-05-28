@@ -202,7 +202,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     email: "",
                     contact: ""
                 };
-                if ($scope.contacts[i].phoneNumbers && $scope.contacts[i].displayName && $scope.contacts[i].displayName != "") {
+                if ($scope.contacts[i].phoneNumbers && $scope.contacts[i].name.formatted && $scope.contacts[i].name.formatted != "") {
                     if ($scope.contacts[i].emails) {
                         myval.email = $scope.contacts[i].emails[0].value;
                     }
@@ -212,8 +212,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                         myval.contact = myval.contact.replace(/[ -]/g, '');
                         myval.contact = myval.contact.replace(/[']/g, '');
                     }
-                    if ($scope.contacts[i].displayName) {
-                        myval.name = $scope.contacts[i].displayName;
+                    if ($scope.contacts[i].name.formatted) {
+                        myval.name = $scope.contacts[i].name.formatted;
                         myval.name = myval.name.replace(/['"]/g, '');
                     }
                     // contactSync.create(myval);
@@ -309,58 +309,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log("Jstorage not set");
         $location.url('/enter');
     }
-
-    var contactCallback = function (contact) {
-        //        console.log("contacts");
-        console.log(contact);
-        if (contact) {
-            $scope.contacts = contact;
-            for (var i = 0; i < $scope.contacts.length; i++) {
-                var myval = {
-
-                    name: "",
-                    email: "",
-                    contact: ""
-                };
-                if ($scope.contacts[i].phoneNumbers && $scope.contacts[i].displayName && $scope.contacts[i].displayName != "") {
-                    if ($scope.contacts[i].emails) {
-                        myval.email = $scope.contacts[i].emails[0].value;
-                    }
-
-                    if ($scope.contacts[i].phoneNumbers) {
-                        myval.contact = $scope.contacts[i].phoneNumbers[0].value;
-                        myval.contact = myval.contact.replace(/[ -]/g, '');
-                        myval.contact = myval.contact.replace(/[']/g, '');
-                    }
-                    if ($scope.contacts[i].displayName) {
-                        myval.name = $scope.contacts[i].displayName;
-                        myval.name = myval.name.replace(/['"]/g, '');
-                    }
-                    // contactSync.create(myval);
-                    myconarr.push(myval);
-                }
-
-            }
-            myconarr = _.uniq(myconarr, function (n) {
-                return n.name + n.contact;
-            });
-
-            var contacts = {
-                "user": userid,
-                "contact": myconarr
-            };
-
-            _.each(myconarr, function (n) {
-                contactSync.create(n);
-            });
-        }
-    }
-    x++;
-    if (x == 1) {
-        console.log("Hey");
-        MyServices.getallcontacts(contactCallback);
-    }
-
 
     if ($scope.search == true && $scope.showdailer == true) {
         $scope.search = false;
