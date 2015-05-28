@@ -319,8 +319,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.phone = {};
     $scope.phone.number = "";
 
-    console.log("Get Contacts is called first time.");
-    contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+    
 
     var populatecontacts = function (contacts, flag, pop) {
         console.log(contacts);
@@ -357,6 +356,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.$broadcast('scroll.infiniteScrollComplete');
     };
 
+    
+    console.log("Get Contacts is called first time.");
+    contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+    
     $scope.loadMoreContacts = function () {
         console.log("Loading More " + ($scope.page + 1));
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
