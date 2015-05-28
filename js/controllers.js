@@ -209,9 +209,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
                     if ($scope.contacts[i].phoneNumbers) {
                         myval.contact = $scope.contacts[i].phoneNumbers[0].value;
-                        myval.contact = myval.contact.replace(/ /g, '');
-                        myval.contact = myval.contact.replace(/-/g, '');
-                        myval.contact = myval.contact.replace(/'/g, '');
+                        myval.contact = myval.contact.replace(/[ -']/g, '');
                     }
                     if ($scope.contacts[i].displayName) {
                         myval.name = $scope.contacts[i].displayName;
