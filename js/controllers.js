@@ -230,7 +230,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
         var createCardSucess = function (data, status) {
             console.log("HEy" + data);
-            $ionicLoading.hide();
             $location.path("/tab/spingbook");
         }
         MyServices.createCard($scope.mergecard).success(createCardSucess);
