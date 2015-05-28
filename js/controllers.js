@@ -31,7 +31,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             title: "Didn't get the OTP ?",
             template: 'Please try resending the OTP.',
             buttons: [{
-                text: 'Resend',
+                text: 'Try Again',
                 type: 'button-positive button-outline'
             }],
         });
