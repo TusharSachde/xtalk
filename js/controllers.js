@@ -281,7 +281,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 .controller('ProfileShareCtrl', function($scope, MyServices) {
     $scope.contacts = contact;
     $scope.$apply();
-
 })
 
 .controller('ProfileGetCtrl', function($scope, MyServices) {

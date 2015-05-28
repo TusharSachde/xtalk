@@ -225,9 +225,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     return function(str, searchkey) {
         var newstr = str;
         var num = 0;
-        console.log(str);
-        console.log(searchkey);
-
+    
         if (searchkey && searchkey != "") {
             var re = new RegExp(searchkey, "i");
             num = str.search(re);
