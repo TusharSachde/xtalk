@@ -18,16 +18,16 @@
     <!--    <preference name="webviewbounce" value="true" />-->
     <!--    <preference name="prerendered-icon" value="true" />-->
     <!--    <preference name="stay-in-webview" value="true" />-->
-    <!--    <preference name="show-splash-screen-spinner" value="true" />-->
-    <!--    <preference name="auto-hide-splash-screen" value="true" />-->
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
     <!--    <preference name="EnableViewportScale" value="true" />-->
     <preference name="AllowInlineMediaPlayback" value="true" />
     <!--    <preference name="TopActivityIndicator" value="gray" />-->
     <!--    <preference name="KeyboardDisplayRequiresUserAction" value="false" />-->
-    <preference name="android-targetSdkVersion" value="19" />
+    <preference name="android-targetSdkVersion" value="11" />
     <!--    <preference name="HideKeyboardFormAccessoryBar" value="false" />-->
     <!--    <preference name="SuppressesIncrementalRendering" value="false" />-->
-    <!--    <preference name="SplashScreenDelay" value="5000" />-->
+    <preference name="SplashScreenDelay" value="5000" />
     <preference name="ErrorUrl" value="" />
     <preference name="KeepRunning" value="true" />
     <preference name="LoadUrlTimeoutValue" value="20000" />
