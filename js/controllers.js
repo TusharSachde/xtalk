@@ -7,7 +7,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 .controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices, $location, contactSync, $ionicLoading) {
     $scope.startloading = function () {
         $ionicLoading.show({
-            template: 'Loading...'
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
     $scope.startloading();
@@ -114,7 +114,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 .controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
     $scope.startloading = function () {
         $ionicLoading.show({
-            template: 'Loading...'
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
     $scope.startloading();
@@ -270,7 +270,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.startloading = function () {
         $ionicLoading.show({
-            template: 'Loading...'
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
     $scope.startloading();
