@@ -311,9 +311,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 
     var populatecontacts = function(contacts, flag, pop) {
-        conosole.log(contacts);
-        conosole.log(flag);
-        conosole.log(pop);
+        console.log(contacts);
+        console.log(flag);
+        console.log(pop);
         if (pop == populate) {
             if (contacts.length == 0) { // nothing in contact
                 console.log("Section1");
@@ -356,8 +356,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.searchquery.search = "";
     $scope.phone = {};
     $scope.phone.number = "";
+    
     contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-    console.log($scope.myarr);
+    
 
     $scope.namesearch = function() {
         $scope.page = 0;
