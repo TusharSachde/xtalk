@@ -218,12 +218,12 @@ contactsync.factory('contactSync', function ($http) {
         //       console.log(data.name);
         //     console.log(data);
 
-        returnval.query("INSERT OR IGNORE INTO `contacts` (`id`, `name`,`email`,`personalMobile`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "')", function (result, len, id) {
+        returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`,`personalMobile`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "')", function (result, len, id) {
             id = id.insertId;
             var d = new Date();
             var n = d.getTime();
 
-            returnval.query("INSERT INTO OR IGNORE `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 1 + "','" + user + "','" + id + "')", null);
+            returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 1 + "','" + user + "','" + id + "')", null);
             //           console.log(id);
             if (callback) {
                 callback();
