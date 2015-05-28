@@ -4,8 +4,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 })
 
-.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices, $location, contactSync) {
-
+.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices, $location, contactSync, $ionicLoading) {
+    $scope.startloading = function () {
+        $ionicLoading.show({
+            template: 'Loading...'
+        });
+    };
+    $scope.startloading();
     contactSync.drop();
     var readsmsCallback = function (otp) {
         if (!otp) {
@@ -72,10 +77,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             userid = data.id;
             $.jStorage.set("user", userid);
             userid = $.jStorage.get("user");
+            $ionicLoading.hide();
             $location.path("/profile/mycard");
 
         } else {
             console.log(data);
+            $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'INCORRECT OTP',
                 template: 'Please enter the correct OTP'
@@ -85,7 +92,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     };
     var errorCallback = function () {
-
+        $ionicLoading.hide();
         $scope.showAlert = function () {
             var alertPopup = $ionicPopup.alert({
                 title: 'INCORRECT OTP',
@@ -98,11 +105,20 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     }
     $scope.checkotp = function () {
+        $scope.startloading();
         MyServices.verifyOTP($scope.otp.number, personalcontact).success(verifyCallback).error(errorCallback);
     }
+    $ionicLoading.hide();
 })
 
 .controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
+    $scope.startloading = function () {
+        $ionicLoading.show({
+            template: 'Loading...'
+        });
+    };
+    $scope.startloading();
+
     $scope.companylogo = 'img/logo.jpg';
     $scope.profilelogo = 'img/logo.jpg';
     var options = {
@@ -200,10 +216,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.personal = {};
     $scope.CardDetails = function (card) {
         mycard1 = card;
-        //        console.log($scope.mycard);
         $location.path("/profile/personal");
     };
     $scope.PersonalDetails = function (card) {
+        $scope.startloading();
         $scope.mycard2 = card;
         console.log(mycard1);
         console.log($scope.mycard2);
@@ -214,13 +230,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
         var createCardSucess = function (data, status) {
             console.log("HEy" + data);
+            $ionicLoading.hide();
             $location.path("/tab/spingbook");
         }
         MyServices.createCard($scope.mergecard).success(createCardSucess);
         //        console.log($scope.mycard);
         //        $location.path("/profile/sharewith");
     };
-
+    $ionicLoading.hide();
 })
 
 .controller('Circle1Ctrl', function ($scope) {})
@@ -250,7 +267,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('ChatsCtrl', function ($scope) {})
 
-.controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync) {
+.controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync, $ionicLoading) {
+
+    $scope.startloading = function () {
+        $ionicLoading.show({
+            template: 'Loading...'
+        });
+    };
+    $scope.startloading();
 
     $scope.keepscrolling = true;
     $scope.noresult = false;
@@ -308,6 +332,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log($scope.keepscrolling);
         $scope.$apply();
         $scope.$broadcast('scroll.infiniteScrollComplete');
+        $ionicLoading.hide();
     };
 
 
@@ -315,6 +340,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
 
     $scope.loadMoreContacts = function () {
+        $scope.startloading();
         console.log("Loading More " + ($scope.page + 1));
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
     }
@@ -323,6 +349,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
     $scope.namesearch = function () {
+        $scope.startloading();
         $scope.page = 0;
         $scope.phone.number = "";
         $scope.advanced = {};
@@ -392,6 +419,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.phone.number = "";
 
     $scope.phonenum = function (number) {
+        $scope.startloading();
         console.log("number presses " + number);
         $scope.phone.number += "" + number;
         $scope.page = 0;
@@ -400,7 +428,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
     };
     $scope.phoneback = function () {
-
+        $scope.startloading();
         $scope.phone.number = $scope.phone.number.slice(0, -1);
         $scope.page = 0;
         $scope.searchquery.search = "";
@@ -409,6 +437,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
 
     $scope.phonedelete = function () {
+        $scope.startloading();
         $scope.searchquery.search = "";
         $scope.phone.number = "";
         $scope.page = 0;
@@ -473,6 +502,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     $scope.advancesearch = function () {
         //        contactSync.advancesearch($scope.advanced, advancesuccess);
+        $scope.startloading();
         $scope.page = 0;
         $scope.searchquery.search = "";
         $scope.phone.number = "";
