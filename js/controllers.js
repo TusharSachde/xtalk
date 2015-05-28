@@ -300,6 +300,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.keepscrolling = true;
     $scope.noresult = false;
     $scope.page = 1;
+    abc.scope=$scope;
     var populate = 0;
     if (!$.jStorage.get("user")) {
         console.log("Jstorage not set");
@@ -310,6 +311,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 
     var populatecontacts = function(contacts, flag, pop) {
+        conosole.log(contacts);
+        conosole.log(flag);
+        conosole.log(pop);
         if (pop == populate) {
             if (contacts.length == 0) { // nothing in contact
                 console.log("Section1");
@@ -345,7 +349,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log("Loading More " + ($scope.page + 1));
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
     }
-    abc.loadmore = $scope.loadMoreContacts;
 
     $scope.advanced = {};
     $scope.page = 0;
