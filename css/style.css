@@ -673,7 +673,9 @@ span.linked {
     margin-left: -120px;
 }
 .highlight {
-    font-weight: bold;
+        background: #9b59b6;
+    color: white;
+    font-weight:bold;
 }
 .noresult {
     width: 110px;
