@@ -19,6 +19,7 @@
     <preference name="BackupWebStorage" value="cloud" />
     <preference name="TopActivityIndicator" value="gray" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="android-targetSdkVersion" value="14" />
     <preference name="HideKeyboardFormAccessoryBar" value="false" />
     <preference name="SuppressesIncrementalRendering" value="false" />
     <preference name="SplashScreenDelay" value="5000" />
@@ -30,9 +31,7 @@
     <preference name="StatusBarBackgroundColor" value="#ffffff" />
     <preference name="StatusBarStyle" value="lightcontent" />
 
-
     <gap:splash src="img/logo.jpg" />
-
 
     <icon src="logo.png" />
 
@@ -45,12 +44,12 @@
     <gap:plugin name="com.teamnemitoff.phonedialer" version="0.3.0" />
     <gap:plugin name="info.ivanezko.phonegap.smsplugin" />
     <gap:plugin name="org.apache.cordova.contacts" version="0.2.13" />
-    
+
     <gap:plugin name="org.apache.cordova.camera" />
-    <gap:plugin name="org.apache.cordova.inappbrowser"/>
-    <gap:plugin name="org.apache.cordova.file"/>
-    <gap:plugin name="org.apache.cordova.file-transfer"/>
-    
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <gap:plugin name="org.apache.cordova.file" />
+    <gap:plugin name="org.apache.cordova.file-transfer" />
+
     <!-- for Android (you will find one in res/xml) -->
     <feature name="SocialSharing">
         <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
