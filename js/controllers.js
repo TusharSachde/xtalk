@@ -303,7 +303,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.noresult = false;
     $scope.page = 1;
     abc.scope = $scope;
-    $scope.myarr=[];
+    $scope.myarr = [];
     var populate = 0;
     if (!$.jStorage.get("user")) {
         console.log("Jstorage not set");
@@ -312,6 +312,15 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     if ($scope.search == true && $scope.showdailer == true) {
         $scope.search = false;
     }
+    $scope.advanced = {};
+    $scope.page = 0;
+    $scope.searchquery = {};
+    $scope.searchquery.search = "";
+    $scope.phone = {};
+    $scope.phone.number = "";
+
+    console.log("Get Contacts is called first time.");
+    contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
 
     var populatecontacts = function (contacts, flag, pop) {
         console.log(contacts);
@@ -353,15 +362,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
     }
 
-    $scope.advanced = {};
-    $scope.page = 0;
-    $scope.searchquery = {};
-    $scope.searchquery.search = "";
-    $scope.phone = {};
-    $scope.phone.number = "";
 
-    console.log("Get Contacts is called first time.");
-    contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
 
 
     $scope.namesearch = function () {
