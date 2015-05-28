@@ -299,6 +299,57 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync) {
 
+    var contactCallback = function (contact) {
+        //        console.log("contacts");
+        console.log(contact);
+        if (contact) {
+            $scope.contacts = contact;
+            for (var i = 0; i < $scope.contacts.length; i++) {
+                var myval = {
+
+                    name: "",
+                    email: "",
+                    contact: ""
+                };
+                if ($scope.contacts[i].phoneNumbers && $scope.contacts[i].displayName && $scope.contacts[i].displayName != "") {
+                    if ($scope.contacts[i].emails) {
+                        myval.email = $scope.contacts[i].emails[0].value;
+                    }
+
+                    if ($scope.contacts[i].phoneNumbers) {
+                        myval.contact = $scope.contacts[i].phoneNumbers[0].value;
+                        myval.contact = myval.contact.replace(/[ -]/g, '');
+                        myval.contact = myval.contact.replace(/[']/g, '');
+                    }
+                    if ($scope.contacts[i].displayName) {
+                        myval.name = $scope.contacts[i].displayName;
+                        myval.name = myval.name.replace(/['"]/g, '');
+                    }
+                    // contactSync.create(myval);
+                    myconarr.push(myval);
+                }
+
+            }
+            myconarr = _.uniq(myconarr, function (n) {
+                return n.name + n.contact;
+            });
+
+            var contacts = {
+                "user": userid,
+                "contact": myconarr
+            };
+
+            _.each(myconarr, function (n) {
+                contactSync.create(n);
+            });
+        }
+    }
+    x++;
+    if (x == 1) {
+        console.log("Hey");
+        MyServices.getallcontacts(contactCallback);
+    }
+
     $scope.keepscrolling = true;
     $scope.noresult = false;
     $scope.page = 1;
@@ -319,7 +370,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.phone = {};
     $scope.phone.number = "";
 
-    
+
 
     var populatecontacts = function (contacts, flag, pop) {
         console.log(contacts);
@@ -356,10 +407,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.$broadcast('scroll.infiniteScrollComplete');
     };
 
-    
+
     console.log("Get Contacts is called first time.");
     contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-    
+
     $scope.loadMoreContacts = function () {
         console.log("Loading More " + ($scope.page + 1));
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
