@@ -359,13 +359,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.phone = {};
     $scope.phone.number = "";
 
-   
-
-    $scope.$on('$viewContentLoaded', function () {
+    $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
         console.log("Its should be called now.");
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
     });
-
+    
     $scope.namesearch = function () {
         $scope.page = 0;
         $scope.phone.number = "";
