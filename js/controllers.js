@@ -321,13 +321,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 if (flag) { // new search with things in contact
                     console.log("Section3");
                     $scope.myarr = [];
+                    $ionicScrollDelegate.scrollTop();
                     $scope.keepscrolling = true;
                 }
                 $scope.myarr = $scope.myarr.concat(contacts);
             }
         }
 
-        $ionicScrollDelegate.scrollTop();
+
         console.log(flag);
         console.log(contacts);
         console.log($scope.keepscrolling);
