@@ -13,9 +13,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
     $scope.onenter = function (keyEvent, callback, object) {
-        if (keyEvent.which === 13) {
+        console.log(keyEvent);
+        if (keyEvent.which == 13) {
             callback(object);
-        }
+        };
 
     };
 
@@ -50,6 +51,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             }],
         });
         alertPopup.then(function (res) {
+            $ionicSlideBoxDelegate.previous();
             console.log('OTP Resent !');
         })
     };
