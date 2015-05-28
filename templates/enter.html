@@ -14,7 +14,7 @@
                                 <input type="tel" value="+91" class="text-center">
                             </div>
                             <div class="col">
-                                <input type="tel" placeholder="Mobile Number" ng-model="personal.phone" maxlength="10">
+                                <input type="tel" placeholder="Mobile Number" ng-keypress="onenter($event,phonesubmit,personal)" ng-model="personal.phone" maxlength="10">
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     
                     <p class="light thin"><span class="bold">Note:</span> The OTP is send to your mobile number, please check your SMS inbox.</p>
                     
-                    <button class="button button-outline button-block button-positive button-50" type="submit">Submit</button>
+                    <button class="button button-outline button-block button-positive button-50" ng-keypress="onenter($event,checkotp)" type="submit">Submit</button>
                 </form>
 
             </div>

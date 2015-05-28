@@ -10,6 +10,15 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
+
+
+    $scope.onenter = function (keyEvent, callback, object) {
+        if (keyEvent.which === 13) {
+            callback(object);
+        }
+
+    };
+
     $scope.startloading();
     contactSync.drop();
     var readsmsCallback = function (otp) {
