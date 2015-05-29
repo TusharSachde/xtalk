@@ -100,7 +100,7 @@ angular.module('starter.services', [])
 
         var onSuccess = function (contacts) {
             if (contacts) {
-                console.log(contacts.photos);
+                console.log(contacts);
                 for (var i = 0; i < contacts.length; i++) {
                     var myval = {
                         name: "",
