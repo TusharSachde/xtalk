@@ -209,7 +209,10 @@ contactsync.factory('contactSync', function ($http) {
     }
     returnval.iscontactpresent = function (n, callback) {
         var query = "SELECT * FROM `contacts` WHERE `personalMobile` = '" + n.contact + "' LIMIT 0,1";
+        console.log(query);
+        console.log(n);
         returnval.query(query, function (result, len) {
+            console.log(len);
             callback(len, n);
         });
     }
