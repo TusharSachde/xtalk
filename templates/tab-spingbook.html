@@ -103,7 +103,7 @@
         <ion-list>
 
             <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr" type="item-text-wrap" ng-click="hidedialer(myconarrs.personalMobile);" on-hold="call(myconarrs.personalMobile);" href="#/tab/spingbook/{{myconarr.id}}">
-                <div class="picture" style="background-image:url('img/default.png'), url('{{myconarrs.photoUrl}}');"></div>
+                <div class="picture" style="background-image:url('{{myconarrs.photoUrl}}'), url('img/default.png');"></div>
 
                 <div class="card-style">
                     <h2 class="positive" ng-bind-html="myconarrs.name|addhighlight:searchquery.search"></h2>
