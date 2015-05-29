@@ -104,8 +104,7 @@ angular.module('starter.services', [])
                     var myval = {
                         name: "",
                         email: "",
-                        contact: "",
-                        photo:"",
+                        contact: ""
                     };
                     if (contacts[i].phoneNumbers && contacts[i].name.formatted && contacts[i].name.formatted != "") {
                         if (contacts[i].emails) {
@@ -121,9 +120,7 @@ angular.module('starter.services', [])
                             myval.name = contacts[i].name.formatted;
                             myval.name = myval.name.replace(/['"]/g, '');
                         }
-                        if (contacts[i].photos[0].value) {
-                            myval.photo = contacts[i].photos[0].value;
-                        }
+                        // contactSync.create(myval);
                         myconarr.push(myval);
                     }
                 }
