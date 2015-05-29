@@ -99,7 +99,7 @@
         <ion-list>
 
             <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr" type="item-text-wrap" ng-click="hidedialer(myconarrs.personalMobile);" on-hold="call(myconarrs.personalMobile);" href="#/tab/spingbook/{{myconarr.id}}">
-                <div class="picture" style="background-image: url('{{myconarrs.photoUrl}}');"></div>
+                <div class="picture" style="background-image: url('{{myconarrs.photoUrl}}'), url('img/default.png');"></div>
 
                 <div class="card-style">
                     <h2 class="positive" ng-bind-html="myconarrs.name|addhighlight:searchquery.search"></h2>
@@ -109,7 +109,8 @@
                         <br>{{myconarrs.area}} <span ng-bind-html="myconarrs.personalMobile|addnumhighlight:phone.number"></span>
                     </p>
 
-                    <div class="company" style="background-image: url('{{myconarrs.logo}}');"></div>
+<!--                    <div class="company" style="background-image: url('{{myconarrs.logo}}');"></div>-->
+                    <div class="company" style="background-image: url('img/spingr.png');"></div>
                 </div>
 
                 <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
