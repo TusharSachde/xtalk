@@ -13,7 +13,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
     $scope.onenter = function (keyEvent, callback, object) {
-        console.log(keyEvent.which);
+        console.log("ASCII=" + keyEvent.which);
         if (keyEvent.which == 13) {
             callback(object);
         };
@@ -368,7 +368,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         });
     }
     if (x == 0) {
-        .log("Hey...Syncing Contacts...");
+        console.log("Hey...Syncing Contacts...");
         x++;
         MyServices.getallcontacts(contactCallback);
     }
@@ -421,8 +421,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         phonedialer.dial(
             number,
             function (err) {
-                if (err == "empty") //console.log("Unknown phone number");
-                else //console.log("Dialer Error:" + err);
+                if (err == "empty")
+                    console.log("Unknown phone number");
+                else
+                    console.log("Dialer Error:" + err);
             },
             function (success) {
                 //console.log('Dialing succeeded');
