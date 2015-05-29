@@ -370,7 +370,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     if (x == 0) {
         console.log("Hey...Syncing Contacts...");
         x++;
-        MyServices.getallcontacts(contactCallback);
+//        MyServices.getallcontacts(contactCallback);
     }
 
     $scope.namesearch = function () {
