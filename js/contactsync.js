@@ -33,7 +33,7 @@ contactsync.factory('contactSync', function ($http) {
     var db = openDatabase('sync', '1.0', 'SyncTestDatabase', 2 * 1024 * 1024);
 
     db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`designation` VARCHAR(255) , `lineOfBusiness` VARCHAR(255), `companyname` VARCHAR(255), `officeAddress` VARCHAR(255), `officeCity` VARCHAR(255), `officeState` VARCHAR(255), `officePin` VARCHAR(255), `officeCountry` VARCHAR(255), `officeMobile` INTEGER, `officeLandline` INTEGER, `officeEmail` VARCHAR(255), `officeWebsite` VARCHAR(255), `officeGPS` VARCHAR(255), `DOB` VARCHAR(255), `anniversary` VARCHAR(255), `bloodGroup` VARCHAR(255), `personalAddress` VARCHAR(255), `personalCity` VARCHAR(255), `personalState` VARCHAR(255), `personalPin` VARCHAR(255), `personalCountry` VARCHAR(255), `personalMobile`  INTEGER, `personalLandline` INTEGER, `personalWebsite` VARCHAR(255), `personalGPS` VARCHAR(255), `serverid` INTEGER  )');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`designation` VARCHAR(255) , `lineOfBusiness` VARCHAR(255), `companyname` VARCHAR(255), `officeAddress` VARCHAR(255), `officeCity` VARCHAR(255), `officeState` VARCHAR(255), `officePin` VARCHAR(255), `officeCountry` VARCHAR(255), `officeMobile` INTEGER, `officeLandline` INTEGER, `officeEmail` VARCHAR(255), `officeWebsite` VARCHAR(255), `officeGPS` VARCHAR(255), `DOB` VARCHAR(255), `anniversary` VARCHAR(255), `bloodGroup` VARCHAR(255), `personalAddress` VARCHAR(255), `personalCity` VARCHAR(255), `personalState` VARCHAR(255), `personalPin` VARCHAR(255), `personalCountry` VARCHAR(255), `personalMobile`  INTEGER, `personalLandline` INTEGER, `personalWebsite` VARCHAR(255), `personalGPS` VARCHAR(255), `serverid` INTEGER,`photoUrl` VARCHAR(255)  )');
     });
     db.transaction(function (tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS `userslog` (`id` INTEGER PRIMARY KEY ASC, `timestamp` TIMESTAMP,`type` INTEGER,`user` INTEGER,`table` INTEGER,`serverid` INTEGER)');
@@ -112,7 +112,7 @@ contactsync.factory('contactSync', function ($http) {
 
         returnval.query("DROP TABLE IF EXISTS `userslog`");
         db.transaction(function (tx) {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`designation` VARCHAR(255) , `lineOfBusiness` VARCHAR(255), `companyname` VARCHAR(255), `officeAddress` VARCHAR(255), `officeCity` VARCHAR(255), `officeState` VARCHAR(255), `officePin` VARCHAR(255), `officeCountry` VARCHAR(255), `officeMobile` INTEGER, `officeLandline` INTEGER, `officeEmail` VARCHAR(255), `officeWebsite` VARCHAR(255), `officeGPS` VARCHAR(255), `DOB` VARCHAR(255), `anniversary` VARCHAR(255), `bloodGroup` VARCHAR(255), `personalAddress` VARCHAR(255), `personalCity` VARCHAR(255), `personalState` VARCHAR(255), `personalPin` VARCHAR(255), `personalCountry` VARCHAR(255), `personalMobile`  INTEGER, `personalLandline` INTEGER, `personalWebsite` VARCHAR(255), `personalGPS` VARCHAR(255), `serverid` INTEGER  )');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`designation` VARCHAR(255) , `lineOfBusiness` VARCHAR(255), `companyname` VARCHAR(255), `officeAddress` VARCHAR(255), `officeCity` VARCHAR(255), `officeState` VARCHAR(255), `officePin` VARCHAR(255), `officeCountry` VARCHAR(255), `officeMobile` INTEGER, `officeLandline` INTEGER, `officeEmail` VARCHAR(255), `officeWebsite` VARCHAR(255), `officeGPS` VARCHAR(255), `DOB` VARCHAR(255), `anniversary` VARCHAR(255), `bloodGroup` VARCHAR(255), `personalAddress` VARCHAR(255), `personalCity` VARCHAR(255), `personalState` VARCHAR(255), `personalPin` VARCHAR(255), `personalCountry` VARCHAR(255), `personalMobile`  INTEGER, `personalLandline` INTEGER, `personalWebsite` VARCHAR(255), `personalGPS` VARCHAR(255), `serverid` INTEGER,`photoUrl` VARCHAR(255)  )');
         });
         db.transaction(function (tx) {
             tx.executeSql('CREATE TABLE IF NOT EXISTS `userslog` (`id` INTEGER PRIMARY KEY ASC, `timestamp` TIMESTAMP,`type` INTEGER,`user` INTEGER,`table` INTEGER,`serverid` INTEGER)');
@@ -220,7 +220,7 @@ contactsync.factory('contactSync', function ($http) {
         //       console.log(data.name);
         //     console.log(data);
 
-        returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`,`personalMobile`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "')", function (result, len, id) {
+        returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`,`personalMobile`,`photoUrl`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "','" + data.photoUrl + "' )", function (result, len, id) {
             id = id.insertId;
             var d = new Date();
             var n = d.getTime();
