@@ -213,8 +213,7 @@ contactsync.factory('contactSync', function ($http) {
         console.log(n);
         returnval.query(query, function (result, len) {
             console.log(len);
-            if (len > 0) {
-                
+            if (len == 1) {
                 callback(true, n);
             } else {
                 callback(false, n);
