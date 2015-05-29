@@ -421,8 +421,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         phonedialer.dial(
             number,
             function (err) {
-                if (err == "empty") //console.log("Unknown phone number");
-                else //console.log("Dialer Error:" + err);
+                if (err == "empty")
+                    console.log("Unknown phone number");
+                else
+                    console.log("Dialer Error:" + err);
             },
             function (success) {
                 //console.log('Dialing succeeded');
