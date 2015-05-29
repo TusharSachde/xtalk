@@ -207,13 +207,13 @@ contactsync.factory('contactSync', function ($http) {
 
 
     }
-    returnval.iscontactpresent = function (name, number, callback) {
+    returnval.iscontactpresent = function (n, callback) {
 
-        returnval.query("SELECT * FROM `contacts` WHERE `name` LIKE '%" + name + "%' AND `personalMobile` LIKE '%" + number + "%'", function (result, len) {
+        returnval.query("SELECT * FROM `contacts` WHERE `name` LIKE '" + n.name + "' AND `personalMobile` LIKE '" + n.contact + "' LIMIT 0,1", function (result, len) {
             if (len > 0) {
-                callback(true);
+                callback(true, n);
             } else {
-                callback(false);
+                callback(false, n);
             }
         });
     }
