@@ -208,9 +208,13 @@ contactsync.factory('contactSync', function ($http) {
 
     }
     returnval.iscontactpresent = function (n, callback) {
-
-        returnval.query("SELECT * FROM `contacts` WHERE `name` LIKE '" + n.name + "' AND `personalMobile` LIKE '" + n.contact + "' LIMIT 0,1", function (result, len) {
+        var query="SELECT * FROM `contacts` WHERE `name` LIKE '" + n.name + "' AND `personalMobile` LIKE '" + n.contact + "' LIMIT 0,1";
+        console.log(query);
+        console.log(n);
+        returnval.query(query, function (result, len) {
+            console.log(len);
             if (len > 0) {
+                
                 callback(true, n);
             } else {
                 callback(false, n);
