@@ -358,7 +358,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 
     var recordcallback = function (len, n) {
-        if (len == 0) {
+        if (len != 0) {
             console.log("Insert new contact");
             contactSync.create(n);
         } else {
