@@ -357,14 +357,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
     }
 
-    var recordcallback = function (flag, n) {
-        console.log(flag);
-        if (!flag) {
+    var recordcallback = function (len, n) {
+        if (len == 0) {
             console.log("Insert new contact");
             contactSync.create(n);
-        }
-        else
-        {
+        } else {
             console.log("It's Working !!");
         }
     };
