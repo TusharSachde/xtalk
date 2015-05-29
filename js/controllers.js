@@ -367,9 +367,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             contactSync.iscontactpresent(n, recordcallback);
         });
     }
-    if (x == 0) {
-        .log("Hey...Syncing Contacts...");
-        x++;
+    x++;
+    if (x == 1) {
+        console.log("Hey...Syncing Contacts...");
         MyServices.getallcontacts(contactCallback);
     }
 
