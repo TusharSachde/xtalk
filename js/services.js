@@ -8,6 +8,7 @@ var userid = 0;
 var userotp = '';
 var myconarr = [];
 var n = 0;
+var x = 0;
 //{
 //    name: "Dhaval Gala",
 //    number: "9029145077",

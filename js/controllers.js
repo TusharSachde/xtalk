@@ -357,8 +357,21 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
     }
 
-
-
+    var contactCallback = function (myconarr) {
+        _.each(myconarr, function (n) {
+            var recordcallback = function (flag) {
+                if (!flag) {
+                    console.log("Insert new contact");
+                    contactSync.create(n);
+                }
+            };
+            contactSync.iscontactpresent(n.name, n.personalMobile, recordcallback);
+        });
+    }
+    $scope.syncnewcontacts = function () {
+        console.log("Hey");
+        MyServices.getallcontacts(contactCallback);
+    }
 
     $scope.namesearch = function () {
         $scope.page = 0;

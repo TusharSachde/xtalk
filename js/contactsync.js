@@ -124,11 +124,11 @@ contactsync.factory('contactSync', function ($http) {
     returnval.getcontact = function (str, number, advance, pageno, callback, populate) {
         console.log(str);
         console.log(number);
-        console.log(advance );
+        console.log(advance);
         console.log(pageno);
         console.log(callback);
         console.log(populate);
-        
+
         var rowcount = 10;
         pageno = pageno * rowcount;
         var where = '';
@@ -207,9 +207,9 @@ contactsync.factory('contactSync', function ($http) {
 
 
     }
-    returnval.getrecordcount = function (name, number, callback) {
+    returnval.iscontactpresent = function (name, number, callback) {
 
-        returnval.query("SELECT * FROM `contacts` WHERE `name` LIKE %" + name + "% AND `personalMobile`=" + number, function (result, len) {
+        returnval.query("SELECT * FROM `contacts` WHERE `name` LIKE '%" + name + "%' AND `personalMobile` LIKE '%" + number + "%'", function (result, len) {
             if (len > 0) {
                 callback(true);
             } else {
