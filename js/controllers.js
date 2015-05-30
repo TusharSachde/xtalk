@@ -421,6 +421,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log('Dialer Hidden');
     };
     $scope.call = function (number) {
+        number = number + "";
         phonedialer.dial(
             number,
             function (err) {
