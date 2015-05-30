@@ -129,7 +129,7 @@ contactsync.factory('contactSync', function ($http) {
         console.log(callback);
         console.log(populate);
 
-        var rowcount = 10;
+        var rowcount = 50;
         pageno = pageno * rowcount;
         var where = '';
         if (str) {
