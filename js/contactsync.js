@@ -140,254 +140,257 @@ contactsync.factory('contactSync', function ($http) {
 
         if (number) {
             _.each(number + "", function (n) {
-                    switch (n) {
-                    case 2:
-                        {
-                            regex += "[abc]";
-                        };
-                        break;
-                    case 3:
-                        {
-                            regex += "[def]";
-                        };
-                        break;
-                    case 4:
-                        {
-                            regex += "[ghi]";
-                        };
-                        break;
-                    case 5:
-                        {
-                            regex += "[jkl]";
-                        };
-                        break;
-                    case 6:
-                        {
-                            regex += "[mno]";
-                        };
-                        break;
-                    case 7:
-                        {
-                            regex += "[pqrs]";
-                        };
-                        break;
-                    case 8:
-                        {
-                            regex += "[tuv]";
-                        };
-                        break;
-                    case 9:
-                        {
-                            regex += "[wxyz]";
-                        };
-                        break;
-                    default:
-                        {
-                            regex = "";
-                        }
-                        break;
+                switch (n) {
+                case 2:
+                    {
+                        regex += "[abc]";
+                    };
+                    break;
+                case 3:
+                    {
+                        regex += "[def]";
+                    };
+                    break;
+                case 4:
+                    {
+                        regex += "[ghi]";
+                    };
+                    break;
+                case 5:
+                    {
+                        regex += "[jkl]";
+                    };
+                    break;
+                case 6:
+                    {
+                        regex += "[mno]";
+                    };
+                    break;
+                case 7:
+                    {
+                        regex += "[pqrs]";
+                    };
+                    break;
+                case 8:
+                    {
+                        regex += "[tuv]";
+                    };
+                    break;
+                case 9:
+                    {
+                        regex += "[wxyz]";
+                    };
+                    break;
+                default:
+                    {
+                        regex = "";
                     }
-
+                    break;
                 }
             });
-        regex += "' ";
-        where += regex;
-    }
 
-
-    if (str) {
-        where += " AND `name` LIKE  '%" + str + "%' ";
-    }
-
-    if (number) {
-        where += " AND `personalMobile` LIKE  '%" + number + "%' ";
-    }
-
-
-    if (advance.name) {
-        where += " AND `name` LIKE  '%" + advance.name + "%' ";
-        console.log(where);
-    } else {
-        where += '';
-    }
-
-    if (advance.org) {
-        where += " AND `companyname` LIKE '%" + advance.org + "%' ";
-        console.log(where);
-    } else {
-        where += '';
-    }
-    if (advance.designation) {
-        where += " AND `designation` LIKE '%" + advance.designation + "%'";
-
-    } else {
-        where += '';
-    }
-    if (advance.city) {
-        where += " AND `personalCity` LIKE '%" + advance.city + "%'";
-
-    } else {
-        where += '';
-    }
-    if (advance.blood) {
-        where += " AND `bloodGroup` LIKE '%" + advance.blood + "%'";
-
-    } else {
-        where += '';
-    }
-    if (advance.country) {
-        where += " AND `personalCity` LIKE '%" + advance.country + "%'";
-
-    } else {
-        where += '';
-    }
-    if (advance.occupatipon) {
-        where += " AND `lineOfBusiness` LIKE '%" + advance.occupatipon + "%'";
-
-    } else {
-        where += '';
-    }
-    //        if (advance.keyword) {
-    //            where += " AND personalCity LIKE '%" + advance.city + "%'";
-    //          
-    //        } else {
-    //            where += '';
-    //        }
-
-    var data = [];
-    var dataflag = false;
-    if (pageno == 0) {
-        dataflag = true;
-    }
-    returnval.query("SELECT * FROM `contacts` WHERE 1 " + where + " ORDER BY `name` ASC LIMIT " + pageno + "," + rowcount, function (result, len) {
-
-        for (var i = 0; i < len; i++) {
-            data.push(result.item(i));
+            regex += "' ";
+            where += regex;
         }
-        callback(data, dataflag, populate);
-    });
 
 
 
-}
-returnval.iscontactpresent = function (n, callback) {
-    var query = "SELECT * FROM `contacts` WHERE `personalMobile` = '" + n.contact + "' LIMIT 0,1";
-    console.log(query);
-    console.log(n);
-    returnval.query(query, function (result, len) {
-        console.log(len);
-        callback(len, n);
-    });
-}
-
-
-
-returnval.create = function (data, callback) {
-    //       console.log(data.name);
-    //     console.log(data);
-
-    returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`,`personalMobile`,`photoUrl`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "','" + data.photo + "')", function (result, len, id) {
-        id = id.insertId;
-        var d = new Date();
-        var n = d.getTime();
-
-        returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 1 + "','" + user + "','" + id + "')", null);
-        //           console.log(id);
-        if (callback) {
-            callback();
+        if (str) {
+            where += " AND `name` LIKE  '%" + str + "%' ";
         }
-    });
-}; abc.create = returnval.create; returnval.update = function (data, callback) {
 
-    returnval.query("UPDATE `contacts` SET `name`='" + data.name + "',`email`='" + data.email + "' WHERE `id`='" + data.id + "'", function (result, len) {
+        if (number) {
+            where += " AND `personalMobile` LIKE  '%" + number + "%' ";
+        }
 
-        var d = new Date();
-        var n = d.getTime();
-        returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 2 + "','" + user + "','" + data.id + "')", null);
-        callback();
-    });
 
-}; returnval.delete = function (data, callback) {
-    var d = new Date();
-    var n = d.getTime();
-    returnval.query("SELECT * FROM `contacts` WHERE `id` = '" + data.id + "'", function (result, len) {
-        var row = result.item(0);
-        if (row.serverid == null) {
-            console.log("DELETE ALL THE RECORDS FROM LOGS AND OTHER");
-            returnval.query("DELETE FROM `contacts ` WHERE `id`='" + data.id + "'");
-            returnval.query("DELETE FROM `userslog` WHERE `table`='" + data.id + "'");
+        if (advance.name) {
+            where += " AND `name` LIKE  '%" + advance.name + "%' ";
+            console.log(where);
+        } else {
+            where += '';
+        }
+
+        if (advance.org) {
+            where += " AND `companyname` LIKE '%" + advance.org + "%' ";
+            console.log(where);
+        } else {
+            where += '';
+        }
+        if (advance.designation) {
+            where += " AND `designation` LIKE '%" + advance.designation + "%'";
 
         } else {
-            console.log("STORE SERVER ID " + row.serverid);
-            returnval.query("DELETE FROM `contacts` WHERE `id`='" + data.id + "'");
-            returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`,`serverid`) VALUES (null,'" + n + "','" + 3 + "','" + user + "','" + data.id + "','" + row.serverid + "')", null);
+            where += '';
         }
-        callback();
+        if (advance.city) {
+            where += " AND `personalCity` LIKE '%" + advance.city + "%'";
 
-    });
-
-    //        returnval.query("DELETE FROM `contacts ` WHERE `id`='" + data.id + "'", function (result, len) {
-    //            var d = new Date();
-    //            var n = d.getTime();
-    //            returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 3 + "','" + user + "','" + data.id + "')", null);
-    //            callback();
-    //        });
-};
-
-returnval.getone = function (callback) {
-    //console.log("CHECKING");
-    if (!config.user.localtimestamp) {
-        config.user.localtimestamp = 0;
-    }
-    returnval.query("SELECT `table` as `id`,'" + user + "' as `user`,`serverid`,`name`,`email`,`timestamp` ,`type`,`serverid2` FROM (SELECT `userslog`.`table`,`contacts `.`name`,`contacts `.`email`, `userslog`.`timestamp`, `userslog`.`type`,`contacts `.`serverid`,`userslog`.`serverid` as `serverid2` FROM `userslog` LEFT OUTER JOIN `contacts ` ON `contacts `.`id`=`userslog`.`table` WHERE `userslog`.`timestamp`>'" + config.user.localtimestamp + "' ORDER BY `userslog`.`timestamp` DESC) as `tab1` GROUP BY `tab1`.`table` ORDER BY `tab1`.`timestamp` LIMIT 0,1", callback);
-};
-
-returnval.synclocaltoserver = function (callback) {
-    console.log("LOCAL TO SERVER");
-    returnval.getone(function (result, len) {
-        console.log(len);
-        if (len > 0) {
-            console.log("Server Submisssion");
-            //on success change localtimestamp
-            var row = result.item(0);
-            $http.post(adminurl + "localtoserver", row).success(function (data) {
-                if (data.id) {
-                    returnval.query("UPDATE `contacts ` SET `serverid`='" + data.id + "' WHERE `id`='" + row.id + "'");
-                }
-                console.log(row);
-                changelocaltimestamp(row.timestamp);
-                changeservertimestamp(data.timestamp);
-                returnval.synclocaltoserver();
-            });
         } else {
+            where += '';
+        }
+        if (advance.blood) {
+            where += " AND `bloodGroup` LIKE '%" + advance.blood + "%'";
+
+        } else {
+            where += '';
+        }
+        if (advance.country) {
+            where += " AND `personalCity` LIKE '%" + advance.country + "%'";
+
+        } else {
+            where += '';
+        }
+        if (advance.occupatipon) {
+            where += " AND `lineOfBusiness` LIKE '%" + advance.occupatipon + "%'";
+
+        } else {
+            where += '';
+        }
+        //        if (advance.keyword) {
+        //            where += " AND personalCity LIKE '%" + advance.city + "%'";
+        //          
+        //        } else {
+        //            where += '';
+        //        }
+
+        var data = [];
+        var dataflag = false;
+        if (pageno == 0) {
+            dataflag = true;
+        }
+        returnval.query("SELECT * FROM `contacts` WHERE 1 " + where + " ORDER BY `name` ASC LIMIT " + pageno + "," + rowcount, function (result, len) {
+
+            for (var i = 0; i < len; i++) {
+                data.push(result.item(i));
+            }
+            callback(data, dataflag, populate);
+        });
+
+
+
+    }
+    returnval.iscontactpresent = function (n, callback) {
+        var query = "SELECT * FROM `contacts` WHERE `personalMobile` = '" + n.contact + "' LIMIT 0,1";
+        console.log(query);
+        console.log(n);
+        returnval.query(query, function (result, len) {
+            console.log(len);
+            callback(len, n);
+        });
+    }
+
+
+
+    returnval.create = function (data, callback) {
+        //       console.log(data.name);
+        //     console.log(data);
+
+        returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`,`personalMobile`,`photoUrl`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "','" + data.photo + "')", function (result, len, id) {
+            id = id.insertId;
+            var d = new Date();
+            var n = d.getTime();
+
+            returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 1 + "','" + user + "','" + id + "')", null);
+            //           console.log(id);
             if (callback) {
                 callback();
             }
-        }
+        });
+    };
+    abc.create = returnval.create;
+    returnval.update = function (data, callback) {
 
-    });
-}
+        returnval.query("UPDATE `contacts` SET `name`='" + data.name + "',`email`='" + data.email + "' WHERE `id`='" + data.id + "'", function (result, len) {
 
+            var d = new Date();
+            var n = d.getTime();
+            returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 2 + "','" + user + "','" + data.id + "')", null);
+            callback();
+        });
 
+    };
+    returnval.delete = function (data, callback) {
+        var d = new Date();
+        var n = d.getTime();
+        returnval.query("SELECT * FROM `contacts` WHERE `id` = '" + data.id + "'", function (result, len) {
+            var row = result.item(0);
+            if (row.serverid == null) {
+                console.log("DELETE ALL THE RECORDS FROM LOGS AND OTHER");
+                returnval.query("DELETE FROM `contacts ` WHERE `id`='" + data.id + "'");
+                returnval.query("DELETE FROM `userslog` WHERE `table`='" + data.id + "'");
 
-
-
-returnval.servertolocal = function () {
-    $http.get(adminurl + "servertolocal", {
-        params: {
-            timestamp: config.user.servertimestamp
-        }
-    }).success(function (data, status) {
-        if (data == "false") {
-            console.log("Data Upto date");
-        } else {
-            for (var i = 0; i < data.length; i++) {
-                updatelocal(data[i], "sync");
+            } else {
+                console.log("STORE SERVER ID " + row.serverid);
+                returnval.query("DELETE FROM `contacts` WHERE `id`='" + data.id + "'");
+                returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`,`serverid`) VALUES (null,'" + n + "','" + 3 + "','" + user + "','" + data.id + "','" + row.serverid + "')", null);
             }
-            console.log("run again");
-            return returnval.servertolocal();
+            callback();
+
+        });
+
+        //        returnval.query("DELETE FROM `contacts ` WHERE `id`='" + data.id + "'", function (result, len) {
+        //            var d = new Date();
+        //            var n = d.getTime();
+        //            returnval.query("INSERT INTO `userslog` (`id`,`timestamp`,`type`,`user`,`table`) VALUES (null,'" + n + "','" + 3 + "','" + user + "','" + data.id + "')", null);
+        //            callback();
+        //        });
+    };
+
+    returnval.getone = function (callback) {
+        //console.log("CHECKING");
+        if (!config.user.localtimestamp) {
+            config.user.localtimestamp = 0;
         }
-    });
-};
-return returnval;
+        returnval.query("SELECT `table` as `id`,'" + user + "' as `user`,`serverid`,`name`,`email`,`timestamp` ,`type`,`serverid2` FROM (SELECT `userslog`.`table`,`contacts `.`name`,`contacts `.`email`, `userslog`.`timestamp`, `userslog`.`type`,`contacts `.`serverid`,`userslog`.`serverid` as `serverid2` FROM `userslog` LEFT OUTER JOIN `contacts ` ON `contacts `.`id`=`userslog`.`table` WHERE `userslog`.`timestamp`>'" + config.user.localtimestamp + "' ORDER BY `userslog`.`timestamp` DESC) as `tab1` GROUP BY `tab1`.`table` ORDER BY `tab1`.`timestamp` LIMIT 0,1", callback);
+    };
+
+    returnval.synclocaltoserver = function (callback) {
+        console.log("LOCAL TO SERVER");
+        returnval.getone(function (result, len) {
+            console.log(len);
+            if (len > 0) {
+                console.log("Server Submisssion");
+                //on success change localtimestamp
+                var row = result.item(0);
+                $http.post(adminurl + "localtoserver", row).success(function (data) {
+                    if (data.id) {
+                        returnval.query("UPDATE `contacts ` SET `serverid`='" + data.id + "' WHERE `id`='" + row.id + "'");
+                    }
+                    console.log(row);
+                    changelocaltimestamp(row.timestamp);
+                    changeservertimestamp(data.timestamp);
+                    returnval.synclocaltoserver();
+                });
+            } else {
+                if (callback) {
+                    callback();
+                }
+            }
+
+        });
+    }
+
+
+
+
+
+    returnval.servertolocal = function () {
+        $http.get(adminurl + "servertolocal", {
+            params: {
+                timestamp: config.user.servertimestamp
+            }
+        }).success(function (data, status) {
+            if (data == "false") {
+                console.log("Data Upto date");
+            } else {
+                for (var i = 0; i < data.length; i++) {
+                    updatelocal(data[i], "sync");
+                }
+                console.log("run again");
+                return returnval.servertolocal();
+            }
+        });
+    };
+    return returnval;
 });
