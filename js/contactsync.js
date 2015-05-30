@@ -49,6 +49,7 @@ contactsync.factory('contactSync', function ($http) {
                 }
             }, function (tx, error) {
                 console.log(error);
+                console.log(querystr);
             });
         });
     };
