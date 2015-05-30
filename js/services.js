@@ -121,7 +121,7 @@ angular.module('starter.services', [])
                             myval.name = contacts[i].name.formatted;
                             myval.name = myval.name.replace(/['"]/g, '');
                         }
-                        if (contacts[i].photos[0].value) {
+                        if (contacts[i].photos) {
                             myval.photo = contacts[i].photos[0].value;
                         }
                         myconarr.push(myval);
