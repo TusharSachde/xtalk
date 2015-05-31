@@ -13,7 +13,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
     $scope.onenter = function (keyEvent, callback, object) {
-        console.log(keyEvent);
+        //        console.log(keyEvent);
         if (keyEvent.which == 13) {
             callback(object);
         };
@@ -24,7 +24,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     contactSync.drop();
     var readsmsCallback = function (otp) {
         if (!otp) {
-            conole.log("No Otp");
+            //            console.log("No Otp");
         } else {
             $scope.otp = {
                 number: otp
@@ -41,7 +41,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.personal = {};
     //Popup for dint get OTP
     $scope.showAlert = function () {
-        console.log('Dint get OTP?');
+        //        console.log('Dint get OTP?');
         var alertPopup = $ionicPopup.alert({
             title: "Didn't get the OTP ?",
             template: 'Please try resending the OTP.',
@@ -52,7 +52,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         });
         alertPopup.then(function (res) {
             $ionicSlideBoxDelegate.previous();
-            console.log('OTP Resent !');
+            //           console.log('OTP Resent !');
         })
     };
 
@@ -310,12 +310,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
     var populatecontacts = function (contacts, flag, pop) {
-        console.log(contacts);
-        console.log(flag);
-        console.log(pop);
+
         if (pop == populate) {
             if (contacts.length == 0) { // nothing in contact
-                console.log("Section1");
+
                 $scope.page = 0;
                 $scope.keepscrolling = false;
                 if (flag) { // its new search and there is nothing in contacts
@@ -327,10 +325,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     $scope.keepscrolling = false;
                 }
             } else { // things in contacts
-                console.log("Section2");
+
                 $scope.noresult = false;
                 if (flag) { // new search with things in contact
-                    console.log("Section3");
+//                    console.log("Section3");
                     $scope.myarr = [];
                     $ionicScrollDelegate.scrollTop();
                     $scope.keepscrolling = true;
@@ -340,29 +338,24 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
 
 
-        console.log(flag);
-        console.log(contacts);
-        console.log($scope.keepscrolling);
+
         $scope.$apply();
         $scope.$broadcast('scroll.infiniteScrollComplete');
         $ionicLoading.hide();
     };
 
 
-    console.log("Get Contacts is called first time.");
     contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
 
     $scope.loadMoreContacts = function () {
-        console.log("Loading More " + ($scope.page + 1));
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
     }
 
     var recordcallback = function (len, n) {
         if (len == 0) {
-            console.log("Insert new contact");
             contactSync.create(n);
         } else {
-            console.log("It's Working !!");
+
         }
     };
 
@@ -447,7 +440,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.phone.number = "";
 
     $scope.phonenum = function (number) {
-        console.log("number presses " + number);
         $scope.phone.number += "" + number;
         $scope.page = 0;
         $scope.searchquery.search = "";

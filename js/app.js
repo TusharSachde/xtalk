@@ -233,9 +233,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             } else {
                 if (phone && phone != "") {
                     var regex = "";
-                    var noregex=false;
+                    var noregex = false;
                     _.each(phone, function (n) {
                         switch (n) {
+                        case "1":
+                            {
+                                regex += "[1]";
+                            };
+                            break;
                         case "2":
                             {
                                 regex += "[ABCabc2]";

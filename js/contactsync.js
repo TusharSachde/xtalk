@@ -40,7 +40,7 @@ contactsync.factory('contactSync', function ($http) {
     });
 
     returnval.query = function (querystr, callback) {
-        console.log(querystr);
+        //        console.log(querystr);
         db.transaction(function (tx) {
             tx.executeSql(querystr, [], function (tx, results) {
                 var len = results.rows.length;
@@ -137,6 +137,11 @@ contactsync.factory('contactSync', function ($http) {
             var regex = "AND ( `name` REGEXP '(.*?)";
             _.each(number + "", function (n) {
                 switch (n) {
+                case "1":
+                    {
+                        regex += "[1]";
+                    };
+                    break;
                 case "2":
                     {
                         regex += "[ABCabc2]";
