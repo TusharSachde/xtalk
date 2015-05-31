@@ -105,7 +105,7 @@
                 <div class="picture" style="background-image: url('{{myconarrs.photoUrl}}'), url('img/default.png');"></div>
 
                 <div class="card-style">
-                    <h2 class="positive" ng-bind-html="myconarrs.name|addhighlight:searchquery.search"></h2>
+                    <h2 class="positive" ng-bind-html="myconarrs.name|addhighlight:searchquery.search:phone.number"></h2>
 
                     <p class="stable">
                         {{myconarrs.company}}

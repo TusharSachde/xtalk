@@ -221,14 +221,75 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
 
 .filter('addhighlight', function () {
-        return function (str, searchkey) {
+        return function (str, searchkey, phone) {
             var newstr = str;
             var num = 0;
+            phone = phone + "";
 
             if (searchkey && searchkey != "") {
                 var re = new RegExp(searchkey, "i");
                 num = str.search(re);
                 newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, searchkey.length) + "</span>");
+            } else {
+                if (phone && phone != "") {
+                    var regex = "";
+                    var noregex=false;
+                    _.each(phone, function (n) {
+                        switch (n) {
+                        case "2":
+                            {
+                                regex += "[ABCabc2]";
+                            };
+                            break;
+                        case "3":
+                            {
+                                regex += "[DEFdef3]";
+                            };
+                            break;
+                        case "4":
+                            {
+                                regex += "[GHIghi4]";
+                            };
+                            break;
+                        case "5":
+                            {
+                                regex += "[JKLjkl5]";
+                            };
+                            break;
+                        case "6":
+                            {
+                                regex += "[MNOmno6]";
+                            };
+                            break;
+                        case "7":
+                            {
+                                regex += "[PQRSpqrs7]";
+                            };
+                            break;
+                        case "8":
+                            {
+                                regex += "[TUVtuv8]";
+                            };
+                            break;
+                        case "9":
+                            {
+                                regex += "[WXYZwxyz9]";
+                            };
+                            break;
+                        default:
+                            {
+                                noregex = true;
+                            }
+
+                        }
+                    });
+
+                    if (!noregex) {
+                        var re = new RegExp(regex);
+                        num = str.search(re);
+                        newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, phone.length) + "</span>");
+                    }
+                };
             }
             return newstr;
         }
