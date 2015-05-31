@@ -130,10 +130,10 @@ contactsync.factory('contactSync', function ($http) {
 
 
         var where = '';
-        var noregex=false;
+        var noregex = false;
 
 
-        if (number || number!="") {
+        if (number || number != "") {
             var regex = "AND ( `name` REGEXP '(.*?)";
             _.each(number + "", function (n) {
                 switch (n) {
@@ -179,27 +179,23 @@ contactsync.factory('contactSync', function ($http) {
                     break;
                 default:
                     {
-                        noregex=true;
+                        noregex = true;
                     }
 
                 }
             });
             if (!noregex) {
                 regex += "(.*?)' ";
+            } else {
+                regex = "AND ( 0 ";
             }
-            else
-            {
-                regex="AND ( 0 ";
-            }
-//            regex="AND (`name` REGEXP '/mah/i' ";
             where += regex;
-//            where += " OR `personalMobile` LIKE  '%" + number + "%' ) ";
-            where += " ) ";
+            where += " OR `personalMobile` LIKE  '%" + number + "%' ) ";
         }
 
 
         if (number) {
-            
+
         }
 
 
