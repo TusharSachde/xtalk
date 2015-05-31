@@ -133,7 +133,7 @@ contactsync.factory('contactSync', function ($http) {
         var noregex=false;
 
 
-        if (number) {
+        if (number || number!="") {
             var regex = "AND ( `name` REGEXP '(.*?)";
             _.each(number + "", function (n) {
                 switch (n) {
