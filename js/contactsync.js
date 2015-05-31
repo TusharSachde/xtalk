@@ -40,7 +40,7 @@ contactsync.factory('contactSync', function ($http) {
     });
 
     returnval.query = function (querystr, callback) {
-        //console.log(querystr);
+        console.log(querystr);
         db.transaction(function (tx) {
             tx.executeSql(querystr, [], function (tx, results) {
                 var len = results.rows.length;
@@ -49,7 +49,7 @@ contactsync.factory('contactSync', function ($http) {
                 }
             }, function (tx, error) {
                 console.log(error);
-                console.log(querystr);
+
             });
         });
     };
@@ -123,12 +123,6 @@ contactsync.factory('contactSync', function ($http) {
 
 
     returnval.getcontact = function (str, number, advance, pageno, callback, populate) {
-        console.log(str);
-        console.log(number);
-        console.log(advance);
-        console.log(pageno);
-        console.log(callback);
-        console.log(populate);
 
         var rowcount = 50;
         pageno = pageno * rowcount;
@@ -136,73 +130,83 @@ contactsync.factory('contactSync', function ($http) {
 
 
         var where = '';
+        var noregex=false;
 
-        var regex = "AND `name` REGEXP '";
 
         if (number) {
+            var regex = "AND ( `name` REGEXP '(.*?)";
             _.each(number + "", function (n) {
                 switch (n) {
-                case 2:
+                case "2":
                     {
-                        regex += "[abc]";
+                        regex += "[ABCabc2]";
                     };
                     break;
-                case 3:
+                case "3":
                     {
-                        regex += "[def]";
+                        regex += "[DEFdef3]";
                     };
                     break;
-                case 4:
+                case "4":
                     {
-                        regex += "[ghi]";
+                        regex += "[GHIghi4]";
                     };
                     break;
-                case 5:
+                case "5":
                     {
-                        regex += "[jkl]";
+                        regex += "[JKLjkl5]";
                     };
                     break;
-                case 6:
+                case "6":
                     {
-                        regex += "[mno]";
+                        regex += "[MNOmno6]";
                     };
                     break;
-                case 7:
+                case "7":
                     {
-                        regex += "[pqrs]";
+                        regex += "[PQRSpqrs7]";
                     };
                     break;
-                case 8:
+                case "8":
                     {
-                        regex += "[tuv]";
+                        regex += "[TUVtuv8]";
                     };
                     break;
-                case 9:
+                case "9":
                     {
-                        regex += "[wxyz]";
+                        regex += "[WXYZwxyz9]";
                     };
                     break;
                 default:
                     {
-                        regex = "";
+                        noregex=true;
                     }
-                    break;
+
                 }
             });
-
-            regex += "' ";
+            if (!noregex) {
+                regex += "(.*?)' ";
+            }
+            else
+            {
+                regex="AND ( 0 ";
+            }
+//            regex="AND (`name` REGEXP '/mah/i' ";
             where += regex;
+//            where += " OR `personalMobile` LIKE  '%" + number + "%' ) ";
+            where += " ) ";
         }
 
+
+        if (number) {
+            
+        }
 
 
         if (str) {
             where += " AND `name` LIKE  '%" + str + "%' ";
         }
 
-        if (number) {
-            where += " AND `personalMobile` LIKE  '%" + number + "%' ";
-        }
 
 
         if (advance.name) {
