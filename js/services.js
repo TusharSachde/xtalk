@@ -194,7 +194,7 @@ angular.module('starter.services', [])
                 phone: phone
             }
         });
-    }
+    };
     returnfunction.createCard = function (card) {
         return $http.post(adminurl + "mycard", card);
     }
@@ -203,6 +203,8 @@ angular.module('starter.services', [])
         return $http.post(adminurl + "sendcontacts", contacts)
     }
     returnfunction.getlevel2contacts = function () {
+        console.log("In level2 service");
+        console.log(level2id);
         return $http.post(adminurl + "level2search", level2id)
     }
 

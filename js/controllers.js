@@ -560,12 +560,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $location.url('/tab/spingbook');
         console.log('spingpage');
     }
-    
-    var level2callback=function(data,status){
+
+    var level2callback = function (data, status) {
         console.log("Level2");
         console.log(data);
     };
-    MyServices.getlevel2contacts(level2callback);
+    MyServices.getlevel2contacts().success(level2callback);
 
 })
 
