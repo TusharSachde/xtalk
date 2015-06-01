@@ -281,7 +281,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.startloading();
     $scope.spingrcontacts = contact;
     for (var i = 0; i < $scope.spingrcontacts.length; i++) {
-        level2id[i] = $scope.spingrcontacts[i].id;
+        level2id[i] = $scope.spingrcontacts[i].userid;
     }
     console.log("Level 2 ids");
     console.log(level2id);
