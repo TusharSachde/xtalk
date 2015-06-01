@@ -86,8 +86,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         if (data != "false") {
             console.log(data);
             userid = data.id;
-            $.jStorage.set("user", userid);
-            userid = $.jStorage.get("user");
+//            $.jStorage.set("user", userid);
+//            userid = $.jStorage.get("user");
             $ionicLoading.hide();
             $location.path("/profile/mycard");
 
@@ -241,6 +241,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
         var createCardSucess = function (data, status) {
             console.log("HEy" + data);
+            $.jStorage.set("user", userid);
             $location.path("/tab/spingbook");
         }
         MyServices.createCard($scope.mergecard).success(createCardSucess);
@@ -279,6 +280,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync, $ionicLoading, $ionicScrollDelegate) {
 
+    if (!$.jStorage.get("user")) {
+        console.log("Jstorage not set");
+        $location.url('/enter');
+    }
     $scope.startloading = function () {
         $ionicLoading.show({
             template: '<ion-spinner class="spinner-light"></ion-spinner>'
@@ -292,11 +297,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     abc.scope = $scope;
     $scope.myarr = [];
     var populate = 0;
-    if (!$.jStorage.get("user")) {
-        console.log("Jstorage not set");
-        $location.url('/enter');
-    }
-
+    
     if ($scope.search == true && $scope.showdailer == true) {
         $scope.search = false;
     }

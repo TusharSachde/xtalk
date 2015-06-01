@@ -200,7 +200,7 @@ angular.module('starter.services', [])
     }
     returnfunction.sendContacts = function (contacts) {
 
-        console.log(contacts);
+//        console.log(contacts);
 
         return $http.post(adminurl + "sendcontacts", contacts)
             //  console.log( "Sending Contacts"+ contacts);
