@@ -283,6 +283,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     for (var i = 0; i < $scope.spingrcontacts.length; i++) {
         level2id[i] = $scope.spingrcontacts[i].id;
     }
+    console.log("Level 2 ids");
+    console.log(level2id);
     console.log($scope.spingrcontacts);
     //    $scope.$apply();
     $ionicLoading.hide();
