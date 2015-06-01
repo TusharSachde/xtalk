@@ -40,7 +40,7 @@ contactsync.factory('contactSync', function ($http) {
     });
 
     returnval.query = function (querystr, callback) {
-        //        console.log(querystr);
+//        console.log(querystr);
         db.transaction(function (tx) {
             tx.executeSql(querystr, [], function (tx, results) {
                 var len = results.rows.length;
