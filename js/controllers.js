@@ -344,6 +344,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     $scope.noresult = false;
                     $scope.keepscrolling = false;
                 }
+                $ionicLoading.hide();
             } else { // things in contacts
 
                 $scope.noresult = false;
@@ -354,14 +355,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     $scope.keepscrolling = true;
                 }
                 $scope.myarr = $scope.myarr.concat(contacts);
+                $ionicLoading.hide();
             }
         }
-
-
-
         $scope.$apply();
         $scope.$broadcast('scroll.infiniteScrollComplete');
-        $ionicLoading.hide();
     };
 
 
