@@ -7,6 +7,7 @@ var contact = [];
 var userid = 0;
 var userotp = '';
 var myconarr = [];
+var level2id = [];
 var n = 0;
 var x = 0;
 //{
@@ -196,18 +197,13 @@ angular.module('starter.services', [])
     }
     returnfunction.createCard = function (card) {
         return $http.post(adminurl + "mycard", card);
-
     }
     returnfunction.sendContacts = function (contacts) {
-
         console.log(contacts);
-        //        return $http.get(adminurl + "sendcontacts", {
-        //            params: {
-        //                contact: contacts
-        //            }
-        //        });
         return $http.post(adminurl + "sendcontacts", contacts)
-            //  console.log( "Sending Contacts"+ contacts);
+    }
+    returnfunction.getlevel2contacts = function () {
+        return $http.post(adminurl + "level2search", level2id)
     }
 
     return returnfunction;

@@ -279,7 +279,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         });
     };
     $scope.startloading();
-    $scope.spingrcontacts = contact
+    $scope.spingrcontacts = contact;
+    for (var i = 0; i < $scope.spingrcontacts.length; i++) {
+        level2id[i] = $scope.spingrcontacts[i].id;
+    }
     console.log($scope.spingrcontacts);
     //    $scope.$apply();
     $ionicLoading.hide();
@@ -403,7 +406,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         if (n == 1) {
             if ($scope.search == true)
                 $scope.search = false;
-        } else {
+        } else if (n == 0) {
             $location.url("/circle/circle1");
         }
     };
@@ -555,6 +558,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $location.url('/tab/spingbook');
         console.log('spingpage');
     }
+    
+    var level2callback=function(data,status){
+        console.log("Level2");
+        console.log(data);
+    };
+    MyServices.getlevel2contacts(level2callback);
 
 })
 
