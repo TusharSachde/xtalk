@@ -281,7 +281,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.startloading();
     $scope.spingrcontacts = contact
     console.log($scope.spingrcontacts);
-    $scope.$apply();
+    //    $scope.$apply();
     $ionicLoading.hide();
 })
 
@@ -405,6 +405,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         if (n == 1) {
             if ($scope.search == true)
                 $scope.search = false;
+        } else {
+            $location.url("/circle/circle1");
         }
     };
     $scope.searchquery = "";
