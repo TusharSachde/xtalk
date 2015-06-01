@@ -212,12 +212,15 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 });
             });
     };
+    var sendcontactssuccess = function (data, status) {
+        console.log(data);
+    }
     var contactCallback = function (myconarr) {
         $scope.usercontacts = {
-            "user": userid,
-            "contact": myconarr
+            user: userid,
+            contact: myconarr
         }
-        MyServices.sendContacts($scope.usercontacts);
+        MyServices.sendContacts($scope.usercontacts).success(sendcontactssuccess);
 
         _.each(myconarr, function (n) {
             contactSync.create(n);
