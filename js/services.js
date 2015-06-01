@@ -201,13 +201,13 @@ angular.module('starter.services', [])
     returnfunction.sendContacts = function (contacts) {
 
         console.log(contacts);
-        return $http.get(adminurl + "sendcontacts", {
-            params: {
-                contact: contacts
-            }
-        });
-        //        return $http.post(adminurl + "sendcontacts", contacts)
-        //  console.log( "Sending Contacts"+ contacts);
+        //        return $http.get(adminurl + "sendcontacts", {
+        //            params: {
+        //                contact: contacts
+        //            }
+        //        });
+        return $http.post(adminurl + "sendcontacts", contacts)
+            //  console.log( "Sending Contacts"+ contacts);
     }
 
     return returnfunction;
