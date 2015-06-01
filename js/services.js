@@ -105,7 +105,7 @@ angular.module('starter.services', [])
                         name: "",
                         email: "",
                         contact: "",
-                        photo:"",
+                        photo: "",
                     };
                     if (contacts[i].phoneNumbers && contacts[i].name.formatted && contacts[i].name.formatted != "") {
                         if (contacts[i].emails) {
@@ -200,10 +200,14 @@ angular.module('starter.services', [])
     }
     returnfunction.sendContacts = function (contacts) {
 
-//        console.log(contacts);
-
-        return $http.post(adminurl + "sendcontacts", contacts)
-            //  console.log( "Sending Contacts"+ contacts);
+        //        console.log(contacts);
+        return $http.get(adminurl + "sendcontacts", {
+            params: {
+                contact: contacts
+            }
+        });
+        //        return $http.post(adminurl + "sendcontacts", contacts)
+        //  console.log( "Sending Contacts"+ contacts);
     }
 
     return returnfunction;

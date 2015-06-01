@@ -86,8 +86,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         if (data != "false") {
             console.log(data);
             userid = data.id;
-//            $.jStorage.set("user", userid);
-//            userid = $.jStorage.get("user");
+            //            $.jStorage.set("user", userid);
+            //            userid = $.jStorage.get("user");
             $ionicLoading.hide();
             $location.path("/profile/mycard");
 
@@ -213,6 +213,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             });
     };
     var contactCallback = function (myconarr) {
+        $scope.usercontacts = {
+            "user": userid,
+            "contact": myconarr
+        }
+        MyServices.sendContacts($scope.usercontacts);
+
         _.each(myconarr, function (n) {
             contactSync.create(n);
         });
@@ -297,7 +303,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     abc.scope = $scope;
     $scope.myarr = [];
     var populate = 0;
-    
+
     if ($scope.search == true && $scope.showdailer == true) {
         $scope.search = false;
     }
@@ -329,7 +335,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
                 $scope.noresult = false;
                 if (flag) { // new search with things in contact
-//                    console.log("Section3");
+                    //                    console.log("Section3");
                     $scope.myarr = [];
                     $ionicScrollDelegate.scrollTop();
                     $scope.keepscrolling = true;
