@@ -214,6 +214,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     var sendcontactssuccess = function (data, status) {
         console.log(data);
+        contact=data;
     }
     var contactCallback = function (myconarr) {
         $scope.usercontacts = {
@@ -251,7 +252,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         var createCardSucess = function (data, status) {
             console.log("HEy" + data);
             $.jStorage.set("user", userid);
-            $location.path("/tab/spingbook");
+//            $location.path("/tab/spingbook");
+            $location.path("/profile/sharewith");
         }
         MyServices.createCard($scope.mergecard).success(createCardSucess);
         //        console.log($scope.mycard);
@@ -276,8 +278,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 })
 
 .controller('ProfileGetCtrl', function ($scope, MyServices) {
-    //$scope.contacts = MyServices.all();
-    console.log($scope.contacts);
+    $scope.spingrcontacts = contact
+    console.log($scope.spingrcontacts);
     $scope.$apply();
 })
 

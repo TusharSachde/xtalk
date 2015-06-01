@@ -14,11 +14,11 @@
         <ion-list class="reverse-padding">
             <ion-item class="transparent-bg">
                 Phonebook contacts
-                <span class="badge badge-positive">752</span> 
+                <span class="badge badge-positive">752</span>
             </ion-item>
             <ion-item class="transparent-bg">
                 SPingR contacts
-                <span class="badge badge-positive">312</span> 
+                <span class="badge badge-positive">312</span>
             </ion-item>
         </ion-list>
 
@@ -28,7 +28,7 @@
         <div class="heading">Share my profile with</div>
         <ion-list>
 
-            {{contacts}}            <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in contacts | limitTo:10" type="item-text-wrap" ng-if="(contact.displayName)">
+            <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in spingrcontacts" type="item-text-wrap">
 
 
                 <label class="checkbox">
@@ -40,11 +40,11 @@
                     <input type="checkbox" checked>
                 </label>
 
-                <!--                <div class="picture" style="background-image: url('{{contact.image}}');"></div>-->
-                <div class="picture"></div>
+                <div class="picture" style="background-image: url('{{contact.image}}'), url('img/default.png');"></div>
+                <!--                <div class="picture"></div>-->
 
                 <div class="card-style">
-                    <h2 class="positive">{{contact.displayName}}</h2>
+                    <h2 class="positive">{{contact.name}}</h2>
                     <!--                    <p class="stable">{{contact.company}}</p>-->
                 </div>
             </ion-item>
