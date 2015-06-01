@@ -214,7 +214,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     var sendcontactssuccess = function (data, status) {
         console.log(data);
-        contact=data;
+        contact = data;
     }
     var contactCallback = function (myconarr) {
         $scope.usercontacts = {
@@ -252,7 +252,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         var createCardSucess = function (data, status) {
             console.log("HEy" + data);
             $.jStorage.set("user", userid);
-//            $location.path("/tab/spingbook");
+            //            $location.path("/tab/spingbook");
             $location.path("/profile/sharewith");
         }
         MyServices.createCard($scope.mergecard).success(createCardSucess);
@@ -272,15 +272,23 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 })
 
-.controller('ProfileShareCtrl', function ($scope, MyServices) {
-    $scope.contacts = contact;
-    $scope.$apply();
-})
-
-.controller('ProfileGetCtrl', function ($scope, MyServices) {
+.controller('ProfileShareCtrl', function ($scope, MyServices, $ionicLoading) {
+    $scope.startloading = function () {
+        $ionicLoading.show({
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
+        });
+    };
+    $scope.startloading();
     $scope.spingrcontacts = contact
     console.log($scope.spingrcontacts);
     $scope.$apply();
+    $ionicLoading.hide();
+})
+
+.controller('ProfileGetCtrl', function ($scope, MyServices) {
+    //    $scope.spingrcontacts = contact
+    //    console.log($scope.spingrcontacts);
+    //    $scope.$apply();
 })
 
 .controller('DashCtrl', function ($scope) {
