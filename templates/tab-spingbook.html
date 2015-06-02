@@ -24,66 +24,66 @@
         <!--DIAL BUTTON-->
         <div class="dialer-bar">
             <input type="text" class="phone number" ng-model="phone.number" disabled>
-            <button class="button-icon button ln-delete" ng-tap="phoneback();" on-hold="phonedelete();"></button>
+            <button class="button-icon button ln-delete" ng-click="phoneback();" on-hold="phonedelete();"></button>
         </div>
         <div class="row">
-            <div class="col button" ng-tap="phonenum(1);" on-hold="phonenum('#');">
+            <div class="col button" ng-click="phonenum(1);" on-hold="phonenum('#');">
                 <div class="number-holder">
                     <h2 class="positive">1</h2><span class="light-content">#</span>
                 </div>
             </div>
-            <div class="col button" ng-tap="phonenum(2);">
+            <div class="col button" ng-click="phonenum(2);">
                 <div class="number-holder">
                     <h2 class="positive">2</h2><span class="light-content">ABC</span>
                 </div>
             </div>
-            <div class="col button" ng-tap="phonenum(3);">
+            <div class="col button" ng-click="phonenum(3);">
                 <div class="number-holder">
                     <h2 class="positive">3</h2><span class="light-content">DEF</span>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col button" ng-tap="phonenum(4);">
+            <div class="col button" ng-click="phonenum(4);">
                 <div class="number-holder">
                     <h2 class="positive">4</h2><span class="light-content">GHI</span>
                 </div>
             </div>
-            <div class="col button" ng-tap="phonenum(5);">
+            <div class="col button" ng-click="phonenum(5);">
                 <div class="number-holder">
                     <h2 class="positive">5</h2><span class="light-content">JKL</span>
                 </div>
             </div>
-            <div class="col button" ng-tap="phonenum(6);">
+            <div class="col button" ng-click="phonenum(6);">
                 <div class="number-holder">
                     <h2 class="positive">6</h2><span class="light-content">MNO</span>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col button" ng-tap="phonenum(7);">
+            <div class="col button" ng-click="phonenum(7);">
                 <div class="number-holder">
                     <h2 class="positive">7</h2><span class="light-content">PQRS</span>
                 </div>
             </div>
-            <div class="col button" ng-tap="phonenum(8);">
+            <div class="col button" ng-click="phonenum(8);">
                 <div class="number-holder">
                     <h2 class="positive">8</h2><span class="light-content">TUV</span>
                 </div>
             </div>
-            <div class="col button" ng-tap="phonenum(9);">
+            <div class="col button" ng-click="phonenum(9);">
                 <div class="number-holder">
                     <h2 class="positive">9</h2><span class="light-content">WXYZ</span>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col button" ng-tap="phonenum('*');">
+            <div class="col button" ng-click="phonenum('*');">
                 <div class="number-holder number-center">
                     <h2 class="positive" style="margin-top: 5px;">*</h2>
                 </div>
             </div>
-            <div class="col button" ng-tap="phonenum(0);" on-hold="phonenum('+');">
+            <div class="col button" ng-click="phonenum(0);" on-hold="phonenum('+');">
                 <div class="number-holder">
                     <h2 class="positive">0</h2><span class="light-content">+</span>
                 </div>
