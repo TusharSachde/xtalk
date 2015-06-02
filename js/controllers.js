@@ -228,18 +228,24 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         });
     }
     n++;
-    if (n == 1) {
+    if (n == 1 && !$.jStorage.get("profilesaved")) {
         console.log("Hey");
         MyServices.getallcontacts(contactCallback);
     }
 
     $scope.mergecard = {};
     $scope.personal = {};
+    $scope.mycard = {};
+    $scope.personal = $.jStorage.get("userpersonalcard");
+    $scope.mycard = $.jStorage.get("usermycard");
+
     $scope.CardDetails = function (card) {
+        $.jStorage.set("usermycard", card);
         mycard1 = card;
         $location.path("/profile/personal");
     };
     $scope.PersonalDetails = function (card) {
+        $.jStorage.set("userpersonalcard", card);
         $scope.startloading();
         $scope.mycard2 = card;
         console.log(mycard1);
@@ -252,6 +258,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         var createCardSucess = function (data, status) {
             console.log("HEy" + data);
             $.jStorage.set("user", userid);
+            $.jStorage.set("profilesaved", 1);
             //            $location.path("/tab/spingbook");
             $location.path("/profile/sharewith");
         }
@@ -566,6 +573,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log(data);
     };
     MyServices.getlevel2contacts().success(level2callback);
+
+    $scope.openeditprofile = function () {
+        $location.url("/profile/mycard");
+    };
 
 })
 

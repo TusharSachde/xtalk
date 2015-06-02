@@ -124,11 +124,8 @@ contactsync.factory('contactSync', function ($http) {
 
     returnval.getcontact = function (str, number, advance, pageno, callback, populate) {
 
-        var rowcount = 50;
+        var rowcount = 25;
         pageno = pageno * rowcount;
-
-
-
         var where = '';
         var noregex = false;
 
