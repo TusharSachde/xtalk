@@ -485,104 +485,108 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
             }
         }, 500);
+    };
+    $scope.phoneback = function () {
+        $scope.phone.number = $scope.phone.number.slice(0, -1);
+        $scope.page = 0;
+        $scope.searchquery.search = "";
+        $scope.advanced = {};
+        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+    };
+
+    $scope.phonedelete = function () {
+        $scope.searchquery.search = "";
+        $scope.phone.number = "";
+        $scope.page = 0;
+        $scope.advanced = {};
+        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+    };
+
+
+    $ionicPopover.fromTemplateUrl('templates/popover.html', {
+        scope: $scope
+    }).then(function (popover) {
+        $scope.popover = popover;
+    });
+
+    $scope.openPopover = function ($event) {
+        $scope.popover.show($event);
+    };
+    $scope.closePopover = function () {
+        $scope.popover.hide();
+    };
+
+    //Cleanup the popover when we're done with it!
+    $scope.$on('$destroy', function () {
+        $scope.popover.remove();
+    });
+
+
+    //Filter Modal
+    $ionicModal.fromTemplateUrl('templates/modal-filter.html', {
+        id: '1',
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.oModal1 = modal;
+    });
+
+    $scope.openfilter = function () {
+        $scope.oModal1.show();
     }
-}; $scope.phoneback = function () {
-    $scope.phone.number = $scope.phone.number.slice(0, -1);
-    $scope.page = 0;
-    $scope.searchquery.search = "";
-    $scope.advanced = {};
-    contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-};
+    $scope.closefilter = function () {
+        $scope.oModal1.hide();
+    };
 
-$scope.phonedelete = function () {
-    $scope.searchquery.search = "";
-    $scope.phone.number = "";
-    $scope.page = 0;
-    $scope.advanced = {};
-    contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-};
+    //Advanced Search Modal
+    $ionicModal.fromTemplateUrl('templates/modal-advanced.html', {
+        id: '2',
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.oModal2 = modal;
+    });
 
+    $scope.openadvance = function () {
+        $scope.oModal2.show();
+    }
+    var advancesuccess = function (data) {
+        $scope.myarr = data;
+        console.log(data);
+    };
+    $scope.closeadvance = function () {
+        $scope.oModal2.hide();
+    };
+    $scope.advancesearch = function () {
+        //        contactSync.advancesearch($scope.advanced, advancesuccess);
+        $scope.page = 0;
+        $scope.searchquery.search = "";
+        $scope.phone.number = "";
+        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+        $scope.closeadvance();
+        $scope.closePopover();
+    }
+    $scope.searchpage = function () {
+        $location.url('/circle/circle1');
+        console.log('searchpage');
+    }
 
-$ionicPopover.fromTemplateUrl('templates/popover.html', {
-    scope: $scope
-}).then(function (popover) {
-    $scope.popover = popover;
-});
+    $scope.spingpage = function () {
+        $location.url('/tab/spingbook');
+        console.log('spingpage');
+    }
 
-$scope.openPopover = function ($event) {
-    $scope.popover.show($event);
-}; $scope.closePopover = function () {
-    $scope.popover.hide();
-};
+    var level2callback = function (data, status) {
+        console.log("Level2");
+        console.log(data);
+    };
+    MyServices.getlevel2contacts().success(level2callback);
 
-//Cleanup the popover when we're done with it!
-$scope.$on('$destroy', function () {
-    $scope.popover.remove();
-});
-
-
-//Filter Modal
-$ionicModal.fromTemplateUrl('templates/modal-filter.html', {
-    id: '1',
-    scope: $scope,
-    animation: 'slide-in-up'
-}).then(function (modal) {
-    $scope.oModal1 = modal;
-});
-
-$scope.openfilter = function () {
-    $scope.oModal1.show();
-}
-$scope.closefilter = function () {
-    $scope.oModal1.hide();
-};
-
-//Advanced Search Modal
-$ionicModal.fromTemplateUrl('templates/modal-advanced.html', {
-    id: '2',
-    scope: $scope,
-    animation: 'slide-in-up'
-}).then(function (modal) {
-    $scope.oModal2 = modal;
-});
-
-$scope.openadvance = function () {
-    $scope.oModal2.show();
-}
-var advancesuccess = function (data) {
-    $scope.myarr = data;
-    console.log(data);
-}; $scope.closeadvance = function () {
-    $scope.oModal2.hide();
-}; $scope.advancesearch = function () {
-    //        contactSync.advancesearch($scope.advanced, advancesuccess);
-    $scope.page = 0;
-    $scope.searchquery.search = "";
-    $scope.phone.number = "";
-    contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-    $scope.closeadvance();
-    $scope.closePopover();
-}
-$scope.searchpage = function () {
-    $location.url('/circle/circle1');
-    console.log('searchpage');
-}
-
-$scope.spingpage = function () {
-    $location.url('/tab/spingbook');
-    console.log('spingpage');
-}
-
-var level2callback = function (data, status) {
-    console.log("Level2");
-    console.log(data);
-}; MyServices.getlevel2contacts().success(level2callback);
-
-$scope.openeditprofile = function () {
-    editprofile = true;
-    $scope.closePopover();
-    $location.url("/profile/mycard");
-};
+    $scope.openeditprofile = function () {
+        editprofile = true;
+        $scope.closePopover();
+        $location.url("/profile/mycard");
+    };
 
 })
 
