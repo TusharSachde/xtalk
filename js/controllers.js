@@ -479,7 +479,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.page = 0;
         $scope.searchquery.search = "";
         $scope.advanced = {};
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+        if ($scope.phone.number.length >= 3) {
+            contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+        }
     };
     $scope.phoneback = function () {
         $scope.phone.number = $scope.phone.number.slice(0, -1);
