@@ -10,6 +10,7 @@ var myconarr = [];
 var level2id = [];
 var n = 0;
 var x = 0;
+var editprofile = false;
 //{
 //    name: "Dhaval Gala",
 //    number: "9029145077",

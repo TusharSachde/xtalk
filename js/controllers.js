@@ -259,8 +259,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             console.log("HEy" + data);
             $.jStorage.set("user", userid);
             $.jStorage.set("profilesaved", 1);
-            //            $location.path("/tab/spingbook");
-            $location.path("/profile/sharewith");
+            if (editprofile) {
+                $location.path("/tab/spingbook");
+            } else {
+                $location.path("/profile/sharewith");
+            }
         }
         MyServices.createCard($scope.mergecard).success(createCardSucess);
         //        console.log($scope.mycard);
@@ -575,6 +578,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     MyServices.getlevel2contacts().success(level2callback);
 
     $scope.openeditprofile = function () {
+        editprofile = true;
+        $scope.closePopover();
         $location.url("/profile/mycard");
     };
 
