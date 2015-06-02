@@ -481,6 +481,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.advanced = {};
         lastphone = $scope.phone.number;
         setTimeout(function () {
+            console.log(lastphone);
+            console.log($scope.phone.number);
             if ($scope.phone.number == lastphone) {
                 contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
             }
