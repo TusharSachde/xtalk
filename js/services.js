@@ -11,6 +11,13 @@ var level2id = [];
 var n = 0;
 var x = 0;
 var editprofile = false;
+var contactDetail = {
+    name: "Dhaval Gala",
+    number: "9029145077",
+    email:"dhaval@wohlig.com",
+    company:"Wohlig Technology",
+    area:"Grant Road"
+};
 //{
 //    name: "Dhaval Gala",
 //    number: "9029145077",
@@ -214,17 +221,14 @@ angular.module('starter.services', [])
     }
 
     returnfunction.getShared = function (userid) {
-        return $http.get(adminurl + "getshared", {
-            params: {
-                user: 35
-            }
-        });
-    }
+        return $http.post(adminurl + "getshared",{user:35,page:0} )
+        };
+    
     returnfunction.UserAddShareSubmit = function (contacts) {
         var add=_.pluck(_.filter(contacts,{add:"Added"}),'id');
         var addShare=_.pluck(_.filter(contacts,{addShare:"Shared"}),'id');
         var UserAddShareObj = {user:userid, add,addShare};
-        console.log(UserAddShareObj);
+        return $http.post(adminurl + "acceptrequest",UserAddShareObj)
     }
     return returnfunction;
 });

@@ -334,7 +334,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $ionicLoading.hide();
 })
 
-.controller('ProfileGetCtrl', function ($scope, MyServices) {
+.controller('ProfileGetCtrl', function ($scope, MyServices,$location) {
 
     var getSharedSuccess = function (data, status) {
         $scope.getcontacts = data;
@@ -361,10 +361,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             contact.addShare = "Add & Share";
         }
     }
+var UserAddShareSubmitSuccess = function(data,status){
+	console.log(data);
+	 $location.url('/tab/spingbook');
+}
 
     $scope.UserAddShareSubmit = function () {
         console.log("Chuha");
-        MyServices.UserAddShareSubmit($scope.getcontacts);
+        MyServices.UserAddShareSubmit($scope.getcontacts).success(UserAddShareSubmitSuccess);
     }
 
 
@@ -657,10 +661,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $location.url("/profile/mycard");
     };
 
+	$scope.showDetail = function(contatct){
+	 contactsDetail = contact;
+	}
 })
 
 .controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams) {
-    $scope.contact = MyServices.get($stateParams.Id);
+ $scope.contact = contactDetail; 
 })
 
 .controller('NewsCtrl', function ($scope) {
