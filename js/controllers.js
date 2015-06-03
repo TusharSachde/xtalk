@@ -663,9 +663,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 		$location.url("/profile/mycard");
 	};
 
-	$scope.showDetail = function (contatct) 
+	$scope.showDetail = function (contact) 
 	{ 
-        console.log(contactDetail);
+        
         
 		contactDetail = contact;
         console.log(contact);
