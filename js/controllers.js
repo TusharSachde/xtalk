@@ -283,7 +283,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 })
 
 .controller('ProfileShareCtrl', function ($scope, MyServices, $ionicLoading, $location) {
-<<<<<<< HEAD
+
 	$scope.startloading = function () {
 		$ionicLoading.show({
 			template: '<ion-spinner class="spinner-light"></ion-spinner>'
@@ -333,57 +333,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 	//    $scope.$apply();
 	$ionicLoading.hide();
-=======
-    $scope.startloading = function () {
-        $ionicLoading.show({
-            template: '<ion-spinner class="spinner-light"></ion-spinner>'
-        });
-    };
-
-
-    var tobeShared = {
-        userid: userid,
-        tobeSharedArr: []
-    }
-    $scope.startloading();
-    $scope.spingrcontacts = contact;
-    $scope.spingrcontacts = [{
-        userid: 1,
-        name: 'vishal'
-    }, {
-        userid: 2,
-        name: 'dhaval'
-    }];
-    for (var i = 0; i < $scope.spingrcontacts.length; i++) {
-        $scope.spingrcontacts[i].isShared = false;
-        //    level2id[i] = $scope.spingrcontacts[i].userid;
-    }
-    console.log("Level 2 ids");
-    console.log(level2id);
-    console.log($scope.spingrcontacts);
-    $scope.sendShare = function () {
-
-        tobeShared.tobeSharedArr = [];
-        for (var i = 0; i < $scope.spingrcontacts.length; i++) {
-            if ($scope.spingrcontacts[i].isShared == true) {
-                console.log($scope.spingrcontacts[i].isShared)
-                tobeShared.tobeSharedArr.push($scope.spingrcontacts[i].userid)
-            }
-            //    level2id[i] = $scope.spingrcontacts[i].userid;
-        }
-        var sharewithSuccess = function (data, status) {
-            $location.path("/profile/get");
-        }
-        if (tobeShared.tobeSharedArr.length != 0)
-            MyServices.sharewith(tobeShared).success(sharewithSuccess);
-        else
-            $location.path("/profile/get");
-
-    }
-
-    //    $scope.$apply();
-    $ionicLoading.hide();
->>>>>>> origin/dhaval
 })
 
 .controller('ProfileGetCtrl', function ($scope, MyServices, $location) {
@@ -437,7 +386,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync, $ionicLoading, $ionicScrollDelegate) {
 
-<<<<<<< HEAD
+
 	if (!$.jStorage.get("user")) {
 		console.log("Jstorage not set");
 		$location.url('/enter');
@@ -717,275 +666,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 	$scope.showDetail = function (contatct) 
 	{ 
 		contactsDetail = contact;
-		$location.url(tab/spingbook-detail);
+		$location.url("tab/spingbook-detail");
 		
 	}
-=======
-    if (!$.jStorage.get("user")) {
-        console.log("Jstorage not set");
-        $location.url('/enter');
-    }
-    $scope.startloading = function () {
-        $ionicLoading.show({
-            template: '<ion-spinner class="spinner-light"></ion-spinner>'
-        });
-    };
-    $scope.startloading();
-
-    $scope.keepscrolling = true;
-    $scope.noresult = false;
-    $scope.page = 1;
-    abc.scope = $scope;
-    $scope.myarr = [];
-    var populate = 0;
-
-    if ($scope.search == true && $scope.showdailer == true) {
-        $scope.search = false;
-    }
-    $scope.advanced = {};
-    $scope.page = 0;
-    $scope.searchquery = {};
-    $scope.searchquery.search = "";
-    $scope.phone = {};
-    $scope.phone.number = "";
-
-
-
-    var populatecontacts = function (contacts, flag, pop) {
-
-        if (pop == populate) {
-            if (contacts.length == 0) { // nothing in contact
-
-                $scope.page = 0;
-                $scope.keepscrolling = false;
-                if (flag) { // its new search and there is nothing in contacts
-                    $scope.myarr = [];
-                    $scope.noresult = true;
-                } else // is old search new page but nothign in contact
-                {
-                    $scope.noresult = false;
-                    $scope.keepscrolling = false;
-                }
-                $ionicLoading.hide();
-            } else { // things in contacts
-
-                $scope.noresult = false;
-                if (flag) { // new search with things in contact
-                    //                    console.log("Section3");
-                    $scope.myarr = [];
-                    $ionicScrollDelegate.scrollTop();
-                    $scope.keepscrolling = true;
-                }
-                $scope.myarr = $scope.myarr.concat(contacts);
-                $ionicLoading.hide();
-            }
-        }
-        $scope.$apply();
-        $scope.$broadcast('scroll.infiniteScrollComplete');
-    };
-
-
-    contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-
-    $scope.loadMoreContacts = function () {
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
-    }
-
-    var recordcallback = function (len, n) {
-        if (len == 0) {
-            contactSync.create(n);
-        } else {
-
-        }
-    };
-
-    var contactCallback = function (myconarr) {
-        _.each(myconarr, function (n) {
-            contactSync.iscontactpresent(n, recordcallback);
-        });
-    }
-    $scope.syncnewcontacts = function () {
-        console.log("Hey");
-        MyServices.getallcontacts(contactCallback);
-    }
-
-    $scope.namesearch = function () {
-        $scope.page = 0;
-        $scope.phone.number = "";
-        $scope.advanced = {};
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-    }
-
-    $scope.search = false;
-    $scope.filterbtn = false;
-    $scope.showsearch = function (n) {
-        console.log('Search Clicked');
-        $scope.search = !$scope.search;
-        console.log($scope.search);
-        if (n == 1) {
-            if ($scope.search == true)
-                $scope.search = false;
-        } else if (n == 0) {
-            $location.url("/circle/circle1");
-        }
-    };
-    $scope.searchquery = "";
-    $scope.filtertoggle = function (keyEvent) {
-        if (keyEvent.which === 13) {
-            console.log($scope.searchquery);
-            $scope.filterbtn = true;
-        } else {
-            $scope.filterbtn = false;
-        }
-    };
-
-    $scope.searchquery = {
-        search: ""
-    };
-
-    //  $scope.contacts = MyServices.all();
-    $scope.showdailer = false;
-    $scope.hidedialer = function (num) {
-        console.log(num);
-        //        if(num)
-        //        {
-        //            console.log(num);
-        //            $scope.call(num);
-        //        }
-        $scope.showdailer = false;
-        console.log('Dialer Hidden');
-    };
-    $scope.call = function (number) {
-        number = number + "";
-        phonedialer.dial(
-            number,
-            function (err) {
-                if (err == "empty") console.log("Unknown phone number");
-                else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-                console.log('Dialing succeeded');
-            }
-        );
-        //document.location.href = "tel:" + number;
-        console.log('Calling');
-    };
-    $scope.sms = function (number) {
-        document.location.href = "sms:" + number;
-        console.log('SMS');
-    };
-    $scope.mail = function (email) {
-        document.location.href = "mailto:" + email;
-        console.log('Mail');
-    };
-    $scope.phone = {};
-    $scope.phone.number = "";
-    var lastphone = 0;
-    $scope.phonenum = function (number) {
-        $scope.phone.number += "" + number;
-        $scope.page = 0;
-        $scope.searchquery.search = "";
-        $scope.advanced = {};
-        lastphone = $scope.phone.number;
-        setTimeout(function () {
-            console.log(lastphone);
-            console.log($scope.phone.number);
-            if ($scope.phone.number == lastphone) {
-                contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-            }
-        }, 500);
-    };
-    $scope.phoneback = function () {
-        $scope.phone.number = $scope.phone.number.slice(0, -1);
-        $scope.page = 0;
-        $scope.searchquery.search = "";
-        $scope.advanced = {};
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-    };
-
-    $scope.phonedelete = function () {
-        $scope.searchquery.search = "";
-        $scope.phone.number = "";
-        $scope.page = 0;
-        $scope.advanced = {};
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-    };
-
-
-    $ionicPopover.fromTemplateUrl('templates/popover.html', {
-        scope: $scope
-    }).then(function (popover) {
-        $scope.popover = popover;
-    });
-
-    $scope.openPopover = function ($event) {
-        $scope.popover.show($event);
-    };
-    $scope.closePopover = function () {
-        $scope.popover.hide();
-    };
-
-    //Cleanup the popover when we're done with it!
-    $scope.$on('$destroy', function () {
-        $scope.popover.remove();
-    });
-
-
-    //Filter Modal
-    $ionicModal.fromTemplateUrl('templates/modal-filter.html', {
-        id: '1',
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function (modal) {
-        $scope.oModal1 = modal;
-    });
-
-    $scope.openfilter = function () {
-        $scope.oModal1.show();
-    }
-    $scope.closefilter = function () {
-        $scope.oModal1.hide();
-    };
-
-    //Advanced Search Modal
-    $ionicModal.fromTemplateUrl('templates/modal-advanced.html', {
-        id: '2',
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function (modal) {
-        $scope.oModal2 = modal;
-    });
-
-    $scope.openadvance = function () {
-        $scope.oModal2.show();
-    }
-    var advancesuccess = function (data) {
-        $scope.myarr = data;
-        console.log(data);
-    };
-    $scope.closeadvance = function () {
-        $scope.oModal2.hide();
-    };
-    $scope.advancesearch = function () {
-        //        contactSync.advancesearch($scope.advanced, advancesuccess);
-        $scope.page = 0;
-        $scope.searchquery.search = "";
-        $scope.phone.number = "";
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-        $scope.closeadvance();
-        $scope.closePopover();
-    }
-    $scope.searchpage = function () {
-        $location.url('/circle/circle1');
-        console.log('searchpage');
-    }
-
-    $scope.spingpage = function () {
-        $location.url('/tab/spingbook');
-        console.log('spingpage');
-    }
-
-    var level2callback = function (data, status) {
+	    var level2callback = function (data, status) {
         $scope.circle2contacts = data;
         console.log($scope.circle2contacts);
     };
@@ -997,16 +681,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     MyServices.getlevel3contacts().success(level3callback);
 
-    $scope.openeditprofile = function () {
-        editprofile = true;
-        $scope.closePopover();
-        $location.url("/profile/mycard");
-    };
-
-    $scope.showDetail = function (contatct) {
-        contactsDetail = contact;
-    }
->>>>>>> origin/dhaval
 })
 
 .controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams) {
@@ -1014,7 +688,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 })
 
 .controller('NewsCtrl', function ($scope, MyServices) {
-<<<<<<< HEAD
+
 	var getSharedSuccess = function (data, status) {
 		$scope.newsfeed = data;
 		console.log($scope.newsfeed);
@@ -1063,59 +737,4 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 			contact.addShare = "Add & Share";
 		}
 	}
-=======
-    $scope.settings = {
-        enableNews: true
-    };
-    var getSharedSuccess = function (data, status) {
-        $scope.newsfeed = data;
-        console.log($scope.newsfeed);
-        _.each($scope.newsfeed, function (n) {
-            n.addShare = "Add & Share";
-            n.add = "Add";
-        });
-
-    }
-    MyServices.getShared(userid).success(getSharedSuccess);
-    var newsfeedaddSuccess = function (data, status) {
-        console.log(data);
-        console.log($scope.newsfeed);
-
-        if (data != "" && data) {
-            _.remove($scope.newsfeed, {
-                id: JSON.parse(data)
-            });
-        }
-        console.log($scope.newsfeed);
-    }
-    $scope.changeAdd = function (contact) {
-        MyServices.newsfeedadd(contact.id).success(newsfeedaddSuccess);
-        if (contact.add == "Add") {
-            contact.add = "Added";
-        } else {
-            contact.add = "Add";
-        }
-    }
-    var newsfeedaddShareSuccess = function (data, status) {
-        console.log(data);
-        if (data != "" && data) {
-            console.log(data)
-            _.remove($scope.newsfeed, {
-                id: JSON.parse(data)
-            });
-        }
-
-        console.log($scope.newsfeed);
-    }
-    $scope.changeAddShare = function (contact) {
-        MyServices.newsfeedaddShare(contact.id).success(newsfeedaddShareSuccess);
-        if (contact.addShare == "Add & Share") {
-            contact.addShare = "Shared";
-        } else {
-            contact.addShare = "Add & Share";
-        }
-    }
->>>>>>> origin/dhaval
-
-
 });
