@@ -296,13 +296,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 	}
 	$scope.startloading();
 	$scope.spingrcontacts = contact;
-	$scope.spingrcontacts = [{
-		userid: 1,
-		name: 'vishal'
-    }, {
-		userid: 2,
-		name: 'dhaval'
-    }];
+//	$scope.spingrcontacts = [{
+//		userid: 1,
+//		name: 'vishal'
+//    }, {
+//		userid: 2,
+//		name: 'dhaval'
+//    }];
 	for (var i = 0; i < $scope.spingrcontacts.length; i++) {
 		$scope.spingrcontacts[i].isShared = false;
 		//    level2id[i] = $scope.spingrcontacts[i].userid;
@@ -661,8 +661,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 		$location.url("/profile/mycard");
 	};
 
-	$scope.showDetail = function (contatct) {
+	$scope.showDetail = function (contatct) 
+	{ 
 		contactsDetail = contact;
+		$location.url(tab/spingbook-detail);
+		
 	}
 })
 
@@ -671,9 +674,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 })
 
 .controller('NewsCtrl', function ($scope, MyServices) {
-	$scope.settings = {
-		enableNews: true
-	};
 	var getSharedSuccess = function (data, status) {
 		$scope.newsfeed = data;
 		console.log($scope.newsfeed);
