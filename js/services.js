@@ -11,13 +11,8 @@ var level2id = [];
 var n = 0;
 var x = 0;
 var editprofile = false;
-var contactDetail = {
-	name: "Dhaval Gala",
-	number: "9029145077",
-	email: "dhaval@wohlig.com",
-	company: "Wohlig Technology",
-	area: "Grant Road"
-};
+var contactDetail = {};
+var arr = [];
 //{
 //    name: "Dhaval Gala",
 //    number: "9029145077",
@@ -222,7 +217,7 @@ angular.module('starter.services', [])
 
 	returnfunction.getShared = function (userid) {
 		return $http.post(adminurl + "getshared", {
-			user: 35,
+			user: userid,
 			page: 0
 		})
 	};
@@ -243,14 +238,14 @@ angular.module('starter.services', [])
 	}
 	returnfunction.newsfeedadd = function (touser) {
 		return $http.post(adminurl + "newsfeedadd", {
-			userfrom: 35,
+			userfrom: userid,
 			touser: touser
 		})
 	}
 	returnfunction.newsfeedaddShare = function (touser) {
 		console.log(touser);
 		return $http.post(adminurl + "newsfeedaddShare", {
-			userfrom: 35,
+			userfrom: userid,
 			touser: touser
 		})
 	}

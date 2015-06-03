@@ -121,7 +121,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 			cache: false,
 			url: '/spingbook-detail',
 			views: {
-				'tab-circle1': {
+				'tab-spingbook': {
 					templateUrl: 'templates/spingbook-detail.html',
 					controller: 'InSpingbookCtrl'
 				}

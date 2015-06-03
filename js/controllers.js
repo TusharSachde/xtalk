@@ -686,12 +686,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 	MyServices.getShared(userid).success(getSharedSuccess);
 	var newsfeedaddSuccess = function (data, status) {
 		console.log(data);
-		//	var a =	_.without($scope.newsfeed , _.findWhere($scope.newsfeed,{id:data}));
-		var a = $scope.newsfeed.filter(function (n) {
-			return parseInt(n.id) !== parseInt(data);
-		})
-		console.log(a);
-		//	MyServices.getShared(userid).success(getSharedSuccess);
+		console.log($scope.newsfeed);
+
+		if (data != "" && data) {
+			_.remove($scope.newsfeed, {
+				id: JSON.parse(data)
+			});
+		}
+		console.log($scope.newsfeed);
 	}
 	$scope.changeAdd = function (contact) {
 		MyServices.newsfeedadd(contact.id).success(newsfeedaddSuccess);
@@ -703,7 +705,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 	}
 	var newsfeedaddShareSuccess = function (data, status) {
 		console.log(data);
-		MyServices.getShared(userid).success(getSharedSuccess);
+				if (data != "" && data) {
+					console.log(data)
+			_.remove($scope.newsfeed, {
+				id: JSON.parse(data)
+			});
+		}
+
+		console.log($scope.newsfeed);
 	}
 	$scope.changeAddShare = function (contact) {
 		MyServices.newsfeedaddShare(contact.id).success(newsfeedaddShareSuccess);
