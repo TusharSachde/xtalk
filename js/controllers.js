@@ -665,7 +665,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 	$scope.showDetail = function (contatct) 
 	{ 
+        console.log(contactDetail);
+        
 		contactDetail = contact;
+        console.log(contact);
 		$location.url("tab/spingbook-detail");
 		
 	}
