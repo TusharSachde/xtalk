@@ -665,7 +665,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 	$scope.showDetail = function (contatct) 
 	{ 
-		contactsDetail = contact;
+		contactDetail = contact;
 		$location.url("tab/spingbook-detail");
 		
 	}
@@ -685,6 +685,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams) {
     $scope.contact = contactDetail;
+	console.log(contactDetail);
 })
 
 .controller('NewsCtrl', function ($scope, MyServices) {
