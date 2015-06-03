@@ -208,6 +208,23 @@ angular.module('starter.services', [])
         console.log(level2id);
         return $http.post(adminurl + "level2search", level2id)
     }
+    returnfunction.sharewith = function (tobeshared) {
+        console.log(tobeshared);
+        return $http.post(adminurl + "sharewith", tobeshared)
+    }
 
+    returnfunction.getShared = function (userid) {
+        return $http.get(adminurl + "getshared", {
+            params: {
+                user: 35
+            }
+        });
+    }
+    returnfunction.UserAddShareSubmit = function (contacts) {
+        var add=_.pluck(_.filter(contacts,{add:"Added"}),'id');
+        var addShare=_.pluck(_.filter(contacts,{addShare:"Shared"}),'id');
+        var UserAddShareObj = {user:userid, add,addShare};
+        console.log(UserAddShareObj);
+    }
     return returnfunction;
 });

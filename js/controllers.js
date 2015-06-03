@@ -282,25 +282,92 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 })
 
-.controller('ProfileShareCtrl', function ($scope, MyServices, $ionicLoading) {
+.controller('ProfileShareCtrl', function ($scope, MyServices, $ionicLoading, $location) {
     $scope.startloading = function () {
         $ionicLoading.show({
             template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
+
+
+    var tobeShared = {
+        userid: userid,
+        tobeSharedArr: []
+    }
     $scope.startloading();
     $scope.spingrcontacts = contact;
+    $scope.spingrcontacts = [{
+        userid: 1,
+        name: 'vishal'
+    }, {
+        userid: 2,
+        name: 'dhaval'
+    }];
     for (var i = 0; i < $scope.spingrcontacts.length; i++) {
-        level2id[i] = $scope.spingrcontacts[i].userid;
+        $scope.spingrcontacts[i].isShared = false;
+        //    level2id[i] = $scope.spingrcontacts[i].userid;
     }
     console.log("Level 2 ids");
     console.log(level2id);
     console.log($scope.spingrcontacts);
+    $scope.sendShare = function () {
+
+        tobeShared.tobeSharedArr = [];
+        for (var i = 0; i < $scope.spingrcontacts.length; i++) {
+            if ($scope.spingrcontacts[i].isShared == true) {
+                console.log($scope.spingrcontacts[i].isShared)
+                tobeShared.tobeSharedArr.push($scope.spingrcontacts[i].userid)
+            }
+            //    level2id[i] = $scope.spingrcontacts[i].userid;
+        }
+        var sharewithSuccess = function (data, status) {
+            $location.path("/profile/get");
+        }
+        if (tobeShared.tobeSharedArr.length != 0)
+            MyServices.sharewith(tobeShared).success(sharewithSuccess);
+        else
+            $location.path("/profile/get");
+
+    }
+
     //    $scope.$apply();
     $ionicLoading.hide();
 })
 
 .controller('ProfileGetCtrl', function ($scope, MyServices) {
+
+    var getSharedSuccess = function (data, status) {
+        $scope.getcontacts = data;
+        console.log($scope.getcontacts);
+        _.each($scope.getcontacts, function (n) {
+            n.addShare = "Add & Share";
+            n.add = "Add";
+        });
+
+    }
+    MyServices.getShared(userid).success(getSharedSuccess);
+
+    $scope.changeAdd = function (contact) {
+        if (contact.add == "Add") {
+            contact.add = "Added";
+        } else {
+            contact.add = "Add";
+        }
+    }
+    $scope.changeAddShare = function (contact) {
+        if (contact.addShare == "Add & Share") {
+            contact.addShare = "Shared";
+        } else {
+            contact.addShare = "Add & Share";
+        }
+    }
+
+    $scope.UserAddShareSubmit = function () {
+        console.log("Chuha");
+        MyServices.UserAddShareSubmit($scope.getcontacts);
+    }
+
+
     //    $scope.spingrcontacts = contact
     //    console.log($scope.spingrcontacts);
     //    $scope.$apply();

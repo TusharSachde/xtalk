@@ -4,7 +4,7 @@
             Back
         </ion-nav-back-button>
         <ion-nav-buttons side="right">
-            <a class="button button-clear" href="#/profile/get">
+            <a class="button button-clear" ng-click="sendShare();">
         Share
         </a>
         </ion-nav-buttons>
@@ -29,25 +29,20 @@
         <ion-list>
 
             <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in spingrcontacts" type="item-text-wrap">
-
-
                 <label class="checkbox">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" ng-model="contact.isShared">
                 </label>
-
-
-                <label class="checkbox">
-                    <input type="checkbox" checked>
-                </label>
-
                 <div class="picture" style="background-image: url('{{contact.image}}'), url('img/default.png');"></div>
                 <!--                <div class="picture"></div>-->
-
                 <div class="card-style">
                     <h2 class="positive">{{contact.name}}</h2>
-                    <!--                    <p class="stable">{{contact.company}}</p>-->
+                    <p class="stable">{{contact.company}}</p>
                 </div>
             </ion-item>
+
+            
+
+
 
         </ion-list>
 

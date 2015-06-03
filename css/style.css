@@ -90,10 +90,19 @@
     background: transparent;
 }
 
+.item-avatar2.item-checkbox .card-style {
+    min-height: 78px;
+}
+
 .card-style {
     padding: 16px 65px 16px 40px;
     background: white;
     border: 1px solid #DFDFDF;
+}
+
+.card-style h2,
+.card-style p {
+    text-transform: capitalize;
 }
 
 .item-avatar2 p {
@@ -493,6 +502,7 @@ input.mobileno {
 
 .withbutton .card-style {
     padding: 5px 5px 5px 50px;
+    min-height: 91px;
 }
 
 .withbutton .picture {

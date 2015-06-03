@@ -4,7 +4,7 @@
             Back
         </ion-nav-back-button>
         <ion-nav-buttons side="right">
-            <a class="button button-clear" href="#/tab/spingbook">Done</a>
+            <a class="button button-clear" ng-click="UserAddShareSubmit();">Done</a>
         </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content class="padding">
@@ -14,21 +14,24 @@
         <div class="heading">Share my profile with</div>
 
         <ion-list>
-            <ion-item class="item-avatar2 withbutton" ng-repeat="contact in contacts" type="item-text-wrap">
+            <ion-item class="item-avatar2 withbutton" ng-repeat="contact in getcontacts" type="item-text-wrap">
 
                 <div class="picture" style="background-image: url('{{contact.image}}');"></div>
 
                 <div class="card-style">
                     <h2 class="positive">{{contact.name}}</h2>
-                    <p class="stable">{{contact.company}}</p>
+                    <p class="stable">{{contact.companyname}}</p>
                     <div class="buttoner">
-                        <button class="button button-outline button-positive button-small">ADD</button>
-                        <button class="button button-outline button-positive button-small">ADD &amp; SHARE</button>
+                        <button class="button button-positive button-small" ng-class="{'button-outline':contact.add=='Add'}" ng-click="changeAdd(contact);">{{contact.add}}</button>
+
+                        <button class="button button-positive button-small" ng-class="{'button-outline':contact.addShare=='Add & Share'}" ng-click="changeAddShare(contact);">{{contact.addShare}}</button>
+
                     </div>
                 </div>
 
             </ion-item>
         </ion-list>
+
 
     </ion-content>
 </ion-view>
