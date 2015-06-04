@@ -34,7 +34,7 @@
                     <input type="text" placeholder="State / Province" ng-model="personal.state">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Pincode / Zipcode" ng-model="personal.pincode">
+                    <input type="text" pattern="[0-9]*" placeholder="Pincode / Zipcode" ng-model="personal.pincode">
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Country" ng-model="personal.country">
@@ -47,7 +47,7 @@
             </div>
             <div class="list">
                 <label class="item item-input" ng-class="allvalidation[0].validation">
-                    <input type="text" placeholder="Mobile Number*" ng-model="personal.mobile" required>
+                    <input type="tel" placeholder="Mobile Number*" ng-model="personal.mobile" required>
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Home Landline" ng-model="personal.landline">
