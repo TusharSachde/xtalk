@@ -238,8 +238,8 @@ angular.module('starter.services', [])
         }), 'id');
         var UserAddShareObj = {
             user: userid,
-            add,
-            addShare
+            add:add,
+            addShare:addShare,
         };
         return $http.post(adminurl + "acceptrequest", UserAddShareObj)
     }
