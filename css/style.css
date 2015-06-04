@@ -698,7 +698,7 @@ span.linked {
 }
 .item.ng-dirty {
     border-bottom-color: #FF5619;
-    border-width: 1px;
+    border-width: 2px;
 }
 .default-height .card-style {
     min-height: 98px;
