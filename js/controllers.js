@@ -280,11 +280,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
             var createCardSucess = function (data, status) {
                 console.log(data);
-                $.jStorage.set("user", userid);
                 $.jStorage.set("profilesaved", 1);
                 if (editprofile) {
                     $location.path("/tab/spingbook");
                 } else {
+                    $.jStorage.set("user", userid);
                     $location.path("/profile/sharewith");
                 }
             }
