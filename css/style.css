@@ -818,3 +818,7 @@ span.linked {
 .upload-image {
     background-image: url('../img/upload_picture.png');
 }
+.item.ng-dirty {
+  border-bottom-color: #FF5619;
+  border-width: 1px;
+}

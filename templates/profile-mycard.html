@@ -7,7 +7,7 @@
             <div class="addlogo" ng-click="changecompanylogo()" style="background-image:url('{{companylogo|serverimage}}')" ng-if="companylogo!='img/logo.jpg'">
             </div>
             <div class="list">
-                <label class="item item-input">
+                <label class="item item-input" ng-class="allvalidation[0].validation">
                     <input type="text" placeholder="Your name*" ng-model="mycard.name" required>
                 </label>
                 <label class="item item-input">
@@ -49,7 +49,7 @@
                 Office Details
             </div>
             <div class="list">
-                <label class="item item-input">
+                <label class="item item-input" ng-class="allvalidation[1].validation">
                     <input type="text" placeholder="Mobile Number*" ng-model="mycard.companycontact" required>
                 </label>
                 <label class="item item-input">
@@ -61,7 +61,7 @@
                 <label class="item item-input">
                     <input type="text" placeholder="Extension" ng-model="mycard.extension">
                 </label>
-                <label class="item item-input">
+                <label class="item item-input" ng-class="allvalidation[2].validation">
                     <input type="email" placeholder="Email ID*" ng-model="mycard.companyemail" required>
                 </label>
                 <label class="item item-input">

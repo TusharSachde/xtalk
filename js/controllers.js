@@ -132,12 +132,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.companylogo = 'img/logo.jpg';
     $scope.profilelogo = 'img/logo.jpg';
-    var options = {
-        quality: 40,
-        destinationType: Camera.DestinationType.NATIVE_URI,
-        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        encodingType: Camera.EncodingType.JPEG
-    };
+    //    var options = {
+    //        quality: 40,
+    //        destinationType: Camera.DestinationType.NATIVE_URI,
+    //        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    //        encodingType: Camera.EncodingType.JPEG
+    //    };
 
     //Contacts Sending
     var changecmpylogo = function (result) {
@@ -230,44 +230,66 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     n++;
     if (n == 1 && !$.jStorage.get("profilesaved")) {
         console.log("Hey");
-        MyServices.getallcontacts(contactCallback);
+        //        MyServices.getallcontacts(contactCallback);
     }
 
     $scope.mergecard = {};
-    $scope.personal = {
-        mobile: personalcontact
-    };
+    $scope.personal = {};
     $scope.mycard = {};
-    $scope.personal = $.jStorage.get("userpersonalcard");
-    $scope.mycard = $.jStorage.get("usermycard");
-
+    if (editprofile) {
+        $scope.personal = $.jStorage.get("userpersonalcard");
+        $scope.mycard = $.jStorage.get("usermycard");
+    }
     $scope.CardDetails = function (card) {
-        $.jStorage.set("usermycard", card);
-        mycard1 = card;
-        $location.path("/profile/personal");
+
+        $scope.allvalidation = [{
+            field: $scope.mycard.name,
+            validation: ""
+                }, {
+            field: $scope.mycard.companycontact,
+            validation: ""
+                }, {
+            field: $scope.mycard.companyemail,
+            validation: ""
+                }];
+        var check = formvalidation($scope.allvalidation);
+        if (check) {
+            $.jStorage.set("usermycard", card);
+            mycard1 = card;
+            $location.path("/profile/personal");
+        }
     };
     $scope.PersonalDetails = function (card) {
-        $.jStorage.set("userpersonalcard", card);
-        $scope.startloading();
-        $scope.mycard2 = card;
-        console.log(mycard1);
-        console.log($scope.mycard2);
-        $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
-        console.log($scope.mergecard);
+        $scope.allvalidation = [{
+            field: $scope.personal.mobile,
+            validation: ""
+                }, {
+            field: $scope.personal.email,
+            validation: ""
+                }];
+        var check = formvalidation($scope.allvalidation);
 
-        var createCardSucess = function (data, status) {
-            console.log("HEy" + data);
-            $.jStorage.set("user", userid);
-            $.jStorage.set("profilesaved", 1);
-            if (editprofile) {
-                $location.path("/tab/spingbook");
-            } else {
-                $location.path("/profile/sharewith");
+        if (check) {
+            $.jStorage.set("userpersonalcard", card);
+            $scope.startloading();
+            $scope.mycard2 = card;
+            console.log(mycard1);
+            console.log($scope.mycard2);
+            $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
+            console.log($scope.mergecard);
+
+            var createCardSucess = function (data, status) {
+                console.log(data);
+                $.jStorage.set("user", userid);
+                $.jStorage.set("profilesaved", 1);
+                if (editprofile) {
+                    $location.path("/tab/spingbook");
+                } else {
+                    $location.path("/profile/sharewith");
+                }
             }
+            MyServices.createCard($scope.mergecard).success(createCardSucess);
         }
-        MyServices.createCard($scope.mergecard).success(createCardSucess);
-        //        console.log($scope.mycard);
-        //        $location.path("/profile/sharewith");
     };
     $ionicLoading.hide();
 })
