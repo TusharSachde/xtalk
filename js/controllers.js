@@ -234,13 +234,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 
     $scope.mergecard = {};
-    $scope.personal = {};
+    $scope.personal = {
+        mobile: personalcontact
+    };
     $scope.mycard = {};
     $scope.personal = $.jStorage.get("userpersonalcard");
     $scope.mycard = $.jStorage.get("usermycard");
-	$scope.personal.mobile = personalcontact;
 
-	$scope.CardDetails = function (card) {
+    $scope.CardDetails = function (card) {
         $.jStorage.set("usermycard", card);
         mycard1 = card;
         $location.path("/profile/personal");
@@ -696,8 +697,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     console.log(contactDetail);
 })
 
-.controller('NewsCtrl', function ($scope, MyServices,$ionicLoading) {
-	
+.controller('NewsCtrl', function ($scope, MyServices, $ionicLoading) {
+
     $scope.startloading = function () {
         $ionicLoading.show({
             template: '<ion-spinner class="spinner-light"></ion-spinner>'
@@ -705,18 +706,18 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     $scope.startloading();
 
-	var getSharedSuccess = function (data, status) {
+    var getSharedSuccess = function (data, status) {
         $scope.newsfeed = data;
         console.log($scope.newsfeed);
         _.each($scope.newsfeed, function (n) {
             n.addShare = "Add & Share";
             n.add = "Add";
         });
-		$ionicLoading.hide();
+        $ionicLoading.hide();
     }
     MyServices.getShared(userid).success(getSharedSuccess);
-    
-	var newsfeedaddSuccess = function (data, status) {
+
+    var newsfeedaddSuccess = function (data, status) {
         console.log(data);
         console.log($scope.newsfeed);
 
