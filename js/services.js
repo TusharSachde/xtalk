@@ -207,13 +207,13 @@ angular.module('starter.services', [])
     }
     returnfunction.getlevel2contacts = function () {
         return $http.post(adminurl + "level2search", {
-            user: userid,
+            user: 31,
             page: 0
         })
     }
     returnfunction.getlevel3contacts = function () {
         return $http.post(adminurl + "level3search", {
-            user: userid,
+            user: 31,
             page: 0
         })
     }
