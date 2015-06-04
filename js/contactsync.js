@@ -40,7 +40,7 @@ contactsync.factory('contactSync', function ($http) {
     });
 
     returnval.query = function (querystr, callback) {
-//        console.log(querystr);
+        //        console.log(querystr);
         db.transaction(function (tx) {
             tx.executeSql(querystr, [], function (tx, results) {
                 var len = results.rows.length;
@@ -239,7 +239,7 @@ contactsync.factory('contactSync', function ($http) {
             where += '';
         }
         if (advance.country) {
-            where += " AND `personalCity` LIKE '%" + advance.country + "%'";
+            where += " AND `personalCountry` LIKE '%" + advance.country + "%'";
 
         } else {
             where += '';
@@ -283,7 +283,12 @@ contactsync.factory('contactSync', function ($http) {
         });
     }
 
-
+    returnval.contactcount = function (callback) {
+        var query = "SELECT count(id) as count FROM `contacts`";
+        returnval.query(query, function (result, len) {
+            callback(result,len);
+        });
+    }
 
     returnval.create = function (data, callback) {
         //       console.log(data.name);
