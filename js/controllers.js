@@ -132,12 +132,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.companylogo = 'img/logo.jpg';
     $scope.profilelogo = 'img/logo.jpg';
-    //    var options = {
-    //        quality: 40,
-    //        destinationType: Camera.DestinationType.NATIVE_URI,
-    //        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-    //        encodingType: Camera.EncodingType.JPEG
-    //    };
+    var options = {
+        quality: 40,
+        destinationType: Camera.DestinationType.NATIVE_URI,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        encodingType: Camera.EncodingType.JPEG
+    };
 
     //Contacts Sending
     var changecmpylogo = function (result) {
@@ -230,7 +230,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     n++;
     if (n == 1 && !$.jStorage.get("profilesaved")) {
         console.log("Hey");
-        //        MyServices.getallcontacts(contactCallback);
+        MyServices.getallcontacts(contactCallback);
     }
 
     $scope.mergecard = {};
