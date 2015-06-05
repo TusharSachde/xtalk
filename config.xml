@@ -6,6 +6,8 @@
     <gap:platform name="ios" />
     <gap:platform name="android" />
 
+    <content src="index.html" />
+
     <preference name="phonegap-version" />
     <preference name="orientation" value="portrait" />
     <preference name="fullscreen" value="false" />
