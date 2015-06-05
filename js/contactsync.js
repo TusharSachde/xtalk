@@ -286,7 +286,7 @@ contactsync.factory('contactSync', function ($http) {
     returnval.contactcount = function (callback) {
         var query = "SELECT count(id) as count FROM `contacts`";
         returnval.query(query, function (result, len) {
-            callback(result,len);
+            callback(result[0].count,len);
         });
     }
 

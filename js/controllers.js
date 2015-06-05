@@ -332,8 +332,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     console.log($scope.spingrcontacts);
 
     var contactcountcallback = function (result, len) {
-        console.log("contactcount=" + result[0].count);
-        $scope.contactcount = result[0].count;
+        console.log(result);
+        console.log("contactcount=" + result);
+        $scope.contactcount = result;
     }
     contactSync.contactcount(contactcountcallback);
 
