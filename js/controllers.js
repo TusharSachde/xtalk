@@ -552,6 +552,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     $scope.call = function (number) {
         number = number + "";
+        if (number.length >= 10) {
+            number = "+" + number;
+        }
         phonedialer.dial(
             number,
             function (err) {
