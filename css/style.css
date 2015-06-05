@@ -704,12 +704,13 @@ span.linked {
     min-height: 98px;
 }
 .backdrop {
-    background-color: rgba(243, 245, 246, 0.5);
-}
-.loading-container .loading {
     background-color: transparent;
 }
-.spinner svg {
-  width: 70px;
-  height: 70px;
+.loading-container .loading {
+    background-color: #9B59B6;
+    padding: 10px;
+}
+.loading .spinner svg {
+  width: 50px;
+  height: 50px;
 }
