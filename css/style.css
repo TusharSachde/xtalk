@@ -703,3 +703,13 @@ span.linked {
 .default-height .card-style {
     min-height: 98px;
 }
+.backdrop {
+    background-color: rgba(243, 245, 246, 0.5);
+}
+.loading-container .loading {
+    background-color: transparent;
+}
+.spinner svg {
+  width: 70px;
+  height: 70px;
+}
