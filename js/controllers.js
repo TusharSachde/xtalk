@@ -65,7 +65,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     $scope.phonesubmit = function (phoneno) {
         personalcontact = phoneno.phone;
-        MyServices.register(phoneno.phone).success(registerSuccess);
+        MyServices.register(phoneno.countrycode + "" + phoneno.phone).success(registerSuccess);
     }
 
     $scope.disableSwipe = function () {
