@@ -8,7 +8,7 @@
             </div>
             <div class="list">
                 <label class="item item-input" ng-class="allvalidation[0].validation">
-                    <input type="text" placeholder="Your Full Name*" ng-model="mycard.name" required>
+                    <input type="text" placeholder="Your Full Name*" autocapitalize="on" ng-model="mycard.name" required>
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Your Designation" ng-model="mycard.designation">
@@ -65,7 +65,7 @@
                     <input type="email" placeholder="Email ID*" ng-model="mycard.companyemail" required>
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Website" ng-model="mycard.companywebsite">
+                    <input type="url" placeholder="Website" ng-model="mycard.companywebsite">
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Record GPS" ng-model="mycard.companygps">
@@ -74,7 +74,6 @@
         </div>
 
         <!--        <a class="button button-positive button-outline button-block" href="#/profile/personal">Save &amp; Proceed</a>-->
-        <a class="button button-positive button-outline button-block" href="#/profile/personal">Update Personal Details</a>
         <a class="button button-positive button-outline button-block" ng-click="CardDetails(mycard);">Save &amp; Proceed</a>
     </ion-content>
 </ion-view>
