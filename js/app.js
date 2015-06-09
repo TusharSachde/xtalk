@@ -16,7 +16,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     //$ionicConfigProvider.views.transition('none');
     $httpProvider.defaults.withCredentials = true;
     $ionicConfigProvider.views.swipeBackEnabled(false);
-    $ionicConfigProvider.scrolling.jsScrolling(false);
+    //$ionicConfigProvider.scrolling.jsScrolling(false);
     $stateProvider
 
     .state('app', {

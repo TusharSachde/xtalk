@@ -8,10 +8,10 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Birth Date" ng-model="personal.dob">
+                    <input type="text" onfocus="(this.type='date')" placeholder="Birth Date" ng-model="personal.dob">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Anniversary" ng-model="personal.doa">
+                    <input type="text" onfocus="(this.type='date')" placeholder="Anniversary" ng-model="personal.doa">
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Blood Group" ng-model="personal.bloodgroup">
@@ -25,16 +25,16 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Address" ng-model="personal.address">
+                    <textarea placeholder="Address" ng-model="personal.address"></textarea>
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="City / District" ng-model="personal.city">
+                    <input type="text" placeholder="City/District" ng-model="personal.city">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="State / Province" ng-model="personal.state">
+                    <input type="text" placeholder="State/Province" ng-model="personal.state">
                 </label>
                 <label class="item item-input">
-                    <input type="text" pattern="[0-9]*" placeholder="Pincode / Zipcode" ng-model="personal.pincode">
+                    <input type="text" placeholder="Pincode/Zipcode" ng-model="personal.pincode">
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Country" ng-model="personal.country">
@@ -47,10 +47,10 @@
             </div>
             <div class="list">
                 <label class="item item-input" ng-class="allvalidation[0].validation">
-                    <input type="tel" placeholder="Mobile Number*" ng-model="personal.mobile" required>
+                    <input type="tel" placeholder="Mobile Number" ng-model="personal.mobile" >
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Home Landline" ng-model="personal.landline">
+                    <input type="tel" placeholder="Home Landline" ng-model="personal.landline">
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Twitter Handle" ng-model="personal.twitter">
@@ -59,7 +59,7 @@
                     <input type="text" placeholder="Facebook Page" ng-model="personal.fb">
                 </label>
                 <label class="item item-input" ng-class="allvalidation[1].validation">
-                    <input type="email" placeholder="Email ID*" ng-model="personal.email" required>
+                    <input type="email" placeholder="Email ID" ng-model="personal.email" >
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Website" ng-model="personal.website">
@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        <!--        <a class="button button-positive button-outline button-block" ng-click="PersonalDetails(personal);" href="#/profile/sharewith">Save &amp; Proceed</a>-->
+        <!--<a class="button button-positive button-outline button-block" ng-click="PersonalDetails(personal);" href="#/profile/sharewith">Save &amp; Proceed</a>-->
         <a class="button button-positive button-outline button-block" ng-click="PersonalDetails(personal);">Save &amp; Proceed</a>
     </ion-content>
 </ion-view>

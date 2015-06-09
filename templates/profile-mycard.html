@@ -8,16 +8,16 @@
             </div>
             <div class="list">
                 <label class="item item-input" ng-class="allvalidation[0].validation">
-                    <input type="text" placeholder="Your name*" ng-model="mycard.name" required>
+                    <input type="text" placeholder="Your Full Name*" ng-model="mycard.name" required>
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Your designation" ng-model="mycard.designation">
+                    <input type="text" placeholder="Your Designation" ng-model="mycard.designation">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Line of business" ng-model="mycard.lineofbusiness">
+                    <input type="text" placeholder="Line Of Business" ng-model="mycard.lineofbusiness">
                 </label>
                 <label class="item item-input last-input">
-                    <input type="text" placeholder="Company name" ng-model="mycard.companyname">
+                    <input type="text" placeholder="Company Name" ng-model="mycard.companyname">
                 </label>
             </div>
         </div>
@@ -28,7 +28,7 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Address" ng-model="mycard.companyaddress">
+                    <textarea placeholder="Address" ng-model="mycard.companyaddress"></textarea>
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="City/District" ng-model="mycard.companycity">
@@ -37,7 +37,7 @@
                     <input type="text" placeholder="State/Provision" ng-model="mycard.companystate">
                 </label>
                 <label class="item item-input">
-                    <input type="text" pattern="[0-9]*" placeholder="PinCode/Zipcode" ng-model="mycard.companypincode">
+                    <input type="text" placeholder="Pincode/Zipcode" ng-model="mycard.companypincode">
                 </label>
                 <label class="item item-input">
                     <input type="text" placeholder="Country" ng-model="mycard.companycountry">
@@ -53,13 +53,13 @@
                     <input type="tel" placeholder="Mobile Number*" ng-model="mycard.companycontact" required>
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Direct Landline" ng-model="mycard.directlandline">
+                    <input type="tel" placeholder="Direct Landline" ng-model="mycard.directlandline">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Board Landline" ng-model="mycard.boardlandline">
+                    <input type="tel" placeholder="Board Landline" ng-model="mycard.boardlandline">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Extension" ng-model="mycard.extension">
+                    <input type="tel" placeholder="Extension" ng-model="mycard.extension">
                 </label>
                 <label class="item item-input" ng-class="allvalidation[2].validation">
                     <input type="email" placeholder="Email ID*" ng-model="mycard.companyemail" required>
