@@ -348,6 +348,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     $scope.startloading();
     $scope.spingrcontacts = contact;
+    if ($scope.spingrcontacts.length == 0) {
+        $location.path("/profile/get");
+    }
     //	$scope.spingrcontacts = [{
     //		userid: 1,
     //		name: 'vishal'
@@ -404,6 +407,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
 
     var getSharedSuccess = function (data, status) {
+        if (data.length == 0) {
+            $location.url('/tab/spingbook');
+        }
         $scope.getcontacts = data;
         console.log($scope.getcontacts);
         _.each($scope.getcontacts, function (n) {
@@ -731,8 +737,18 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.closePopover();
         $location.url("/profile/mycard");
     };
-
+    var isAddedSuccess = function (data, status) {
+        console.log(data);
+        if (data) {
+            console.log("if");
+            $scope.showAll = 1;
+        } else {
+            console.log("else");
+            $scope.showAll = 0;
+        }
+    }
     $scope.showDetail = function (contact) {
+        MyServices.isadded(contact.id).success(isAddedSuccess);
         contactDetail = contact;
         console.log(contact);
         $location.url("tab/spingbook-detail");
