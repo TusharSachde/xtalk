@@ -68,7 +68,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         personalcontact = phoneno.phone;
         if (personalcontact.match(/^\d+$/)) {
             console.log(true);
-            MyServices.register(personalcontact,phoneno.countrycode).success(registerSuccess);
+            MyServices.register(personalcontact, phoneno.countrycode).success(registerSuccess);
         } else {
             console.log(false);
             var alertPopup = $ionicPopup.alert({
@@ -100,8 +100,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         if (data != "false") {
             console.log(data);
             userid = data.id;
-                        $.jStorage.set("user", userid);
-                        userid = $.jStorage.get("user");
+            $.jStorage.set("user", userid);
+            userid = $.jStorage.get("user");
             $ionicLoading.hide();
             $location.path("/profile/mycard");
 
@@ -165,12 +165,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.companylogo = 'img/logo.jpg';
     $scope.profilelogo = 'img/logo.jpg';
-//    var options = {
-//        quality: 40,
-//        destinationType: Camera.DestinationType.NATIVE_URI,
-//        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-//        encodingType: Camera.EncodingType.JPEG
-//    };
+    var options = {
+        quality: 40,
+        destinationType: Camera.DestinationType.NATIVE_URI,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        encodingType: Camera.EncodingType.JPEG
+    };
 
     //Contacts Sending
     var changecmpylogo = function (result) {
@@ -263,7 +263,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     n++;
     if (n == 1 && !$.jStorage.get("profilesaved")) {
         console.log("Hey");
-//        MyServices.getallcontacts(contactCallback);
+        MyServices.getallcontacts(contactCallback);
     }
 
     $scope.mergecard = {};
@@ -292,7 +292,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             card.id = userid;
             $.jStorage.set("usermycard", card);
             mycard1 = card;
-//            $location.path("/profile/personal");
+            //            $location.path("/profile/personal");
         } else if (check && k == 1) {
             card.id = userid;
             $.jStorage.set("usermycard", card);
