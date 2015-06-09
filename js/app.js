@@ -110,7 +110,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         })
 
         .state('tab.spingbook', {
-            cache: true,
+            cache: false,
             url: '/spingbook',
             views: {
                 'tab-spingbook': {

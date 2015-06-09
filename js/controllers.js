@@ -440,7 +440,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 
     $scope.UserAddShareSubmit = function () {
-        $scope.startloading();
+//        $scope.startloading();
         MyServices.UserAddShareSubmit($scope.getcontacts).success(UserAddShareSubmitSuccess);
     }
 
