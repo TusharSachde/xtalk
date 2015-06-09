@@ -628,13 +628,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.searchquery.search = "";
         $scope.advanced = {};
         lastphone = $scope.phone.number;
-        setTimeout(function () {
-            console.log(lastphone);
-            console.log($scope.phone.number);
-            if ($scope.phone.number == lastphone) {
-                contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-            }
-        }, 500);
+        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+//        setTimeout(function () {
+//            console.log(lastphone);
+//            console.log($scope.phone.number);
+//            if ($scope.phone.number == lastphone) {
+//                
+//            }
+//        }, 500);
     };
     $scope.phoneback = function () {
         $scope.phone.number = $scope.phone.number.slice(0, -1);
