@@ -395,7 +395,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $ionicLoading.hide();
 })
 
-.controller('ProfileGetCtrl', function ($scope, MyServices, $location) {
+.controller('ProfileGetCtrl', function ($scope, MyServices, $location,$ionicLoading) {
 
     $scope.startloading = function () {
         $ionicLoading.show({
