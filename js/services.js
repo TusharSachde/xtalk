@@ -1,4 +1,5 @@
 var serveradmin = "http://wohlig.co.in/spingr/";
+//var serveradmin = "http://localhost/sarahconner/";
 var adminurl = serveradmin + "index.php/json/";
 var imgpath = serveradmin + "uploads/";
 var mycard1 = {};
@@ -191,10 +192,11 @@ angular.module('starter.services', [])
             }
         });
     };
-    returnfunction.register = function (phone) {
+    returnfunction.register = function (phone,extension) {
         return $http.get(adminurl + "register", {
             params: {
-                phone: phone
+                phone: phone,
+                extension:extension
             }
         });
     };

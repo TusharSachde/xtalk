@@ -65,10 +65,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         MyServices.readsms(readsmsCallback);
     };
     $scope.phonesubmit = function (phoneno) {
-        personalcontact = phoneno.countrycode + phoneno.phone;
-        if (personalcontact.match(/^\+\d+$/)) {
+        personalcontact = phoneno.phone;
+        if (personalcontact.match(/^\d+$/)) {
             console.log(true);
-            MyServices.register(phoneno.countrycode + "" + phoneno.phone).success(registerSuccess);
+            MyServices.register(personalcontact,phoneno.countrycode).success(registerSuccess);
         } else {
             console.log(false);
             var alertPopup = $ionicPopup.alert({
