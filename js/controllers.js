@@ -269,11 +269,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.mergecard = {};
     $scope.personal = {};
     $scope.mycard = {};
-    $scope.mycard.companycontact = personalcontact;
     if (editprofile) {
         $scope.personal = $.jStorage.get("userpersonalcard");
         $scope.mycard = $.jStorage.get("usermycard");
     }
+    $scope.mycard.companycontact = personalcontact;
+    $scope.mycard.companycountry = "India";
     $scope.CardDetails = function (card) {
 
         $scope.allvalidation = [{
