@@ -39,6 +39,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
     $scope.personal = {};
+    $scope.personal.countrycode = "+91";
     //Popup for dint get OTP
     $scope.showAlert = function () {
         //        console.log('Dint get OTP?');
@@ -65,7 +66,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     $scope.phonesubmit = function (phoneno) {
         personalcontact = phoneno.phone;
-        MyServices.register(phoneno.countrycode + "" + phoneno.phone).success(registerSuccess);
+        if (personalcontact.match(/^\d+$/)) {
+            console.log(true);
+            MyServices.register(phoneno.countrycode + "" + phoneno.phone).success(registerSuccess);
+        } else {
+            console.log(false);
+            var alertPopup = $ionicPopup.alert({
+                title: 'INVALID PHONE NUMBER',
+                template: 'Please enter the correct phone number'
+            });
+        }
     }
 
     $scope.disableSwipe = function () {
