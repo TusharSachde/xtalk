@@ -126,8 +126,15 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     }
     $scope.checkotp = function () {
-        $scope.startloading();
-        MyServices.verifyOTP($scope.otp.number, personalcontact).success(verifyCallback).error(errorCallback);
+        if ($scope.otp.number.match(/^\d+$/)) {
+            $scope.startloading();
+            MyServices.verifyOTP($scope.otp.number, personalcontact).success(verifyCallback).error(errorCallback);
+        } else {
+            var alertPopup = $ionicPopup.alert({
+                title: 'INVALID OTP',
+                template: 'Please enter only numbers'
+            });
+        }
     }
     $ionicLoading.hide();
 })
