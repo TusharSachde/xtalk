@@ -22,7 +22,7 @@
     <!--<preference name="stay-in-webview" value="true" />-->
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
-    <!--    <preference name="EnableViewportScale" value="true" />-->
+    <!--<preference name="EnableViewportScale" value="true" />-->
     <preference name="AllowInlineMediaPlayback" value="true" />
     <!--<preference name="TopActivityIndicator" value="gray" />-->
     <!--<preference name="KeyboardDisplayRequiresUserAction" value="false" />-->
