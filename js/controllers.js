@@ -272,11 +272,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     if (editprofile) {
         $scope.personal = $.jStorage.get("userpersonalcard");
         $scope.mycard = $.jStorage.get("usermycard");
+    } else {
+        $scope.mycard.companycontact = personalcontact;
     }
-    $scope.mycard.companycontact = personalcontact;
     $scope.mycard.companycountry = "India";
-    $scope.CardDetails = function (card) {
-
+    $scope.CardDetails = function (card, k) {
         $scope.allvalidation = [{
             field: $scope.mycard.name,
             validation: ""
@@ -288,12 +288,26 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             validation: ""
         }];
         var check = formvalidation($scope.allvalidation);
-        if (check) {
+        if (check && k == 0) {
             $.jStorage.set("usermycard", card);
             mycard1 = card;
             $location.path("/profile/personal");
+        } else if (check && k == 1) {
+            $.jStorage.set("usermycard", card);
+            $.jStorage.set("userpersonalcard", "");
+            MyServices.createCard(card).success(createCardSucess);
         }
     };
+    var createCardSucess = function (data, status) {
+        console.log(data);
+        $.jStorage.set("profilesaved", 1);
+        if (editprofile) {
+            $location.path("/tab/spingbook");
+        } else {
+            $.jStorage.set("user", userid);
+            $location.path("/profile/sharewith");
+        }
+    }
     $scope.PersonalDetails = function (card) {
         $.jStorage.set("userpersonalcard", card);
         $scope.startloading();
@@ -302,17 +316,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log($scope.mycard2);
         $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
         console.log($scope.mergecard);
-
-        var createCardSucess = function (data, status) {
-            console.log(data);
-            $.jStorage.set("profilesaved", 1);
-            if (editprofile) {
-                $location.path("/tab/spingbook");
-            } else {
-                $.jStorage.set("user", userid);
-                $location.path("/profile/sharewith");
-            }
-        }
         MyServices.createCard($scope.mergecard).success(createCardSucess);
 
     };
