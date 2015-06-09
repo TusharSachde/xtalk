@@ -398,6 +398,7 @@ a.button-50 {
     font-size: 14px;
     line-height: 100%;
     padding-right: 0px;
+    text-transform: capitalize;
 }
 .card-effect textarea {
     padding-top: 5px;
