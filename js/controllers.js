@@ -100,8 +100,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         if (data != "false") {
             console.log(data);
             userid = data.id;
-            //            $.jStorage.set("user", userid);
-            //            userid = $.jStorage.get("user");
+                        $.jStorage.set("user", userid);
+                        userid = $.jStorage.get("user");
             $ionicLoading.hide();
             $location.path("/profile/mycard");
 
@@ -165,12 +165,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.companylogo = 'img/logo.jpg';
     $scope.profilelogo = 'img/logo.jpg';
-    var options = {
-        quality: 40,
-        destinationType: Camera.DestinationType.NATIVE_URI,
-        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        encodingType: Camera.EncodingType.JPEG
-    };
+//    var options = {
+//        quality: 40,
+//        destinationType: Camera.DestinationType.NATIVE_URI,
+//        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+//        encodingType: Camera.EncodingType.JPEG
+//    };
 
     //Contacts Sending
     var changecmpylogo = function (result) {
@@ -263,7 +263,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     n++;
     if (n == 1 && !$.jStorage.get("profilesaved")) {
         console.log("Hey");
-        MyServices.getallcontacts(contactCallback);
+//        MyServices.getallcontacts(contactCallback);
     }
 
     $scope.mergecard = {};
@@ -289,10 +289,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }];
         var check = formvalidation($scope.allvalidation);
         if (check && k == 0) {
+            card.id = userid;
             $.jStorage.set("usermycard", card);
             mycard1 = card;
-            $location.path("/profile/personal");
+//            $location.path("/profile/personal");
         } else if (check && k == 1) {
+            card.id = userid;
             $.jStorage.set("usermycard", card);
             $.jStorage.set("userpersonalcard", "");
             MyServices.createCard(card).success(createCardSucess);
