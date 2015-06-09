@@ -292,7 +292,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             card.id = userid;
             $.jStorage.set("usermycard", card);
             mycard1 = card;
-            //            $location.path("/profile/personal");
+            $location.path("/profile/personal");
         } else if (check && k == 1) {
             card.id = userid;
             $.jStorage.set("usermycard", card);
@@ -395,7 +395,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $ionicLoading.hide();
 })
 
-.controller('ProfileGetCtrl', function ($scope, MyServices, $location,$ionicLoading) {
+.controller('ProfileGetCtrl', function ($scope, MyServices, $location, $ionicLoading) {
 
     $scope.startloading = function () {
         $ionicLoading.show({
@@ -452,7 +452,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync, $ionicLoading, $ionicScrollDelegate) {
 
-
+    $ionicLoading.hide();
     if (!$.jStorage.get("user")) {
         console.log("Jstorage not set");
         $location.url('/enter');
