@@ -1,18 +1,18 @@
 angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
-.controller('AppCtrl', function ($scope, $ionicPopup, $location, MyServices) {
+.controller('AppCtrl', function($scope, $ionicPopup, $location, MyServices) {
 
 })
 
-.controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices, $location, contactSync, $ionicLoading) {
-    $scope.startloading = function () {
+.controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices, $location, contactSync, $ionicLoading) {
+    $scope.startloading = function() {
         $ionicLoading.show({
-            template: '<ion-spinner icon="ripple" class="spinner-light"></ion-spinner>'
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
 
 
-    $scope.onenter = function (keyEvent, callback, object) {
+    $scope.onenter = function(keyEvent, callback, object) {
         //        console.log(keyEvent);
         if (keyEvent.which == 13) {
             callback(object);
@@ -22,7 +22,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.startloading();
     contactSync.drop();
-    var readsmsCallback = function (otp) {
+    var readsmsCallback = function(otp) {
         if (!otp) {
             //            console.log("No Otp");
         } else {
@@ -41,7 +41,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.personal = {};
     $scope.personal.countrycode = "+91";
     //Popup for dint get OTP
-    $scope.showAlert = function () {
+    $scope.showAlert = function() {
         //        console.log('Dint get OTP?');
         var alertPopup = $ionicPopup.alert({
             title: "Didn't get the OTP ?",
@@ -51,20 +51,20 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 type: 'button-positive button-outline'
             }],
         });
-        alertPopup.then(function (res) {
+        alertPopup.then(function(res) {
             $ionicSlideBoxDelegate.previous();
             //           console.log('OTP Resent !');
         })
     };
 
 
-    var registerSuccess = function (data, status) {
+    var registerSuccess = function(data, status) {
         console.log(data);
         //userid = parseInt(data.id);
         $ionicSlideBoxDelegate.next();
         MyServices.readsms(readsmsCallback);
     };
-    $scope.phonesubmit = function (phoneno) {
+    $scope.phonesubmit = function(phoneno) {
         personalcontact = phoneno.countrycode + phoneno.phone;
         if (personalcontact.match(/^\+\d+$/)) {
             console.log(true);
@@ -73,25 +73,29 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             console.log(false);
             var alertPopup = $ionicPopup.alert({
                 title: 'INVALID PHONE NUMBER',
-                template: 'Please enter the correct phone number'
+                template: 'Please enter the correct phone number',
+                buttons: [{
+                    text: 'Okay',
+                    type: 'button-positive button-outline'
+                }],
             });
         }
     }
 
-    $scope.disableSwipe = function () {
+    $scope.disableSwipe = function() {
         $ionicSlideBoxDelegate.enableSlide(false);
     };
 
-    $scope.previous = function () {
+    $scope.previous = function() {
         $ionicSlideBoxDelegate.previous();
     };
 
     // Called each time the slide changes
-    $scope.slideChanged = function (index) {
+    $scope.slideChanged = function(index) {
         $scope.slideIndex = index;
     };
 
-    var verifyCallback = function (data, status) {
+    var verifyCallback = function(data, status) {
         // console.log("verify");
         if (data != "false") {
             console.log(data);
@@ -106,43 +110,55 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             $ionicLoading.hide();
             var alertPopup = $ionicPopup.alert({
                 title: 'INCORRECT OTP',
-                template: 'Please enter the correct OTP'
+                template: 'Please enter the correct OTP',
+                buttons: [{
+                    text: 'Okay',
+                    type: 'button-positive button-outline'
+                }],
             });
         }
 
 
     };
-    var errorCallback = function () {
+    var errorCallback = function() {
         $ionicLoading.hide();
-        $scope.showAlert = function () {
+        $scope.showAlert = function() {
             var alertPopup = $ionicPopup.alert({
                 title: 'INCORRECT OTP',
-                template: 'Please enter the correct OTP'
+                template: 'Please enter the correct OTP',
+                buttons: [{
+                    text: 'Okay',
+                    type: 'button-positive button-outline'
+                }],
             });
-            alertPopup.then(function (res) {
+            alertPopup.then(function(res) {
                 console.log('Thank you for not eating my delicious ice cream cone');
             });
         };
 
     }
-    $scope.checkotp = function () {
+    $scope.checkotp = function() {
         if ($scope.otp.number.match(/^\d+$/)) {
             $scope.startloading();
             MyServices.verifyOTP($scope.otp.number, personalcontact).success(verifyCallback).error(errorCallback);
         } else {
             var alertPopup = $ionicPopup.alert({
                 title: 'INVALID OTP',
-                template: 'Please enter only numbers'
+                template: 'Please enter only numbers',
+                buttons: [{
+                    text: 'Okay',
+                    type: 'button-positive button-outline'
+                }],
             });
         }
     }
     $ionicLoading.hide();
 })
 
-.controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
-    $scope.startloading = function () {
+.controller('ProfileCtrl', function($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
+    $scope.startloading = function() {
         $ionicLoading.show({
-            template: '<ion-spinner icon="ripple" class="spinner-light"></ion-spinner>'
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
     $scope.startloading();
@@ -157,14 +173,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
 
     //Contacts Sending
-    var changecmpylogo = function (result) {
+    var changecmpylogo = function(result) {
         console.log(result);
         $scope.companylogo = result.value;
     }
-    $scope.changecompanylogo = function () {
+    $scope.changecompanylogo = function() {
         console.log("take picture");
 
-        $cordovaCamera.getPicture(options).then(function (imageData) {
+        $cordovaCamera.getPicture(options).then(function(imageData) {
             // Success! Image data is here
             console.log("here in upload image");
             console.log(imageData);
@@ -175,19 +191,19 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             }
             $scope.cameraimage = imageData;
             $scope.uploadPhoto(adminurl + "imageuploadcompany?user=" + user.id, changecmpylogo);
-        }, function (err) {
+        }, function(err) {
             // An error occured. Show a message to the user
         });
     };
 
-    var changeproflogo = function (result) {
+    var changeproflogo = function(result) {
         console.log(result);
         $scope.profilelogo = result.value;
     }
-    $scope.changeprofilelogo = function () {
+    $scope.changeprofilelogo = function() {
         console.log("take picture");
 
-        $cordovaCamera.getPicture(options).then(function (imageData) {
+        $cordovaCamera.getPicture(options).then(function(imageData) {
             // Success! Image data is here
             console.log("here in upload image");
             console.log(imageData);
@@ -198,25 +214,25 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             }
             $scope.cameraimage = imageData;
             $scope.uploadPhoto(adminurl + "imageuploadprofile?user=" + user.id, changeproflogo);
-        }, function (err) {
+        }, function(err) {
             // An error occured. Show a message to the user
         });
     };
 
-    $scope.uploadPhoto = function (serverpath, callback) {
+    $scope.uploadPhoto = function(serverpath, callback) {
 
         //        console.log("function called");
         $cordovaFileTransfer.upload(serverpath, $scope.cameraimage, options)
-            .then(function (result) {
+            .then(function(result) {
                 console.log(result);
                 var data = JSON.parse(result.response);
                 callback(data);
                 $ionicLoading.hide();
                 //$scope.addretailer.store_image = $scope.filename2;
-            }, function (err) {
+            }, function(err) {
                 // Error
                 console.log(err);
-            }, function (progress) {
+            }, function(progress) {
                 // constant progress updates
                 $ionicLoading.show({
                     //        template: 'We are fetching the best rates for you.',
@@ -229,18 +245,18 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 });
             });
     };
-    var sendcontactssuccess = function (data, status) {
+    var sendcontactssuccess = function(data, status) {
         console.log(data);
         contact = data;
     }
-    var contactCallback = function (myconarr) {
+    var contactCallback = function(myconarr) {
         $scope.usercontacts = {
             user: userid,
             contact: myconarr
         }
         MyServices.sendContacts($scope.usercontacts).success(sendcontactssuccess);
 
-        _.each(myconarr, function (n) {
+        _.each(myconarr, function(n) {
             contactSync.create(n);
         });
     }
@@ -257,18 +273,18 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.personal = $.jStorage.get("userpersonalcard");
         $scope.mycard = $.jStorage.get("usermycard");
     }
-    $scope.CardDetails = function (card) {
+    $scope.CardDetails = function(card) {
 
         $scope.allvalidation = [{
             field: $scope.mycard.name,
             validation: ""
-                }, {
+        }, {
             field: $scope.mycard.companycontact,
             validation: ""
-                }, {
+        }, {
             field: $scope.mycard.companyemail,
             validation: ""
-                }];
+        }];
         var check = formvalidation($scope.allvalidation);
         if (check) {
             $.jStorage.set("usermycard", card);
@@ -276,7 +292,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             $location.path("/profile/personal");
         }
     };
-    $scope.PersonalDetails = function (card) {
+    $scope.PersonalDetails = function(card) {
         $.jStorage.set("userpersonalcard", card);
         $scope.startloading();
         $scope.mycard2 = card;
@@ -285,7 +301,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
         console.log($scope.mergecard);
 
-        var createCardSucess = function (data, status) {
+        var createCardSucess = function(data, status) {
             console.log(data);
             $.jStorage.set("profilesaved", 1);
             if (editprofile) {
@@ -301,21 +317,21 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $ionicLoading.hide();
 })
 
-.controller('Circle1Ctrl', function ($scope) {})
+.controller('Circle1Ctrl', function($scope) {})
 
-.controller('Circle2Ctrl', function ($scope) {})
+.controller('Circle2Ctrl', function($scope) {})
 
-.controller('Circle3Ctrl', function ($scope) {})
+.controller('Circle3Ctrl', function($scope) {})
 
-.controller('TabCtrl', function ($scope, $location) {
+.controller('TabCtrl', function($scope, $location) {
 
 })
 
-.controller('ProfileShareCtrl', function ($scope, MyServices, $ionicLoading, $location, contactSync) {
+.controller('ProfileShareCtrl', function($scope, MyServices, $ionicLoading, $location, contactSync) {
 
-    $scope.startloading = function () {
+    $scope.startloading = function() {
         $ionicLoading.show({
-            template: '<ion-spinner icon="ripple" class="spinner-light"></ion-spinner>'
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
 
@@ -338,7 +354,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     console.log($scope.spingrcontacts);
 
-    var contactcountcallback = function (result, len) {
+    var contactcountcallback = function(result, len) {
         console.log(result);
         console.log("contactcount=" + result);
         $scope.contactcount = result;
@@ -348,7 +364,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.spingrcontactcount = $scope.spingrcontacts.length;
     console.log("spingrcontactcount=" + $scope.spingrcontactcount);
 
-    $scope.sendShare = function () {
+    $scope.sendShare = function() {
 
         tobeShared.tobeSharedArr = [];
         for (var i = 0; i < $scope.spingrcontacts.length; i++) {
@@ -358,7 +374,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             }
             //    level2id[i] = $scope.spingrcontacts[i].userid;
         }
-        var sharewithSuccess = function (data, status) {
+        var sharewithSuccess = function(data, status) {
             $location.path("/profile/get");
         }
         if (tobeShared.tobeSharedArr.length != 0)
@@ -372,12 +388,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $ionicLoading.hide();
 })
 
-.controller('ProfileGetCtrl', function ($scope, MyServices, $location) {
+.controller('ProfileGetCtrl', function($scope, MyServices, $location) {
 
-    var getSharedSuccess = function (data, status) {
+    var getSharedSuccess = function(data, status) {
         $scope.getcontacts = data;
         console.log($scope.getcontacts);
-        _.each($scope.getcontacts, function (n) {
+        _.each($scope.getcontacts, function(n) {
             n.addShare = "Add & Share";
             n.add = "Add";
         });
@@ -385,26 +401,26 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     MyServices.getShared(userid).success(getSharedSuccess);
 
-    $scope.changeAdd = function (contact) {
+    $scope.changeAdd = function(contact) {
         if (contact.add == "Add") {
             contact.add = "Added";
         } else {
             contact.add = "Add";
         }
     }
-    $scope.changeAddShare = function (contact) {
+    $scope.changeAddShare = function(contact) {
         if (contact.addShare == "Add & Share") {
             contact.addShare = "Shared";
         } else {
             contact.addShare = "Add & Share";
         }
     }
-    var UserAddShareSubmitSuccess = function (data, status) {
+    var UserAddShareSubmitSuccess = function(data, status) {
         console.log(data);
         $location.url('/tab/spingbook');
     }
 
-    $scope.UserAddShareSubmit = function () {
+    $scope.UserAddShareSubmit = function() {
         console.log("Chuha");
         MyServices.UserAddShareSubmit($scope.getcontacts).success(UserAddShareSubmitSuccess);
     }
@@ -415,22 +431,22 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     //    $scope.$apply();
 })
 
-.controller('DashCtrl', function ($scope) {
+.controller('DashCtrl', function($scope) {
 
 })
 
-.controller('ChatsCtrl', function ($scope) {})
+.controller('ChatsCtrl', function($scope) {})
 
-.controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync, $ionicLoading, $ionicScrollDelegate) {
+.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync, $ionicLoading, $ionicScrollDelegate) {
 
 
     if (!$.jStorage.get("user")) {
         console.log("Jstorage not set");
         $location.url('/enter');
     }
-    $scope.startloading = function () {
+    $scope.startloading = function() {
         $ionicLoading.show({
-            template: '<ion-spinner icon="ripple" class="spinner-light"></ion-spinner>'
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
     $scope.startloading();
@@ -454,7 +470,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
 
-    var populatecontacts = function (contacts, flag, pop) {
+    var populatecontacts = function(contacts, flag, pop) {
 
         if (pop == populate) {
             if (contacts.length == 0) { // nothing in contact
@@ -490,11 +506,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
 
-    $scope.loadMoreContacts = function () {
+    $scope.loadMoreContacts = function() {
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
     }
 
-    var recordcallback = function (len, n) {
+    var recordcallback = function(len, n) {
         if (len == 0) {
             contactSync.create(n);
         } else {
@@ -502,17 +518,17 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
     };
 
-    var contactCallback = function (myconarr) {
-        _.each(myconarr, function (n) {
+    var contactCallback = function(myconarr) {
+        _.each(myconarr, function(n) {
             contactSync.iscontactpresent(n, recordcallback);
         });
     }
-    $scope.syncnewcontacts = function () {
+    $scope.syncnewcontacts = function() {
         console.log("Hey");
         MyServices.getallcontacts(contactCallback);
     }
 
-    $scope.namesearch = function () {
+    $scope.namesearch = function() {
         $scope.page = 0;
         $scope.phone.number = "";
         $scope.advanced = {};
@@ -521,7 +537,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.search = false;
     $scope.filterbtn = false;
-    $scope.showsearch = function (n) {
+    $scope.showsearch = function(n) {
         console.log('Search Clicked');
         $scope.search = !$scope.search;
         console.log($scope.search);
@@ -533,7 +549,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
     };
     $scope.searchquery = "";
-    $scope.filtertoggle = function (keyEvent) {
+    $scope.filtertoggle = function(keyEvent) {
         if (keyEvent.which === 13) {
             console.log($scope.searchquery);
             $scope.filterbtn = true;
@@ -548,7 +564,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     //  $scope.contacts = MyServices.all();
     $scope.showdailer = false;
-    $scope.hidedialer = function (num) {
+    $scope.hidedialer = function(num) {
         console.log(num);
         //        if(num)
         //        {
@@ -558,42 +574,42 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.showdailer = false;
         console.log('Dialer Hidden');
     };
-    $scope.call = function (number) {
+    $scope.call = function(number) {
         number = number + "";
         if (number.length >= 10) {
             number = "+" + number;
         }
         phonedialer.dial(
             number,
-            function (err) {
+            function(err) {
                 if (err == "empty") console.log("Unknown phone number");
                 else console.log("Dialer Error:" + err);
             },
-            function (success) {
+            function(success) {
                 console.log('Dialing succeeded');
             }
         );
         //document.location.href = "tel:" + number;
         console.log('Calling');
     };
-    $scope.sms = function (number) {
+    $scope.sms = function(number) {
         document.location.href = "sms:" + number;
         console.log('SMS');
     };
-    $scope.mail = function (email) {
+    $scope.mail = function(email) {
         document.location.href = "mailto:" + email;
         console.log('Mail');
     };
     $scope.phone = {};
     $scope.phone.number = "";
     var lastphone = 0;
-    $scope.phonenum = function (number) {
+    $scope.phonenum = function(number) {
         $scope.phone.number += "" + number;
         $scope.page = 0;
         $scope.searchquery.search = "";
         $scope.advanced = {};
         lastphone = $scope.phone.number;
-        setTimeout(function () {
+        setTimeout(function() {
             console.log(lastphone);
             console.log($scope.phone.number);
             if ($scope.phone.number == lastphone) {
@@ -601,7 +617,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             }
         }, 500);
     };
-    $scope.phoneback = function () {
+    $scope.phoneback = function() {
         $scope.phone.number = $scope.phone.number.slice(0, -1);
         $scope.page = 0;
         $scope.searchquery.search = "";
@@ -609,7 +625,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
     };
 
-    $scope.phonedelete = function () {
+    $scope.phonedelete = function() {
         $scope.searchquery.search = "";
         $scope.phone.number = "";
         $scope.page = 0;
@@ -620,19 +636,19 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $ionicPopover.fromTemplateUrl('templates/popover.html', {
         scope: $scope
-    }).then(function (popover) {
+    }).then(function(popover) {
         $scope.popover = popover;
     });
 
-    $scope.openPopover = function ($event) {
+    $scope.openPopover = function($event) {
         $scope.popover.show($event);
     };
-    $scope.closePopover = function () {
+    $scope.closePopover = function() {
         $scope.popover.hide();
     };
 
     //Cleanup the popover when we're done with it!
-    $scope.$on('$destroy', function () {
+    $scope.$on('$destroy', function() {
         $scope.popover.remove();
     });
 
@@ -642,14 +658,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         id: '1',
         scope: $scope,
         animation: 'slide-in-up'
-    }).then(function (modal) {
+    }).then(function(modal) {
         $scope.oModal1 = modal;
     });
 
-    $scope.openfilter = function () {
+    $scope.openfilter = function() {
         $scope.oModal1.show();
     }
-    $scope.closefilter = function () {
+    $scope.closefilter = function() {
         $scope.oModal1.hide();
     };
 
@@ -658,21 +674,21 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         id: '2',
         scope: $scope,
         animation: 'slide-in-up'
-    }).then(function (modal) {
+    }).then(function(modal) {
         $scope.oModal2 = modal;
     });
 
-    $scope.openadvance = function () {
+    $scope.openadvance = function() {
         $scope.oModal2.show();
     }
-    var advancesuccess = function (data) {
+    var advancesuccess = function(data) {
         $scope.myarr = data;
         console.log(data);
     };
-    $scope.closeadvance = function () {
+    $scope.closeadvance = function() {
         $scope.oModal2.hide();
     };
-    $scope.advancesearch = function () {
+    $scope.advancesearch = function() {
         //        contactSync.advancesearch($scope.advanced, advancesuccess);
         $scope.page = 0;
         $scope.searchquery.search = "";
@@ -681,29 +697,29 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.closeadvance();
         $scope.closePopover();
     }
-    $scope.searchpage = function () {
+    $scope.searchpage = function() {
         $location.url('/circle/circle1');
         console.log('searchpage');
     }
 
-    $scope.spingpage = function () {
+    $scope.spingpage = function() {
         $location.url('/tab/spingbook');
         console.log('spingpage');
     }
 
-    var level2callback = function (data, status) {
+    var level2callback = function(data, status) {
         console.log("Level2");
         console.log(data);
     };
     MyServices.getlevel2contacts().success(level2callback);
 
-    $scope.openeditprofile = function () {
+    $scope.openeditprofile = function() {
         editprofile = true;
         $scope.closePopover();
         $location.url("/profile/mycard");
     };
 
-    $scope.showDetail = function (contact) {
+    $scope.showDetail = function(contact) {
 
 
         contactDetail = contact;
@@ -711,13 +727,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $location.url("tab/spingbook-detail");
 
     }
-    var level2callback = function (data, status) {
+    var level2callback = function(data, status) {
         $scope.circle2contacts = data;
         console.log($scope.circle2contacts);
     };
     MyServices.getlevel2contacts().success(level2callback);
 
-    var level3callback = function (data, status) {
+    var level3callback = function(data, status) {
         $scope.circle3contacts = data;
         console.log($scope.circle3contacts);
     };
@@ -725,24 +741,24 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 })
 
-.controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams) {
+.controller('InSpingbookCtrl', function($scope, MyServices, $stateParams) {
     $scope.contact = contactDetail;
     console.log(contactDetail);
 })
 
-.controller('NewsCtrl', function ($scope, MyServices, $ionicLoading) {
+.controller('NewsCtrl', function($scope, MyServices, $ionicLoading) {
 
-    $scope.startloading = function () {
+    $scope.startloading = function() {
         $ionicLoading.show({
-            template: '<ion-spinner icon="ripple" class="spinner-light"></ion-spinner>'
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
     $scope.startloading();
 
-    var getSharedSuccess = function (data, status) {
+    var getSharedSuccess = function(data, status) {
         $scope.newsfeed = data;
         console.log($scope.newsfeed);
-        _.each($scope.newsfeed, function (n) {
+        _.each($scope.newsfeed, function(n) {
             n.addShare = "Add & Share";
             n.add = "Add";
         });
@@ -750,7 +766,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     MyServices.getShared(userid).success(getSharedSuccess);
 
-    var newsfeedaddSuccess = function (data, status) {
+    var newsfeedaddSuccess = function(data, status) {
         console.log(data);
         console.log($scope.newsfeed);
 
@@ -761,7 +777,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
         console.log($scope.newsfeed);
     }
-    $scope.changeAdd = function (contact) {
+    $scope.changeAdd = function(contact) {
         MyServices.newsfeedadd(contact.id).success(newsfeedaddSuccess);
         if (contact.add == "Add") {
             contact.add = "Added";
@@ -769,7 +785,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             contact.add = "Add";
         }
     }
-    var newsfeedaddShareSuccess = function (data, status) {
+    var newsfeedaddShareSuccess = function(data, status) {
         console.log(data);
         if (data != "" && data) {
             console.log(data)
@@ -780,7 +796,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
         console.log($scope.newsfeed);
     }
-    $scope.changeAddShare = function (contact) {
+    $scope.changeAddShare = function(contact) {
         MyServices.newsfeedaddShare(contact.id).success(newsfeedaddShareSuccess);
         if (contact.addShare == "Add & Share") {
             contact.addShare = "Shared";
