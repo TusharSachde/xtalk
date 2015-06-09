@@ -262,7 +262,7 @@ angular.module('starter.services', [])
         console.log(fromuser);
         return $http.post(adminurl + "newsfeedaddShare", {
             userfrom: fromuser,
-            touser: $.jStorage.get("user");
+            touser: $.jStorage.get("user")
         })
     }
 
