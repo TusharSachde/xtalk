@@ -65,8 +65,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         MyServices.readsms(readsmsCallback);
     };
     $scope.phonesubmit = function (phoneno) {
-        personalcontact = phoneno.phone;
-        if (personalcontact.match(/^\d+$/)) {
+        personalcontact = phoneno.countrycode + phoneno.phone;
+        if (personalcontact.match(/^\+\d+$/)) {
             console.log(true);
             MyServices.register(phoneno.countrycode + "" + phoneno.phone).success(registerSuccess);
         } else {
@@ -277,36 +277,26 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
     };
     $scope.PersonalDetails = function (card) {
-        $scope.allvalidation = [{
-            field: $scope.personal.mobile,
-            validation: ""
-                }, {
-            field: $scope.personal.email,
-            validation: ""
-                }];
-        var check = formvalidation($scope.allvalidation);
+        $.jStorage.set("userpersonalcard", card);
+        $scope.startloading();
+        $scope.mycard2 = card;
+        console.log(mycard1);
+        console.log($scope.mycard2);
+        $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
+        console.log($scope.mergecard);
 
-        if (check) {
-            $.jStorage.set("userpersonalcard", card);
-            $scope.startloading();
-            $scope.mycard2 = card;
-            console.log(mycard1);
-            console.log($scope.mycard2);
-            $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
-            console.log($scope.mergecard);
-
-            var createCardSucess = function (data, status) {
-                console.log(data);
-                $.jStorage.set("profilesaved", 1);
-                if (editprofile) {
-                    $location.path("/tab/spingbook");
-                } else {
-                    $.jStorage.set("user", userid);
-                    $location.path("/profile/sharewith");
-                }
+        var createCardSucess = function (data, status) {
+            console.log(data);
+            $.jStorage.set("profilesaved", 1);
+            if (editprofile) {
+                $location.path("/tab/spingbook");
+            } else {
+                $.jStorage.set("user", userid);
+                $location.path("/profile/sharewith");
             }
-            MyServices.createCard($scope.mergecard).success(createCardSucess);
         }
+        MyServices.createCard($scope.mergecard).success(createCardSucess);
+
     };
     $ionicLoading.hide();
 })
