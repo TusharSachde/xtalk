@@ -260,7 +260,7 @@ angular.module('starter.services', [])
     }
     returnfunction.isadded = function (fromuser) {
         console.log(fromuser);
-        return $http.post(adminurl + "newsfeedaddShare", {
+        return $http.post(adminurl + "isadded", {
             userfrom: fromuser,
             touser: $.jStorage.get("user")
         })
