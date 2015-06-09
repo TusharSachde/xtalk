@@ -728,3 +728,6 @@ span.linked {
 .card-effect .item-select select {
     padding: 0 35px 0 5px;
 }
+.lowercase {
+    text-transform: none;
+}
