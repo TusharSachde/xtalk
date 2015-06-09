@@ -17,18 +17,18 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="android-installLocation" value="auto" />
-    <!--    <preference name="webviewbounce" value="true" />-->
-    <!--    <preference name="prerendered-icon" value="true" />-->
-    <!--    <preference name="stay-in-webview" value="true" />-->
+    <!--<preference name="webviewbounce" value="true" />-->
+    <!--<preference name="prerendered-icon" value="true" />-->
+    <!--<preference name="stay-in-webview" value="true" />-->
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <!--    <preference name="EnableViewportScale" value="true" />-->
     <preference name="AllowInlineMediaPlayback" value="true" />
-    <!--    <preference name="TopActivityIndicator" value="gray" />-->
-    <!--    <preference name="KeyboardDisplayRequiresUserAction" value="false" />-->
+    <!--<preference name="TopActivityIndicator" value="gray" />-->
+    <!--<preference name="KeyboardDisplayRequiresUserAction" value="false" />-->
     <preference name="android-targetSdkVersion" value="14" />
-    <!--    <preference name="HideKeyboardFormAccessoryBar" value="false" />-->
-    <!--    <preference name="SuppressesIncrementalRendering" value="false" />-->
+    <!--<preference name="HideKeyboardFormAccessoryBar" value="false" />-->
+    <!--<preference name="SuppressesIncrementalRendering" value="false" />-->
     <preference name="SplashScreenDelay" value="5000" />
     <preference name="ErrorUrl" value="" />
     <preference name="KeepRunning" value="true" />
