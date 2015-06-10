@@ -755,7 +755,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
     }
     $scope.showDetail = function (contact) {
-        MyServices.isadded(contact.id).success(isAddedSuccess);
+        MyServices.isadded(contact.personalMobile).success(isAddedSuccess);
         contactDetail = contact;
         console.log(contact);
         $location.url("tab/spingbook-detail");
