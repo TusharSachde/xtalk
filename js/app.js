@@ -10,7 +10,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             StatusBar.overlaysWebView(true);
         }
         if (cordova.platformId == 'android') {
-            StatusBar.backgroundColorByHexString("#8b50a3");
+            StatusBar.backgroundColorByHexString("#804399");
         }
     });
 })
