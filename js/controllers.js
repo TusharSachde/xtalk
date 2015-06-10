@@ -631,7 +631,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 console.log("Going In");
                 contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
             }
-        }, 5000);
+        }, 2000);
     }
 
     $scope.phonenum = function (number) {
