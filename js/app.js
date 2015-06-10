@@ -120,7 +120,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     templateUrl: 'templates/tab-spingbook.html',
                     controller: 'SpingbookCtrl'
                 }
-            }
+            
         }
     })
 
