@@ -544,6 +544,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     $scope.syncnewcontacts = function () {
         console.log("Hey");
+        contactSync.synclocaltoserver();
         MyServices.getallcontacts(contactCallback);
     }
 
