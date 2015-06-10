@@ -123,8 +123,14 @@ angular.module('starter.services', [])
                             myval.contact = myval.contact.replace(/[']/g, '');
                         }
                         if (contacts[i].name.formatted) {
+                            
+                            
                             myval.name = contacts[i].name.formatted;
+                           
                             myval.name = myval.name.replace(/['"]/g, '');
+                        }
+                        else{
+                             myval.name = contacts[i].displayName;
                         }
                         if (contacts[i].photos) {
                             myval.photo = contacts[i].photos[0].value;
