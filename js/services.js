@@ -113,7 +113,7 @@ angular.module('starter.services', [])
                         contact: "",
                         photo: "",
                     };
-                    if (contacts[i].phoneNumbers && contacts[i].name.formatted && contacts[i].name.formatted != "") {
+                    if (contacts[i].phoneNumbers && contacts[i].name && contacts[i].name.formatted && contacts[i].name.formatted != "") {
                         if (contacts[i].emails) {
                             myval.email = contacts[i].emails[0].value;
                         }
@@ -137,34 +137,6 @@ angular.module('starter.services', [])
                         }
                         myconarr.push(myval);
                     }
-                    
-                    
-                    else if(contacts[i].phoneNumbers && contacts[i].displayName && contacts[i].displayName != "") {
-                        if (contacts[i].emails) {
-                            myval.email = contacts[i].emails[0].value;
-                        }
-
-                        if (contacts[i].phoneNumbers) {
-                            myval.contact = contacts[i].phoneNumbers[0].value;
-                            myval.contact = myval.contact.replace(/[ -]/g, '');
-                            myval.contact = myval.contact.replace(/[']/g, '');
-                        }
-                        if (contacts[i].displayName) {
-
-
-                            myval.name = contacts[i].displayName;
-
-                            myval.name = myval.name.replace(/['"]/g, '');
-                        } else {
-                            myval.name = contacts[i].displayName;
-                        }
-                        if (contacts[i].photos) {
-                            myval.photo = contacts[i].photos[0].value;
-                        }
-                        myconarr.push(myval);
-                    }
-                    
-                    
                 }
                 myconarr = _.uniq(myconarr, function(n) {
                     return n.name + n.contact;
