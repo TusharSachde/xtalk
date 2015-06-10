@@ -243,27 +243,27 @@ angular.module('starter.services', [])
             add:add,
             addShare:addShare,
         };
-        return $http.post(adminurl + "acceptrequest", UserAddShareObj)
+        return $http.post(adminurl + "acceptrequest", UserAddShareObj);
     }
     returnfunction.newsfeedadd = function (touser) {
         return $http.post(adminurl + "newsfeedadd", {
             userfrom: userid,
             touser: touser
-        })
+        });
     }
     returnfunction.newsfeedaddShare = function (touser) {
         console.log(touser);
         return $http.post(adminurl + "newsfeedaddShare", {
             userfrom: userid,
             touser: touser
-        })
+        });
     }
     returnfunction.isadded = function (fromuser) {
         console.log(fromuser);
         return $http.post(adminurl + "isadded", {
             userfrom: fromuser,
             touser: $.jStorage.get("user")
-        })
+        });
     }
 
     return returnfunction;
