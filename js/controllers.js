@@ -440,7 +440,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 
     $scope.UserAddShareSubmit = function () {
-//        $scope.startloading();
+        //        $scope.startloading();
         MyServices.UserAddShareSubmit($scope.getcontacts).success(UserAddShareSubmitSuccess);
     }
 
@@ -458,7 +458,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('SpingbookCtrl', function ($scope, MyServices, $ionicPopover, $ionicModal, $location, contactSync, $ionicLoading, $ionicScrollDelegate) {
 
-    $ionicLoading.hide();
     if (!$.jStorage.get("user")) {
         console.log("Jstorage not set");
         $location.url('/enter');
@@ -628,14 +627,15 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.searchquery.search = "";
         $scope.advanced = {};
         lastphone = $scope.phone.number;
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-//        setTimeout(function () {
-//            console.log(lastphone);
-//            console.log($scope.phone.number);
-//            if ($scope.phone.number == lastphone) {
-//                
-//            }
-//        }, 500);
+
+        setTimeout(function () {
+            console.log(lastphone);
+            console.log($scope.phone.number);
+            if ($scope.phone.number == lastphone) {
+                console.log("Going In");
+                contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+            }
+        }, 500);
     };
     $scope.phoneback = function () {
         $scope.phone.number = $scope.phone.number.slice(0, -1);
