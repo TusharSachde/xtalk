@@ -625,11 +625,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     function delaygetcontact(id) {
         setTimeout(function () {
+            console.log(id);
+            console.log(lastcheck);
             if (id == lastcheck) {
                 console.log("Going In");
                 contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
             }
-        }, 500);
+        }, 5000);
     }
 
     $scope.phonenum = function (number) {
