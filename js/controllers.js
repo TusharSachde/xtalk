@@ -184,6 +184,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             // Success! Image data is here
             console.log("here in upload image");
             console.log(imageData);
+            $scope.companylogo = imageData;
 
             if (imageData.substring(0, 21) == "content://com.android") {
                 var photo_split = imageData.split("%3A");
