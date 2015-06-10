@@ -717,6 +717,8 @@ span.linked {
 .loading .spinner svg {
     width: 32px;
     height: 32px;
+  stroke: #fff;
+  fill: #fff;
 }
 .card-effect .item-select .input-label {
     font-size: 14px;
