@@ -621,22 +621,28 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.phone = {};
     $scope.phone.number = "";
     var lastphone = 0;
+    var lastcheck = 0;
+
+    function delaygetcontact(id) {
+        setTimeout(function () {
+            if (id == lastcheck) {
+                console.log("Going In");
+                contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+            }
+        }, 500);
+    }
+
     $scope.phonenum = function (number) {
+        lastcheck++;
         $scope.phone.number += "" + number;
         $scope.page = 0;
         $scope.searchquery.search = "";
         $scope.advanced = {};
         lastphone = $scope.phone.number;
-
-        setTimeout(function () {
-            console.log(lastphone);
-            console.log($scope.phone.number);
-            if ($scope.phone.number == lastphone) {
-                console.log("Going In");
-                contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
-            }
-        }, 500);
+        delaygetcontact(id);
     };
+
+
     $scope.phoneback = function () {
         $scope.phone.number = $scope.phone.number.slice(0, -1);
         $scope.page = 0;
