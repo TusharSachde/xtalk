@@ -639,7 +639,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.searchquery.search = "";
         $scope.advanced = {};
         lastphone = $scope.phone.number;
-        delaygetcontact(id);
+        delaygetcontact(lastcheck);
     };
 
 
