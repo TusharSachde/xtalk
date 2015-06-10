@@ -41,7 +41,7 @@ var arr = [];
 //}];
 angular.module('starter.services', [])
 
-.factory('MyServices', function ($http) {
+.factory('MyServices', function($http) {
     //
     //    var db = openDatabase('spingr', '1.0', 'Test DB', 2 * 1024 * 1024);
     //    db.transaction(function (tx) {
@@ -101,9 +101,9 @@ angular.module('starter.services', [])
     //    }];
 
     var returnfunction = {};
-    returnfunction.getallcontacts = function (callback) {
+    returnfunction.getallcontacts = function(callback) {
 
-        var onSuccess = function (contacts) {
+        var onSuccess = function(contacts) {
             if (contacts) {
                 for (var i = 0; i < contacts.length; i++) {
                     var myval = {
@@ -123,29 +123,56 @@ angular.module('starter.services', [])
                             myval.contact = myval.contact.replace(/[']/g, '');
                         }
                         if (contacts[i].name.formatted) {
-                            
-                            
+
+
                             myval.name = contacts[i].name.formatted;
-                           
+
                             myval.name = myval.name.replace(/['"]/g, '');
-                        }
-                        else{
-                             myval.name = contacts[i].displayName;
+                        } else {
+                            myval.name = contacts[i].displayName;
                         }
                         if (contacts[i].photos) {
                             myval.photo = contacts[i].photos[0].value;
                         }
                         myconarr.push(myval);
                     }
+                    
+                    
+                    else if(contacts[i].phoneNumbers && contacts[i].displayName && contacts[i].displayName != "") {
+                        if (contacts[i].emails) {
+                            myval.email = contacts[i].emails[0].value;
+                        }
+
+                        if (contacts[i].phoneNumbers) {
+                            myval.contact = contacts[i].phoneNumbers[0].value;
+                            myval.contact = myval.contact.replace(/[ -]/g, '');
+                            myval.contact = myval.contact.replace(/[']/g, '');
+                        }
+                        if (contacts[i].displayName) {
+
+
+                            myval.name = contacts[i].displayName;
+
+                            myval.name = myval.name.replace(/['"]/g, '');
+                        } else {
+                            myval.name = contacts[i].displayName;
+                        }
+                        if (contacts[i].photos) {
+                            myval.photo = contacts[i].photos[0].value;
+                        }
+                        myconarr.push(myval);
+                    }
+                    
+                    
                 }
-                myconarr = _.uniq(myconarr, function (n) {
+                myconarr = _.uniq(myconarr, function(n) {
                     return n.name + n.contact;
                 });
                 callback(myconarr);
             }
         };
 
-        var onError = function (contactError) {
+        var onError = function(contactError) {
             alert('onError!');
             callback();
         };
@@ -157,9 +184,9 @@ angular.module('starter.services', [])
         var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
         navigator.contacts.find(fields, onSuccess, onError, options);
     };
-    returnfunction.query = function (querystr, callback) {
-        db.transaction(function (tx) {
-            tx.executeSql(querystr, [], function (tx, results) {
+    returnfunction.query = function(querystr, callback) {
+        db.transaction(function(tx) {
+            tx.executeSql(querystr, [], function(tx, results) {
                 var len = results.rows.length;
                 if (callback) {
                     callback(results.rows, len);
@@ -167,7 +194,7 @@ angular.module('starter.services', [])
             }, null);
         });
     };
-    returnfunction.get = function (Id) {
+    returnfunction.get = function(Id) {
         for (var i = 0; i < contacts.length; i++) {
             if (contacts[i].id === parseInt(Id)) {
                 return contacts[i];
@@ -175,22 +202,22 @@ angular.module('starter.services', [])
         }
         return null;
     };
-    returnfunction.readsms = function (callback) {
+    returnfunction.readsms = function(callback) {
 
-        var successCallback = function (data) {
+        var successCallback = function(data) {
             console.log(data);
             var otp = data.substring(data.length - 4, data.length);
             console.log(otp);
             callback(otp);
         }
-        var failureCallback = function () {
+        var failureCallback = function() {
             callback();
         }
         if (smsplugin) {
             smsplugin.startReception(successCallback, failureCallback);
         }
     };
-    returnfunction.verifyOTP = function (userotp, personalcontact) {
+    returnfunction.verifyOTP = function(userotp, personalcontact) {
         return $http.get(adminurl + "verifyotp", {
             params: {
                 newotp: userotp,
@@ -198,46 +225,46 @@ angular.module('starter.services', [])
             }
         });
     };
-    returnfunction.register = function (phone,extension) {
+    returnfunction.register = function(phone, extension) {
         return $http.get(adminurl + "register", {
             params: {
                 phone: phone,
-                extension:extension
+                extension: extension
             }
         });
     };
-    returnfunction.createCard = function (card) {
+    returnfunction.createCard = function(card) {
         return $http.post(adminurl + "mycard", card);
     }
-    returnfunction.sendContacts = function (contacts) {
+    returnfunction.sendContacts = function(contacts) {
         console.log(contacts);
         return $http.post(adminurl + "sendcontacts", contacts)
     }
-    returnfunction.getlevel2contacts = function () {
+    returnfunction.getlevel2contacts = function() {
         return $http.post(adminurl + "level2search", {
             user: userid,
             page: 0
         })
     }
-    returnfunction.getlevel3contacts = function () {
+    returnfunction.getlevel3contacts = function() {
         return $http.post(adminurl + "level3search", {
             user: userid,
             page: 0
         })
     }
-    returnfunction.sharewith = function (tobeshared) {
+    returnfunction.sharewith = function(tobeshared) {
         console.log(tobeshared);
         return $http.post(adminurl + "sharewith", tobeshared)
     }
 
-    returnfunction.getShared = function (userid) {
+    returnfunction.getShared = function(userid) {
         return $http.post(adminurl + "getshared", {
             user: userid,
             page: 0
         })
     };
 
-    returnfunction.UserAddShareSubmit = function (contacts) {
+    returnfunction.UserAddShareSubmit = function(contacts) {
         var add = _.pluck(_.filter(contacts, {
             add: "Added"
         }), 'id');
@@ -246,25 +273,25 @@ angular.module('starter.services', [])
         }), 'id');
         var UserAddShareObj = {
             user: userid,
-            add:add,
-            addShare:addShare,
+            add: add,
+            addShare: addShare,
         };
         return $http.post(adminurl + "acceptrequest", UserAddShareObj);
     }
-    returnfunction.newsfeedadd = function (touser) {
+    returnfunction.newsfeedadd = function(touser) {
         return $http.post(adminurl + "newsfeedadd", {
             userfrom: userid,
             touser: touser
         });
     }
-    returnfunction.newsfeedaddShare = function (touser) {
+    returnfunction.newsfeedaddShare = function(touser) {
         console.log(touser);
         return $http.post(adminurl + "newsfeedaddShare", {
             userfrom: userid,
             touser: touser
         });
     }
-    returnfunction.isadded = function (fromuser) {
+    returnfunction.isadded = function(fromuser) {
         console.log(fromuser);
         return $http.post(adminurl + "isadded", {
             userfrom: fromuser,
