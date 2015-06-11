@@ -756,7 +756,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     var isAddedSuccess = function (data, status) {
         console.log(data);
-        if (data != false) {
+        if (data != "false") {
             console.log("if");
             $.jStorage.set("isadded", 1);
             contactDetail = data;
