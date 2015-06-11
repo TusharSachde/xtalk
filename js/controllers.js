@@ -515,12 +515,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     $scope.keepscrolling = true;
                 }
                 $scope.myarr = $scope.myarr.concat(contacts);
-//                for (var i = 0; i < $scope.myarr.length; i++) {
-    //                    MyServices.getlogos($scope.myarr.personalMobile).success(getlogossuccess)
-    //                }
-    //                var getlogossuccess = function (data, status) {
-    //                    console.log(data);
-    //                }
+                //                for (var i = 0; i < $scope.myarr.length; i++) {
+                //                    MyServices.getlogos($scope.myarr.personalMobile).success(getlogossuccess)
+                //                }
+                //                var getlogossuccess = function (data, status) {
+                //                    console.log(data);
+                //                }
                 $ionicLoading.hide();
             }
         }
@@ -756,19 +756,22 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     var isAddedSuccess = function (data, status) {
         console.log(data);
-        if (data) {
+        if (JSON.parse(data) != "false") {
             console.log("if");
-            $scope.showAll = 1;
+            $.jStorage.set("isadded", 1);
+            contactDetail = data;
+            console.log(contactDetail);
+            $location.url("tab/spingbook-detail");
+
         } else {
+            $.jStorage.set("isadded", 0);
             console.log("else");
-            $scope.showAll = 0;
         }
     }
     $scope.showDetail = function (contact) {
         MyServices.isadded(contact.personalMobile).success(isAddedSuccess);
         contactDetail = contact;
-        console.log(contact);
-        $location.url("tab/spingbook-detail");
+        //        console.log(contact);
     }
     var level2callback = function (data, status) {
         $scope.circle2contacts = data;
@@ -785,6 +788,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 })
 
 .controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams) {
+    if ($.jStorage.get("isadded") == 1) {
+        $scope.showAll = 1;
+    } else {
+        $scope.showAll = 0;
+    }
     $scope.contact = contactDetail;
     console.log(contactDetail);
 })
