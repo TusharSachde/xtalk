@@ -515,6 +515,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     $scope.keepscrolling = true;
                 }
                 $scope.myarr = $scope.myarr.concat(contacts);
+//                for (var i = 0; i < $scope.myarr.length; i++) {
+    //                    MyServices.getlogos($scope.myarr.personalMobile).success(getlogossuccess)
+    //                }
+    //                var getlogossuccess = function (data, status) {
+    //                    console.log(data);
+    //                }
                 $ionicLoading.hide();
             }
         }
@@ -544,8 +550,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     $scope.syncnewcontacts = function () {
         console.log("Hey");
-//        contactSync.synclocaltoserver();
-//        MyServices.getallcontacts(contactCallback);
+        //        contactSync.synclocaltoserver();
+        //        MyServices.getallcontacts(contactCallback);
     }
 
     $scope.namesearch = function () {

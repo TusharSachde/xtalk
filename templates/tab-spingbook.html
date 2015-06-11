@@ -101,8 +101,8 @@
         <ion-list class="default-height">
 
             <!--            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr" type="item-text-wrap" ng-click="hidedialer(myconarrs.personalMobile);" on-hold="call(myconarrs.personalMobile);">-->
-            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr" type="item-text-wrap" on-hold="call(myconarrs.personalMobile);" ng-click="showDetail(myconarrs);">
-                <div class="picture" style="background-image: url('{{myconarrs.photoUrl}}'), url('img/default.png');"></div>
+            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr" type="item-text-wrap">
+                <div class="picture" style="background-image: url('{{myconarrs.photoUrl}}'), url('img/default.png');" ng-click="showDetail(myconarrs);"></div>
 
                 <div class="card-style">
                     <h2 class="positive" ng-bind-html="myconarrs.name|addhighlight:searchquery.search:phone.number"></h2>
