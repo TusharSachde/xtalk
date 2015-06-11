@@ -3,8 +3,8 @@
         <button class="button button-icon button-clear ln-share small-icon">
         </button>
     </ion-nav-buttons>
-    <ion-content class="padding" ng-if="showAll==0">
-        <div class="vcard">
+    <ion-content class="padding" >
+        <div class="vcard" ng-if="showAll==0">
             <div class="picture" style="background-image: url('{{contact.photoUrl}}'), url('img/default.png');"></div>
             <div class="company" style="background-image: url('{{contact.logo}}'), url('img/spingr.png');"></div>
 
@@ -23,9 +23,8 @@
                 <h3 ng-bind="contact.email"></h3>
             </div>
         </div>
-    </ion-content>
-    <ion-content class="padding" ng-if="showAll==1">
-        <div class="vcard">
+        
+        <div class="vcard" ng-if="showAll==1">
             <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}'), url('img/default.png');"></div>
             <div class="company" style="background-image: url('{{contact.companylogo|serverimage}}'), url('img/spingr.png');"></div>
 
