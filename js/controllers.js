@@ -756,13 +756,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     var isAddedSuccess = function (data, status) {
         console.log(data);
-        if (JSON.parse(data) != "false") {
+        if (data != false) {
             console.log("if");
             $.jStorage.set("isadded", 1);
             contactDetail = data;
             console.log(contactDetail);
             $location.url("tab/spingbook-detail");
-
         } else {
             $.jStorage.set("isadded", 0);
             console.log("else");
