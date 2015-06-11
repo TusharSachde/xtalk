@@ -765,6 +765,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         } else {
             $.jStorage.set("isadded", 0);
             console.log("else");
+            $location.url("tab/spingbook-detail");
         }
     }
     $scope.showDetail = function (contact) {
