@@ -1,5 +1,5 @@
-var serveradmin = "http://wohlig.co.in/spingr/";
-//var serveradmin = "http://localhost/sarahconner/";
+//var serveradmin = "http://wohlig.co.in/spingr/";
+var serveradmin = "http://localhost/sarahconner/";
 var adminurl = serveradmin + "index.php/json/";
 var imgpath = serveradmin + "uploads/";
 var mycard1 = {};
