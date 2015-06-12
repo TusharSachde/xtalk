@@ -163,14 +163,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     $scope.startloading();
 
-    $scope.companylogo = 'img/logo.jpg';
-    $scope.profilelogo = 'img/logo.jpg';
-    var options = {
-        quality: 40,
-        destinationType: Camera.DestinationType.NATIVE_URI,
-        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        encodingType: Camera.EncodingType.JPEG
-    };
+    $scope.mycard = {};
+
+    $scope.mycard.companylogo = 'img/logo.jpg';
+    $scope.mycard.profilelogo = 'img/logo.jpg';
+    //    var options = {
+    //        quality: 40,
+    //        destinationType: Camera.DestinationType.NATIVE_URI,
+    //        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    //        encodingType: Camera.EncodingType.JPEG
+    //    };
 
     //Contacts Sending
     var changecmpylogo = function (result) {
@@ -184,7 +186,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             // Success! Image data is here
             console.log("here in upload image");
             console.log(imageData);
-            $scope.companylogo = imageData;
+            $scope.mycard.companylogo = imageData;
 
             if (imageData.substring(0, 21) == "content://com.android") {
                 var photo_split = imageData.split("%3A");
@@ -208,6 +210,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             // Success! Image data is here
             console.log("here in upload image");
             console.log(imageData);
+            $scope.mycard.profilelogo = imageData;
 
             if (imageData.substring(0, 21) == "content://com.android") {
                 var photo_split = imageData.split("%3A");
@@ -264,31 +267,34 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     n++;
     if (n == 1 && !$.jStorage.get("profilesaved")) {
         console.log("Hey");
-        MyServices.getallcontacts(contactCallback);
+        //        MyServices.getallcontacts(contactCallback);
     }
 
-    $scope.mergecard = {};
-    $scope.personal = {};
-    $scope.mycard = {};
+    var getprofilesuccess = function (data, status) {
+        console.log(data);
 
-//    var getprofilesuccess = function (data, status) {
-//        console.log(data);
-//    }
-//    MyServices.getprofile(userid).success(getprofilesuccess);
+        $ionicLoading.hide();
+    }
+    MyServices.getprofile(userid).success(getprofilesuccess);
 
     if (editprofile) {
-        $scope.personal = $.jStorage.get("userpersonalcard");
         $scope.mycard = $.jStorage.get("usermycard");
     } else {
         $scope.mycard.companycontact = personalcontact;
     }
+    
+    $scope.mycard.companycontactextension="+91";
+    $scope.mycard.directlandlineextension="+91";
+    $scope.mycard.boardlandlineextension="+91";
+    $scope.mycard.mobileextension="+91";
+    $scope.mycard.landlineextension="+91"
+    $scope.mycard.country="India";
     $scope.mycard.companycountry = "India";
+    
     $scope.CardDetails = function (card, k) {
+        console.log(card);
         $scope.allvalidation = [{
             field: $scope.mycard.name,
-            validation: ""
-        }, {
-            field: $scope.mycard.companycontact,
             validation: ""
         }, {
             field: $scope.mycard.companyemail,
@@ -298,37 +304,34 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         if (check && k == 0) {
             card.id = userid;
             $.jStorage.set("usermycard", card);
-            mycard1 = card;
             $location.path("/profile/personal");
         } else if (check && k == 1) {
             card.id = userid;
             $.jStorage.set("usermycard", card);
-            $.jStorage.set("userpersonalcard", "");
-            MyServices.createCard(card).success(createCardSucess);
+            //            MyServices.createCard(card).success(createCardSucess);
         }
     };
     var createCardSucess = function (data, status) {
-        console.log(data);
-        $.jStorage.set("profilesaved", 1);
-        if (editprofile) {
-            $location.path("/tab/spingbook");
-        } else {
-            $.jStorage.set("user", userid);
-            $location.path("/profile/sharewith");
+            console.log(data);
+            $.jStorage.set("profilesaved", 1);
+            if (editprofile) {
+                $location.path("/tab/spingbook");
+            } else {
+                $.jStorage.set("user", userid);
+                $location.path("/profile/sharewith");
+            }
         }
-    }
-    $scope.PersonalDetails = function (card) {
-        $.jStorage.set("userpersonalcard", card);
-        $scope.startloading();
-        $scope.mycard2 = card;
-        console.log(mycard1);
-        console.log($scope.mycard2);
-        $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
-        console.log($scope.mergecard);
-        MyServices.createCard($scope.mergecard).success(createCardSucess);
-
-    };
-    $ionicLoading.hide();
+        //    $scope.PersonalDetails = function (card) {
+        //        $.jStorage.set("userpersonalcard", card);
+        //        $scope.startloading();
+        //        $scope.mycard2 = card;
+        //        console.log(mycard1);
+        //        console.log($scope.mycard2);
+        //        $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
+        //        console.log($scope.mergecard);
+        //        MyServices.createCard($scope.mergecard).success(createCardSucess);
+        //
+        //    };
 })
 
 .controller('Circle1Ctrl', function ($scope) {})

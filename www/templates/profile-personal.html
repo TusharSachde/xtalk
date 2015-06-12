@@ -1,21 +1,21 @@
 <ion-view view-title="SpingR">
     <ion-content class="padding">
         <div class="card-effect personal-card">
-            <div class="addlogo" ng-click="changeprofilelogo()" style="background-image:url('{{profilelogo}}')" ng-if="profilelogo=='img/logo.jpg'">
+            <div class="addlogo" ng-click="changeprofilelogo()" style="background-image:url('{{mycard.profilelogo}}')" ng-if="mycard.profilelogo=='img/logo.jpg'">
                 Upload profile picture
             </div>
-            <div class="addlogo" ng-click="changeprofilelogo()" style="background-image:url('{{profilelogo|serverimage}}')" ng-if="profilelogo!='img/logo.jpg'">
+            <div class="addlogo" ng-click="changeprofilelogo()" style="background-image:url('{{mycard.profilelogo|serverimage}}')" ng-if="mycard.profilelogo!='img/logo.jpg'">
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" onfocus="(this.type='date')" placeholder="Birth Date" ng-model="personal.dob">
+                    <input type="text" onfocus="(this.type='date')" placeholder="Birth Date" ng-model="mycard.dob">
                 </label>
                 <label class="item item-input">
-                    <input type="text" onfocus="(this.type='date')" placeholder="Anniversary" ng-model="personal.doa">
+                    <input type="text" onfocus="(this.type='date')" placeholder="Anniversary" ng-model="mycard.doa">
                 </label>
                 <label class="item item-input  item-select item-no-holder">
-                    <input type="text" placeholder="Blood Group" autocapitalize="on" ng-model="personal.bloodgroup">
-                    <select ng-model="personal.bloodgroup">
+                    <input type="text" placeholder="Blood Group" autocapitalize="on" ng-model="mycard.bloodgroup">
+                    <select ng-model="mycard.bloodgroup">
                         <option value="">Blood Group</option>
                         <option value="A+">A+</option>
                         <option value="A-">A-</option>
@@ -36,22 +36,22 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <textarea placeholder="Address" autocapitalize="on" ng-model="personal.address"></textarea>
+                    <textarea placeholder="Address" autocapitalize="on" ng-model="mycard.address"></textarea>
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="City/District" autocapitalize="on" ng-model="personal.city">
+                    <input type="text" placeholder="City/District" autocapitalize="on" ng-model="mycard.city">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="State/Province" autocapitalize="on" ng-model="personal.state">
+                    <input type="text" placeholder="State/Province" autocapitalize="on" ng-model="mycard.state">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Pincode/Zipcode" autocapitalize="on" ng-model="personal.pincode">
+                    <input type="text" placeholder="Pincode/Zipcode" autocapitalize="on" ng-model="mycard.pincode">
                 </label>
                 <!--<label class="item item-input">
-                    <input type="text" placeholder="Country" autocapitalize="on" ng-model="personal.country">
+                    <input type="text" placeholder="Country" autocapitalize="on" ng-model="mycard.country">
                 </label>-->
                 <label class="item item-input item-select item-no-holder">
-                    <select ng-model="personal.country" placeholder="country">
+                    <select ng-model="mycard.country" placeholder="country">
                         <option value="">Country</option>
                         <option value="Afganistan">Afghanistan</option>
                         <option value="Albania">Albania</option>
@@ -311,32 +311,32 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <span class="input-label code-holder"><input type="tel" ng-model="'+91'" disabled></span>
-                    <input type="tel" placeholder="Mobile Number" ng-model="personal.mobile">
+                    <span class="input-label code-holder"><input type="tel" ng-model="mycard.mobileextension"></span>
+                    <input type="tel" placeholder="Mobile Number" ng-model="mycard.mobile">
                 </label>
                 <label class="item item-input">
-                    <span class="input-label code-holder"><input type="tel" ng-model="'+91'" disabled></span>
-                    <input type="tel" placeholder="Home Landline" ng-model="personal.landline">
+                    <span class="input-label code-holder"><input type="tel" ng-model="mycard.landlineextension"></span>
+                    <input type="tel" placeholder="Home Landline" ng-model="mycard.landline">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Twitter Handle" ng-model="personal.twitter" class="lowercase">
+                    <input type="text" placeholder="Twitter Handle" ng-model="mycard.twitter" class="lowercase">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Facebook Page" ng-model="personal.fb" class="lowercase">
+                    <input type="text" placeholder="Facebook Page" ng-model="mycard.fb" class="lowercase">
                 </label>
                 <label class="item item-input">
-                    <input type="email" placeholder="Email ID" ng-model="personal.email" class="lowercase">
+                    <input type="email" placeholder="Email ID" ng-model="mycard.email" class="lowercase">
                 </label>
                 <label class="item item-input">
-                    <input type="url" placeholder="Website" ng-model="personal.website" class="lowercase">
+                    <input type="url" placeholder="Website" ng-model="mycard.website" class="lowercase">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Record GPS" ng-model="personal.gps">
+                    <input type="text" placeholder="Record GPS" ng-model="mycard.gps">
                 </label>
             </div>
         </div>
 
         <!--<a class="button button-positive button-outline button-block" ng-click="PersonalDetails(personal);" href="#/profile/sharewith">Save &amp; Proceed</a>-->
-        <a class="button button-positive button-outline button-block" ng-click="PersonalDetails(personal);">Save &amp; Proceed</a>
+        <a class="button button-positive button-outline button-block" ng-click="CardDetails(personal);">Save &amp; Proceed</a>
     </ion-content>
 </ion-view>

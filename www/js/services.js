@@ -271,6 +271,11 @@ angular.module('starter.services', [])
             touser: $.jStorage.get("user")
         });
     }
-
+    returnfunction.getprofile = function (user) {
+        console.log(user);
+        return $http.post(adminurl + "getprofile", {
+            user: user
+        });
+    }
     return returnfunction;
 });
