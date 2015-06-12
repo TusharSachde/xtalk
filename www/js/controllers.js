@@ -166,14 +166,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 template: '<ion-spinner class="spinner-light"></ion-spinner>'
             });
         };
-        //    var options = {
-        //        quality: 40,
-        //        destinationType: Camera.DestinationType.NATIVE_URI,
-        //        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        //        encodingType: Camera.EncodingType.JPEG
-        //    };
+        var options = {
+            quality: 40,
+            destinationType: Camera.DestinationType.NATIVE_URI,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            encodingType: Camera.EncodingType.JPEG
+        };
         $scope.mycard = {};
-    
+
         var getprofilesuccess = function (data, status) {
             console.log(data);
             if (data != "false") {
@@ -247,8 +247,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
         if (editprofile) {
             $scope.mycard = $.jStorage.get("mycard");
-        } else {
-            $scope.mycard.companycontact = personalcontact;
         }
         $scope.CardDetails = function () {
             console.log($scope.mycard);
@@ -275,13 +273,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         //        $scope.startloading();
 
         $scope.mycard = {};
+        $scope.number = {};
+        $scope.number.companycontactextension = "+91";
+        $scope.number.companycontact = personalcontact;
 
-        //    var options = {
-        //        quality: 40,
-        //        destinationType: Camera.DestinationType.NATIVE_URI,
-        //        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        //        encodingType: Camera.EncodingType.JPEG
-        //    };
+        var options = {
+            quality: 40,
+            destinationType: Camera.DestinationType.NATIVE_URI,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            encodingType: Camera.EncodingType.JPEG
+        };
 
         //Contacts Sending
         var changecmpylogo = function (result) {
@@ -352,7 +353,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         n++;
         if (n == 1 && !$.jStorage.get("profilesaved")) {
             console.log("Hey");
-            //        MyServices.getallcontacts(contactCallback);
+            MyServices.getallcontacts(contactCallback);
         }
 
         var getprofilesuccess = function (data, status) {
