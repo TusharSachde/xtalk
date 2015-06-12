@@ -751,4 +751,11 @@ span.linked {
     bottom: 10px;
     top: auto;
 }
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly]:not(.cloned-text-input),
+textarea[readonly]:not(.cloned-text-input),
+select[readonly] {
+    background-color: transparent;
 }
