@@ -14,7 +14,6 @@
                     <input type="text" onfocus="(this.type='date')" placeholder="Anniversary" ng-model="mycard.anniversary">
                 </label>
                 <label class="item item-input  item-select item-no-holder">
-                    <input type="text" placeholder="Blood Group" autocapitalize="on" ng-model="mycard.bloodgroup">
                     <select ng-model="mycard.bloodgroup">
                         <option value="">Blood Group</option>
                         <option value="A+">A+</option>
@@ -311,11 +310,11 @@
             </div>
             <div class="list">
                 <div class="item item-input">
-                    <span class="input-label code-holder"><input type="tel" ng-model="mycard.personalprofilecontactextension"></span>
+                    <span class="input-label code-holder"><input type="tel" placeholder="+CC" ng-model="mycard.personalprofilecontactextension"></span>
                     <input type="tel" placeholder="Mobile Number" ng-model="mycard.personalprofilecontact">
                 </div>
                 <div class="item item-input">
-                    <span class="input-label code-holder"><input type="tel" ng-model="mycard.homelandlineextension"></span>
+                    <span class="input-label code-holder"><input type="tel" placeholder="+CC" ng-model="mycard.homelandlineextension"></span>
                     <input type="tel" placeholder="Home Landline" ng-model="mycard.homelandline">
                 </div>
                 <label class="item item-input">
