@@ -425,7 +425,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         });
 
     }
-    MyServices.getShared(userid).success(getSharedSuccess);
+    MyServices.getShared($.jStorage.get("user")).success(getSharedSuccess);
 
     $scope.changeAdd = function (contact) {
         if (contact.add == "Add") {
