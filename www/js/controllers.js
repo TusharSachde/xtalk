@@ -5,278 +5,235 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 })
 
 .controller('EnterCtrl', function ($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices, $location, contactSync, $ionicLoading) {
-    $scope.startloading = function () {
-        $ionicLoading.show({
-            template: '<ion-spinner class="spinner-light"></ion-spinner>'
-        });
-    };
-
-
-    $scope.onenter = function (keyEvent, callback, object) {
-        //        console.log(keyEvent);
-        if (keyEvent.which == 13) {
-            callback(object);
+        $scope.startloading = function () {
+            $ionicLoading.show({
+                template: '<ion-spinner class="spinner-light"></ion-spinner>'
+            });
         };
 
-    };
 
-    $scope.startloading();
-    contactSync.drop();
-    var readsmsCallback = function (otp) {
-        if (!otp) {
-            //            console.log("No Otp");
-        } else {
-            $scope.otp = {
-                number: otp
+        $scope.onenter = function (keyEvent, callback, object) {
+            //        console.log(keyEvent);
+            if (keyEvent.which == 13) {
+                callback(object);
             };
-            $scope.$apply();
 
-        }
-    };
-    $scope.otp = {
-        number: ""
-    };
+        };
 
+        $scope.startloading();
+        contactSync.drop();
+        var readsmsCallback = function (otp) {
+            if (!otp) {
+                //            console.log("No Otp");
+            } else {
+                $scope.otp = {
+                    number: otp
+                };
+                $scope.$apply();
 
-    $scope.personal = {};
-    $scope.personal.countrycode = "+91";
-    //Popup for dint get OTP
-    $scope.showAlert = function () {
-        //        console.log('Dint get OTP?');
-        var alertPopup = $ionicPopup.alert({
-            title: "Didn't get the OTP ?",
-            template: 'Please try resending the OTP.',
-            buttons: [{
-                text: 'Try Again',
-                type: 'button-positive button-outline'
-            }],
-        });
-        alertPopup.then(function (res) {
-            $ionicSlideBoxDelegate.previous();
-            //           console.log('OTP Resent !');
-        })
-    };
+            }
+        };
+        $scope.otp = {
+            number: ""
+        };
 
 
-    var registerSuccess = function (data, status) {
-        console.log(data);
-        //userid = parseInt(data.id);
-        $ionicSlideBoxDelegate.next();
-        MyServices.readsms(readsmsCallback);
-    };
-    $scope.phonesubmit = function (phoneno) {
-        personalcontact = phoneno.phone;
-        if (personalcontact.match(/^\d+$/)) {
-            console.log(true);
-            MyServices.register(personalcontact, phoneno.countrycode).success(registerSuccess);
-        } else {
-            console.log(false);
-            var alertPopup = $ionicPopup.alert({
-                title: 'INVALID PHONE NUMBER',
-                template: 'Please enter the correct phone number',
-                buttons: [{
-                    text: 'Okay',
-                    type: 'button-positive button-outline'
-                }],
-            });
-        }
-    }
-
-    $scope.disableSwipe = function () {
-        $ionicSlideBoxDelegate.enableSlide(false);
-    };
-
-    $scope.previous = function () {
-        $ionicSlideBoxDelegate.previous();
-    };
-
-    // Called each time the slide changes
-    $scope.slideChanged = function (index) {
-        $scope.slideIndex = index;
-    };
-
-    var verifyCallback = function (data, status) {
-        // console.log("verify");
-        if (data != "false") {
-            console.log(data);
-            userid = data.id;
-            $.jStorage.set("user", userid);
-            userid = $.jStorage.get("user");
-            $ionicLoading.hide();
-            $location.path("/profile/mycard");
-
-        } else {
-            console.log(data);
-            $ionicLoading.hide();
-            var alertPopup = $ionicPopup.alert({
-                title: 'INCORRECT OTP',
-                template: 'Please enter the correct OTP',
-                buttons: [{
-                    text: 'Okay',
-                    type: 'button-positive button-outline'
-                }],
-            });
-        }
-
-
-    };
-    var errorCallback = function () {
-        $ionicLoading.hide();
+        $scope.personal = {};
+        $scope.personal.countrycode = "+91";
+        //Popup for dint get OTP
         $scope.showAlert = function () {
+            //        console.log('Dint get OTP?');
             var alertPopup = $ionicPopup.alert({
-                title: 'INCORRECT OTP',
-                template: 'Please enter the correct OTP',
+                title: "Didn't get the OTP ?",
+                template: 'Please try resending the OTP.',
                 buttons: [{
-                    text: 'Okay',
+                    text: 'Try Again',
                     type: 'button-positive button-outline'
-                }],
+            }],
             });
             alertPopup.then(function (res) {
-                console.log('Thank you for not eating my delicious ice cream cone');
+                $ionicSlideBoxDelegate.previous();
+                //           console.log('OTP Resent !');
+            })
+        };
+
+
+        var registerSuccess = function (data, status) {
+            console.log(data);
+            //userid = parseInt(data.id);
+            $ionicSlideBoxDelegate.next();
+            MyServices.readsms(readsmsCallback);
+        };
+        $scope.phonesubmit = function (phoneno) {
+            personalcontact = phoneno.phone;
+            if (personalcontact.match(/^\d+$/)) {
+                console.log(true);
+                MyServices.register(personalcontact, phoneno.countrycode).success(registerSuccess);
+            } else {
+                console.log(false);
+                var alertPopup = $ionicPopup.alert({
+                    title: 'INVALID PHONE NUMBER',
+                    template: 'Please enter the correct phone number',
+                    buttons: [{
+                        text: 'Okay',
+                        type: 'button-positive button-outline'
+                }],
+                });
+            }
+        }
+
+        $scope.disableSwipe = function () {
+            $ionicSlideBoxDelegate.enableSlide(false);
+        };
+
+        $scope.previous = function () {
+            $ionicSlideBoxDelegate.previous();
+        };
+
+        // Called each time the slide changes
+        $scope.slideChanged = function (index) {
+            $scope.slideIndex = index;
+        };
+
+        var verifyCallback = function (data, status) {
+            // console.log("verify");
+            if (data != "false") {
+                console.log(data);
+                userid = data.id;
+                $.jStorage.set("user", userid);
+                userid = $.jStorage.get("user");
+                $ionicLoading.hide();
+                $location.path("/profile/mycard");
+
+            } else {
+                console.log(data);
+                $ionicLoading.hide();
+                var alertPopup = $ionicPopup.alert({
+                    title: 'INCORRECT OTP',
+                    template: 'Please enter the correct OTP',
+                    buttons: [{
+                        text: 'Okay',
+                        type: 'button-positive button-outline'
+                }],
+                });
+            }
+
+
+        };
+        var errorCallback = function () {
+            $ionicLoading.hide();
+            $scope.showAlert = function () {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'INCORRECT OTP',
+                    template: 'Please enter the correct OTP',
+                    buttons: [{
+                        text: 'Okay',
+                        type: 'button-positive button-outline'
+                }],
+                });
+                alertPopup.then(function (res) {
+                    console.log('Thank you for not eating my delicious ice cream cone');
+                });
+            };
+
+        }
+        $scope.checkotp = function () {
+            if ($scope.otp.number.match(/^\d+$/)) {
+                $scope.startloading();
+                MyServices.verifyOTP($scope.otp.number, personalcontact).success(verifyCallback).error(errorCallback);
+            } else {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'INVALID OTP',
+                    template: 'Please enter only numbers',
+                    buttons: [{
+                        text: 'Okay',
+                        type: 'button-positive button-outline'
+                }],
+                });
+            }
+        }
+        $ionicLoading.hide();
+    })
+    .controller('PersonalProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
+
+        $scope.startloading = function () {
+            $ionicLoading.show({
+                template: '<ion-spinner class="spinner-light"></ion-spinner>'
+            });
+        };
+        $scope.startloading();
+
+        //    var options = {
+        //        quality: 40,
+        //        destinationType: Camera.DestinationType.NATIVE_URI,
+        //        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        //        encodingType: Camera.EncodingType.JPEG
+        //    };
+        $scope.mycard = {};
+        $scope.mycard = $.jStorage.get("usermycard");
+        $scope.mycard.profilelogo = 'img/logo.jpg';
+        var changeproflogo = function (result) {
+            console.log(result);
+            $scope.profilelogo = result.value;
+        }
+        $scope.changeprofilelogo = function () {
+            console.log("take picture");
+
+            $cordovaCamera.getPicture(options).then(function (imageData) {
+                // Success! Image data is here
+                console.log("here in upload image");
+                console.log(imageData);
+                $scope.mycard.profilelogo = imageData;
+
+                if (imageData.substring(0, 21) == "content://com.android") {
+                    var photo_split = imageData.split("%3A");
+                    imageData = "content://media/external/images/media/" + photo_split[1];
+                }
+                $scope.cameraimage = imageData;
+                $scope.uploadPhoto(adminurl + "imageuploadprofile?user=" + user.id, changeproflogo);
+            }, function (err) {
+                // An error occured. Show a message to the user
             });
         };
 
-    }
-    $scope.checkotp = function () {
-        if ($scope.otp.number.match(/^\d+$/)) {
-            $scope.startloading();
-            MyServices.verifyOTP($scope.otp.number, personalcontact).success(verifyCallback).error(errorCallback);
-        } else {
-            var alertPopup = $ionicPopup.alert({
-                title: 'INVALID OTP',
-                template: 'Please enter only numbers',
-                buttons: [{
-                    text: 'Okay',
-                    type: 'button-positive button-outline'
-                }],
-            });
-        }
-    }
-    $ionicLoading.hide();
-})
+        $scope.uploadPhoto = function (serverpath, callback) {
 
-.controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
-    $scope.startloading = function () {
-        $ionicLoading.show({
-            template: '<ion-spinner class="spinner-light"></ion-spinner>'
-        });
-    };
-    $scope.startloading();
+            //        console.log("function called");
+            $cordovaFileTransfer.upload(serverpath, $scope.cameraimage, options)
+                .then(function (result) {
+                    console.log(result);
+                    var data = JSON.parse(result.response);
+                    callback(data);
+                    $ionicLoading.hide();
+                    //$scope.addretailer.store_image = $scope.filename2;
+                }, function (err) {
+                    // Error
+                    console.log(err);
+                }, function (progress) {
+                    // constant progress updates
+                    $ionicLoading.show({
+                        //        template: 'We are fetching the best rates for you.',
 
-    $scope.mycard = {};
-
-    $scope.mycard.companylogo = 'img/logo.jpg';
-    $scope.mycard.profilelogo = 'img/logo.jpg';
-    //    var options = {
-    //        quality: 40,
-    //        destinationType: Camera.DestinationType.NATIVE_URI,
-    //        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-    //        encodingType: Camera.EncodingType.JPEG
-    //    };
-
-    //Contacts Sending
-    var changecmpylogo = function (result) {
-        console.log(result);
-        $scope.companylogo = result.value;
-    }
-    $scope.changecompanylogo = function () {
-        console.log("take picture");
-
-        $cordovaCamera.getPicture(options).then(function (imageData) {
-            // Success! Image data is here
-            console.log("here in upload image");
-            console.log(imageData);
-            $scope.mycard.companylogo = imageData;
-
-            if (imageData.substring(0, 21) == "content://com.android") {
-                var photo_split = imageData.split("%3A");
-                imageData = "content://media/external/images/media/" + photo_split[1];
-            }
-            $scope.cameraimage = imageData;
-            $scope.uploadPhoto(adminurl + "imageuploadcompany?user=" + user.id, changecmpylogo);
-        }, function (err) {
-            // An error occured. Show a message to the user
-        });
-    };
-
-    var changeproflogo = function (result) {
-        console.log(result);
-        $scope.profilelogo = result.value;
-    }
-    $scope.changeprofilelogo = function () {
-        console.log("take picture");
-
-        $cordovaCamera.getPicture(options).then(function (imageData) {
-            // Success! Image data is here
-            console.log("here in upload image");
-            console.log(imageData);
-            $scope.mycard.profilelogo = imageData;
-
-            if (imageData.substring(0, 21) == "content://com.android") {
-                var photo_split = imageData.split("%3A");
-                imageData = "content://media/external/images/media/" + photo_split[1];
-            }
-            $scope.cameraimage = imageData;
-            $scope.uploadPhoto(adminurl + "imageuploadprofile?user=" + user.id, changeproflogo);
-        }, function (err) {
-            // An error occured. Show a message to the user
-        });
-    };
-
-    $scope.uploadPhoto = function (serverpath, callback) {
-
-        //        console.log("function called");
-        $cordovaFileTransfer.upload(serverpath, $scope.cameraimage, options)
-            .then(function (result) {
-                console.log(result);
-                var data = JSON.parse(result.response);
-                callback(data);
-                $ionicLoading.hide();
-                //$scope.addretailer.store_image = $scope.filename2;
-            }, function (err) {
-                // Error
-                console.log(err);
-            }, function (progress) {
-                // constant progress updates
-                $ionicLoading.show({
-                    //        template: 'We are fetching the best rates for you.',
-
-                    content: 'Uploading Image',
-                    animation: 'fade-in',
-                    showBackdrop: true,
-                    maxWidth: 200,
-                    showDelay: '0'
+                        content: 'Uploading Image',
+                        animation: 'fade-in',
+                        showBackdrop: true,
+                        maxWidth: 200,
+                        showDelay: '0'
+                    });
                 });
-            });
-    };
-    var sendcontactssuccess = function (data, status) {
-        console.log(data);
-        contact = data;
-    }
-    var contactCallback = function (myconarr) {
-        $scope.usercontacts = {
-            user: userid,
-            contact: myconarr
+        };
+        $scope.mycard.mobileextension = "+91";
+        $scope.mycard.landlineextension = "+91"
+        $scope.mycard.country = "India";
+
+        var getprofilesuccess = function (data, status) {
+            console.log(data);
+
+            $ionicLoading.hide();
         }
-        MyServices.sendContacts($scope.usercontacts).success(sendcontactssuccess);
+        MyServices.getprofile(userid).success(getprofilesuccess);
 
-        _.each(myconarr, function (n) {
-            contactSync.create(n);
-        });
-    }
-    n++;
-    if (n == 1 && !$.jStorage.get("profilesaved")) {
-        console.log("Hey");
-        //        MyServices.getallcontacts(contactCallback);
-    }
-
-    var getprofilesuccess = function (data, status) {
-        console.log(data);
-
-        $ionicLoading.hide();
-    }
-    MyServices.getprofile(userid).success(getprofilesuccess);
-
+<<<<<<< HEAD
     if (editprofile) {
         $scope.mycard = $.jStorage.get("usermycard");
     } else {
@@ -309,9 +266,19 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             card.id = userid;
             $.jStorage.set("usermycard", card);
             //            MyServices.createCard(card).success(createCardSucess);
+=======
+        if (editprofile) {
+            $scope.mycard = $.jStorage.get("usermycard");
+        } else {
+            $scope.mycard.companycontact = personalcontact;
+>>>>>>> 916d2d552df5fa63b6c553abcdbf2d40e940dcfc
         }
-    };
-    var createCardSucess = function (data, status) {
+        $scope.CardDetails = function () {
+            console.log($scope.mycard);
+            $.jStorage.set("usermycard", $scope.mycard);
+            //            MyServices.createCard(card).success(createCardSucess);
+        };
+        var createCardSucess = function (data, status) {
             console.log(data);
             $.jStorage.set("profilesaved", 1);
             if (editprofile) {
@@ -321,18 +288,159 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 $location.path("/profile/sharewith");
             }
         }
-        //    $scope.PersonalDetails = function (card) {
-        //        $.jStorage.set("userpersonalcard", card);
-        //        $scope.startloading();
-        //        $scope.mycard2 = card;
-        //        console.log(mycard1);
-        //        console.log($scope.mycard2);
-        //        $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
-        //        console.log($scope.mergecard);
-        //        MyServices.createCard($scope.mergecard).success(createCardSucess);
-        //
+    })
+    .controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
+        $scope.startloading = function () {
+            $ionicLoading.show({
+                template: '<ion-spinner class="spinner-light"></ion-spinner>'
+            });
+        };
+        $scope.startloading();
+
+        $scope.mycard = {};
+
+        $scope.mycard.companylogo = 'img/logo.jpg';
+        //    var options = {
+        //        quality: 40,
+        //        destinationType: Camera.DestinationType.NATIVE_URI,
+        //        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        //        encodingType: Camera.EncodingType.JPEG
         //    };
-})
+
+        //Contacts Sending
+        var changecmpylogo = function (result) {
+            console.log(result);
+            $scope.companylogo = result.value;
+        }
+        $scope.changecompanylogo = function () {
+            console.log("take picture");
+
+            $cordovaCamera.getPicture(options).then(function (imageData) {
+                // Success! Image data is here
+                console.log("here in upload image");
+                console.log(imageData);
+                $scope.mycard.companylogo = imageData;
+
+                if (imageData.substring(0, 21) == "content://com.android") {
+                    var photo_split = imageData.split("%3A");
+                    imageData = "content://media/external/images/media/" + photo_split[1];
+                }
+                $scope.cameraimage = imageData;
+                $scope.uploadPhoto(adminurl + "imageuploadcompany?user=" + user.id, changecmpylogo);
+            }, function (err) {
+                // An error occured. Show a message to the user
+            });
+        };
+
+        $scope.uploadPhoto = function (serverpath, callback) {
+
+            //        console.log("function called");
+            $cordovaFileTransfer.upload(serverpath, $scope.cameraimage, options)
+                .then(function (result) {
+                    console.log(result);
+                    var data = JSON.parse(result.response);
+                    callback(data);
+                    $ionicLoading.hide();
+                    //$scope.addretailer.store_image = $scope.filename2;
+                }, function (err) {
+                    // Error
+                    console.log(err);
+                }, function (progress) {
+                    // constant progress updates
+                    $ionicLoading.show({
+                        //        template: 'We are fetching the best rates for you.',
+
+                        content: 'Uploading Image',
+                        animation: 'fade-in',
+                        showBackdrop: true,
+                        maxWidth: 200,
+                        showDelay: '0'
+                    });
+                });
+        };
+        var sendcontactssuccess = function (data, status) {
+            console.log(data);
+            contact = data;
+        }
+        var contactCallback = function (myconarr) {
+            $scope.usercontacts = {
+                user: userid,
+                contact: myconarr
+            }
+            MyServices.sendContacts($scope.usercontacts).success(sendcontactssuccess);
+
+            _.each(myconarr, function (n) {
+                contactSync.create(n);
+            });
+        }
+        n++;
+        if (n == 1 && !$.jStorage.get("profilesaved")) {
+            console.log("Hey");
+            //        MyServices.getallcontacts(contactCallback);
+        }
+
+        var getprofilesuccess = function (data, status) {
+            console.log(data);
+            $scope.mycard = data;
+            $ionicLoading.hide();
+        }
+        if (!$.jStorage.get("profilesaved")) {
+            MyServices.getprofile(userid).success(getprofilesuccess);
+        }
+
+        if (editprofile) {
+            $scope.mycard = $.jStorage.get("mycard");
+        } else {
+            $scope.mycard.companycontact = personalcontact;
+        }
+
+        $scope.mycard.companycontactextension = "+91";
+        $scope.mycard.directlandlineextension = "+91";
+        $scope.mycard.boardlandlineextension = "+91";
+        $scope.mycard.companycountry = "India";
+
+        $scope.CardDetails = function (card, k) {
+            console.log(card);
+            $scope.allvalidation = [{
+                field: $scope.mycard.name,
+                validation: ""
+        }, {
+                field: $scope.mycard.companyemail,
+                validation: ""
+        }];
+            var check = formvalidation($scope.allvalidation);
+            if (check && k == 0) {
+                card.id = userid;
+                $.jStorage.set("mycard", card);
+                $location.path("/profile/personal");
+            } else if (check && k == 1) {
+                card.id = userid;
+                $.jStorage.set("mycard", card);
+                //            MyServices.createCard(card).success(createCardSucess);
+            }
+        };
+        var createCardSucess = function (data, status) {
+                console.log(data);
+                $.jStorage.set("profilesaved", 1);
+                if (editprofile) {
+                    $location.path("/tab/spingbook");
+                } else {
+                    $.jStorage.set("user", userid);
+                    $location.path("/profile/sharewith");
+                }
+            }
+            //    $scope.PersonalDetails = function (card) {
+            //        $.jStorage.set("userpersonalcard", card);
+            //        $scope.startloading();
+            //        $scope.mycard2 = card;
+            //        console.log(mycard1);
+            //        console.log($scope.mycard2);
+            //        $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
+            //        console.log($scope.mergecard);
+            //        MyServices.createCard($scope.mergecard).success(createCardSucess);
+            //
+            //    };
+    })
 
 
 .controller('Circle1Ctrl', function ($scope) {})
