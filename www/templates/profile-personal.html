@@ -8,10 +8,10 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" onfocus="(this.type='date')" placeholder="Birth Date" ng-model="mycard.dob">
+                    <input type="text" onfocus="(this.type='date')" placeholder="Birth Date" ng-model="mycard.birthdate">
                 </label>
                 <label class="item item-input">
-                    <input type="text" onfocus="(this.type='date')" placeholder="Anniversary" ng-model="mycard.doa">
+                    <input type="text" onfocus="(this.type='date')" placeholder="Anniversary" ng-model="mycard.anniversary">
                 </label>
                 <label class="item item-input  item-select item-no-holder">
                     <input type="text" placeholder="Blood Group" autocapitalize="on" ng-model="mycard.bloodgroup">
@@ -36,22 +36,22 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <textarea placeholder="Address" autocapitalize="on" ng-model="mycard.address"></textarea>
+                    <textarea placeholder="Address" autocapitalize="on" ng-model="mycard.personeladdress"></textarea>
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="City/District" autocapitalize="on" ng-model="mycard.city">
+                    <input type="text" placeholder="City/District" autocapitalize="on" ng-model="mycard.personelcity">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="State/Province" autocapitalize="on" ng-model="mycard.state">
+                    <input type="text" placeholder="State/Province" autocapitalize="on" ng-model="mycard.personelstate">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Pincode/Zipcode" autocapitalize="on" ng-model="mycard.pincode">
+                    <input type="text" placeholder="Pincode/Zipcode" autocapitalize="on" ng-model="mycard.personelpincode">
                 </label>
                 <!--<label class="item item-input">
                     <input type="text" placeholder="Country" autocapitalize="on" ng-model="mycard.country">
                 </label>-->
                 <label class="item item-input item-select item-no-holder">
-                    <select ng-model="mycard.country" placeholder="country">
+                    <select ng-model="mycard.personelcountry" placeholder="country">
                         <option value="">Country</option>
                         <option value="Afganistan">Afghanistan</option>
                         <option value="Albania">Albania</option>
@@ -311,27 +311,27 @@
             </div>
             <div class="list">
                 <div class="item item-input">
-                    <span class="input-label code-holder"><input type="tel" ng-model="mycard.mobileextension"></span>
-                    <input type="tel" placeholder="Mobile Number" ng-model="mycard.mobile">
+                    <span class="input-label code-holder"><input type="tel" ng-model="mycard.personalprofilecontactextension"></span>
+                    <input type="tel" placeholder="Mobile Number" ng-model="mycard.personalprofilecontact">
                 </div>
                 <div class="item item-input">
-                    <span class="input-label code-holder"><input type="tel" ng-model="mycard.landlineextension"></span>
-                    <input type="tel" placeholder="Home Landline" ng-model="mycard.landline">
+                    <span class="input-label code-holder"><input type="tel" ng-model="mycard.homelandlineextension"></span>
+                    <input type="tel" placeholder="Home Landline" ng-model="mycard.homelandline">
                 </div>
                 <label class="item item-input">
                     <input type="text" placeholder="Twitter Handle" ng-model="mycard.twitter" class="lowercase">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Facebook Page" ng-model="mycard.fb" class="lowercase">
+                    <input type="text" placeholder="Facebook Page" ng-model="mycard.facebook" class="lowercase">
                 </label>
                 <label class="item item-input">
-                    <input type="email" placeholder="Email ID" ng-model="mycard.email" class="lowercase">
+                    <input type="email" placeholder="Email ID" ng-model="mycard.personelemail" class="lowercase">
                 </label>
                 <label class="item item-input">
-                    <input type="url" placeholder="Website" ng-model="mycard.website" class="lowercase">
+                    <input type="url" placeholder="Website" ng-model="mycard.personelwebsite" class="lowercase">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Record GPS" ng-model="mycard.gps">
+                    <input type="text" placeholder="Record GPS">
                 </label>
             </div>
         </div>
