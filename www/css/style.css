@@ -1,0 +1,732 @@
+/* Empty. Add your own CSS if you like */
+
+/* Lato */
+
+/*@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Bold.ttf');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Semibold.ttf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Regular.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Lato Light';
+    src: url('../fonts/Lato-Light.ttf');
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Light.ttf');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Hairline.ttf');
+    font-weight: 100;
+}*/
+.nav-bar-tabs-top .bar {
+    border-bottom-width: 0px;
+    background-image: none;
+}
+.picture {
+    width: 70px;
+    height: 70px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ccc;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    text-align: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    top: 13px;
+    left: 10px;
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
+}
+.company {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    overflow: hidden;
+    background-color: white;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    text-align: center;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    top: 22.5px;
+    border: 1px solid #F0F0F0;
+    right: 10px;
+}
+.item-avatar2 .item-content {
+    padding: 0px 0px 0px 50px;
+    background: transparent;
+}
+.item-avatar2.item-checkbox .card-style {
+    min-height: 78px;
+}
+.card-style {
+    padding: 16px 65px 16px 40px;
+    background: white;
+    border: 1px solid #DFDFDF;
+}
+.card-style h2,
+.card-style p {
+    text-transform: capitalize;
+}
+.item-avatar2 p {
+    font-size: 13px;
+    line-height: 19px;
+}
+.item-avatar2 h2 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.item-avatar2 {
+    height: 100px;
+    background: transparent;
+    border: none;
+    margin-top: 10px;
+}
+.item-avatar2 .item-options {
+    height: 98px;
+}
+.button-fixed {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 999;
+}
+.button-round {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35);
+    font-size: 26px;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+.button-round.activated {
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0);
+    -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0);
+}
+.dialer {
+    background: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    -webkit-box-shadow: 0px -2px 1px rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0px -2px 1px rgba(0, 0, 0, 0);
+    box-shadow: 0px -2px 1px rgba(0, 0, 0, 0);
+    z-index: 1000;
+    text-align: center;
+    border-top: 1px solid #c8c8c8;
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+    transform: translateY(100%);
+}
+.dialer.showen {
+    -webkit-box-shadow: 0px -2px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px -2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px -2px 1px rgba(0, 0, 0, 0.2);
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+}
+span.light-content {
+    color: #8f8f8f;
+    font-size: 11px;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    margin-left: 10px;
+    margin-top: 0;
+}
+.dialer .col {
+    position: relative;
+    padding: 0;
+}
+.dialer-bar button.button {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-size: 22px;
+    padding: 0 10px;
+}
+.dialer-bar {
+    position: relative;
+}
+.dialer-bar input:disabled {
+    background: white;
+}
+.dialer-bar input {
+    width: 100%;
+    text-align: center;
+    height: 54px;
+    border-bottom: 1px solid #c8c8c8;
+}
+.dialer h2 {
+    padding: 12px 0;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+.dialer div.button {
+    background: white;
+    border: 0px;
+}
+.dialer div.button.activated {
+    background: #dfdfdf;
+}
+.number-holder {
+    text-align: left;
+    width: 60px;
+    margin: 0 auto;
+}
+.number-center {
+    text-align: center;
+}
+.item-avatar2.activated,
+.item-avatar2.activated .item-content,
+.item .item-content.activated {
+    background: transparent;
+}
+.item-avatar2.activated .card-style,
+.item .item-content.activated .card-style {
+    background: #dfdfdf
+}
+.dialer h2.positive.icon.ion-ios-telephone {
+    color: white;
+}
+.dialer .button.button-balanced {
+    border-color: #28a54c;
+    background-color: #59B661;
+    color: #fff !important;
+}
+input.phone.number {
+    font-size: 32px;
+    color: #9B59B6 !important;
+}
+.small-icon:before {
+    font-size: 23px !important;
+    line-height: 28px !important;
+}
+.vcard {
+    position: relative;
+    background: white;
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    padding: 20px;
+    min-height: 275px;
+    padding-right: 130px;
+}
+.vcard h1 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 150%;
+}
+.vcard h2 {
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+    line-height: 150%;
+}
+.vcard h3 {
+    font-weight: 100;
+    font-size: 14px;
+    margin: 0;
+    line-height: 150%;
+}
+.in-vcard+.in-vcard {
+    margin-top: 10px;
+}
+.in-vcard {
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.vcard .company {
+    height: 110px;
+    width: 110px;
+    right: 20px;
+    top: 20px;
+}
+.vcard .picture {
+    height: 100px;
+    width: 100px;
+    right: 20px;
+    left: auto;
+    top: 150px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.slider {
+    height: 100%;
+}
+.phone-bg {
+    background: url('../img/phones.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.logo {
+    max-width: 70%;
+    width: 30%;
+}
+.input-holder {
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+.bold {
+    font-weight: 600;
+}
+.thin {
+    font-weight: 300;
+}
+.input-holder input {
+    background: transparent;
+    border: 1px solid #9b59b6;
+    color: white;
+    padding: 21px 5px 19px;
+    width: 100%;
+}
+.padder {
+    padding: 13% 0;
+}
+button.button-50,
+a.button-50 {
+    width: 40%;
+    margin: 0 auto;
+}
+.slider-pager .slider-pager-page {
+    color: #9B59B6;
+}
+.auto-margin {
+    margin: 0 auto;
+}
+.addlogo {
+    width: 100px;
+    height: 100px;
+    line-height: 130%;
+    border: 1px solid #9B59B6;
+    padding: 10px 5px;
+    text-align: center;
+    font-size: 11px;
+    background-color: white;
+    padding-top: 35px;
+    margin: 5px auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.card-effect .item {
+    border: 0px;
+    padding: 0px;
+    border-bottom: 1px solid #9B59B6;
+    margin: 0px;
+}
+.card-effect+.card-effect {
+    margin-top: 15px;
+}
+.card-effect {
+    padding: 10px;
+    background: white;
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.3);
+}
+.heading {
+    color: #9B59B6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    border-bottom: 1px solid #9B59B6;
+    margin: 0 -5px;
+    margin-bottom: 5px;
+}
+.card-effect input {
+    padding-top: 15px !important;
+    padding-left: 0;
+    color: #111;
+    vertical-align: bottom;
+    font-size: 14px;
+    line-height: 100%;
+    padding-right: 0px;
+    /*    text-transform: capitalize;*/
+}
+.card-effect textarea {
+    padding-top: 5px;
+    color: #111;
+}
+.item-avatar2.item-checkbox {
+    padding-left: 40px;
+    height: 78px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 10px;
+}
+.item-avatar2.item-checkbox .picture {
+    top: 8px;
+    height: 60px;
+    width: 60px;
+}
+.item-avatar2.item-checkbox .checkbox {
+    height: 78px;
+    top: 0;
+    margin-top: 0;
+    padding-top: 25px;
+}
+.item-avatar2 .checkbox input:before,
+.item-avatar2 .checkbox .checkbox-icon:before {
+    border-color: #9B59B6;
+}
+.item-avatar2 .checkbox input,
+.item-avatar2 .checkbox-icon {
+    float: right;
+    margin-right: 10px;
+}
+input.mobileno {
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+.withbutton .card-style {
+    padding: 5px 5px 5px 50px;
+    min-height: 91px;
+}
+.withbutton .picture {
+    left: 5px;
+    top: 10px;
+}
+.withbutton {
+    padding: 0 10px 0 40px;
+    height: auto;
+}
+.withbutton .buttoner {
+    margin: 5px 0 0;
+}
+.withbutton .buttoner .button {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.headersearch {
+    width: 100%;
+    color: white;
+    border-bottom: 1px solid white;
+}
+.headersearch input {
+    background-color: transparent;
+    width: 100%;
+    color: white;
+}
+.animate-if.ng-enter,
+.animate-if.ng-leave {
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+}
+.animate-if.ng-enter,
+.animate-if.ng-leave.ng-leave-active {
+    opacity: 0;
+}
+.animate-if.ng-leave,
+.animate-if.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+.popover-backdrop.active {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+.popover {
+    top: 10px;
+    left: auto;
+    right: 10px;
+    height: 160px;
+    width: 220px;
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+}
+.platform-ios .popover {
+    height: 170px;
+    top: 25px;
+    right: 3px;
+}
+.platform-android .popover {
+    top: 70px;
+}
+.popover-backdrop.active .popover {
+    opacity: 1;
+}
+.platform-ios .popover-arrow {
+    right: 0;
+}
+.filter-modal .item {
+    padding: 10px 5px;
+    font-size: 14px;
+    border: 0;
+    border-bottom: 1px solid #DDD;
+    margin: 0;
+    background: transparent;
+}
+.filter-modal .right .item {
+    padding: 0px;
+}
+.filter-modal .right label {
+    padding: 10px 5px;
+    width: 100%;
+    display: block;
+}
+.row.filter-modal .col {
+    padding: 0px 5px;
+}
+.bg-filter {
+    background: -webkit-linear-gradient(0deg, white 49.5%, #ccc 50%, #EFEFEF 50%);
+    background: -o-linear-gradient(0deg, white 49.5%, #ccc 50%, #EFEFEF 50%);
+    background: -moz-linear-gradient(0deg, white 49.5%, #ccc 50%, #EFEFEF 50%);
+    background: linear-gradient(90deg, white 49.5%, #ccc 50%, #EFEFEF 50%);
+}
+.filter-modal input[type="checkbox"] {
+    background: transparent;
+    border: 1px rgb(155, 89, 182) solid;
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+    color: #9B59B6;
+    font-family: Ionicons;
+    text-align: center;
+}
+.filter-modal .col {
+    top: 44px;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    bottom: 30px;
+    height: auto;
+    overflow-y: scroll;
+}
+.filter-modal .col.right {
+    right: 0;
+    left: auto;
+}
+.bottom-stick {
+    position: absolute;
+    bottom: 0px;
+    z-index: 9;
+    right: 0px;
+}
+.filter-modal input[type="checkbox"]:before {
+    content: '\f121';
+    opacity: 0;
+    -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
+}
+.filter-modal input[type="checkbox"]:checked:before {
+    opacity: 1;
+}
+.filter-modal .active.item {
+    color: #9B59B6;
+    font-weight: 600;
+}
+.spacing+.spacing {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.specialcard .company {
+    left: 20px;
+    right: auto;
+}
+.specialcard {
+    padding: 30px 0;
+    padding-right: 20px;
+    padding-left: 145px;
+    min-height: 155px;
+    margin-bottom: 20px;
+}
+.vcard.withheading {
+    padding: 20px;
+    padding-top: 10px;
+}
+.vcard.withheading .picture {
+    position: static;
+    margin: 10px auto;
+    height: 110px;
+    width: 110px;
+    margin-top: 20px;
+}
+.one+.one {
+    display: block;
+    margin-left: 0;
+}
+.two+.one {
+    display: block;
+    margin-left: 0;
+}
+.withheading .row+.row {
+    border-top: 1px solid #dfdfdf;
+    padding-top: 10px;
+    margin-top: 5px;
+}
+.card-effect.nobg {
+    background: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.platform-ios.platform-cordova:not(.fullscreen) .filter-modal .col {
+    top: 64px;
+}
+.myprofile-card.card-effect {
+    padding-left: 130px;
+}
+.personal-card.card-effect {
+    padding-left: 130px;
+}
+.myprofile-card .addlogo {
+    position: absolute;
+    top: 4px;
+    height: 105px;
+    width: 105px;
+    left: 10px;
+    padding-top: 45px;
+}
+.personal-card .addlogo {
+    position: absolute;
+    top: 6px;
+    height: 105px;
+    width: 105px;
+    left: 10px;
+    padding-top: 40px;
+}
+span.linked {
+    color: white;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-right: 10px;
+}
+.popup-container .popup {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: 1px solid #9B59B6;
+}
+.popup-head,
+.popup-head>* {
+    border-color: #9B59B6;
+    color: white;
+}
+.popup-buttons .button {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+.dialUP {
+    position: absolute;
+    top: -70px;
+}
+.transparent-bg {
+    background: transparent;
+    font-size: 15px;
+}
+.reverse-padding .list {
+    margin: -10px;
+    margin-bottom: 10px;
+}
+.card-effect .item.last-input {
+    margin-left: -120px;
+}
+.highlight {
+    background: #9b59b6;
+    color: white;
+    font-weight: bold;
+}
+.noresult {
+    width: 110px;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+.add-logo {
+    background-image: url('../img/add_logo.png');
+}
+.upload-image {
+    background-image: url('../img/upload_picture.png');
+}
+.item.ng-dirty {
+    border-bottom-color: #FF5619;
+    border-width: 2px;
+}
+.default-height .card-style {
+    min-height: 98px;
+}
+.backdrop {
+    background-color: transparent;
+}
+.loading-container .loading {
+    background-color: #9B59B6;
+    padding: 10px;
+}
+.loading .spinner svg {
+    width: 32px;
+    height: 32px;
+    stroke: #fff;
+    fill: #fff;
+}
+.card-effect .item-select .input-label {
+    font-size: 14px;
+    color: #B4B4B4;
+    padding-bottom: 4px;
+    padding-top: 0;
+    margin-top: 10px;
+}
+.card-effect .item-select select {
+    padding: 0 35px 0 5px;
+}

@@ -1,0 +1,57 @@
+<ion-view view-title=" " class="phone-bg" hide-nav-bar="true">
+
+    <ion-slide-box on-slide-changed="slideChanged(index)" ng-init="disableSwipe();">
+        <ion-slide>
+            <div class="padder"></div>
+            <div class="text-center padding">
+                <img class="logo" src="img/spingr.png">
+                <h5 class="light">Please enter your mobile number</h5>
+
+               <form ng-submit="phonesubmit(personal);">
+                     <div class="input-holder">
+                        <div class="row">
+                            <div class="col col-20">
+                                <input type="tel" value="+91" class="text-center" ng-model="personal.countrycode">
+                            </div>
+                            <div class="col">
+                                <input type="tel" placeholder="Mobile Number" ng-keypress="onenter($event,phonesubmit,personal)" ng-model="personal.phone" maxlength="10">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="light thin"><span class="bold">Note:</span> OTP(One Time Password) will be sent on the above number.</p>
+                    
+                    <button class="button button-outline button-block button-positive button-50" type="submit">Submit</button>
+                </form>
+
+            </div>
+        </ion-slide>
+        <ion-slide ng-controller="AppCtrl">
+            <div class="padder"></div>
+            <div class="text-center padding">
+                <img class="logo" src="img/spingr.png">
+                <h5 class="light">Please wait sending OTP.</h5>
+
+                <form ng-submit="checkotp();">
+                    <div class="input-holder">
+                        <div class="row">
+                            <div class="col col-75 auto-margin">
+                                <input type="tel" placeholder="Enter OTP" class="text-center" ng-model="otp.number" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="light thin"><span class="bold">Note:</span> The OTP is send to your mobile number, please check your SMS inbox.</p>
+                    
+                    <button class="button button-outline button-block button-positive button-50" ng-keypress="onenter($event,checkotp)" type="submit">Submit</button>
+                </form>
+
+            </div>
+
+            <div class="text-right">
+                <span class="linked" ng-click="showAlert();">Didn't get OTP?</span>
+            </div>
+        </ion-slide>
+    </ion-slide-box>
+
+</ion-view>

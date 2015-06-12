@@ -1,0 +1,47 @@
+<ion-modal-view class="bg-filter">
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Filter</h1>
+        <div class="buttons button-right">
+            <button class="button button-clear" ng-click="closefilter();">Close</button>
+        </div>
+    </ion-header-bar>
+
+    <div class="row filter-modal">
+        <div class="col col-50">
+            <ion-list>
+                <ion-item class="active">Name (12)</ion-item>
+                <ion-item>Company (12)</ion-item>
+                <ion-item>Location (12)</ion-item>
+                <ion-item>Designation (12)</ion-item>
+            </ion-list>
+        </div>
+        <div class="col right">
+            <ion-list>
+                <ion-item ng-repeat="contact in contacts">
+                    <label>
+                        <input type="checkbox">{{contact.name}}</label>
+                </ion-item>
+                <ion-item ng-repeat="contact in contacts">
+                    <label>
+                        <input type="checkbox">{{contact.name}}</label>
+                </ion-item>
+                <ion-item ng-repeat="contact in contacts">
+                    <label>
+                        <input type="checkbox">{{contact.name}}</label>
+                </ion-item>
+                <ion-item ng-repeat="contact in contacts">
+                    <label>
+                        <input type="checkbox">{{contact.name}}</label>
+                </ion-item>
+                <ion-item ng-repeat="contact in contacts">
+                    <label>
+                        <input type="checkbox">{{contact.name}}</label>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div class="button-bar bottom-stick">
+            <button class="button button-positive button-small">Clear</button>
+            <button class="button button-positive button-small">Apply</button>
+        </div>
+    </div>
+</ion-modal-view>

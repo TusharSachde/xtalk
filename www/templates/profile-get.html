@@ -1,0 +1,34 @@
+<ion-view view-title="Get Profile">
+
+    <ion-nav-buttons side="right">
+        <a class="button button-clear" ng-click="UserAddShareSubmit();">Done</a>
+    </ion-nav-buttons>
+
+    <ion-content class="padding">
+        <p class="text-center">
+            Congratulations! Now you have proper profile of <span class="bold">{{getcontacts.length}}</span> of your contacts in your SPingbook. Following people have shared their profile with you click on Add button to add these contacts to your SPingbook, click on Add &amp; Share button to add these contacts as well as share your profile with them.
+        </p>
+        <div class="heading">Share my profile with</div>
+
+        <ion-list>
+            <ion-item class="item-avatar2 withbutton" ng-repeat="contact in getcontacts" type="item-text-wrap">
+
+                <div class="picture" style="background-image: url('{{contact.image}}'), url('img/default.png');"></div>
+
+                <div class="card-style">
+                    <h2 class="positive">{{contact.name}}</h2>
+                    <p class="stable">{{contact.companyname}}</p>
+                    <div class="buttoner">
+                        <button class="button button-positive button-small" ng-class="{'button-outline':contact.add=='Add'}" ng-click="changeAdd(contact);">{{contact.add}}</button>
+
+                        <button class="button button-positive button-small" ng-class="{'button-outline':contact.addShare=='Add & Share'}" ng-click="changeAddShare(contact);">{{contact.addShare}}</button>
+
+                    </div>
+                </div>
+
+            </ion-item>
+        </ion-list>
+
+
+    </ion-content>
+</ion-view>
