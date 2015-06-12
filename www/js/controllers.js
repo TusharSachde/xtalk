@@ -457,6 +457,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log(result);
         console.log("contactcount=" + result);
         $scope.contactcount = result;
+        $ionicLoading.hide();
     }
     contactSync.contactcount(contactcountcallback);
 
@@ -484,7 +485,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 
     //    $scope.$apply();
-    $ionicLoading.hide();
 })
 
 .controller('ProfileGetCtrl', function ($scope, MyServices, $location, $ionicLoading) {
