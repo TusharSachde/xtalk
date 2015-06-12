@@ -5,17 +5,17 @@
         </a>
     </ion-nav-buttons>
 
-
+   
     <!--Delete After done-->
     <ion-toggle ng-model="mainLoader" toggle-class="toggle-positive" class="has-header" style="z-index: 999;">Test loader. Delete later.</ion-toggle>
     <!--Delete After done-->
 
-    <div class="centralized animate-if" ng-if="!mainLoader">
+    <div class="centralized" ng-hide="mainLoader">
         <ion-spinner class="spinner-positive"></ion-spinner>
         <p>Please wait, initializing your profile.</p>
     </div>
 
-    <ion-content class="padding animate-if" ng-if="mainLoader">
+    <ion-content class="padding" ng-show="mainLoader">
 
         <ion-list class="reverse-padding">
             <ion-item class="transparent-bg">
