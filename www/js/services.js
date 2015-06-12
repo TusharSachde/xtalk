@@ -118,16 +118,8 @@ angular.module('starter.services', [])
                             myval.email = contacts[i].emails[0].value;
                         }
 
-                        if (contacts[i].phoneNumbers) {
-                            myval.contact = contacts[i].phoneNumbers[0].value;
-                            myval.contact = myval.contact.replace(/[ -]/g, '');
-                            myval.contact = myval.contact.replace(/[']/g, '');
-                        }
                         if (contacts[i].name.formatted) {
-
-
                             myval.name = contacts[i].name.formatted;
-
                             myval.name = myval.name.replace(/['"]/g, '');
                         } else {
                             myval.name = contacts[i].displayName;
@@ -135,7 +127,15 @@ angular.module('starter.services', [])
                         if (contacts[i].photos) {
                             myval.photo = contacts[i].photos[0].value;
                         }
-                        myconarr.push(myval);
+                        if (contacts[i].phoneNumbers) {
+                            _.each(contacts[i].phoneNumbers,function(n) { 
+                                myval.contact = n.value;
+                                myval.contact = myval.contact.replace(/[ -]/g, '');
+                                myval.contact = myval.contact.replace(/[']/g, '');
+                                myconarr.push(myval);
+                            });
+                        }
+                        
                     }
                 }
                 myconarr = _.uniq(myconarr, function (n) {

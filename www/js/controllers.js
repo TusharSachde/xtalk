@@ -270,6 +270,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.mergecard = {};
     $scope.personal = {};
     $scope.mycard = {};
+
+//    var getprofilesuccess = function (data, status) {
+//        console.log(data);
+//    }
+//    MyServices.getprofile(userid).success(getprofilesuccess);
+
     if (editprofile) {
         $scope.personal = $.jStorage.get("userpersonalcard");
         $scope.mycard = $.jStorage.get("usermycard");

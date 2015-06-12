@@ -27,7 +27,7 @@
                 <label class="checkbox">
                     <input type="checkbox" ng-model="contact.isShared">
                 </label>
-                <div class="picture" style="background-image: url('{{contact.image}}'), url('img/default.png');"></div>
+                <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}'), url('img/default.png');"></div>
                 <!--                <div class="picture"></div>-->
                 <div class="card-style">
                     <h2 class="positive">{{contact.name}}</h2>
