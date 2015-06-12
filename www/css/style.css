@@ -31,6 +31,7 @@
     src: url('../fonts/Lato-Hairline.ttf');
     font-weight: 100;
 }*/
+
 .nav-bar-tabs-top .bar {
     border-bottom-width: 0px;
     background-image: none;
@@ -729,4 +730,8 @@ span.linked {
 }
 .card-effect .item-select select {
     padding: 0 35px 0 5px;
+}
+.code-holder {
+    padding: 0px;
+    width: 40px;
 }
