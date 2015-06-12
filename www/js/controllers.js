@@ -821,7 +821,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         });
         $ionicLoading.hide();
     }
-    MyServices.getShared(userid).success(getSharedSuccess);
+    MyServices.getShared($.jStorage.get("user")).success(getSharedSuccess);
 
     var newsfeedaddSuccess = function (data, status) {
         console.log(data);
