@@ -43,9 +43,22 @@
 
     <icon src="www/logo.png" />
 
-    <splash src="www/img/logo.png" />
+    <splash src="www/splash.png" />
 
+    <plugin name="com.ionic.keyboard" />
+    <plugin name="cordova-plugin-device" />
+    <plugin name="cordova-plugin-statusbar" />
+    <plugin name="nl.x-services.plugins.socialsharing" />
+    <plugin name="cordova-plugin-network-information" />
+    <plugin name="info.asankan.phonegap.smsplugin" />
+    <plugin name="com.teamnemitoff.phonedialer" />
+    <plugin name="cordova-plugin-contacts" />
+    <plugin name="cordova-plugin-camera" />
+    <plugin name="cordova-plugin-inappbrowser" />
+    <plugin name="cordova-plugin-file" />
+    <plugin name="cordova-plugin-file-transfer" />
     <plugin name="cordova-plugin-whitelist" />
+
 
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true" />
