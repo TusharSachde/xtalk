@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             views: {
                 'profile-personal': {
                     templateUrl: 'templates/profile-personal.html',
-                    controller: 'ProfileCtrl'
+                    controller: 'PersonalProfileCtrl'
                 }
             }
         })
