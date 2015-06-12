@@ -735,3 +735,20 @@ span.linked {
     padding: 0px;
     width: 40px;
 }
+.item-no-holder {
+    height: 34px;
+}
+.item-no-holder.item-select select {
+    direction: ltr;
+    left: 0;
+    height: auto;
+    top: auto;
+    bottom: 0;
+    padding: 0;
+}
+.item-no-holder.item-select:after {
+    right: 5px;
+    bottom: 10px;
+    top: auto;
+}
+}

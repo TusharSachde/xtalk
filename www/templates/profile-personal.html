@@ -13,8 +13,19 @@
                 <label class="item item-input">
                     <input type="text" onfocus="(this.type='date')" placeholder="Anniversary" ng-model="personal.doa">
                 </label>
-                <label class="item item-input">
+                <label class="item item-input  item-select item-no-holder">
                     <input type="text" placeholder="Blood Group" autocapitalize="on" ng-model="personal.bloodgroup">
+                    <select ng-model="personal.bloodgroup">
+                        <option value="">Blood Group</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
                 </label>
             </div>
         </div>
@@ -39,12 +50,9 @@
                 <!--<label class="item item-input">
                     <input type="text" placeholder="Country" autocapitalize="on" ng-model="personal.country">
                 </label>-->
-                <label class="item item-input item-select">
-                    <div class="input-label">
-                        Country
-                    </div>
+                <label class="item item-input item-select item-no-holder">
                     <select ng-model="personal.country" placeholder="country">
-                        <option value="">Please Select</option>
+                        <option value="">Country</option>
                         <option value="Afganistan">Afghanistan</option>
                         <option value="Albania">Albania</option>
                         <option value="Algeria">Algeria</option>
