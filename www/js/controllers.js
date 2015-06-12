@@ -156,13 +156,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     })
     .controller('PersonalProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
 
+        if ($.jStorage.get('user')) {
+            userid = $.jStorage.get("user");
+        }
+
+
         $scope.startloading = function () {
             $ionicLoading.show({
                 template: '<ion-spinner class="spinner-light"></ion-spinner>'
             });
         };
-        $scope.startloading();
-
         //    var options = {
         //        quality: 40,
         //        destinationType: Camera.DestinationType.NATIVE_URI,
@@ -170,7 +173,26 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         //        encodingType: Camera.EncodingType.JPEG
         //    };
         $scope.mycard = {};
-        $scope.mycard = $.jStorage.get("usermycard");
+    
+        var getprofilesuccess = function (data, status) {
+            console.log(data);
+            if (data != "false") {
+                $scope.mycard = data;
+            } else {
+                $scope.mycard.mobileextension = "+91";
+                $scope.mycard.landlineextension = "+91"
+                $scope.mycard.country = "India";
+            }
+            $ionicLoading.hide();
+        }
+        if ($.jStorage.get("mycard")) {
+            $scope.mycard = $.jStorage.get("mycard");
+        } else {
+            $scope.startloading();
+            MyServices.getprofile(userid).success(getprofilesuccess);
+        }
+
+
         $scope.mycard.profilelogo = 'img/logo.jpg';
         var changeproflogo = function (result) {
             console.log(result);
@@ -222,27 +244,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     });
                 });
         };
-        $scope.mycard.mobileextension = "+91";
-        $scope.mycard.landlineextension = "+91"
-        $scope.mycard.country = "India";
-
-        var getprofilesuccess = function (data, status) {
-            console.log(data);
-
-            $ionicLoading.hide();
-        }
-        MyServices.getprofile(userid).success(getprofilesuccess);
-
 
         if (editprofile) {
-            $scope.mycard = $.jStorage.get("usermycard");
+            $scope.mycard = $.jStorage.get("mycard");
         } else {
             $scope.mycard.companycontact = personalcontact;
         }
         $scope.CardDetails = function () {
             console.log($scope.mycard);
-            $.jStorage.set("usermycard", $scope.mycard);
-            //            MyServices.createCard(card).success(createCardSucess);
+            $.jStorage.set("mycard", $scope.mycard);
+            MyServices.createCard($scope.mycard).success(createCardSucess);
         };
         var createCardSucess = function (data, status) {
             console.log(data);
@@ -261,11 +272,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 template: '<ion-spinner class="spinner-light"></ion-spinner>'
             });
         };
-        $scope.startloading();
+        //        $scope.startloading();
 
         $scope.mycard = {};
 
-        $scope.mycard.companylogo = 'img/logo.jpg';
         //    var options = {
         //        quality: 40,
         //        destinationType: Camera.DestinationType.NATIVE_URI,
@@ -347,23 +357,23 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
         var getprofilesuccess = function (data, status) {
             console.log(data);
-            $scope.mycard = data;
+            if (data != "false") {
+                $scope.mycard = data;
+            } else {
+                $scope.mycard.companylogo = 'img/logo.jpg';
+                $scope.mycard.companycontactextension = "+91";
+                $scope.mycard.directlandlineextension = "+91";
+                $scope.mycard.boardlandlineextension = "+91";
+                $scope.mycard.companycountry = "India";
+            }
             $ionicLoading.hide();
         }
-        if (!$.jStorage.get("profilesaved")) {
+        if (!$.jStorage.get("mycard")) {
+            $scope.startloading();
             MyServices.getprofile(userid).success(getprofilesuccess);
-        }
-
-        if (editprofile) {
-            $scope.mycard = $.jStorage.get("mycard");
         } else {
-            $scope.mycard.companycontact = personalcontact;
+            $scope.mycard = $.jStorage.get("mycard");
         }
-
-        $scope.mycard.companycontactextension = "+91";
-        $scope.mycard.directlandlineextension = "+91";
-        $scope.mycard.boardlandlineextension = "+91";
-        $scope.mycard.companycountry = "India";
 
         $scope.CardDetails = function (card, k) {
             console.log(card);
@@ -382,7 +392,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             } else if (check && k == 1) {
                 card.id = userid;
                 $.jStorage.set("mycard", card);
-                //            MyServices.createCard(card).success(createCardSucess);
+                MyServices.createCard(card).success(createCardSucess);
             }
         };
         var createCardSucess = function (data, status) {
