@@ -139,7 +139,7 @@ angular.module('starter.services', [])
                     }
                 }
                 myconarr = _.uniq(myconarr, function (n) {
-                    return n.name + n.contact;
+                    return (n.name +"-"+n.contact);
                 });
                 callback(myconarr);
             }
