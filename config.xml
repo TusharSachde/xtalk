@@ -41,9 +41,17 @@
     <preference name="StatusBarBackgroundColor" value="#ffffff" />
     <preference name="StatusBarStyle" value="lightcontent" />
 
-    <icon src="www/logo.png" />
+    <icon src="res/icon/logo.png" />
 
-    <splash src="www/splash.png" />
+    <splash src="res/screen/splash.png" />
+    
+    <platform name="android">
+    <!-- you can use any density that exists in the Android project -->
+    <splash src="res/screen/splash.png" density="land-hdpi"/>
+    <splash src="res/screen/splash.png" density="land-ldpi"/>
+    <splash src="res/screen/splash.png" density="land-mdpi"/>
+    <splash src="res/screen/splash.png" density="land-xhdpi"/>
+    </platform>
 
     <plugin name="com.ionic.keyboard" />
     <plugin name="cordova-plugin-device" />
