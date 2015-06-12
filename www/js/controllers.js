@@ -440,6 +440,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     var checktoskip = function () {
         checkto++;
         if (checkto == 2) {
+            $ionicLoading.hide();
+            $scope.apply();
             if (contact.length == 0) {
                 $location.path("/profile/get");
             }
@@ -471,8 +473,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log(result);
         console.log("contactcount=" + result);
         $scope.contactcount = result;
-        $ionicLoading.hide();
-        $scope.apply();
+
     }
 
 
