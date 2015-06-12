@@ -233,45 +233,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
         MyServices.getprofile(userid).success(getprofilesuccess);
 
-<<<<<<< HEAD
-    if (editprofile) {
-        $scope.mycard = $.jStorage.get("usermycard");
-    } else {
-        $scope.mycard.companycontact = personalcontact;
-    }
 
-    $scope.mycard.companycontactextension = "+91";
-    $scope.mycard.directlandlineextension = "+91";
-    $scope.mycard.boardlandlineextension = "+91";
-    $scope.mycard.mobileextension = "+91";
-    $scope.mycard.landlineextension = "+91"
-    $scope.mycard.country = "India";
-    $scope.mycard.companycountry = "India";
-
-    $scope.CardDetails = function (card, k) {
-        console.log(card);
-        $scope.allvalidation = [{
-            field: $scope.mycard.name,
-            validation: ""
-        }, {
-            field: $scope.mycard.companyemail,
-            validation: ""
-        }];
-        var check = formvalidation($scope.allvalidation);
-        if (check && k == 0) {
-            card.id = userid;
-            $.jStorage.set("usermycard", card);
-            $location.path("/profile/personal");
-        } else if (check && k == 1) {
-            card.id = userid;
-            $.jStorage.set("usermycard", card);
-            //            MyServices.createCard(card).success(createCardSucess);
-=======
         if (editprofile) {
             $scope.mycard = $.jStorage.get("usermycard");
         } else {
             $scope.mycard.companycontact = personalcontact;
->>>>>>> 916d2d552df5fa63b6c553abcdbf2d40e940dcfc
         }
         $scope.CardDetails = function () {
             console.log($scope.mycard);
