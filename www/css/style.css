@@ -70,10 +70,10 @@
     background-repeat: no-repeat;
     position: absolute;
     text-align: center;
-    -webkit-background-size: 100% auto;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
     top: 22.5px;
     border: 1px solid #F0F0F0;
     right: 10px;
@@ -361,10 +361,6 @@ a.button-50 {
     margin: 5px auto;
     background-position: center center;
     background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 .card-effect .item {
     border: 0px;
@@ -640,6 +636,10 @@ input.mobileno {
     width: 105px;
     left: 10px;
     padding-top: 45px;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
 }
 .personal-card .addlogo {
     position: absolute;
@@ -648,6 +648,10 @@ input.mobileno {
     width: 105px;
     left: 10px;
     padding-top: 40px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 span.linked {
     color: white;
