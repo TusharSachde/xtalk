@@ -182,6 +182,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 $scope.mycard.mobileextension = "+91";
                 $scope.mycard.landlineextension = "+91"
                 $scope.mycard.country = "India";
+                $scope.mycard.profilelogo = 'img/logo.jpg';
             }
             $ionicLoading.hide();
         }
@@ -193,10 +194,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
 
 
-        $scope.mycard.profilelogo = 'img/logo.jpg';
         var changeproflogo = function (result) {
             console.log(result);
-            $scope.profilelogo = result.value;
+            $scope.mycard.profilelogo = result.value;
         }
         $scope.changeprofilelogo = function () {
             console.log("take picture");
@@ -287,7 +287,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         //Contacts Sending
         var changecmpylogo = function (result) {
             console.log(result);
-            $scope.companylogo = result.value;
+            $scope.mycard.companylogo = result.value;
         }
         $scope.changecompanylogo = function () {
             console.log("take picture");
