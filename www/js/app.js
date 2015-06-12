@@ -221,6 +221,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         return function (image) {
             if (image && image != "") {
                 return imgpath + image;
+            } else {
+                return "img/default.png";
             }
         };
     })

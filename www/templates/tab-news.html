@@ -9,7 +9,7 @@
 -->
 			<ion-item class="item-avatar2 withbutton" ng-repeat="contact in newsfeed" type="item-text-wrap">
 
-				<div class="picture" style="background-image: url('{{contact.image}}');"></div>
+				<div class="picture" style="background-image: url('{{contact.image|sserverimageprofile}}');"></div>
 
 				<div class="card-style">
 					<h2 class="positive">{{contact.name}}</h2>
