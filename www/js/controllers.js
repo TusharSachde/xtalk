@@ -409,6 +409,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         });
     };
 
+    $scope.mainLoader = false;
+
     var tobeShared = {
         userid: userid,
         tobeSharedArr: []
@@ -430,6 +432,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         contact = data;
         $scope.spingrcontacts = contact;
 
+        $scope.spingrcontactcount = $scope.spingrcontacts.length;
+        console.log("spingrcontactcount=" + $scope.spingrcontactcount);
         for (var i = 0; i < contact.length; i++) {
             $scope.spingrcontacts[i].isShared = false;
             //    level2id[i] = $scope.spingrcontacts[i].userid;
@@ -439,12 +443,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     var checkto = 0;
     var checktoskip = function () {
         checkto++;
-        if (checkto == 2) {
+        if (checkto == 3) {
             $ionicLoading.hide();
-            $scope.apply();
+            $scope.mainLoader = true;
+
             if (contact.length == 0) {
                 $location.path("/profile/get");
             }
+            $scope.$apply();
         }
     }
 
@@ -473,23 +479,22 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log(result);
         console.log("contactcount=" + result);
         $scope.contactcount = result;
-
+        checktoskip();
+        $scope.$apply();
     }
 
 
-    $scope.spingrcontactcount = $scope.spingrcontacts.length;
-    console.log("spingrcontactcount=" + $scope.spingrcontactcount);
+
 
     $scope.sendShare = function () {
 
         tobeShared.tobeSharedArr = [];
-        for (var i = 0; i < $scope.spingrcontacts.length; i++) {
-            if ($scope.spingrcontacts[i].isShared == true) {
-                console.log($scope.spingrcontacts[i].isShared)
-                tobeShared.tobeSharedArr.push($scope.spingrcontacts[i].userid)
-            }
-            //    level2id[i] = $scope.spingrcontacts[i].userid;
-        }
+
+        tobeShared.tobeSharedArr = _.pluck(_.filter($scope.spingrcontacts, function (n) {
+            return n.isShared;
+        }), 'id');
+
+        
         var sharewithSuccess = function (data, status) {
             $location.path("/profile/get");
         }
