@@ -4,7 +4,18 @@
         Share
         </a>
     </ion-nav-buttons>
-    <ion-content class="padding">
+
+
+    <!--Delete After done-->
+    <ion-toggle ng-model="mainLoader" toggle-class="toggle-positive" class="has-header" style="z-index: 999;">Test loader. Delete later.</ion-toggle>
+    <!--Delete After done-->
+
+    <div class="centralized animate-if" ng-if="!mainLoader">
+        <ion-spinner class="spinner-positive"></ion-spinner>
+        <p>Please wait, initializing your profile.</p>
+    </div>
+
+    <ion-content class="padding animate-if" ng-if="mainLoader">
 
         <ion-list class="reverse-padding">
             <ion-item class="transparent-bg">
@@ -34,10 +45,6 @@
                     <p class="stable">{{contact.company}}</p>
                 </div>
             </ion-item>
-
-
-
-
 
         </ion-list>
 
