@@ -282,15 +282,15 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     } else {
         $scope.mycard.companycontact = personalcontact;
     }
-    
-    $scope.mycard.companycontactextension="+91";
-    $scope.mycard.directlandlineextension="+91";
-    $scope.mycard.boardlandlineextension="+91";
-    $scope.mycard.mobileextension="+91";
-    $scope.mycard.landlineextension="+91"
-    $scope.mycard.country="India";
+
+    $scope.mycard.companycontactextension = "+91";
+    $scope.mycard.directlandlineextension = "+91";
+    $scope.mycard.boardlandlineextension = "+91";
+    $scope.mycard.mobileextension = "+91";
+    $scope.mycard.landlineextension = "+91"
+    $scope.mycard.country = "India";
     $scope.mycard.companycountry = "India";
-    
+
     $scope.CardDetails = function (card, k) {
         console.log(card);
         $scope.allvalidation = [{
@@ -334,6 +334,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         //    };
 })
 
+
 .controller('Circle1Ctrl', function ($scope) {})
 
 .controller('Circle2Ctrl', function ($scope) {})
@@ -358,17 +359,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     $scope.startloading();
     $scope.spingrcontacts = contact;
-    if ($scope.spingrcontacts.length == 0) {
+    if ( contact.length == 0) {
         $location.path("/profile/get");
     }
-    //	$scope.spingrcontacts = [{
-    //		userid: 1,
-    //		name: 'vishal'
-    //    }, {
-    //		userid: 2,
-    //		name: 'dhaval'
-    //    }];
-    for (var i = 0; i < $scope.spingrcontacts.length; i++) {
+    for (var i = 0; i < contact.length; i++) {
         $scope.spingrcontacts[i].isShared = false;
         //    level2id[i] = $scope.spingrcontacts[i].userid;
     }
@@ -560,7 +554,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.syncnewcontacts = function () {
         console.log("Hey");
         //        contactSync.synclocaltoserver();
-        //        MyServices.getallcontacts(contactCallback);
+        MyServices.getallcontacts(contactCallback);
     }
 
     $scope.namesearch = function () {
@@ -752,11 +746,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log('spingpage');
     }
 
-    var level2callback = function (data, status) {
-        console.log("Level2");
-        console.log(data);
-    };
-    MyServices.getlevel2contacts().success(level2callback);
+
 
     $scope.openeditprofile = function () {
         editprofile = true;
@@ -778,21 +768,21 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
     }
     $scope.showDetail = function (contact) {
-        MyServices.isadded(contact.personalMobile).success(isAddedSuccess);
-        contactDetail = contact;
-        //        console.log(contact);
-    }
-    var level2callback = function (data, status) {
-        $scope.circle2contacts = data;
-        console.log($scope.circle2contacts);
-    };
-    MyServices.getlevel2contacts().success(level2callback);
-
-    var level3callback = function (data, status) {
-        $scope.circle3contacts = data;
-        console.log($scope.circle3contacts);
-    };
-    MyServices.getlevel3contacts().success(level3callback);
+            MyServices.isadded(contact.personalMobile).success(isAddedSuccess);
+            contactDetail = contact;
+            //        console.log(contact);
+        }
+        //    var level2callback = function (data, status) {
+        //        $scope.circle2contacts = data;
+        //        console.log($scope.circle2contacts);
+        //    };
+        //    MyServices.getlevel2contacts().success(level2callback);
+        //
+        //    var level3callback = function (data, status) {
+        //        $scope.circle3contacts = data;
+        //        console.log($scope.circle3contacts);
+        //    };
+        //    MyServices.getlevel3contacts().success(level3callback);
 
 })
 
