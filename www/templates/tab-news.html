@@ -17,7 +17,7 @@
 					<div class="buttoner">
 						<button class="button button-positive button-small" ng-class="{'button-outline':contact.add=='Add'}" ng-click="changeAdd(contact);">{{contact.add}}</button>
 
-						<button class="button button-positive button-small" ng-class="{'button-outline':contact.addShare=='Add & Share'}" ng-click="changeAddShare(contact);" ng-if="contact.alreadyshared!='1'>{{contact.addShare}}</button>
+						<button class="button button-positive button-small" ng-class="{'button-outline':contact.addShare=='Add & Share'}" ng-click="changeAddShare(contact);" ng-if="contact.alreadyshared != '1'">{{contact.addShare}}</button>
 
 					</div>
 				</div>
