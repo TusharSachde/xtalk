@@ -433,7 +433,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     $scope.startloading();
     $scope.spingrcontacts = contact;
-    if ( contact.length == 0) {
+    if (contact.length == 0) {
         $location.path("/profile/get");
     }
     for (var i = 0; i < contact.length; i++) {
@@ -625,10 +625,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             contactSync.iscontactpresent(n, recordcallback);
         });
     }
+    var isnew = 0;
     $scope.syncnewcontacts = function () {
+        isnew++;
         console.log("Hey");
         //        contactSync.synclocaltoserver();
-        MyServices.getallcontacts(contactCallback);
+        if (isnew == 1) {
+            MyServices.getallcontacts(contactCallback);
+        }
     }
 
     $scope.namesearch = function () {

@@ -287,12 +287,12 @@ contactsync.factory('contactSync', function ($http) {
         var query = "SELECT count(*) as count FROM `contacts`";
         returnval.query(query, function (result, len) {
             console.log(result);
-            callback(result[0].count,len);
+            callback(result.item(0).count, len);
         });
     }
 
     returnval.create = function (data, callback) {
-        //       console.log(data.name);
+        console.log(data.name);
         //     console.log(data);
 
         returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`,`personalMobile`,`photoUrl`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "','" + data.photo + "')", function (result, len, id) {
