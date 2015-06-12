@@ -1,11 +1,13 @@
 <ion-view view-title="SpingR">
     <ion-content class="padding">
         <div class="card-effect myprofile-card">
-            <div class="addlogo" ng-click="changecompanylogo()" style="background-image:url('{{mycard.companylogo}}')" ng-if="mycard.companylogo=='img/logo.jpg'">
+            <div class="addlogo" ng-click="changecompanylogo()" style="background-image:url('{{mycard.companylogo|serverimage}}')" ng-if="mycard.companylogo=='img/logo.jpg'">
                 Add company logo
             </div>
+<!--
             <div class="addlogo" ng-click="changecompanylogo()" style="background-image:url('{{mycard.companylogo|serverimage}}')" ng-if="mycard.companylogo!='img/logo.jpg'">
             </div>
+-->
             <div class="list">
                 <label class="item item-input" ng-class="allvalidation[0].validation">
                     <input type="text" placeholder="Your Full Name*" autocapitalize="on" ng-model="mycard.name" required>

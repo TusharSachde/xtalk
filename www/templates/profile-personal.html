@@ -1,11 +1,13 @@
 <ion-view view-title="SpingR">
     <ion-content class="padding">
         <div class="card-effect personal-card">
-            <div class="addlogo" ng-click="changeprofilelogo()" style="background-image:url('{{mycard.profilelogo}}')" ng-if="mycard.profilelogo=='img/logo.jpg'">
+            <div class="addlogo" ng-click="changeprofilelogo()" style="background-image:url('{{mycard.profilelogo|serverimage}}')" ng-if="mycard.profilelogo=='img/logo.jpg'">
                 Upload profile picture
             </div>
+<!--
             <div class="addlogo" ng-click="changeprofilelogo()" style="background-image:url('{{mycard.profilelogo|serverimage}}')" ng-if="mycard.profilelogo!='img/logo.jpg'">
             </div>
+-->
             <div class="list">
                 <label class="item item-input">
                     <input type="text" onfocus="(this.type='date')" placeholder="Birth Date" ng-model="mycard.dob">
