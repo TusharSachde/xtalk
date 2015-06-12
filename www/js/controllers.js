@@ -335,26 +335,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     });
                 });
         };
-        var sendcontactssuccess = function (data, status) {
-            console.log(data);
-            contact = data;
-        }
-        var contactCallback = function (myconarr) {
-            $scope.usercontacts = {
-                user: userid,
-                contact: myconarr
-            }
-            MyServices.sendContacts($scope.usercontacts).success(sendcontactssuccess);
 
-            _.each(myconarr, function (n) {
-                contactSync.create(n);
-            });
-        }
-        n++;
-        if (n == 1 && !$.jStorage.get("profilesaved")) {
-            console.log("Hey");
-            MyServices.getallcontacts(contactCallback);
-        }
 
         var getprofilesuccess = function (data, status) {
             console.log(data);
@@ -397,26 +378,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             }
         };
         var createCardSucess = function (data, status) {
-                console.log(data);
-                $.jStorage.set("profilesaved", 1);
-                if (editprofile) {
-                    $location.path("/tab/spingbook");
-                } else {
-                    $.jStorage.set("user", userid);
-                    $location.path("/profile/sharewith");
-                }
+            console.log(data);
+            $.jStorage.set("profilesaved", 1);
+            if (editprofile) {
+                $location.path("/tab/spingbook");
+            } else {
+                $.jStorage.set("user", userid);
+                $location.path("/profile/sharewith");
             }
-            //    $scope.PersonalDetails = function (card) {
-            //        $.jStorage.set("userpersonalcard", card);
-            //        $scope.startloading();
-            //        $scope.mycard2 = card;
-            //        console.log(mycard1);
-            //        console.log($scope.mycard2);
-            //        $scope.mergecard = angular.extend(mycard1, angular.copy($scope.mycard2));
-            //        console.log($scope.mergecard);
-            //        MyServices.createCard($scope.mergecard).success(createCardSucess);
-            //
-            //    };
+        }
+
     })
 
 
@@ -443,14 +414,57 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         tobeSharedArr: []
     }
     $scope.startloading();
-    $scope.spingrcontacts = contact;
-    if (contact.length == 0) {
-        $location.path("/profile/get");
+
+    var maxcontact = 0;
+    var contactcreatecomplete = 0;
+    var completeCreate = function () {
+        contactcreatecomplete++;
+        if (contactcreatecomplete == maxcontact) {
+            contactSync.contactcount(contactcountcallback);
+            checktoskip();
+        }
     }
-    for (var i = 0; i < contact.length; i++) {
-        $scope.spingrcontacts[i].isShared = false;
-        //    level2id[i] = $scope.spingrcontacts[i].userid;
+
+    var sendcontactssuccess = function (data, status) {
+        console.log(data);
+        contact = data;
+        $scope.spingrcontacts = contact;
+
+        for (var i = 0; i < contact.length; i++) {
+            $scope.spingrcontacts[i].isShared = false;
+            //    level2id[i] = $scope.spingrcontacts[i].userid;
+        }
+        checktoskip();
     }
+    var checkto = 0;
+    var checktoskip = function () {
+        checkto++;
+        if (checkto == 2) {
+            if (contact.length == 0) {
+                $location.path("/profile/get");
+            }
+        }
+    }
+
+    var contactCallback = function (myconarr) {
+        $scope.usercontacts = {
+            user: userid,
+            contact: myconarr
+        }
+        MyServices.sendContacts($scope.usercontacts).success(sendcontactssuccess);
+        maxcontact = myconarr.length;
+        _.each(myconarr, function (n) {
+            contactSync.create(n, completeCreate);
+        });
+    }
+    n++;
+    if (n == 1) {
+        console.log("Hey");
+        MyServices.getallcontacts(contactCallback);
+    }
+
+
+
     console.log($scope.spingrcontacts);
 
     var contactcountcallback = function (result, len) {
@@ -458,8 +472,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log("contactcount=" + result);
         $scope.contactcount = result;
         $ionicLoading.hide();
+        $scope.apply();
     }
-    contactSync.contactcount(contactcountcallback);
+
 
     $scope.spingrcontactcount = $scope.spingrcontacts.length;
     console.log("spingrcontactcount=" + $scope.spingrcontactcount);
