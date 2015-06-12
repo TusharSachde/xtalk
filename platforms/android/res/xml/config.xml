@@ -45,6 +45,9 @@
         <param name="onload" value="true" />
     </feature>
     <allow-intent href="market:*" />
+    <splash density="land-ldpi" src="res/screen/splash.png" />
+    <splash density="land-mdpi" src="res/screen/splash.png" />
+    <splash density="land-xhdpi" src="res/screen/splash.png" />
     <name>SpingR</name>
     <description>SpingR for Contact Sync</description>
     <author email="info@wohlig.com" href="http://www.wohlig.com">Wohlig Technology</author>
@@ -75,6 +78,6 @@
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarBackgroundColor" value="#ffffff" />
     <preference name="StatusBarStyle" value="lightcontent" />
-    <icon src="www/logo.png" />
-    <splash src="www/img/logo.png" />
+    <icon src="res/icon/logo.png" />
+    <splash density="land-hdpi" src="res/screen/splash.png" />
 </widget>
