@@ -41,11 +41,32 @@
     <preference name="StatusBarBackgroundColor" value="#ffffff" />
     <preference name="StatusBarStyle" value="lightcontent" />
 
-    <icon src="www/logo.png" />
+    <icon src="res/icon/logo.png" />
 
-    <splash src="www/img/logo.png" />
+    <splash src="res/screen/splash.png" />
+    
+    <platform name="android">
+    <!-- you can use any density that exists in the Android project -->
+    <splash src="res/screen/splash.png" density="land-hdpi"/>
+    <splash src="res/screen/splash.png" density="land-ldpi"/>
+    <splash src="res/screen/splash.png" density="land-mdpi"/>
+    <splash src="res/screen/splash.png" density="land-xhdpi"/>
+    </platform>
 
+    <plugin name="com.ionic.keyboard" />
+    <plugin name="cordova-plugin-device" />
+    <plugin name="cordova-plugin-statusbar" />
+    <plugin name="nl.x-services.plugins.socialsharing" />
+    <plugin name="cordova-plugin-network-information" />
+    <plugin name="info.asankan.phonegap.smsplugin" />
+    <plugin name="com.teamnemitoff.phonedialer" />
+    <plugin name="cordova-plugin-contacts" />
+    <plugin name="cordova-plugin-camera" />
+    <plugin name="cordova-plugin-inappbrowser" />
+    <plugin name="cordova-plugin-file" />
+    <plugin name="cordova-plugin-file-transfer" />
     <plugin name="cordova-plugin-whitelist" />
+
 
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true" />
