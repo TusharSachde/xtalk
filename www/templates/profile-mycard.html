@@ -310,7 +310,7 @@
                     <span class="input-label code-holder"><input type="tel" ng-model="mycard.boardlandlineextension"></span>
                     <input type="tel" placeholder="Board Landline" ng-model="mycard.boardlandline">
                 </div>
-<!--
+                <!--
                 <label class="item item-input">
                     <input type="tel" placeholder="Extension" ng-model="mycard.extension">
                 </label>
@@ -321,9 +321,14 @@
                 <label class="item item-input">
                     <input type="url" placeholder="Website" ng-model="mycard.companywebsite" class="lowercase">
                 </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Record GPS" ng-model="mycard.companygps">
-                </label>
+
+                <!--<div class="item item-input">
+                    <span class="input-label">Record GPS</span>
+                </div>-->
+                <div class="item item-input">
+                    <input type="text" placeholder="Latitude" ng-model="mycard.companygps">
+                    <input type="text" placeholder="Longitude" ng-model="mycard.companygps">
+                </div>
             </div>
         </div>
 

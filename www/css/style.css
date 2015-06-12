@@ -779,3 +779,9 @@ select[readonly] {
 .list:last-child {
     padding-bottom: 10px;
 }
+/*.card-effect .input-label {
+  color: #B1B1B1;
+  font-size: 14px;
+  padding: 0px;
+  padding-top: 15px;
+}*/
