@@ -178,6 +178,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 console.log(data);
                 if (data != "false") {
                     $scope.mycard = data;
+                    $scope.mycard.profilelogo = data.image;
                     if (!$scope.mycard.mobileextension || $scope.mycard.mobileextension = "") {
                         $scope.mycard.mobileextension = "+91";
                     }
