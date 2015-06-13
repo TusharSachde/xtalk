@@ -248,7 +248,7 @@ angular.module('starter.services', [])
             addShare: "Shared"
         }), 'id');
         var UserAddShareObj = {
-            user: $.jStorage.get("user"),
+            user: userid,
             add: add,
             addShare: addShare,
         };
@@ -256,14 +256,14 @@ angular.module('starter.services', [])
     }
     returnfunction.newsfeedadd = function (touser) {
         return $http.post(adminurl + "newsfeedadd", {
-            userfrom: userid,
+            userfrom: $.jStorage.get("user"),
             touser: touser
         });
     }
     returnfunction.newsfeedaddShare = function (touser) {
         console.log(touser);
         return $http.post(adminurl + "newsfeedaddShare", {
-            userfrom: userid,
+            userfrom: $.jStorage.get("user"),
             touser: touser
         });
     }
