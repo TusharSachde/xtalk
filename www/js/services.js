@@ -1,5 +1,5 @@
-//var serveradmin = "http://wohlig.co.in/spingr/";
-var serveradmin = "http://192.168.2.28/sarahconner/";
+var serveradmin = "http://wohlig.co.in/spingr/";
+//var serveradmin = "http://192.168.2.28/sarahconner/";
 var adminurl = serveradmin + "index.php/json/";
 var imgpath = serveradmin + "uploads/";
 var mycard1 = {};
@@ -271,11 +271,15 @@ angular.module('starter.services', [])
             callback(contact);
         });
     }
-    returnfunction.isadded = function (fromuser) {
+    returnfunction.isadded = function (fromuser, callback) {
         console.log(fromuser);
-        return $http.post(adminurl + "isadded", {
+        $http.post(adminurl + "isadded", {
             userfrom: fromuser,
             touser: $.jStorage.get("user")
+        }).success(function (data, status) {
+            callback(data);
+        }).error(function (e) {
+            callback("false");
         });
     }
     returnfunction.getprofile = function (user) {

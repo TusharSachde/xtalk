@@ -924,11 +924,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.closePopover();
         $location.url("/profile/mycard");
     };
-    var isAddedSuccess = function (data, status) {
+    var isAddedSuccess = function (data) {
         console.log(data);
         if (data != "false") {
             console.log("if");
             $.jStorage.set("isadded", 1);
+            data.aliasname=contactDetail.name;
             contactDetail = data;
             console.log(contactDetail);
             $location.url("tab/spingbook-detail");
@@ -940,7 +941,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     $scope.showDetail = function (contact) {
             contactDetail = contact;
-            MyServices.isadded(contact.personalMobile).success(isAddedSuccess);
+            
+            MyServices.isadded(contact.personalMobile,isAddedSuccess);
         }
         //    var level2callback = function (data, status) {
         //        $scope.circle2contacts = data;
