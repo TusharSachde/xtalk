@@ -581,42 +581,40 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $location.url('/tab/spingbook');
     }
 
-    var newsfeedaddSuccess = function (data, status) {
+    var newsfeedaddSuccess = function (data, contact) {
         console.log(data);
+
         if (data != "" && data) {
-            _.remove($scope.newsfeed, {
-                id: JSON.parse(data)
-            });
+            console.log(data)
+            $scope.getcontacts.splice($scope.getcontacts.indexOf(contact), 1);
         }
+        console.log($scope.getcontacts);
     }
     $scope.changeAdd = function (contact) {
-        MyServices.newsfeedadd(contact.id).success(newsfeedaddSuccess);
+        MyServices.newsfeedadd(contact.id, contact, newsfeedaddSuccess);
         if (contact.add == "Add") {
             contact.add = "Added";
         } else {
             contact.add = "Add";
         }
     }
-    var newsfeedaddShareSuccess = function (data, status) {
+    var newsfeedaddShareSuccess = function (data, contact) {
         console.log(data);
+
         if (data != "" && data) {
             console.log(data)
-            _.remove($scope.newsfeed, {
-                id: JSON.parse(data)
-            });
+            $scope.getcontacts.splice($scope.getcontacts.indexOf(contact), 1);
         }
-
-        console.log($scope.newsfeed);
+        console.log($scope.getcontacts);
     }
     $scope.changeAddShare = function (contact) {
-        MyServices.newsfeedaddShare(contact.id).success(newsfeedaddShareSuccess);
+        MyServices.newsfeedaddShare(contact.id, contact, newsfeedaddShareSuccess);
         if (contact.addShare == "Add & Share") {
             contact.addShare = "Added & Shared";
         } else {
             contact.addShare = "Add & Share";
         }
     }
-
 
     //    $scope.spingrcontacts = contact
     //    console.log($scope.spingrcontacts);
@@ -988,19 +986,17 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     MyServices.getShared($.jStorage.get("user")).success(getSharedSuccess);
 
-    var newsfeedaddSuccess = function (data, status) {
+    var newsfeedaddSuccess = function (data, contact) {
         console.log(data);
-        console.log($scope.newsfeed);
 
         if (data != "" && data) {
-            _.remove($scope.newsfeed, {
-                id: JSON.parse(data)
-            });
+            console.log(data)
+            $scope.newsfeed.splice($scope.newsfeed.indexOf(contact), 1);
         }
         console.log($scope.newsfeed);
     }
     $scope.changeAdd = function (contact) {
-        MyServices.newsfeedadd(contact.id).success(newsfeedaddSuccess);
+        MyServices.newsfeedadd(contact.id, contact, newsfeedaddSuccess);
         if (contact.add == "Add") {
             contact.add = "Added";
         } else {
@@ -1014,13 +1010,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             console.log(data)
             $scope.newsfeed.splice($scope.newsfeed.indexOf(contact), 1);
         }
-
         console.log($scope.newsfeed);
     }
     $scope.changeAddShare = function (contact) {
         MyServices.newsfeedaddShare(contact.id, contact, newsfeedaddShareSuccess);
         if (contact.addShare == "Add & Share") {
-            contact.addShare = "Shared";
+            contact.addShare = "Added & Shared";
         } else {
             contact.addShare = "Add & Share";
         }
