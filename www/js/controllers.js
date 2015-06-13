@@ -179,8 +179,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             if (data != "false") {
                 $scope.mycard = data;
                 $scope.mycard.profilelogo = data.image;
-                if (!$scope.mycard.mobileextension || $scope.mycard.mobileextension == "") {
-                    $scope.mycard.mobileextension = "+91";
+                if (!$scope.mycard.personalprofilecontactextension || $scope.mycard.personalprofilecontactextension == "") {
+                    $scope.mycard.personalprofilecontactextension = "+91";
                 }
                 if (!$scope.mycard.landlineextension || $scope.mycard.landlineextension == "") {
                     $scope.mycard.landlineextension = "+91";
@@ -192,7 +192,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                     $scope.mycard.profilelogo = 'img/logo.jpg';
                 }
             } else {
-                $scope.mycard.mobileextension = "+91";
+                $scope.mycard.personalprofilecontactextension = "+91";
                 $scope.mycard.landlineextension = "+91";
                 $scope.mycard.country = "India";
                 $scope.mycard.profilelogo = 'img/logo.jpg';
