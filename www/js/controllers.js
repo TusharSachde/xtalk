@@ -179,16 +179,16 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 if (data != "false") {
                     $scope.mycard = data;
                     $scope.mycard.profilelogo = data.image;
-                    if (!$scope.mycard.mobileextension || $scope.mycard.mobileextension = "") {
+                    if (!$scope.mycard.mobileextension || $scope.mycard.mobileextension == "") {
                         $scope.mycard.mobileextension = "+91";
                     }
-                    if (!$scope.mycard.landlineextension || $scope.mycard.landlineextension = "") {
+                    if (!$scope.mycard.landlineextension || $scope.mycard.landlineextension == "") {
                         $scope.mycard.landlineextension = "+91";
                     }
-                    if (!$scope.mycard.country || $scope.mycard.country = "") {
+                    if (!$scope.mycard.country || $scope.mycard.country == "") {
                         $scope.mycard.country = "India";
                     }
-                    if (!$scope.mycard.profilelogo || $scope.mycard.profilelogo = "") {
+                    if (!$scope.mycard.profilelogo || $scope.mycard.profilelogo == "") {
                         $scope.mycard.profilelogo = 'img/logo.jpg';
                     }
                 } else {
@@ -355,19 +355,19 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log(data);
         if (data != "false") {
             $scope.mycard = data;
-            if (!$scope.mycard.companylogo || $scope.mycard.companylogo = "") {
+            if (!$scope.mycard.companylogo || $scope.mycard.companylogo == "") {
                 $scope.mycard.companylogo = 'img/logo.jpg';
             }
-            if (!$scope.mycard.companycontactextension || $scope.mycard.companycontactextension = "") {
+            if (!$scope.mycard.companycontactextension || $scope.mycard.companycontactextension == "") {
                 $scope.mycard.companycontactextension = "+91";
             }
-            if (!$scope.mycard.directlandlineextension || $scope.mycard.directlandlineextension = "") {
+            if (!$scope.mycard.directlandlineextension || $scope.mycard.directlandlineextension == "") {
                 $scope.mycard.directlandlineextension = "+91";
             }
-            if (!$scope.mycard.boardlandlineextension || $scope.mycard.boardlandlineextension = "") {
+            if (!$scope.mycard.boardlandlineextension || $scope.mycard.boardlandlineextension == "") {
                 $scope.mycard.boardlandlineextension = "+91";
             }
-            if (!$scope.mycard.companycountry || $scope.mycard.companycountry = "") {
+            if (!$scope.mycard.companycountry || $scope.mycard.companycountry == "") {
                 $scope.mycard.companycountry = "India";
             }
 
