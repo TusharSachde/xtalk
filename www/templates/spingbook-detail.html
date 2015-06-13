@@ -25,8 +25,8 @@
         </div>
 
         <div class="vcard" ng-if="showAll==1">
-            <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}'), url('img/default.png');"></div>
-            <div class="company" style="background-image: url('{{contact.companylogo|serverimage}}'), url('img/spingr.png');"></div>
+            <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}');"></div>
+            <div class="company" style="background-image: url('{{contact.companylogo|serverimage}}');"></div>
 
             <div class="in-vcard">
                 <h1 ng-bind="contact.name"></h1>
@@ -36,7 +36,7 @@
                 <h1 ng-bind="contact.designation">Designation</h1>
                 <h2 ng-bind="contact.companyname"></h2>
                 <h2 ng-bind="contact.companyaddress"></h2>
-                <h3 ng-bind="contact.companystate"></h3>,
+                <h3 ng-bind="contact.companystate"></h3>
                 <h3 ng-bind="contact.companycity"></h3>
             </div>
             <div class="in-vcard">
