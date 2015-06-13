@@ -929,7 +929,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         if (data != "false") {
             console.log("if");
             $.jStorage.set("isadded", 1);
-            data.aliasname=contactDetail.name;
+            data.aliasname = contactDetail.name;
             contactDetail = data;
             console.log(contactDetail);
             $location.url("tab/spingbook-detail");
@@ -940,21 +940,41 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
     }
     $scope.showDetail = function (contact) {
-            contactDetail = contact;
-            
-            MyServices.isadded(contact.personalMobile,isAddedSuccess);
+        contactDetail = contact;
+        MyServices.isadded(contact.personalMobile, isAddedSuccess);
+    }
+
+    var isAddedCircle1Success = function (data) {
+        console.log(data);
+        if (data != "false") {
+            console.log("if");
+            $.jStorage.set("isadded", 1);
+            data.aliasname = contactDetail.name;
+            contactDetail = data;
+            console.log(contactDetail);
+            $location.url("circle/circle1detail");
+        } else {
+            $.jStorage.set("isadded", 0);
+            console.log("else");
+            $location.url("circle/circle1detail");
         }
-        //    var level2callback = function (data, status) {
-        //        $scope.circle2contacts = data;
-        //        console.log($scope.circle2contacts);
-        //    };
-        //    MyServices.getlevel2contacts().success(level2callback);
-        //
-        //    var level3callback = function (data, status) {
-        //        $scope.circle3contacts = data;
-        //        console.log($scope.circle3contacts);
-        //    };
-        //    MyServices.getlevel3contacts().success(level3callback);
+    }
+    $scope.showDetailCircle1 = function (contact) {
+        contactDetail = contact;
+        MyServices.isadded(contact.personalMobile, isAddedCircle1Success);
+    }
+
+    //    var level2callback = function (data, status) {
+    //        $scope.circle2contacts = data;
+    //        console.log($scope.circle2contacts);
+    //    };
+    //    MyServices.getlevel2contacts().success(level2callback);
+    //
+    //    var level3callback = function (data, status) {
+    //        $scope.circle3contacts = data;
+    //        console.log($scope.circle3contacts);
+    //    };
+    //    MyServices.getlevel3contacts().success(level3callback);
 
 })
 

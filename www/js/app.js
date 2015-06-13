@@ -183,7 +183,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         })
 
         .state('circle.circle1-detail', {
-            url: '/circle1/:Id',
+            url: '/circle1detail',
             views: {
                 'tab1-circle1': {
                     templateUrl: 'templates/spingbook-detail.html',
