@@ -494,7 +494,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             return n.isShared;
         }), 'id');
 
-        
+
         var sharewithSuccess = function (data, status) {
             $location.path("/profile/get");
         }
@@ -715,7 +715,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
     $scope.call = function (number) {
         number = number + "";
-        if (number.length >= 10) {
+        if (number.length > 10) {
             number = "+" + number;
         }
         phonedialer.dial(
@@ -878,9 +878,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
     }
     $scope.showDetail = function (contact) {
-            MyServices.isadded(contact.personalMobile).success(isAddedSuccess);
             contactDetail = contact;
-            //        console.log(contact);
+            MyServices.isadded(contact.personalMobile).success(isAddedSuccess);
         }
         //    var level2callback = function (data, status) {
         //        $scope.circle2contacts = data;
