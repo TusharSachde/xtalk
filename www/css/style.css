@@ -455,11 +455,22 @@ input.mobileno {
     width: 100%;
     color: white;
     border-bottom: 1px solid white;
+    height: 40px;
+    position: relative;
 }
 .headersearch input {
     background-color: transparent;
-    width: 100%;
     color: white;
+    bottom: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 40px;
+}
+.headersearch i {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .animate-if.ng-enter,
 .animate-if.ng-leave {
