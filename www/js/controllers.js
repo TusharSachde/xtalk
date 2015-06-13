@@ -154,7 +154,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
         $ionicLoading.hide();
     })
-    .controller('PersonalProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
+    .controller('PersonalProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaImagePicker, $cordovaFileTransfer, $ionicLoading, $timeout) {
 
         if ($.jStorage.get('user')) {
             userid = $.jStorage.get("user");
@@ -167,10 +167,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             });
         };
         var options = {
-            quality: 40,
-            destinationType: Camera.DestinationType.NATIVE_URI,
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            encodingType: Camera.EncodingType.JPEG
+            maximumImagesCount: 1,
+            width: 800,
+            height: 800,
+            quality: 80
         };
         $scope.mycard = {};
 
@@ -215,18 +215,15 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.changeprofilelogo = function () {
             console.log("take picture");
 
-            $cordovaCamera.getPicture(options).then(function (imageData) {
+            $cordovaImagePicker.getPictures(options).then(function (resultImage) {
                 // Success! Image data is here
                 console.log("here in upload image");
-                console.log(imageData);
-                $scope.mycard.profilelogo = imageData;
 
-                if (imageData.substring(0, 21) == "content://com.android") {
-                    var photo_split = imageData.split("%3A");
-                    imageData = "content://media/external/images/media/" + photo_split[1];
-                }
-                $scope.cameraimage = imageData;
+                console.log(resultImage);
+
+                $scope.cameraimage = resultImage[0];
                 $scope.uploadPhoto(adminurl + "imageuploadprofile?user=" + user.id, changeproflogo);
+
             }, function (err) {
                 // An error occured. Show a message to the user
             });
@@ -278,7 +275,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             }
         }
     })
-    .controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaCamera, $cordovaFileTransfer, $ionicLoading, $timeout) {
+    .controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaImagePicker, $cordovaFileTransfer, $ionicLoading, $timeout) {
         $scope.startloading = function () {
             $ionicLoading.show({
                 template: '<ion-spinner class="spinner-light"></ion-spinner>'
@@ -292,10 +289,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.number.companycontact = personalcontact;
 
         var options = {
-            quality: 40,
-            destinationType: Camera.DestinationType.NATIVE_URI,
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            encodingType: Camera.EncodingType.JPEG
+            maximumImagesCount: 1,
+            width: 800,
+            height: 800,
+            quality: 80
         };
 
         //Contacts Sending
@@ -306,17 +303,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.changecompanylogo = function () {
             console.log("take picture");
 
-            $cordovaCamera.getPicture(options).then(function (imageData) {
+            $cordovaImagePicker.getPictures(options).then(function (resultImage) {
                 // Success! Image data is here
                 console.log("here in upload image");
-                console.log(imageData);
-                $scope.mycard.companylogo = imageData;
+                console.log(resultImage);
 
-                if (imageData.substring(0, 21) == "content://com.android") {
-                    var photo_split = imageData.split("%3A");
-                    imageData = "content://media/external/images/media/" + photo_split[1];
-                }
-                $scope.cameraimage = imageData;
+
+
+                $scope.cameraimage = resultImage[0];
                 $scope.uploadPhoto(adminurl + "imageuploadcompany?user=" + user.id, changecmpylogo);
             }, function (err) {
                 // An error occured. Show a message to the user

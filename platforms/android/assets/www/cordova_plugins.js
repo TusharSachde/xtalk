@@ -320,6 +320,13 @@ module.exports = [
         "file": "plugins/cordova-plugin-whitelist/whitelist.js",
         "id": "cordova-plugin-whitelist.whitelist",
         "runs": true
+    },
+    {
+        "file": "plugins/com.synconset.imagepicker/www/imagepicker.js",
+        "id": "com.synconset.imagepicker.ImagePicker",
+        "clobbers": [
+            "plugins.imagePicker"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -338,7 +345,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "1.0.0",
     "info.asankan.phonegap.smsplugin": "0.2.0",
     "nl.x-services.plugins.socialsharing": "4.3.18",
-    "cordova-plugin-whitelist": "1.0.0"
+    "cordova-plugin-whitelist": "1.0.0",
+    "com.synconset.imagepicker": "1.0.6"
 }
 // BOTTOM OF METADATA
 });
