@@ -138,9 +138,12 @@ angular.module('starter.services', [])
                         
                     }
                 }
+                console.log(myconarr.length);
                 myconarr = _.uniq(myconarr, function (n) {
                     return (n.name +"-"+n.contact);
                 });
+                console.log(myconarr.length);
+                console.log(myconarr);
                 callback(myconarr);
             }
         };

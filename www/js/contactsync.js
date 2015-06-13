@@ -292,9 +292,7 @@ contactsync.factory('contactSync', function ($http) {
     }
 
     returnval.create = function (data, callback) {
-        console.log(data.name);
-        //     console.log(data);
-
+       
         returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`,`personalMobile`,`photoUrl`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "','" + data.photo + "')", function (result, len, id) {
             id = id.insertId;
             var d = new Date();
