@@ -132,7 +132,7 @@ angular.module('starter.services', [])
                                 myval.contact = n.value;
                                 myval.contact = myval.contact.replace(/[ -]/g, '');
                                 myval.contact = myval.contact.replace(/[']/g, '');
-                                myconarr.push(myval);
+                                myconarr.push(_.cloneDeep(myval));
                             });
                         }
                         
