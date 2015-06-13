@@ -14,7 +14,7 @@
         <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
         <div class="animate-if headersearch" ng-if="search == true;">
             <input type="search" ng-model="searchquery.search" ng-change="namesearch();">
-            <i class="icon ion-close-circled"></i>
+            <i class="icon ion-close-circled" ng-click="searchquery.search='';"></i>
         </div>
     </ion-nav-title>
 
