@@ -33,6 +33,7 @@
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="AllowInlineMediaPlayback" value="true" />
     <preference name="android-targetSdkVersion" value="14" />
+    <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="5000" />
     <preference name="ErrorUrl" value="" />
     <preference name="KeepRunning" value="true" />
@@ -43,15 +44,15 @@
 
     <icon src="res/icon/logo.png" />
 
-    <splash src="res/screen/splash.png" />
-    
     <platform name="android">
-    <!-- you can use any density that exists in the Android project -->
-    <splash src="res/screen/splash.png" density="land-hdpi"/>
-    <splash src="res/screen/splash.png" density="land-ldpi"/>
-    <splash src="res/screen/splash.png" density="land-mdpi"/>
-    <splash src="res/screen/splash.png" density="land-xhdpi"/>
+        <!-- you can use any density that exists in the Android project -->
+        <splash src="res/screen/splash.png" density="land-hdpi" />
+        <splash src="res/screen/splash.png" density="land-ldpi" />
+        <splash src="res/screen/splash.png" density="land-mdpi" />
+        <splash src="res/screen/splash.png" density="land-xhdpi" />
     </platform>
+
+    <splash src="res/screen/splash.png" />
 
     <plugin name="com.ionic.keyboard" />
     <plugin name="cordova-plugin-device" />
@@ -66,6 +67,7 @@
     <plugin name="cordova-plugin-file" />
     <plugin name="cordova-plugin-file-transfer" />
     <plugin name="cordova-plugin-whitelist" />
+    <plugin name="cordova-plugin-splashscreen" />
 
 
     <feature name="StatusBar">
