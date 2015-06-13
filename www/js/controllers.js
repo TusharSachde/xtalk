@@ -558,28 +558,63 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     MyServices.getShared($.jStorage.get("user")).success(getSharedSuccess);
 
+    //    $scope.changeAdd = function (contact) {
+    //        if (contact.add == "Add") {
+    //            contact.add = "Added";
+    //        } else {
+    //            contact.add = "Add";
+    //        }
+    //    }
+    //    $scope.changeAddShare = function (contact) {
+    //        if (contact.addShare == "Add & Share") {
+    //            contact.addShare = "Added & Shared";
+    //        } else {
+    //            contact.addShare = "Add & Share";
+    //        }
+    //    }
+    //    var UserAddShareSubmitSuccess = function (data, status) {
+    //        console.log(data);
+    //        $location.url('/tab/spingbook');
+    //    }
+    //
+    $scope.UserAddShareSubmit = function () {
+        $location.url('/tab/spingbook');
+    }
+
+    var newsfeedaddSuccess = function (data, status) {
+        console.log(data);
+        if (data != "" && data) {
+            _.remove($scope.newsfeed, {
+                id: JSON.parse(data)
+            });
+        }
+    }
     $scope.changeAdd = function (contact) {
+        MyServices.newsfeedadd(contact.id).success(newsfeedaddSuccess);
         if (contact.add == "Add") {
             contact.add = "Added";
         } else {
             contact.add = "Add";
         }
     }
+    var newsfeedaddShareSuccess = function (data, status) {
+        console.log(data);
+        if (data != "" && data) {
+            console.log(data)
+            _.remove($scope.newsfeed, {
+                id: JSON.parse(data)
+            });
+        }
+
+        console.log($scope.newsfeed);
+    }
     $scope.changeAddShare = function (contact) {
+        MyServices.newsfeedaddShare(contact.id).success(newsfeedaddShareSuccess);
         if (contact.addShare == "Add & Share") {
             contact.addShare = "Added & Shared";
         } else {
             contact.addShare = "Add & Share";
         }
-    }
-    var UserAddShareSubmitSuccess = function (data, status) {
-        console.log(data);
-        $location.url('/tab/spingbook');
-    }
-
-    $scope.UserAddShareSubmit = function () {
-        //        $scope.startloading();
-        MyServices.UserAddShareSubmit($scope.getcontacts).success(UserAddShareSubmitSuccess);
     }
 
 
