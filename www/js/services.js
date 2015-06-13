@@ -128,19 +128,19 @@ angular.module('starter.services', [])
                             myval.photo = contacts[i].photos[0].value;
                         }
                         if (contacts[i].phoneNumbers) {
-                            _.each(contacts[i].phoneNumbers,function(n) { 
+                            _.each(contacts[i].phoneNumbers, function (n) {
                                 myval.contact = n.value;
                                 myval.contact = myval.contact.replace(/[ -]/g, '');
                                 myval.contact = myval.contact.replace(/[']/g, '');
                                 myconarr.push(_.cloneDeep(myval));
                             });
                         }
-                        
+
                     }
                 }
                 console.log(myconarr.length);
                 myconarr = _.uniq(myconarr, function (n) {
-                    return (n.name +"-"+n.contact);
+                    return (n.name + "-" + n.contact);
                 });
                 console.log(myconarr.length);
                 console.log(myconarr);
@@ -248,7 +248,7 @@ angular.module('starter.services', [])
             addShare: "Shared"
         }), 'id');
         var UserAddShareObj = {
-            user: userid,
+            user: $.jStorage.get("user"),
             add: add,
             addShare: addShare,
         };
