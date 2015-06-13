@@ -185,8 +185,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 if (!$scope.mycard.homelandlineextension || $scope.mycard.homelandlineextension == "") {
                     $scope.mycard.homelandlineextension = "+91";
                 }
-                if (!$scope.mycard.country || $scope.mycard.country == "") {
-                    $scope.mycard.country = "India";
+                if (!$scope.mycard.personelcountry || $scope.mycard.personelcountry == "") {
+                    $scope.mycard.personelcountry = "India";
                 }
                 if (!$scope.mycard.profilelogo || $scope.mycard.profilelogo == "") {
                     $scope.mycard.profilelogo = 'img/logo.jpg';
