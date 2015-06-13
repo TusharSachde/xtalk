@@ -260,11 +260,13 @@ angular.module('starter.services', [])
             touser: touser
         });
     }
-    returnfunction.newsfeedaddShare = function (touser) {
+    returnfunction.newsfeedaddShare = function (touser,contact,callback) {
         console.log(touser);
-        return $http.post(adminurl + "newsfeedaddShare", {
+        $http.post(adminurl + "newsfeedaddShare", {
             userfrom: $.jStorage.get("user"),
             touser: touser
+        }).success(function(data) {
+            callback(contact);
         });
     }
     returnfunction.isadded = function (fromuser) {

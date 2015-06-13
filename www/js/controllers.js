@@ -1007,19 +1007,18 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             contact.add = "Add";
         }
     }
-    var newsfeedaddShareSuccess = function (data, status) {
+    var newsfeedaddShareSuccess = function (data, contact) {
         console.log(data);
+
         if (data != "" && data) {
             console.log(data)
-            _.remove($scope.newsfeed, {
-                id: JSON.parse(data)
-            });
+            $scope.newsfeed.splice($scope.newsfeed.indexOf(contact), 1);
         }
 
         console.log($scope.newsfeed);
     }
     $scope.changeAddShare = function (contact) {
-        MyServices.newsfeedaddShare(contact.id).success(newsfeedaddShareSuccess);
+        MyServices.newsfeedaddShare(contact.id, contact, newsfeedaddShareSuccess);
         if (contact.addShare == "Add & Share") {
             contact.addShare = "Shared";
         } else {
