@@ -1,7 +1,7 @@
 <ion-view>
    
     <ion-nav-buttons side="left">
-        <a class="button button-icon ion-ios-close-empty" ng-click="searchquery.search='';backtospingbook();"></a>
+        <a class="button button-icon ion-ios-close-empty" ng-click="searchquery.search='';namesearch();backtospingbook();"></a>
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
@@ -17,7 +17,7 @@
         <div class="animate-if headersearch row nopad" ng-if="search == false;">
             <!--            <input type="text" ng-keypress="filtertoggle($event);"> -->
             <input type="search" ng-model="searchquery.search" ng-change="namesearch();">
-            <i class="icon ion-close-circled" ng-click="searchquery.search='';"></i>
+            <i class="icon ion-close-circled" ng-click="searchquery.search='';namesearch();;"></i>
         </div>
     </ion-nav-title>
 
