@@ -192,10 +192,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 if (!$scope.mycard.profilelogo || $scope.mycard.profilelogo == "") {
                     $scope.mycard.profilelogo = 'img/logo.jpg';
                 }
-                if (!$scope.mycard.birthdate || $scope.mycard.birthdate == "") {
+                if (!$scope.mycard.birthdate || $scope.mycard.birthdate == "" || $scope.mycard.birthdate == "0000-00-00") {
                     $scope.mycard.birthdate = null;
                 }
-                if (!$scope.mycard.anniversary || $scope.mycard.anniversary == "") {
+                if (!$scope.mycard.anniversary || $scope.mycard.anniversary == "" || $scope.mycard.anniversary == "0000-00-00") {
                     $scope.mycard.anniversary = null;
                 }
             } else {
@@ -983,6 +983,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log($scope.circle3contacts);
     };
     MyServices.getlevel3contacts().success(level3callback);
+    
+    $scope.backtospingbook=function(){
+        $location.url('/tab/spingbook');
+    }
 })
 
 .controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams) {
