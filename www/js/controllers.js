@@ -209,10 +209,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
         if ($.jStorage.get("mycard")) {
             $scope.mycard = $.jStorage.get("mycard");
-            if (!$scope.mycard.birthdate || $scope.mycard.birthdate == "") {
+            if (!$scope.mycard.birthdate || $scope.mycard.birthdate == "" || $scope.mycard.birthdate == "0000-00-00") {
                 $scope.mycard.birthdate = null;
             }
-            if (!$scope.mycard.anniversary || $scope.mycard.anniversary == "") {
+            if (!$scope.mycard.anniversary || $scope.mycard.anniversary == "" || $scope.mycard.anniversary == "0000-00-00") {
                 $scope.mycard.anniversary = null;
             }
             console.log($scope.mycard);
