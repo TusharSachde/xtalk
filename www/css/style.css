@@ -468,9 +468,9 @@ input.mobileno {
     right: 40px;
 }
 .headersearch i {
-  position: absolute;
-  right: 0;
-  top: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 .animate-if.ng-enter,
 .animate-if.ng-leave {
@@ -796,3 +796,7 @@ select[readonly] {
   padding: 0px;
   padding-top: 15px;
 }*/
+
+.relatived {
+    position: relative;
+}
