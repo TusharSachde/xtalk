@@ -25,7 +25,7 @@
         <ion-list class="default-height">
             <ion-item class="item-remove-animate item-avatar2" ng-repeat="contact in circle2contacts" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.number);" href="#/circle/circle2/{{contact.id}}">
 
-                <div class="picture" style="background-image: url('{{contact.image}}'), url('img/default.png');"></div>
+                <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}');"></div>
 
                 <div class="card-style">
                     <h2 class="positive">{{contact.name}}</h2>
@@ -35,7 +35,7 @@
                         <br><span class="spacing"><i class="icon positive circle-single"></i> {{contact.user1name}}</span>
                     </p>
 
-                    <div class="company" style="background-image: url('{{contact.logo}}'), url('img/spingr.png');"></div>
+                    <div class="company" style="background-image: url('{{contact.companylogo|serverimage}}');"></div>
                 </div>
 
                 <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>

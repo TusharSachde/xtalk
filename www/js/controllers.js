@@ -972,18 +972,17 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         MyServices.isadded(contact.personalMobile, isAddedCircle1Success);
     }
 
-    //    var level2callback = function (data, status) {
-    //        $scope.circle2contacts = data;
-    //        console.log($scope.circle2contacts);
-    //    };
-    //    MyServices.getlevel2contacts().success(level2callback);
-    //
-    //    var level3callback = function (data, status) {
-    //        $scope.circle3contacts = data;
-    //        console.log($scope.circle3contacts);
-    //    };
-    //    MyServices.getlevel3contacts().success(level3callback);
+    var level2callback = function (data, status) {
+        $scope.circle2contacts = data;
+        console.log($scope.circle2contacts);
+    };
+    MyServices.getlevel2contacts().success(level2callback);
 
+    var level3callback = function (data, status) {
+        $scope.circle3contacts = data;
+        console.log($scope.circle3contacts);
+    };
+    MyServices.getlevel3contacts().success(level3callback);
 })
 
 .controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams) {
