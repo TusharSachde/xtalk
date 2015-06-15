@@ -195,6 +195,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 if (!$scope.mycard.birthdate || $scope.mycard.birthdate == "") {
                     $scope.mycard.birthdate = null;
                 }
+                if (!$scope.mycard.anniversary || $scope.mycard.anniversary == "") {
+                    $scope.mycard.anniversary = null;
+                }
             } else {
                 $scope.mycard.personalprofilecontactextension = "+91";
                 $scope.mycard.landlineextension = "+91";
