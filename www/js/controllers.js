@@ -209,6 +209,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
         if ($.jStorage.get("mycard")) {
             $scope.mycard = $.jStorage.get("mycard");
+            if (!$scope.mycard.birthdate || $scope.mycard.birthdate == "") {
+                $scope.mycard.birthdate = null;
+            }
+            if (!$scope.mycard.anniversary || $scope.mycard.anniversary == "") {
+                $scope.mycard.anniversary = null;
+            }
+            console.log($scope.mycard);
         } else {
             $scope.startloading();
             MyServices.getprofile(userid).success(getprofilesuccess);
