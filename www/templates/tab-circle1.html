@@ -17,7 +17,7 @@
         <div class="animate-if headersearch row nopad" ng-if="search == false;">
             <!--            <input type="text" ng-keypress="filtertoggle($event);"> -->
             <input type="search" ng-model="searchquery.search" ng-change="namesearch();">
-            <i class="icon ion-close-circled" ng-click="searchquery.search='';namesearch();;"></i>
+            <i class="icon ion-close-circled" ng-click="searchquery.search='';namesearch();"></i>
         </div>
     </ion-nav-title>
 
@@ -49,7 +49,7 @@
             </ion-item>
             <div class="noresult" ng-show="noresult">No result found</div>
         </ion-list>
-        <ion-infinite-scroll on-infinite="loadMoreContacts()" spinner="ripple" ng-if="keepscrolling" distance="1%">
+        <ion-infinite-scroll on-infinite="loadMoreContacts()" spinner="ripple" ng-if="keepscrolling" distance="50%">
         </ion-infinite-scroll>
     </ion-content>
 </ion-view>

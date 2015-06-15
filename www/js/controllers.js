@@ -471,7 +471,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.spingrcontactcount = $scope.spingrcontacts.length;
         console.log("spingrcontactcount=" + $scope.spingrcontactcount);
         for (var i = 0; i < contact.length; i++) {
-            $scope.spingrcontacts[i].isShared = false;
+            $scope.spingrcontacts[i].isShared = true;
             //    level2id[i] = $scope.spingrcontacts[i].userid;
         }
         checktoskip();
