@@ -68,6 +68,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             personalcontact = phoneno.phone;
             if (personalcontact.match(/^\d+$/)) {
                 console.log(true);
+                $.jStorage.set("personalcontact", personalcontact);
                 MyServices.register(personalcontact, phoneno.countrycode).success(registerSuccess);
             } else {
                 console.log(false);
@@ -191,6 +192,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 if (!$scope.mycard.profilelogo || $scope.mycard.profilelogo == "") {
                     $scope.mycard.profilelogo = 'img/logo.jpg';
                 }
+                if (!$scope.mycard.birthdate || $scope.mycard.birthdate == "") {
+                    $scope.mycard.birthdate = null;
+                }
             } else {
                 $scope.mycard.personalprofilecontactextension = "+91";
                 $scope.mycard.landlineextension = "+91";
@@ -286,7 +290,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.mycard = {};
         $scope.number = {};
         $scope.number.companycontactextension = "+91";
-        $scope.number.companycontact = personalcontact;
+        $scope.number.companycontact = $.jStorage.get("personalcontact");
 
         var options = {
             maximumImagesCount: 1,
