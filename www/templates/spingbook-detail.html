@@ -26,7 +26,7 @@
 
         <div class="vcard" ng-if="showAll==1">
             <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}');"></div>
-            <div class="company" style="background-image: url('{{contact.companylogo|serverimage}}');"></div>
+            <div class="company" style="background-image: url('{{contact.companylogo|serverimage}}');" ng-if="contact.companylogo"></div>
 
             <div class="in-vcard">
                 <h1 ng-bind="contact.name"></h1>

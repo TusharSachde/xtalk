@@ -245,7 +245,7 @@ contactsync.factory('contactSync', function ($http) {
             where += '';
         }
         if (advance.occupatipon) {
-            where += " AND `lineOfBusiness` LIKE '%" + advance.occupatipon + "%'";
+            where += " AND `lineOfBusiness` LIKE '%" + advance.lineofbusiness + "%'";
 
         } else {
             where += '';
