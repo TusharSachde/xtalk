@@ -124,7 +124,7 @@
                     <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
                     <ion-option-button class="button-large button-positive ln-phone" ng-click="call(myconarrs.personalMobile);"></ion-option-button>
                     <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(myconarrs.personalMobile);"></ion-option-button>
-                    <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.email);"></ion-option-button>
+                    <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.email);" ng-if="myconarrs.email"></ion-option-button>
                 </ion-item>
                 
             </div>
