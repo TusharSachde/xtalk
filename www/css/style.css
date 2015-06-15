@@ -86,7 +86,8 @@
     min-height: 78px;
 }
 .card-style {
-    padding: 16px 65px 16px 40px;
+    padding: 10px 65px 10px 40px;
+    /*padding: 16px 65px 16px 40px;*/
     background: white;
     border: 1px solid #DFDFDF;
 }
@@ -721,7 +722,7 @@ span.linked {
     border-width: 2px;
 }
 .default-height .card-style {
-    min-height: 98px;
+    height: 98px;
 }
 .backdrop {
     background-color: transparent;
