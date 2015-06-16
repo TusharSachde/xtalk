@@ -730,10 +730,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.syncnewcontacts = function () {
         isnew++;
         console.log("Hey");
-        //        contactSync.synclocaltoserver();
-        if (isnew == 1) {
-            MyServices.getallcontacts(contactCallback);
-        }
+        contactSync.synclocaltoserver();
+        //        if (isnew == 1) {
+        //            MyServices.getallcontacts(contactCallback);
+        //        }
     }
 
     $scope.namesearch = function () {
@@ -983,8 +983,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log($scope.circle3contacts);
     };
     MyServices.getlevel3contacts().success(level3callback);
-    
-    $scope.backtospingbook=function(){
+
+    $scope.backtospingbook = function () {
         $location.url('/tab/spingbook');
     }
 })

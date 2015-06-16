@@ -1,8 +1,8 @@
 <ion-view view-title="Share Profile">
     <ion-nav-buttons side="right">
-        <a class="button button-clear" ng-click="sendShare();">
+        <!--<a class="button button-clear" ng-click="sendShare();">
         Share
-        </a>
+        </a>-->
     </ion-nav-buttons>
 
     <div class="centralized" ng-hide="mainLoader">
@@ -10,7 +10,7 @@
         <p>Synchronizing your contacts &amp; setting up your profile.</p>
     </div>
 
-    <ion-content class="padding" ng-show="mainLoader">
+    <ion-content class="padding has-footer has-header" ng-show="mainLoader">
 
         <ion-list class="reverse-padding">
             <ion-item class="transparent-bg">
@@ -45,4 +45,8 @@
 
 
     </ion-content>
+    <ion-footer-bar class="bar-positive" ng-click="sendShare();">
+        <div class="title">Share &amp; Proceed</div>
+    </ion-footer-bar>
+    
 </ion-view>

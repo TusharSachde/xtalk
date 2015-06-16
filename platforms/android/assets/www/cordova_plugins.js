@@ -327,6 +327,13 @@ module.exports = [
         "clobbers": [
             "plugins.imagePicker"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -346,7 +353,8 @@ module.exports.metadata =
     "info.asankan.phonegap.smsplugin": "0.2.0",
     "nl.x-services.plugins.socialsharing": "4.3.18",
     "cordova-plugin-whitelist": "1.0.0",
-    "com.synconset.imagepicker": "1.0.6"
+    "com.synconset.imagepicker": "1.0.6",
+    "cordova-plugin-splashscreen": "2.0.0"
 }
 // BOTTOM OF METADATA
 });
