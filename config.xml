@@ -70,7 +70,6 @@
     <plugin name="cordova-plugin-whitelist" />
     <plugin name="cordova-plugin-splashscreen" />
 
-
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true" />
     </feature>
