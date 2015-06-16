@@ -1,7 +1,7 @@
 // var adminurl = "http://localhost/syncbackend/index.php/welcome/";
 var config = {};
 var abc = {};
-var user = 3;
+var user = $.jStorage.get("user");
 var contactsync = angular.module('contactsync', []);
 
 contactsync.factory('contactSync', function ($http) {
