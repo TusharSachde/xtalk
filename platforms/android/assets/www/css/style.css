@@ -1,36 +1,37 @@
 /* Empty. Add your own CSS if you like */
 
-/* Open Sans */
+/* Lato */
 
-@font-face {
-    font-family: 'Open Sans';
-    src: url('../fonts/OpenSans-Bold.ttf');
+/*@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Bold.ttf');
     font-weight: 700;
 }
 @font-face {
-    font-family: 'Open Sans';
-    src: url('../fonts/OpenSans-Semibold.ttf');
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Semibold.ttf');
     font-weight: 500;
 }
 @font-face {
-    font-family: 'Open Sans';
-    src: url('../fonts/OpenSans-Regular.ttf');
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Regular.ttf');
     font-weight: 400;
 }
 @font-face {
-    font-family: 'Open Sans Light';
-    src: url('../fonts/OpenSans-Light.ttf');
+    font-family: 'Lato Light';
+    src: url('../fonts/Lato-Light.ttf');
 }
 @font-face {
-    font-family: 'Open Sans';
-    src: url('../fonts/OpenSans-Light.ttf');
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Light.ttf');
     font-weight: 300;
 }
 @font-face {
-    font-family: 'Open Sans';
-    src: url('../fonts/OpenSans-Thin.ttf');
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Hairline.ttf');
     font-weight: 100;
-}
+}*/
+
 .nav-bar-tabs-top .bar {
     border-bottom-width: 0px;
     background-image: none;
@@ -47,10 +48,10 @@
     background-repeat: no-repeat;
     position: absolute;
     text-align: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
     top: 13px;
     left: 10px;
     -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.35);
@@ -69,10 +70,10 @@
     background-repeat: no-repeat;
     position: absolute;
     text-align: center;
-    -webkit-background-size: 100% auto;
-    -moz-background-size: 100%;
-    -o-background-size: 100%;
-    background-size: 100%;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
     top: 22.5px;
     border: 1px solid #F0F0F0;
     right: 10px;
@@ -85,7 +86,8 @@
     min-height: 78px;
 }
 .card-style {
-    padding: 16px 65px 16px 40px;
+    padding: 10px 65px 10px 40px;
+    /*padding: 16px 65px 16px 40px;*/
     background: white;
     border: 1px solid #DFDFDF;
 }
@@ -360,10 +362,6 @@ a.button-50 {
     margin: 5px auto;
     background-position: center center;
     background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
 }
 .card-effect .item {
     border: 0px;
@@ -458,11 +456,22 @@ input.mobileno {
     width: 100%;
     color: white;
     border-bottom: 1px solid white;
+    height: 40px;
+    position: relative;
 }
 .headersearch input {
     background-color: transparent;
-    width: 100%;
     color: white;
+    bottom: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 40px;
+}
+.headersearch i {
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 .animate-if.ng-enter,
 .animate-if.ng-leave {
@@ -639,6 +648,10 @@ input.mobileno {
     width: 105px;
     left: 10px;
     padding-top: 45px;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
 }
 .personal-card .addlogo {
     position: absolute;
@@ -647,6 +660,10 @@ input.mobileno {
     width: 105px;
     left: 10px;
     padding-top: 40px;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
 }
 span.linked {
     color: white;
@@ -705,7 +722,7 @@ span.linked {
     border-width: 2px;
 }
 .default-height .card-style {
-    min-height: 98px;
+    height: 98px;
 }
 .backdrop {
     background-color: transparent;
@@ -729,4 +746,61 @@ span.linked {
 }
 .card-effect .item-select select {
     padding: 0 35px 0 5px;
+}
+.code-holder {
+    padding: 0px;
+    width: 40px;
+}
+.item-no-holder {
+    height: 34px;
+}
+.item-no-holder.item-select select {
+    direction: ltr;
+    left: 0;
+    height: auto;
+    top: auto;
+    bottom: 0;
+    padding: 0;
+}
+.item-no-holder.item-select:after {
+    right: 5px;
+    bottom: 10px;
+    top: auto;
+}
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly]:not(.cloned-text-input),
+textarea[readonly]:not(.cloned-text-input),
+select[readonly] {
+    background-color: transparent;
+}
+.centralized {
+    width: 100%;
+    min-height: 30px;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.list:last-child {
+    padding-bottom: 10px;
+}
+/*.card-effect .input-label {
+  color: #B1B1B1;
+  font-size: 14px;
+  padding: 0px;
+  padding-top: 15px;
+}*/
+
+.relatived {
+    position: relative;
+}
+.relatived .picture {
+    z-index: 99;
 }

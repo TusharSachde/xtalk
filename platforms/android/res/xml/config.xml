@@ -44,10 +44,10 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="ImagePicker">
+        <param name="android-package" value="com.synconset.ImagePicker" />
+    </feature>
     <allow-intent href="market:*" />
-    <splash density="land-ldpi" src="res/screen/splash.png" />
-    <splash density="land-mdpi" src="res/screen/splash.png" />
-    <splash density="land-xhdpi" src="res/screen/splash.png" />
     <name>SpingR</name>
     <description>SpingR for Contact Sync</description>
     <author email="info@wohlig.com" href="http://www.wohlig.com">Wohlig Technology</author>
@@ -67,11 +67,8 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="android-installLocation" value="auto" />
-    <preference name="show-splash-screen-spinner" value="true" />
-    <preference name="auto-hide-splash-screen" value="true" />
     <preference name="AllowInlineMediaPlayback" value="true" />
     <preference name="android-targetSdkVersion" value="14" />
-    <preference name="SplashScreenDelay" value="5000" />
     <preference name="ErrorUrl" value="" />
     <preference name="KeepRunning" value="true" />
     <preference name="LoadUrlTimeoutValue" value="20000" />
@@ -79,5 +76,10 @@
     <preference name="StatusBarBackgroundColor" value="#ffffff" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <icon src="res/icon/logo.png" />
-    <splash density="land-hdpi" src="res/screen/splash.png" />
+    <preference name="SplashScreen" value="res/screen/splash.png" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenBackgroundColor" value="#ffffff" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashScreenWidth" value="300" />
+    <preference name="SplashScreenHeight" value="300" />
 </widget>

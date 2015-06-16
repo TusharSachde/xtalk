@@ -1,5 +1,5 @@
 var serveradmin = "http://wohlig.co.in/spingr/";
-//var serveradmin = "http://localhost/sarahconner/";
+//var serveradmin = "http://192.168.2.28/sarahconner/";
 var adminurl = serveradmin + "index.php/json/";
 var imgpath = serveradmin + "uploads/";
 var mycard1 = {};
@@ -104,6 +104,7 @@ angular.module('starter.services', [])
     returnfunction.getallcontacts = function (callback) {
 
         var onSuccess = function (contacts) {
+            console.log(contacts);
             if (contacts) {
                 for (var i = 0; i < contacts.length; i++) {
                     var myval = {
@@ -112,29 +113,37 @@ angular.module('starter.services', [])
                         contact: "",
                         photo: "",
                     };
-                    if (contacts[i].phoneNumbers && contacts[i].name.formatted && contacts[i].name.formatted != "") {
+                    if (contacts[i].phoneNumbers && contacts[i].name && contacts[i].name.formatted && contacts[i].name.formatted != "") {
                         if (contacts[i].emails) {
                             myval.email = contacts[i].emails[0].value;
                         }
 
-                        if (contacts[i].phoneNumbers) {
-                            myval.contact = contacts[i].phoneNumbers[0].value;
-                            myval.contact = myval.contact.replace(/[ -]/g, '');
-                            myval.contact = myval.contact.replace(/[']/g, '');
-                        }
                         if (contacts[i].name.formatted) {
                             myval.name = contacts[i].name.formatted;
                             myval.name = myval.name.replace(/['"]/g, '');
+                        } else {
+                            myval.name = contacts[i].displayName;
                         }
                         if (contacts[i].photos) {
                             myval.photo = contacts[i].photos[0].value;
                         }
-                        myconarr.push(myval);
+                        if (contacts[i].phoneNumbers) {
+                            _.each(contacts[i].phoneNumbers, function (n) {
+                                myval.contact = n.value;
+                                myval.contact = myval.contact.replace(/[ -]/g, '');
+                                myval.contact = myval.contact.replace(/[']/g, '');
+                                myconarr.push(_.cloneDeep(myval));
+                            });
+                        }
+
                     }
                 }
+                console.log(myconarr.length);
                 myconarr = _.uniq(myconarr, function (n) {
-                    return n.name + n.contact;
+                    return (n.name + "-" + n.contact);
                 });
+                console.log(myconarr.length);
+                console.log(myconarr);
                 callback(myconarr);
             }
         };
@@ -192,11 +201,11 @@ angular.module('starter.services', [])
             }
         });
     };
-    returnfunction.register = function (phone,extension) {
+    returnfunction.register = function (phone, extension) {
         return $http.get(adminurl + "register", {
             params: {
                 phone: phone,
-                extension:extension
+                extension: extension
             }
         });
     };
@@ -240,31 +249,44 @@ angular.module('starter.services', [])
         }), 'id');
         var UserAddShareObj = {
             user: userid,
-            add:add,
-            addShare:addShare,
+            add: add,
+            addShare: addShare,
         };
         return $http.post(adminurl + "acceptrequest", UserAddShareObj);
     }
-    returnfunction.newsfeedadd = function (touser) {
+    returnfunction.newsfeedadd = function (touser, contact, callback) {
         return $http.post(adminurl + "newsfeedadd", {
-            userfrom: userid,
+            userfrom: $.jStorage.get("user"),
             touser: touser
+        }).success(function (data) {
+            callback(contact);
         });
     }
-    returnfunction.newsfeedaddShare = function (touser) {
+    returnfunction.newsfeedaddShare = function (touser, contact, callback) {
         console.log(touser);
-        return $http.post(adminurl + "newsfeedaddShare", {
-            userfrom: userid,
+        $http.post(adminurl + "newsfeedaddShare", {
+            userfrom: $.jStorage.get("user"),
             touser: touser
+        }).success(function (data) {
+            callback(contact);
         });
     }
-    returnfunction.isadded = function (fromuser) {
+    returnfunction.isadded = function (fromuser, callback) {
         console.log(fromuser);
-        return $http.post(adminurl + "isadded", {
+        $http.post(adminurl + "isadded", {
             userfrom: fromuser,
             touser: $.jStorage.get("user")
+        }).success(function (data, status) {
+            callback(data);
+        }).error(function (e) {
+            callback("false");
         });
     }
-
+    returnfunction.getprofile = function (user) {
+        console.log(user);
+        return $http.post(adminurl + "getprofile", {
+            user: user
+        });
+    }
     return returnfunction;
 });

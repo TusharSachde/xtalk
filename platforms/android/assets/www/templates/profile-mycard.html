@@ -1,10 +1,10 @@
 <ion-view view-title="SpingR">
     <ion-content class="padding">
         <div class="card-effect myprofile-card">
-            <div class="addlogo" ng-click="changecompanylogo()" style="background-image:url('{{companylogo}}')" ng-if="companylogo=='img/logo.jpg'">
+            <div class="addlogo" ng-click="changecompanylogo()" style="background-image:url('{{mycard.companylogo|serverimage}}')" ng-if="mycard.companylogo=='img/logo.jpg'">
                 Add company logo
             </div>
-            <div class="addlogo" ng-click="changecompanylogo()" style="background-image:url('{{companylogo|serverimage}}')" ng-if="companylogo!='img/logo.jpg'">
+            <div class="addlogo" ng-click="changecompanylogo()" style="background-image:url('{{mycard.companylogo|serverimage}}')" ng-if="mycard.companylogo!='img/logo.jpg'">
             </div>
             <div class="list">
                 <label class="item item-input" ng-class="allvalidation[0].validation">
@@ -39,15 +39,9 @@
                 <label class="item item-input">
                     <input type="text" placeholder="Pincode/Zipcode" autocapitalize="on" ng-model="mycard.companypincode">
                 </label>
-                <!--<label class="item item-input">
-                    <input type="text" placeholder="Country" autocapitalize="on" ng-model="mycard.companycountry">
-                </label>-->
-                <label class="item item-input item-select">
-                    <div class="input-label">
-                        Country
-                    </div>
+                <label class="item item-input item-select item-no-holder">
                     <select ng-model="mycard.companycountry" placeholder="country">
-                        <option value="">Please Select</option>
+                        <option value="">Country</option>
                         <option value="Afganistan">Afghanistan</option>
                         <option value="Albania">Albania</option>
                         <option value="Algeria">Algeria</option>
@@ -304,27 +298,42 @@
                 Office Details
             </div>
             <div class="list">
-                <label class="item item-input" ng-class="allvalidation[1].validation">
-                    <input type="tel" placeholder="Mobile Number*" ng-model="mycard.companycontact" required>
-                </label>
-                <label class="item item-input">
+                <div class="item item-input">
+                    <span class="input-label code-holder"><input type="tel" ng-model="number.companycontactextension" placeholder="+CC" disabled></span>
+                    <input type="tel" placeholder="Mobile Number*" ng-model="number.companycontact" required disabled>
+                </div>
+                <div class="item item-input">
+                    <span class="input-label code-holder"><input type="tel" placeholder="+CC" ng-model="mycard.directlandlineextension"></span>
                     <input type="tel" placeholder="Direct Landline" ng-model="mycard.directlandline">
-                </label>
-                <label class="item item-input">
+                </div>
+                <div class="item item-input">
+                    <span class="input-label code-holder"><input type="tel" placeholder="+CC" ng-model="mycard.boardlandlineextension"></span>
                     <input type="tel" placeholder="Board Landline" ng-model="mycard.boardlandline">
-                </label>
+                </div>
+                <!--
                 <label class="item item-input">
                     <input type="tel" placeholder="Extension" ng-model="mycard.extension">
                 </label>
-                <label class="item item-input" ng-class="allvalidation[2].validation">
+-->
+                <label class="item item-input" ng-class="allvalidation[1].validation">
                     <input type="email" placeholder="Email ID*" ng-model="mycard.companyemail" required class="lowercase">
                 </label>
                 <label class="item item-input">
-                    <input type="url" placeholder="Website" ng-model="mycard.companywebsite" class="lowercase">
+                    <input type="text" placeholder="Website" ng-model="mycard.companywebsite" class="lowercase">
                 </label>
+
                 <label class="item item-input">
-                    <input type="text" placeholder="Record GPS" ng-model="mycard.companygps">
+                    <input type="text" placeholder="Record GPS">
                 </label>
+                
+<!--
+                <div class="item item-input">
+                    <input type="text" placeholder="Latitude" ng-model="mycard.companygps">
+                    <input type="text" placeholder="Longitude" ng-model="mycard.companygps">
+                </div>
+-->
+                
+
             </div>
         </div>
 

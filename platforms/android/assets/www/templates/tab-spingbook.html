@@ -1,7 +1,7 @@
 <ion-view>
 
     <ion-nav-buttons side="right">
-        <button class="button button-icon ion-ios-loop-strong small-icon animate-if" ng-click="syncnewcontacts();" ng-if="filterbtn == false;"></button>
+        <!--        <button class="button button-icon ion-ios-loop-strong small-icon animate-if" ng-click="syncnewcontacts();" ng-if="filterbtn == false;"></button>-->
 
         <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showsearch(0);hidedialer();" ng-if="filterbtn == false;"></button>
 
@@ -13,7 +13,8 @@
     <ion-nav-title>
         <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
         <div class="animate-if headersearch" ng-if="search == true;">
-            <input type="text" ng-model="searchquery.search" ng-change="namesearch();">
+            <input type="search" ng-model="searchquery.search" ng-change="namesearch();">
+            <i class="icon ion-close-circled" ng-click="searchquery.search='';"></i>
         </div>
     </ion-nav-title>
 
@@ -100,33 +101,39 @@
     <ion-content overflow-scroll='true'>
         <ion-list class="default-height">
 
-            <!--            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr" type="item-text-wrap" ng-click="hidedialer(myconarrs.personalMobile);" on-hold="call(myconarrs.personalMobile);">-->
-            <ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr" type="item-text-wrap" on-hold="call(myconarrs.personalMobile);" ng-click="showDetail(myconarrs);">
+            <!--<ion-item class="item-remove-animate item-avatar2" ng-repeat="myconarrs in myarr" type="item-text-wrap" ng-click="hidedialer(myconarrs.personalMobile);" on-hold="call(myconarrs.personalMobile);">-->
+
+            <div class="relatived"  ng-repeat="myconarrs in myarr"  ng-click="showDetail(myconarrs);">
+
                 <div class="picture" style="background-image: url('{{myconarrs.photoUrl}}'), url('img/default.png');"></div>
 
-                <div class="card-style">
-                    <h2 class="positive" ng-bind-html="myconarrs.name|addhighlight:searchquery.search:phone.number"></h2>
+                <ion-item class="item-remove-animate item-avatar2" type="item-text-wrap">
+                    <div class="card-style">
+                        <h2 class="positive" ng-bind-html="myconarrs.name|addhighlight:searchquery.search:phone.number"></h2>
 
-                    <p class="stable">
-                        {{myconarrs.company}}
-                        <br>{{myconarrs.area}} <span ng-bind-html="myconarrs.personalMobile|addnumhighlight:phone.number"></span>
-                    </p>
+                        <p class="stable">
+                            {{myconarrs.company}}
+                            <br>
+                            {{myconarrs.designation}}
+                            <br>{{myconarrs.area}} <span ng-bind-html="myconarrs.personalMobile|addnumhighlight:phone.number"></span>
+                        </p>
+                        <!--<div class="company" style="background-image: url('{{myconarrs.logo}}');"></div>-->
+                        <div class="company" style="background-image: url('img/spingr.png');"></div>
+                    </div>
 
-                    <!--                    <div class="company" style="background-image: url('{{myconarrs.logo}}');"></div>-->
-                    <div class="company" style="background-image: url('img/spingr.png');"></div>
-                </div>
+                    <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
+                    <ion-option-button class="button-large button-positive ln-phone" ng-click="call(myconarrs.personalMobile);"></ion-option-button>
+                    <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(myconarrs.personalMobile);"></ion-option-button>
+                    <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.email);"></ion-option-button>
+                </ion-item>
+                
+            </div>
 
-                <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
-                <ion-option-button class="button-large button-positive ln-phone" ng-click="call(myconarrs.personalMobile);">
-                </ion-option-button>
-                <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(myconarrs.personalMobile);"></ion-option-button>
-                <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.email);"></ion-option-button>
-            </ion-item>
             <div class="noresult" ng-show="noresult">No result found</div>
 
 
         </ion-list>
-        <ion-infinite-scroll on-infinite="loadMoreContacts()" spinner="ripple" ng-if="keepscrolling" distance="1%">
+        <ion-infinite-scroll on-infinite="loadMoreContacts()" spinner="ripple" ng-if="keepscrolling" distance="50%">
         </ion-infinite-scroll>
     </ion-content>
 </ion-view>
