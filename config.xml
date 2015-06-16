@@ -44,12 +44,9 @@
     <icon src="res/icon/logo.png" />
     <splash src="res/screen/splash.png" />
 
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="5000" />
     <preference name="SplashScreenBackgroundColor" value="#ffffff" />
     <preference name="SplashMaintainAspectRatio" value="true" />
-    <preference name="SplashScreenWidth" value="200" />
-    <preference name="SplashScreenHeight" value="200" />
-
 
     <!--<platform name="android">
         <splash src="res/screen/splash.png" density="port-hdpi" />
