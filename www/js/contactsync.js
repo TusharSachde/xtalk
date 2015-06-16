@@ -292,7 +292,7 @@ contactsync.factory('contactSync', function ($http) {
     }
 
     returnval.create = function (data, callback) {
-       
+
         returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`,`personalMobile`,`photoUrl`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "','" + data.photo + "')", function (result, len, id) {
             id = id.insertId;
             var d = new Date();
@@ -349,19 +349,22 @@ contactsync.factory('contactSync', function ($http) {
         if (!config.user.localtimestamp) {
             config.user.localtimestamp = 0;
         }
+        console.log("user timestamp=" + config.user.localtimestamp);
         returnval.query("SELECT `table` as `id`,'" + user + "' as `name` ,`email` ,`designation`  , `lineOfBusiness` , `companyname` , `officeAddress` , `officeCity` , `officeState` , `officePin` , `officeCountry` , `officeMobile` , `officeLandline` , `officeEmail` , `officeWebsite` , `officeGPS` , `DOB` , `anniversary` , `bloodGroup` , `personalAddress` , `personalCity` , `personalState` , `personalPin` , `personalCountry` , `personalMobile`  , `personalLandline` , `personalWebsite` , `personalGPS` , `serverid` , `photoUrl`    FROM (SELECT `userslog`.`table`,`contacts`.`name`,`contacts`.`id` ,`contacts`.`email` ,`contacts`.`designation` ,`contacts`.`lineOfBusiness` , `contacts`.`companyname` ,`contacts`.`officeAddress` ,`contacts`.`officeCity` ,`contacts`.`officeState` ,`contacts`.`officePin` ,`contacts`.`officeCountry` ,`contacts`.`officeMobile` , `officeLandline` , `officeEmail` ,`contacts`.`officeWebsite` ,`contacts`.`officeGPS` ,`contacts`.`DOB` ,`contacts`.`anniversary` ,`contacts`.`bloodGroup` ,`contacts`.`personalAddress` ,`contacts`.`personalCity` ,`contacts`.`personalState` ,`contacts`.`personalPin` ,`contacts`.`personalCountry` ,`contacts`.`personalMobile`  , `contacts`.`personalLandline` , `contacts`.`personalWebsite` ,`contacts`.`personalGPS` ,`contacts`.`serverid` , `contacts`.`photoUrl`    , `userslog`.`timestamp`, `userslog`.`type`,`contacts`.`serverid`,`userslog`.`serverid` as `serverid2` FROM `userslog` LEFT OUTER JOIN `contacts` ON `contacts`.`id`=`userslog`.`table` WHERE `userslog`.`timestamp`>'" + config.user.localtimestamp + "' ORDER BY `userslog`.`timestamp` DESC) as `tab1` GROUP BY `tab1`.`table` ORDER BY `tab1`.`timestamp` LIMIT 0,1", callback);
     };
 
     returnval.synclocaltoserver = function (callback) {
         console.log("LOCAL TO SERVER");
         returnval.getone(function (result, len) {
-            console.log(len);
+            console.log(result);
+            console.log("Len=" + len);
             if (len > 0) {
                 console.log("Server Submisssion");
                 //on success change localtimestamp
                 var row = result.item(0);
                 $http.post(adminurl + "localtoserver", row).success(function (data) {
                     if (data.id) {
+                        console.log("if******data.id=" + data.id);
                         returnval.query("UPDATE `contacts ` SET `serverid`='" + data.id + "' WHERE `id`='" + row.id + "'");
                     }
                     console.log(row);
