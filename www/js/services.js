@@ -1,6 +1,6 @@
-//var serveradmin = "http://wohlig.co.in/spingr/";
+var serveradmin = "http://wohlig.co.in/spingr/";
 //var serveradmin = "http://192.168.2.28/sarahconner/";
-var serveradmin = "http://192.168.2.6/sarahconner/";
+//var serveradmin = "http://192.168.2.6/sarahconner/";
 var adminurl = serveradmin + "index.php/json/";
 var imgpath = serveradmin + "uploads/";
 var mycard1 = {};
