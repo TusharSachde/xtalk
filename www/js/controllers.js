@@ -454,9 +454,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.startloading();
 
     var maxcontact = 0;
-    var contactcreatecomplete = 0;
+    var contactcreatecomplete = 1;
     var completeCreate = function () {
         contactcreatecomplete++;
+        console.log("contactcreatecomplete=" + contactcreatecomplete);
         if (contactcreatecomplete == maxcontact) {
             contactSync.contactcount(contactcountcallback);
             checktoskip();
@@ -477,12 +478,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             $scope.spingrcontacts[i].isShared = true;
             //    level2id[i] = $scope.spingrcontacts[i].userid;
         }
-        checktoskip();
     }
     var checkto = 0;
     var checktoskip = function () {
         checkto++;
-        if (checkto == 3) {
+        if (checkto == 2) {
             $ionicLoading.hide();
             $scope.mainLoader = true;
 
@@ -498,8 +498,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             user: userid,
             contact: myconarr
         }
-        maxcontact = myconarr.length;
         MyServices.sendContacts($scope.usercontacts).success(sendcontactssuccess);
+        maxcontact = myconarr.length;
+        console.log("maxcontact=" + maxcontact);
         //        _.each(myconarr, function (n) {
         //            contactSync.create(n, completeCreate);
         //        });
@@ -748,14 +749,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.search = false;
     $scope.filterbtn = false;
-    $scope.showsearch = function (n) {
+    $scope.showsearch = function (z) {
         console.log('Search Clicked');
         $scope.search = !$scope.search;
         console.log($scope.search);
-        if (n == 1) {
+        if (z == 1) {
             if ($scope.search == true)
                 $scope.search = false;
-        } else if (n == 0) {
+        } else if (z == 0) {
             $location.url("/circle/circle1");
         }
     };

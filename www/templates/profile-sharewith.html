@@ -36,8 +36,8 @@
                 <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}'), url('img/default.png');"></div>
                 <!--                <div class="picture"></div>-->
                 <div class="card-style">
-                    <h2 class="positive">{{contact.name}}</h2>
-                    <p class="stable">{{contact.companyname}}</p>
+                    <h2 class="positive" ng-if="contact.name!=null || contact.name">{{contact.name}}</h2>
+                    <p class="stable" ng-if="contact.companyname!=null || contact.companyname">{{contact.companyname}}</p>
                 </div>
             </ion-item>
 
@@ -48,5 +48,5 @@
     <ion-footer-bar class="bar-positive" ng-click="sendShare();" ng-show="mainLoader">
         <div class="title">Share &amp; Proceed</div>
     </ion-footer-bar>
-    
+
 </ion-view>

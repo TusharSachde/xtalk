@@ -105,7 +105,7 @@
 
             <div class="relatived" ng-repeat="myconarrs in myarr" ng-click="showDetail(myconarrs);">
 
-                <div class="picture" style="background-image: url('{{myconarrs.photoUrl}}'), url('img/default.png');"></div>
+                <div class="picture" style="background-image: url('{{myconarrs.photoUrl|serverimageprofile}}');"></div>
 
                 <ion-item class="item-remove-animate item-avatar2" type="item-text-wrap">
                     <div class="card-style">
@@ -113,18 +113,18 @@
 
                         <p class="stable">
                             <span ng-bind-html="myconarrs.personalMobile|addnumhighlight:phone.number"></span> 
-                            <br>{{myconarrs.company}}
+                            <br>{{myconarrs.companyname}}
                             <br>{{myconarrs.designation}}
                             <!--<br>{{myconarrs.area}}-->
                         </p>
                         <!--<div class="company" style="background-image: url('{{myconarrs.logo}}');"></div>-->
-                        <div class="company" style="background-image: url('img/spingr.png');" ng-if="myconarrs.companylogo"></div>
+                        <div class="company" style="background-image: url('{{myconarrs.companylogo|serverimage}}');" ng-if="myconarrs.companylogo"></div>
                     </div>
 
                     <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
                     <ion-option-button class="button-large button-positive ln-phone" ng-click="call(myconarrs.personalMobile);"></ion-option-button>
                     <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(myconarrs.personalMobile);"></ion-option-button>
-                    <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.email);" ng-if="myconarrs.email"></ion-option-button>
+                    <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(myconarrs.officeEmail);" ng-if="myconarrs.officeEmail"></ion-option-button>
                 </ion-item>
 
             </div>
