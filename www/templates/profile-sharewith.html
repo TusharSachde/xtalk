@@ -29,7 +29,7 @@
         <div class="heading">Share my profile with</div>
         <ion-list>
 
-            <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in spingrcontacts" type="item-text-wrap">
+            <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in spingrcontacts" type="item-text-wrap" ng-if="contact.status!='2' || contact.status!='1'">
                 <label class="checkbox">
                     <input type="checkbox" ng-model="contact.isShared">
                 </label>
@@ -37,7 +37,7 @@
                 <!--                <div class="picture"></div>-->
                 <div class="card-style">
                     <h2 class="positive">{{contact.name}}</h2>
-                    <p class="stable">{{contact.company}}</p>
+                    <p class="stable">{{contact.companyname}}</p>
                 </div>
             </ion-item>
 

@@ -465,6 +465,9 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     var sendcontactssuccess = function (data, status) {
         console.log(data);
+        _.each(data, function (n) {
+            contactSync.create(n, completeCreate);
+        });
         contact = data;
         $scope.spingrcontacts = contact;
 
@@ -495,11 +498,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             user: userid,
             contact: myconarr
         }
-        MyServices.sendContacts($scope.usercontacts).success(sendcontactssuccess);
         maxcontact = myconarr.length;
-        _.each(myconarr, function (n) {
-            contactSync.create(n, completeCreate);
-        });
+        MyServices.sendContacts($scope.usercontacts).success(sendcontactssuccess);
+        //        _.each(myconarr, function (n) {
+        //            contactSync.create(n, completeCreate);
+        //        });
     }
     n++;
     if (n == 1) {
