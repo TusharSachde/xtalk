@@ -236,7 +236,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 console.log(resultImage);
 
                 $scope.cameraimage = resultImage[0];
-                $scope.uploadPhoto(adminurl + "imageuploadprofile?user=" + user.id, changeproflogo);
+                $scope.uploadPhoto(adminurl + "imageuploadprofile?user=" + userid, changeproflogo);
 
             }, function (err) {
                 // An error occured. Show a message to the user
@@ -325,7 +325,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 
                 $scope.cameraimage = resultImage[0];
-                $scope.uploadPhoto(adminurl + "imageuploadcompany?user=" + user.id, changecmpylogo);
+                $scope.uploadPhoto(adminurl + "imageuploadcompany?user=" + userid, changecmpylogo);
             }, function (err) {
                 // An error occured. Show a message to the user
             });
@@ -510,9 +510,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log("Hey");
         MyServices.getallcontacts(contactCallback);
     }
-
-
-
     console.log($scope.spingrcontacts);
 
     var contactcountcallback = function (result, len) {
@@ -523,26 +520,23 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.$apply();
     }
 
-
-
-
     $scope.sendShare = function () {
-
         tobeShared.tobeSharedArr = [];
-
         tobeShared.tobeSharedArr = _.pluck(_.filter($scope.spingrcontacts, function (n) {
             return n.isShared;
         }), 'id');
-
-
+        tobeShared.tobeSharedArr=_.filter(tobeShared.tobeSharedArr,function(n){
+            return n!=null;
+        })
+        console.log(tobeShared);
         var sharewithSuccess = function (data, status) {
             $location.path("/profile/get");
         }
-        if (tobeShared.tobeSharedArr.length != 0)
+        if (tobeShared.tobeSharedArr.length != 0) {
+//            $location.path("/profile/get");
             MyServices.sharewith(tobeShared).success(sharewithSuccess);
-        else
+        } else
             $location.path("/profile/get");
-
     }
 
     //    $scope.$apply();
@@ -751,7 +745,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.filterbtn = false;
     $scope.showsearch = function (z) {
         console.log('Search Clicked');
-        $scope.search = !$scope.search;
+//        $scope.search = !$scope.search;
         console.log($scope.search);
         if (z == 1) {
             if ($scope.search == true)
