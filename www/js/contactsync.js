@@ -349,6 +349,12 @@ contactsync.factory('contactSync', function ($http) {
         });
     }
 
+    returnval.getallcontactnames = function (callback) {
+        returnval.query("SELECT `id`,`name` from `contacts` ORDER BY `name`", function (result, len) {
+            callback(result, len);
+        });
+    }
+    
     returnval.create = function (data, callback) {
 
         if (data.name == null || !data.name) {

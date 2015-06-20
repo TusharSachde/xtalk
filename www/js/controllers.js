@@ -900,13 +900,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
     $scope.openadvance = function () {
         $scope.oModal2.show();
-    }
-    var advancesuccess = function (data) {
-        $scope.myarr = data;
-        console.log(data);
     };
     $scope.closeadvance = function () {
         $scope.oModal2.hide();
+    };
+
+    var advancesuccess = function (data) {
+        $scope.myarr = data;
+        console.log(data);
     };
     $scope.advancesearch = function () {
         //        contactSync.advancesearch($scope.advanced, advancesuccess);
@@ -1042,7 +1043,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 })
 
-.controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams) {
+.controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams, $ionicModal, contactSync, $ionicPopup) {
     if ($.jStorage.get("isadded") == 1) {
         $scope.showAll = 1;
     } else {
@@ -1050,6 +1051,58 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
     $scope.contact = contactDetail;
     console.log(contactDetail);
+
+    //Forwarding Modal
+    $ionicModal.fromTemplateUrl('templates/modal-forward.html', {
+        id: '3',
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.oModal3 = modal;
+    });
+
+    var getallcontactnamescallback = function (data, len) {
+        console.log(data);
+        $scope.allcontacts = [];
+        _.each(data, function (n) {
+            $scope.allcontacts.push(n);
+        })
+    }
+    $scope.openforwardmodal = function () {
+        contactSync.getallcontactnames(getallcontactnamescallback);
+        $scope.oModal3.show();
+    };
+    $scope.closeforwardmodal = function () {
+        $scope.oModal3.hide();
+    };
+
+    $scope.forward = function (contact) {
+        console.log("Forward");
+        var alertPopup = $ionicPopup.show({
+            title: 'CONFIRM FORWARD',
+            template: 'Are you sure you want to forward this contact?',
+            buttons: [{
+                text: 'NO',
+                type: 'button-positive button-outline',
+                onTap: function () {
+                    return "No";
+                }
+                        }, {
+                text: 'YES',
+                type: 'button-positive button-outline',
+                onTap: function () {
+                    return "Yes";
+                }
+                        }],
+        });
+
+        alertPopup.then(function (res) {
+            console.log(res);
+            if (res == "Yes") {
+                console.log("Oh Yes !!");
+            }
+        })
+    }
 })
 
 .controller('NewsCtrl', function ($scope, MyServices, $ionicLoading) {
