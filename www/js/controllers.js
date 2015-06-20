@@ -1043,7 +1043,14 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 })
 
-.controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams, $ionicModal, contactSync, $ionicPopup) {
+.controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams, $ionicModal, contactSync, $ionicPopup, $ionicLoading) {
+
+    $scope.startloading = function () {
+        $ionicLoading.show({
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
+        });
+    };
+
     if ($.jStorage.get("isadded") == 1) {
         $scope.showAll = 1;
     } else {
@@ -1067,10 +1074,12 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         _.each(data, function (n) {
             $scope.allcontacts.push(n);
         })
+        $ionicLoading.hide();
     }
     $scope.openforwardmodal = function () {
         contactSync.getallcontactnames(getallcontactnamescallback);
         $scope.oModal3.show();
+        $scope.startloading();
     };
     $scope.closeforwardmodal = function () {
         $scope.oModal3.hide();
@@ -1099,6 +1108,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         alertPopup.then(function (res) {
             console.log(res);
             if (res == "Yes") {
+                console.log("userfrom=" + $scope.contact.id + " \n touser=" + contact.id);
                 console.log("Oh Yes !!");
             }
         })

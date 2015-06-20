@@ -7,15 +7,17 @@
     </ion-header-bar>
 
     <ion-content>
+<!--
        <ion-item>
-            <label ng-click="forward('contact');">
+            <div ng-click="forward('contact');">
                 Dhaval
-            </label>
+            </div>
         </ion-item>
+-->
         <ion-item ng-repeat="contact in allcontacts">
-            <label ng-click="forward(contact);">
+            <div ng-click="forward(contact);">
                 {{contact.name}}
-            </label>
+            </div>
         </ion-item>
     </ion-content>
 </ion-modal-view>
