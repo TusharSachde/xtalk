@@ -122,7 +122,7 @@ contactsync.factory('contactSync', function ($http) {
     }
 
 
-    returnval.getcontact = function (str, number, advance, pageno, callback, populate) {
+    returnval.getcontact = function (str, number, advance, pageno, callback, populate, filter) {
 
         var rowcount = 25;
         pageno = pageno * rowcount;
@@ -200,11 +200,62 @@ contactsync.factory('contactSync', function ($http) {
 
         }
 
+        var filtercount = {};
+
+        //        var filter={
+        //            name: ["chintan","chirag","china"];
+        //        }
 
         if (str) {
-            where += " AND `name` LIKE  '%" + str + "%' ";
-        }
+            where += " AND `name` LIKE  '%" + str + "%'";
+            where += " OR `companyname` LIKE  '%" + str + "%'";
+            where += " OR `designation` LIKE  '%" + str + "%'";
+            where += " OR `personalCity` LIKE  '%" + str + "%'";
+            where += " OR `bloodGroup` LIKE  '%" + str + "%'";
+            where += " OR `personalCountry` LIKE  '%" + str + "%'";
+            where += " OR `lineOfBusiness` LIKE  '%" + str + "%'";
 
+            returnval.query("SELECT count(*) as `count` from `contacts` WHERE `name` LIKE '%" + str + "%'", function (result, len) {
+                filtercount.name = result[0].count;
+            });
+            returnval.query("SELECT count(*) as `count` from `contacts` WHERE `companyname` LIKE '%" + str + "%'", function (result, len) {
+                filtercount.company = result[0].count;
+            });
+            returnval.query("SELECT count(*) as `count` from `contacts` WHERE `personalCity` LIKE '%" + str + "%'", function (result, len) {
+                filtercount.location = result[0].count;
+            });
+            returnval.query("SELECT count(*) as `count` from `contacts` WHERE `designation`LIKE '%" + str + "%'", function (result, len) {
+                filtercount.designation = result[0].count;
+            });
+        }
+        if (filter.name) {
+            where += " AND `name` IN ( ";
+            _.each(filer.name, function (n) {
+                where += n
+            });
+            where += " ) ";
+        }
+        if (filter.company) {
+            where += " AND `companyname` IN ( ";
+            _.each(filer.company, function (n) {
+                where += n
+            });
+            where += " ) ";
+        }
+        if (filter.location) {
+            where += " AND `personalCity` IN ( ";
+            _.each(filer.location, function (n) {
+                where += n
+            });
+            where += " ) ";
+        }
+        if (filter.designation) {
+            where += " AND `designation` IN ( ";
+            _.each(filer.designation, function (n) {
+                where += n
+            });
+            where += " ) ";
+        }
 
 
         if (advance.name) {
@@ -267,7 +318,7 @@ contactsync.factory('contactSync', function ($http) {
             for (var i = 0; i < len; i++) {
                 data.push(result.item(i));
             }
-            callback(data, dataflag, populate);
+            callback(data, dataflag, populate, filtercount);
         });
 
 
@@ -288,6 +339,13 @@ contactsync.factory('contactSync', function ($http) {
         returnval.query(query, function (result, len) {
             console.log(result);
             callback(result.item(0).count, len);
+        });
+    }
+    
+    returnval.getqueryresult = function (filterby,callback) {
+        returnval.query(filterby, function (result, len) {
+            console.log(result);
+            callback(result, len);
         });
     }
 

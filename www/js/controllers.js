@@ -525,15 +525,15 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         tobeShared.tobeSharedArr = _.pluck(_.filter($scope.spingrcontacts, function (n) {
             return n.isShared;
         }), 'id');
-        tobeShared.tobeSharedArr=_.filter(tobeShared.tobeSharedArr,function(n){
-            return n!=null;
+        tobeShared.tobeSharedArr = _.filter(tobeShared.tobeSharedArr, function (n) {
+            return n != null;
         })
         console.log(tobeShared);
         var sharewithSuccess = function (data, status) {
             $location.path("/profile/get");
         }
         if (tobeShared.tobeSharedArr.length != 0) {
-//            $location.path("/profile/get");
+            //            $location.path("/profile/get");
             MyServices.sharewith(tobeShared).success(sharewithSuccess);
         } else
             $location.path("/profile/get");
@@ -662,11 +662,11 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.searchquery.search = "";
     $scope.phone = {};
     $scope.phone.number = "";
+    $scope.filter = {};
+    $scope.allfiltercount = {};
 
-
-
-    var populatecontacts = function (contacts, flag, pop) {
-
+    var populatecontacts = function (contacts, flag, pop, filtercount) {
+        $scope.allfiltercount = filtercount;
         if (pop == populate) {
             if (contacts.length == 0) { // nothing in contact
 
@@ -705,10 +705,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     };
 
 
-    contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+    contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate, $scope.filter);
 
     $scope.loadMoreContacts = function () {
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate);
+        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, ++$scope.page, populatecontacts, populate, $scope.filter);
     }
 
     var recordcallback = function (len, n) {
@@ -738,14 +738,15 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.page = 0;
         $scope.phone.number = "";
         $scope.advanced = {};
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+        $scope.filter = {};
+        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate, $scope.filter);
     }
 
     $scope.search = false;
     $scope.filterbtn = false;
     $scope.showsearch = function (z) {
         console.log('Search Clicked');
-//        $scope.search = !$scope.search;
+        //        $scope.search = !$scope.search;
         console.log($scope.search);
         if (z == 1) {
             if ($scope.search == true)
@@ -817,7 +818,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             console.log(lastcheck);
             if (id == lastcheck) {
                 console.log("Going In");
-                contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+                contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate, $scope.filter);
             }
         }, 2000);
     }
@@ -838,7 +839,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.page = 0;
         $scope.searchquery.search = "";
         $scope.advanced = {};
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+        $scope.filter = {};
+        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate, $scope.filter);
     };
 
     $scope.phonedelete = function () {
@@ -846,7 +848,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.phone.number = "";
         $scope.page = 0;
         $scope.advanced = {};
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+        $scope.filter = {}
+        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate, $scope.filter);
     };
 
 
@@ -879,6 +882,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     });
 
     $scope.openfilter = function () {
+        $scope.getfilterresults(1);
         $scope.oModal1.show();
     }
     $scope.closefilter = function () {
@@ -909,7 +913,8 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.page = 0;
         $scope.searchquery.search = "";
         $scope.phone.number = "";
-        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate);
+        $scope.filter = {};
+        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate, $scope.filter);
         $scope.closeadvance();
         $scope.closePopover();
     }
@@ -968,6 +973,56 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     $scope.showDetailCircle1 = function (contact) {
         contactDetail = contact;
         MyServices.isadded(contact.personalMobile, isAddedCircle1Success);
+    }
+
+    var filterresultcallback = function (data, len) {
+        console.log(data);
+        $scope.filterresults = [];
+        _.each(data, function (n) {
+            $scope.filterresults.push(n);
+            $scope.filterresults.isFiltered = false;
+        });
+        console.log($scope.filterresults);
+        $ionicLoading.hide();
+    }
+    $scope.getfilterresults = function (filtertype) {
+        $scope.startloading();
+        if (filtertype == 1) {
+            $scope.class1 = true;
+            $scope.class2 = false;
+            $scope.class3 = false;
+            $scope.class4 = false;
+            $scope.filterby = "SELECT * FROM `contacts` WHERE `name` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `id`";
+        } else if (filtertype == 2) {
+            $scope.class1 = false;
+            $scope.class2 = true;
+            $scope.class3 = false;
+            $scope.class4 = false;
+            $scope.filterby = "SELECT * FROM `contacts` WHERE `companyname` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `id`";
+        } else if (filtertype == 3) {
+            $scope.class1 = false;
+            $scope.class2 = false;
+            $scope.class3 = true;
+            $scope.class4 = false;
+            $scope.filterby = "SELECT * FROM `contacts` WHERE `personalCity` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `id`";
+        } else if (filtertype == 4) {
+            $scope.class1 = false;
+            $scope.class2 = false;
+            $scope.class3 = false;
+            $scope.class4 = true;
+            $scope.filterby = "SELECT * FROM `contacts` WHERE `designation` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `id`";
+        }
+        contactSync.getqueryresult($scope.filterby, filterresultcallback);
+    }
+    $scope.applyFilter = function (filterresult) {
+        $scope.myarr = _.filter(filterresult, function (n) {
+            return n.isFiltered == true;
+        })
+        $scope.closefilter();
+    }
+    $scope.clearFilter = function () {
+        contactSync.getcontact($scope.searchquery.search, $scope.phone.number, $scope.advanced, $scope.page, populatecontacts, ++populate, $scope.filter);
+        $scope.closefilter();
     }
 
     var level2callback = function (data, status) {

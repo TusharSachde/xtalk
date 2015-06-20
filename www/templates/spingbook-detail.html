@@ -24,6 +24,9 @@
             </div>
         </div>
 
+        <button class="button button-block button-positive" ng-if="showAll==0">Share</button>
+
+
         <div class="vcard" ng-if="showAll==1">
             <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}');"></div>
             <div class="company" style="background-image: url('{{contact.companylogo|serverimage}}');" ng-if="contact.companylogo"></div>
