@@ -6,27 +6,27 @@
     <ion-content class="padding">
 
         <div class="vcard specialcard">
-            <div class="company" style="background-image: url('{{contact.logo}}');"></div>
+            <div class="company" style="background-image: url('{{contactdetails.companylogo|serverimage}}');"></div>
             <div class="in-vcard">
-                <h1 ng-bind="contact.name">Designation</h1>
-                <h2 ng-bind="contact.designation"></h2>
-                <h2 ng-bind="contact.company"></h2>
-                <h2 ng-bind="contact.area"></h2>
+                <h1 ng-bind="contactdetails.name"></h1>
+                <h2 ng-bind="contactdetails.designation"></h2>
+                <h2 ng-bind="contactdetails.companyname"></h2>
+                <h2 ng-bind="contactdetails.companycity"></h2>
             </div>
         </div>
 
         <div class="vcard withheading">
             <div class="heading">People who know</div>
-            <div class="picture" style="background-image: url('{{contact.image}}');"></div>
+            <div class="picture" style="background-image: url('{{contactdetails.image|serverimageprofile}}');"></div>
 
             <button class="button button-clear button-positive text-center button-block">
-                <i class="icon ln-comments"></i> Sping {{contact.name}}
+                <i class="icon ln-comments"></i> Sping {{contactdetails.name}}
             </button>
 
             <div class="row">
                 <div class="col">
-                    <span class="spacing one"><i class="icon positive circle-single"></i> Ram</span>
-                    <span class="spacing two"><i class="icon positive circle-double"></i> Laxman</span> 
+                    <span class="spacing one"><i class="icon positive circle-single"></i> {{user1name}}</span>
+                    <span class="spacing two"><i class="icon positive circle-double"></i> {{user2name}}</span> 
                     <span class="spacing one"><i class="icon positive circle-single"></i> Sita</span>
                     <span class="spacing one"><i class="icon positive circle-single"></i> Hanuman</span>
                 </div>

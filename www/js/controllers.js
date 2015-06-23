@@ -451,7 +451,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         userid: userid,
         tobeSharedArr: []
     }
-    $scope.startloading();
 
     var maxcontact = 0;
     var contactcreatecomplete = 1;
@@ -530,13 +529,13 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         })
         console.log(tobeShared);
         var sharewithSuccess = function (data, status) {
-            $location.path("/profile/get");
+            $location.path("/tab/news");
         }
         if (tobeShared.tobeSharedArr.length != 0) {
             //            $location.path("/profile/get");
             MyServices.sharewith(tobeShared).success(sharewithSuccess);
         } else
-            $location.path("/profile/get");
+            $location.path("/tab/news");
     }
 
     //    $scope.$apply();
@@ -754,6 +753,10 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         } else if (z == 0) {
             $location.url("/circle/circle1");
         }
+    };
+    $scope.showcirclesearch = function () {
+//        console.log('Search Clicked');
+        $scope.search = !$scope.search;
     };
     $scope.searchquery = "";
     $scope.filtertoggle = function (keyEvent) {
@@ -993,25 +996,25 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             $scope.class2 = false;
             $scope.class3 = false;
             $scope.class4 = false;
-            $scope.filterby = "SELECT * FROM `contacts` WHERE `name` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `id`";
+            $scope.filterby = "SELECT * FROM `contacts` WHERE `name` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `name`";
         } else if (filtertype == 2) {
             $scope.class1 = false;
             $scope.class2 = true;
             $scope.class3 = false;
             $scope.class4 = false;
-            $scope.filterby = "SELECT * FROM `contacts` WHERE `companyname` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `id`";
+            $scope.filterby = "SELECT * FROM `contacts` WHERE `companyname` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `companyname`";
         } else if (filtertype == 3) {
             $scope.class1 = false;
             $scope.class2 = false;
             $scope.class3 = true;
             $scope.class4 = false;
-            $scope.filterby = "SELECT * FROM `contacts` WHERE `personalCity` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `id`";
+            $scope.filterby = "SELECT * FROM `contacts` WHERE `personalCity` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `personalCity`";
         } else if (filtertype == 4) {
             $scope.class1 = false;
             $scope.class2 = false;
             $scope.class3 = false;
             $scope.class4 = true;
-            $scope.filterby = "SELECT * FROM `contacts` WHERE `designation` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `id`";
+            $scope.filterby = "SELECT * FROM `contacts` WHERE `designation` LIKE '%" + $scope.searchquery.search + "%' GROUP BY `designation`";
         }
         contactSync.getqueryresult($scope.filterby, filterresultcallback);
     }
@@ -1026,17 +1029,23 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.closefilter();
     }
 
+    $scope.level2search = function () {
+        MyServices.getlevel2contacts($scope.searchquery.search).success(level2callback);
+    }
+    $scope.level3search = function () {
+        MyServices.getlevel3contacts($scope.searchquery.search).success(level3callback);
+    }
     var level2callback = function (data, status) {
         $scope.circle2contacts = data;
         console.log($scope.circle2contacts);
     };
-    MyServices.getlevel2contacts().success(level2callback);
+    MyServices.getlevel2contacts($scope.searchquery.search).success(level2callback);
 
     var level3callback = function (data, status) {
         $scope.circle3contacts = data;
         console.log($scope.circle3contacts);
     };
-    MyServices.getlevel3contacts().success(level3callback);
+    MyServices.getlevel3contacts($scope.searchquery.search).success(level3callback);
 
     $scope.backtospingbook = function () {
         $location.url('/tab/spingbook');
@@ -1045,6 +1054,20 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
 
 .controller('InSpingbookCtrl', function ($scope, MyServices, $stateParams, $ionicModal, contactSync, $ionicPopup, $ionicLoading) {
 
+    $scope.circleid = $stateParams.Id;
+    console.log($scope.circleid);
+    $scope.user1name = $stateParams.u1name;
+    $scope.user2name = $stateParams.u2name;
+    console.log($scope.user1name);
+    console.log($scope.user2name);
+    var getproilecallback = function (data, status) {
+        console.log(data);
+        $scope.contactdetails = data;
+    }
+
+    if ($scope.circleid) {
+        MyServices.getprofile($scope.circleid).success(getproilecallback);
+    }
     $scope.startloading = function () {
         $ionicLoading.show({
             template: '<ion-spinner class="spinner-light"></ion-spinner>'
@@ -1108,7 +1131,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         alertPopup.then(function (res) {
             console.log(res);
             if (res == "Yes") {
-                console.log("userfrom=" + $scope.contact.id + " \n touser=" + contact.id);
+                console.log("userfrom=" + $scope.contact.userid + " \n touser=" + contact.userid);
                 console.log("Oh Yes !!");
             }
         })

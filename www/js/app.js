@@ -193,7 +193,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         })
 
         .state('circle.circle2-detail', {
-            url: '/circle2/:Id',
+            url: '/circle2/:Id/:u1name',
             views: {
                 'tab1-circle2': {
                     templateUrl: 'templates/circle2-detail.html',
@@ -203,7 +203,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         })
 
         .state('circle.circle3-detail', {
-            url: '/circle3/:Id',
+            url: '/circle3/:Id/:u1name/:u2name',
             views: {
                 'tab1-circle3': {
                     templateUrl: 'templates/circle3-detail.html',
