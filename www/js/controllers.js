@@ -155,7 +155,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
         $ionicLoading.hide();
     })
-    .controller('PersonalProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaImagePicker, $cordovaFileTransfer, $ionicLoading, $timeout) {
+    .controller('PersonalProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaImagePicker, $cordovaFileTransfer, $ionicLoading, $timeout, $cordovaCamera) {
 
         if ($.jStorage.get('user')) {
             userid = $.jStorage.get("user");
@@ -167,11 +167,20 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
                 template: '<ion-spinner class="spinner-light"></ion-spinner>'
             });
         };
+        //        var options = {
+        //            maximumImagesCount: 1,
+        //            width: 800,
+        //            height: 800,
+        //            quality: 80
+        //        };
+
         var options = {
-            maximumImagesCount: 1,
-            width: 800,
-            height: 800,
-            quality: 80
+            quality: 20,
+            destinationType: Camera.DestinationType.FILE_URI,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            saveToPhotoAlbum: true
         };
         $scope.mycard = {};
 
@@ -227,17 +236,32 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             $scope.mycard.profilelogo = result.value;
         }
         $scope.changeprofilelogo = function () {
-            console.log("take picture");
 
-            $cordovaImagePicker.getPictures(options).then(function (resultImage) {
+            //            console.log("take picture");
+            //            $cordovaImagePicker.getPictures(options).then(function (resultImage) {
+            //                // Success! Image data is here
+            //                console.log("here in upload image");
+            //
+            //                console.log(resultImage);
+            //
+            //                $scope.cameraimage = resultImage[0];
+            //                $scope.uploadPhoto(adminurl + "imageuploadprofile?user=" + userid, changeproflogo);
+            //
+            //            }, function (err) {
+            //                // An error occured. Show a message to the user
+            //            });
+
+            console.log("take picture");
+            $cordovaCamera.getPicture(options).then(function (imageData) {
                 // Success! Image data is here
                 console.log("here in upload image");
-
-                console.log(resultImage);
-
-                $scope.cameraimage = resultImage[0];
+                console.log(imageData);
+                if (imageData.substring(0, 21) == "content://com.android") {
+                    var photo_split = imageData.split("%3A");
+                    imageData = "content://media/external/images/media/" + photo_split[1];
+                }
+                $scope.cameraimage = imageData;
                 $scope.uploadPhoto(adminurl + "imageuploadprofile?user=" + userid, changeproflogo);
-
             }, function (err) {
                 // An error occured. Show a message to the user
             });
@@ -289,7 +313,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             }
         }
     })
-    .controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaImagePicker, $cordovaFileTransfer, $ionicLoading, $timeout) {
+    .controller('ProfileCtrl', function ($scope, $location, MyServices, contactSync, $cordovaImagePicker, $cordovaFileTransfer, $ionicLoading, $timeout, $cordovaCamera) {
         $scope.startloading = function () {
             $ionicLoading.show({
                 template: '<ion-spinner class="spinner-light"></ion-spinner>'
@@ -302,11 +326,19 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         $scope.number.companycontactextension = "+91";
         $scope.number.companycontact = $.jStorage.get("personalcontact");
 
+        //        var options = {
+        //            maximumImagesCount: 1,
+        //            width: 800,
+        //            height: 800,
+        //            quality: 80
+        //        };
         var options = {
-            maximumImagesCount: 1,
-            width: 800,
-            height: 800,
-            quality: 80
+            quality: 20,
+            destinationType: Camera.DestinationType.FILE_URI,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            saveToPhotoAlbum: true
         };
 
         //Contacts Sending
@@ -315,16 +347,28 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
             $scope.mycard.companylogo = result.value;
         }
         $scope.changecompanylogo = function () {
-            console.log("take picture");
+            //            console.log("take picture");
+            //
+            //            $cordovaImagePicker.getPictures(options).then(function (resultImage) {
+            //                // Success! Image data is here
+            //                console.log("here in upload image");
+            //                console.log(resultImage);
+            //                $scope.cameraimage = resultImage[0];
+            //                $scope.uploadPhoto(adminurl + "imageuploadcompany?user=" + userid, changecmpylogo);
+            //            }, function (err) {
+            //                // An error occured. Show a message to the user
+            //            });
 
-            $cordovaImagePicker.getPictures(options).then(function (resultImage) {
+            console.log("take picture");
+            $cordovaCamera.getPicture(options).then(function (imageData) {
                 // Success! Image data is here
                 console.log("here in upload image");
-                console.log(resultImage);
-
-
-
-                $scope.cameraimage = resultImage[0];
+                console.log(imageData);
+                if (imageData.substring(0, 21) == "content://com.android") {
+                    var photo_split = imageData.split("%3A");
+                    imageData = "content://media/external/images/media/" + photo_split[1];
+                }
+                $scope.cameraimage = imageData;
                 $scope.uploadPhoto(adminurl + "imageuploadcompany?user=" + userid, changecmpylogo);
             }, function (err) {
                 // An error occured. Show a message to the user
@@ -755,7 +799,7 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         }
     };
     $scope.showcirclesearch = function () {
-//        console.log('Search Clicked');
+        //        console.log('Search Clicked');
         $scope.search = !$scope.search;
     };
     $scope.searchquery = "";
