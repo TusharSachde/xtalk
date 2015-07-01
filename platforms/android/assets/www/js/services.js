@@ -1,5 +1,6 @@
-//var serveradmin = "http://wohlig.co.in/spingr/";
-var serveradmin = "http://192.168.2.28/sarahconner/";
+var serveradmin = "http://wohlig.co.in/spingr/";
+//var serveradmin = "http://192.168.2.28/sarahconner/";
+//var serveradmin = "http://localhost/sarahconner/";
 var adminurl = serveradmin + "index.php/json/";
 var imgpath = serveradmin + "uploads/";
 var mycard1 = {};
@@ -216,16 +217,18 @@ angular.module('starter.services', [])
         console.log(contacts);
         return $http.post(adminurl + "sendcontacts", contacts)
     }
-    returnfunction.getlevel2contacts = function () {
+    returnfunction.getlevel2contacts = function (searchstr) {
         return $http.post(adminurl + "level2search", {
-            user: userid,
-            page: 0
+            user: $.jStorage.get("user"),
+            page: 0,
+            str: searchstr
         })
     }
-    returnfunction.getlevel3contacts = function () {
+    returnfunction.getlevel3contacts = function (searchstr) {
         return $http.post(adminurl + "level3search", {
-            user: userid,
-            page: 0
+            user: $.jStorage.get("user"),
+            page: 0,
+            str: searchstr
         })
     }
     returnfunction.sharewith = function (tobeshared) {

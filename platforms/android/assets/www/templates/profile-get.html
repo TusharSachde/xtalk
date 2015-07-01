@@ -11,7 +11,7 @@
         <div class="heading">Share my profile with</div>
 
         <ion-list>
-            <ion-item class="item-avatar2 withbutton" ng-repeat="contact in getcontacts" type="item-text-wrap">
+            <ion-item class="item-avatar2 withbutton" collection-repeat="contact in getcontacts" type="item-text-wrap">
 
                 <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}'), url('img/default.png');"></div>
                 <div class="card-style">

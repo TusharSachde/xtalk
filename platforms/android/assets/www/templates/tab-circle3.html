@@ -23,7 +23,7 @@
 
     <ion-content overflow-scroll='true'>
         <ion-list class="default-height">
-            <ion-item class="item-remove-animate item-avatar2" ng-repeat="contact in circle3contacts" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.number);" href="#/circle/circle3/{{contact.id}}/{{contact.user1name}}/{{contact.user2name}}">
+            <ion-item class="item-remove-animate item-avatar2" collection-repeat="contact in circle3contacts" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.number);" href="#/circle/circle3/{{contact.id}}/{{contact.user1name}}/{{contact.user2name}}">
 
                 <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}');"></div>
 

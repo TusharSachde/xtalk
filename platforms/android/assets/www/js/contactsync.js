@@ -1,7 +1,7 @@
 // var adminurl = "http://localhost/syncbackend/index.php/welcome/";
 var config = {};
 var abc = {};
-var user = 3;
+var user = $.jStorage.get("user");
 var contactsync = angular.module('contactsync', []);
 
 contactsync.factory('contactSync', function ($http) {
@@ -33,7 +33,7 @@ contactsync.factory('contactSync', function ($http) {
     var db = openDatabase('sync', '1.0', 'SyncTestDatabase', 2 * 1024 * 1024);
 
     db.transaction(function (tx) {
-        tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`designation` VARCHAR(255) , `lineOfBusiness` VARCHAR(255), `companyname` VARCHAR(255), `officeAddress` VARCHAR(255), `officeCity` VARCHAR(255), `officeState` VARCHAR(255), `officePin` VARCHAR(255), `officeCountry` VARCHAR(255), `officeMobile` INTEGER, `officeLandline` INTEGER, `officeEmail` VARCHAR(255), `officeWebsite` VARCHAR(255), `officeGPS` VARCHAR(255), `DOB` VARCHAR(255), `anniversary` VARCHAR(255), `bloodGroup` VARCHAR(255), `personalAddress` VARCHAR(255), `personalCity` VARCHAR(255), `personalState` VARCHAR(255), `personalPin` VARCHAR(255), `personalCountry` VARCHAR(255), `personalMobile`  INTEGER, `personalLandline` INTEGER, `personalWebsite` VARCHAR(255), `personalGPS` VARCHAR(255), `serverid` INTEGER, `photoUrl` VARCHAR(255)  )');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`designation` VARCHAR(255) , `lineOfBusiness` VARCHAR(255), `companyname` VARCHAR(255), `officeAddress` VARCHAR(255), `officeCity` VARCHAR(255), `officeState` VARCHAR(255), `officePin` VARCHAR(255), `officeCountry` VARCHAR(255), `officeMobile` VARCHAR(255), `officeLandline` VARCHAR(255), `officeEmail` VARCHAR(255), `officeWebsite` VARCHAR(255), `officeGPS` VARCHAR(255), `DOB` VARCHAR(255), `anniversary` VARCHAR(255), `bloodGroup` VARCHAR(255), `personalAddress` VARCHAR(255), `personalCity` VARCHAR(255), `personalState` VARCHAR(255), `personalPin` VARCHAR(255), `personalCountry` VARCHAR(255), `personalMobile`  VARCHAR(255), `personalLandline` VARCHAR(255), `personalWebsite` VARCHAR(255), `personalGPS` VARCHAR(255), `serverid` INTEGER, `photoUrl` VARCHAR(255), `companylogo` VARCHAR(255), `userid` VARCHAR(255))');
     });
     db.transaction(function (tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS `userslog` (`id` INTEGER PRIMARY KEY ASC, `timestamp` TIMESTAMP,`type` INTEGER,`user` INTEGER,`table` INTEGER,`serverid` INTEGER)');
@@ -113,7 +113,7 @@ contactsync.factory('contactSync', function ($http) {
 
         returnval.query("DROP TABLE IF EXISTS `userslog`");
         db.transaction(function (tx) {
-            tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`designation` VARCHAR(255) , `lineOfBusiness` VARCHAR(255), `companyname` VARCHAR(255), `officeAddress` VARCHAR(255), `officeCity` VARCHAR(255), `officeState` VARCHAR(255), `officePin` VARCHAR(255), `officeCountry` VARCHAR(255), `officeMobile` INTEGER, `officeLandline` INTEGER, `officeEmail` VARCHAR(255), `officeWebsite` VARCHAR(255), `officeGPS` VARCHAR(255), `DOB` VARCHAR(255), `anniversary` VARCHAR(255), `bloodGroup` VARCHAR(255), `personalAddress` VARCHAR(255), `personalCity` VARCHAR(255), `personalState` VARCHAR(255), `personalPin` VARCHAR(255), `personalCountry` VARCHAR(255), `personalMobile`  INTEGER, `personalLandline` INTEGER, `personalWebsite` VARCHAR(255), `personalGPS` VARCHAR(255), `serverid` INTEGER, `photoUrl` VARCHAR(255)  )');
+            tx.executeSql('CREATE TABLE IF NOT EXISTS `contacts` (`id` INTEGER PRIMARY KEY ASC, `name` VARCHAR(255),`email` VARCHAR(255),`designation` VARCHAR(255) , `lineOfBusiness` VARCHAR(255), `companyname` VARCHAR(255), `officeAddress` VARCHAR(255), `officeCity` VARCHAR(255), `officeState` VARCHAR(255), `officePin` VARCHAR(255), `officeCountry` VARCHAR(255), `officeMobile` VARCHAR(255), `officeLandline` VARCHAR(255), `officeEmail` VARCHAR(255), `officeWebsite` VARCHAR(255), `officeGPS` VARCHAR(255), `DOB` VARCHAR(255), `anniversary` VARCHAR(255), `bloodGroup` VARCHAR(255), `personalAddress` VARCHAR(255), `personalCity` VARCHAR(255), `personalState` VARCHAR(255), `personalPin` VARCHAR(255), `personalCountry` VARCHAR(255), `personalMobile`  VARCHAR(255), `personalLandline` VARCHAR(255), `personalWebsite` VARCHAR(255), `personalGPS` VARCHAR(255), `serverid` INTEGER, `photoUrl` VARCHAR(255), `companylogo` VARCHAR(255), `userid` VARCHAR(255))');
         });
         db.transaction(function (tx) {
             tx.executeSql('CREATE TABLE IF NOT EXISTS `userslog` (`id` INTEGER PRIMARY KEY ASC, `timestamp` TIMESTAMP,`type` INTEGER,`user` INTEGER,`table` INTEGER,`serverid` INTEGER)');
@@ -122,9 +122,9 @@ contactsync.factory('contactSync', function ($http) {
     }
 
 
-    returnval.getcontact = function (str, number, advance, pageno, callback, populate) {
+    returnval.getcontact = function (str, number, advance, pageno, callback, populate, filter) {
 
-        var rowcount = 25;
+        var rowcount = 1000;
         pageno = pageno * rowcount;
         var where = '';
         var noregex = false;
@@ -200,11 +200,62 @@ contactsync.factory('contactSync', function ($http) {
 
         }
 
+        var filtercount = {};
+
+        //        var filter={
+        //            name: ["chintan","chirag","china"];
+        //        }
 
         if (str) {
-            where += " AND `name` LIKE  '%" + str + "%' ";
-        }
+            where += " AND `name` LIKE '%" + str + "%'";
+            where += " OR `companyname` LIKE '%" + str + "%'";
+            where += " OR `designation` LIKE '%" + str + "%'";
+            where += " OR `personalCity` LIKE '%" + str + "%'";
+            where += " OR `bloodGroup` LIKE '%" + str + "%'";
+            where += " OR `personalCountry` LIKE '%" + str + "%'";
+            where += " OR `lineOfBusiness` LIKE '%" + str + "%'";
 
+            returnval.query("SELECT count(*) as `count` from `contacts` WHERE `name` LIKE '%" + str + "%'", function (result, len) {
+                filtercount.name = result[0].count;
+            });
+            returnval.query("SELECT count(*) as `count` from `contacts` WHERE `companyname` LIKE '%" + str + "%'", function (result, len) {
+                filtercount.company = result[0].count;
+            });
+            returnval.query("SELECT count(*) as `count` from `contacts` WHERE `personalCity` LIKE '%" + str + "%'", function (result, len) {
+                filtercount.location = result[0].count;
+            });
+            returnval.query("SELECT count(*) as `count` from `contacts` WHERE `designation` LIKE '%" + str + "%'", function (result, len) {
+                filtercount.designation = result[0].count;
+            });
+        }
+        if (filter.name) {
+            where += " AND `name` IN ( ";
+            _.each(filer.name, function (n) {
+                where += n
+            });
+            where += " ) ";
+        }
+        if (filter.company) {
+            where += " AND `companyname` IN ( ";
+            _.each(filer.company, function (n) {
+                where += n
+            });
+            where += " ) ";
+        }
+        if (filter.location) {
+            where += " AND `personalCity` IN ( ";
+            _.each(filer.location, function (n) {
+                where += n
+            });
+            where += " ) ";
+        }
+        if (filter.designation) {
+            where += " AND `designation` IN ( ";
+            _.each(filer.designation, function (n) {
+                where += n
+            });
+            where += " ) ";
+        }
 
 
         if (advance.name) {
@@ -267,7 +318,7 @@ contactsync.factory('contactSync', function ($http) {
             for (var i = 0; i < len; i++) {
                 data.push(result.item(i));
             }
-            callback(data, dataflag, populate);
+            callback(data, dataflag, populate, filtercount);
         });
 
 
@@ -291,9 +342,100 @@ contactsync.factory('contactSync', function ($http) {
         });
     }
 
+    returnval.getqueryresult = function (filterby, callback) {
+        returnval.query(filterby, function (result, len) {
+            console.log(result);
+            callback(result, len);
+        });
+    }
+
+    returnval.getallcontactnames = function (callback) {
+        returnval.query("SELECT `id`,`name` from `contacts` ORDER BY `name`", function (result, len) {
+            callback(result, len);
+        });
+    }
+
     returnval.create = function (data, callback) {
 
-        returnval.query("INSERT INTO `contacts` (`id`, `name`,`email`,`personalMobile`,`photoUrl`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.contact + "','" + data.photo + "')", function (result, len, id) {
+        if (data.userid == null || !data.userid) {
+            data.userid = "";
+        }
+        if (data.name == null || !data.name) {
+            data.name = "";
+        }
+        if (data.email == null || !data.email) {
+            data.email = "";
+        }
+        if (data.designation == null || !data.designation) {
+            data.designation = "";
+        }
+        if (data.lineofbusiness == null || !data.lineofbusiness) {
+            data.lineofbusiness = "";
+        }
+        if (data.companyname == null || !data.companyname) {
+            data.companyname = "";
+        }
+        if (data.companyaddress == null || !data.companyaddress) {
+            data.companyaddress = "";
+        }
+        if (data.companycity == null || !data.companycity) {
+            data.companycity = "";
+        }
+        if (data.companystate == null || !data.companystate) {
+            data.companystate = "";
+        }
+        if (data.companypincode == null || !data.companypincode) {
+            data.companypincode = "";
+        }
+        if (data.companycountry == null || !data.companycountry) {
+            data.companycountry = "";
+        }
+        if (data.personalprofilecontact == null || !data.personalprofilecontact) {
+            data.personalprofilecontact = "";
+        }
+        if (data.companyemail == null || !data.companyemail) {
+            data.companyemail = "";
+        }
+        if (data.companywebsite == null || !data.companywebsite) {
+            data.companywebsite = "";
+        }
+        if (data.birthdate == null || !data.birthdate || data.birthdate == "0000-00-00") {
+            data.birthdate = "";
+        }
+        if (data.anniversary == null || !data.anniversary || data.anniversary == "0000-00-00") {
+            data.anniversary = "";
+        }
+        if (data.bloodgroup == null || !data.bloodgroup) {
+            data.bloodgroup = "";
+        }
+        if (data.personeladdress == null || !data.personeladdress) {
+            data.personeladdress = "";
+        }
+        if (data.personelcity == null || !data.personelcity) {
+            data.personelcity = "";
+        }
+        if (data.personelstate == null || !data.personelstate) {
+            data.personelstate = "";
+        }
+        if (data.personelcountry == null || !data.personelcountry) {
+            data.personelcountry = "";
+        }
+        if (data.personelcontact == null || !data.personelcontact) {
+            data.personelcontact = "";
+        }
+        if (data.homelandline == null || !data.homelandline) {
+            data.homelandline = "";
+        }
+        if (data.personelwebsite == null || !data.personelwebsite) {
+            data.personelwebsite = "";
+        }
+        if (data.image == null || !data.image) {
+            data.image = "";
+        }
+        if (data.companylogo == null || !data.companylogo) {
+            data.companylogo = "";
+        }
+        returnval.query("INSERT INTO `contacts` (`id`, `name`, `email`, `designation`, `lineOfBusiness`, `companyname`,  `officeAddress`, `officeCity`, `officeState`, `officePin`, `officeCountry`, `officeMobile`,`officeEmail`, `officeWebsite`, `DOB`, `anniversary`, `bloodGroup`, `personalAddress`, `personalCity`, `personalState`, `personalCountry`, `personalMobile`, `personalLandline`, `personalWebsite`, `photoUrl`, `companylogo`,`userid`) VALUES (null,'" + data.name + "','" + data.email + "','" + data.designation + "','" + data.lineofbusiness + "','" + data.companyname + "','" + data.companyaddress + "','" + data.companycity + "','" + data.companystate + "','" + data.companypincode + "','" + data.companycountry + "','" + data.personalprofilecontact + "','" + data.companyemail + "','" + data.companywebsite + "','" + data.birthdate + "','" + data.anniversary + "','" + data.bloodgroup + "','" + data.personeladdress + "','" + data.personelcity + "','" + data.personelstate + "','" + data.personelcountry + "','" + data.personelcontact + "','" + data.homelandline + "','" + data.personelwebsite + "','" + data.image + "','" + data.companylogo + "','" + data.userid + "')", function (result, len, id) {
             id = id.insertId;
             var d = new Date();
             var n = d.getTime();
