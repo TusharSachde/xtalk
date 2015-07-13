@@ -553,7 +553,6 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
         console.log("Hey");
         MyServices.getallcontacts(contactCallback);
     }
-    console.log($scope.spingrcontacts);
 
     var contactcountcallback = function (result, len) {
         console.log(result);

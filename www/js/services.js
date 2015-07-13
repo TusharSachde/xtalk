@@ -103,8 +103,9 @@ angular.module('starter.services', [])
 
     var returnfunction = {};
     returnfunction.getallcontacts = function (callback) {
-
+        console.log("in get all contacts");
         var onSuccess = function (contacts) {
+            console.log("contacts success");
             console.log(contacts);
             if (contacts) {
                 for (var i = 0; i < contacts.length; i++) {
