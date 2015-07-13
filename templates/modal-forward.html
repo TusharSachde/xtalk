@@ -1,0 +1,23 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-positive">
+        <h1 class="title">Forward To</h1>
+        <div class="buttons button-right">
+            <button class="button button-clear" ng-click="closeforwardmodal();">Close</button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content>
+<!--
+       <ion-item>
+            <div ng-click="forward('contact');">
+                Dhaval
+            </div>
+        </ion-item>
+-->
+        <ion-item ng-repeat="contact in allcontacts">
+            <div ng-click="forward(contact);">
+                {{contact.name}}
+            </div>
+        </ion-item>
+    </ion-content>
+</ion-modal-view>

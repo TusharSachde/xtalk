@@ -1,0 +1,52 @@
+<ion-view view-title="Share Profile">
+    <ion-nav-buttons side="right">
+        <!--<a class="button button-clear" ng-click="sendShare();">
+        Share
+        </a>-->
+    </ion-nav-buttons>
+
+    <div class="centralized" ng-hide="mainLoader">
+        <ion-spinner class="spinner-positive"></ion-spinner>
+        <p>Synchronizing your contacts &amp; setting up your profile.</p>
+    </div>
+
+    <ion-content class="padding has-footer has-header" ng-show="mainLoader">
+
+        <ion-list class="reverse-padding">
+            <ion-item class="transparent-bg">
+                Phonebook contacts
+                <span class="badge badge-positive">{{contactcount}}</span>
+            </ion-item>
+            <ion-item class="transparent-bg">
+                Contacts on Spingr
+                <span class="badge badge-positive">{{spingrcontactcount}}</span>
+            </ion-item>
+        </ion-list>
+
+        <p class="text-center">
+            Your business card will be shared with them. If you don't want your details to get updated into their SPingbook then deselect the from the list.
+        </p>
+        <div class="heading">Share my profile with</div>
+        <ion-list>
+
+            <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in spingrcontacts" type="item-text-wrap" ng-if="contact.status!='2' && contact.status!='1'">
+                <label class="checkbox">
+                    <input type="checkbox" ng-model="contact.isShared">
+                </label>
+                <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}'), url('img/default.png');"></div>
+                <!--                <div class="picture"></div>-->
+                <div class="card-style">
+                    <h2 class="positive" ng-if="contact.name!=null || contact.name">{{contact.name}}</h2>
+                    <p class="stable" ng-if="contact.companyname!=null || contact.companyname">{{contact.companyname}}</p>
+                </div>
+            </ion-item>
+
+        </ion-list>
+
+
+    </ion-content>
+    <ion-footer-bar class="bar-positive" ng-click="sendShare();" ng-show="mainLoader">
+        <div class="title">Share &amp; Proceed</div>
+    </ion-footer-bar>
+
+</ion-view>

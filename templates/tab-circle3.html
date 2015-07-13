@@ -1,0 +1,52 @@
+<ion-view>
+
+    <ion-nav-buttons side="left">
+        <a class="button button-icon ion-ios-close-empty" href="#/tab/spingbook"></a>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showcirclesearch();" ng-if="filterbtn == false;"></button>
+
+        <button class="button button-icon ln-funnel small-icon animate-if" ng-click="openfilter();" ng-if="filterbtn == true;"></button>
+
+        <button class="button button-icon ion-android-more-vertical small-icon" ng-click="openPopover();"></button>
+    </ion-nav-buttons>
+
+    <ion-nav-title>
+        <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
+        <div class="animate-if headersearch" ng-if="search == true;">
+            <!--            <input type="text" ng-keypress="filtertoggle($event);">-->
+            <input type="text" ng-model="searchquery.search" ng-change="level3search();">
+            <i class="icon ion-close-circled" ng-click="searchquery.search='';level3search();"></i>
+        </div>
+    </ion-nav-title>
+
+    <ion-content overflow-scroll='true'>
+        <ion-list class="default-height">
+            <ion-item class="item-remove-animate item-avatar2" collection-repeat="contact in circle3contacts" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.number);" href="#/circle/circle3/{{contact.id}}/{{contact.user1name}}/{{contact.user2name}}">
+
+                <div class="picture" style="background-image: url('{{contact.image|serverimageprofile}}');"></div>
+
+                <div class="card-style">
+                    <h2 class="positive">{{contact.name}}</h2>
+
+                    <p class="stable">
+                        {{contact.companyname}}
+                        <br><span class="spacing"><i class="icon positive circle-single"></i> {{contact.user1name}}</span> <span class="spacing"><i class="icon positive circle-double"></i> {{contact.user2name}}</span>
+                    </p>
+
+                    <div class="company" style="background-image: url('{{contact.companylogo|serverimage}}');" ng-if="contact.companylogo"></div>
+                </div>
+
+                <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
+                <ion-option-button class="button-large button-positive ln-phone" ng-click="call(contact.number);">
+                </ion-option-button>
+                <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(contact.number);"></ion-option-button>
+                <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(contact.companyemail);" ng-if="contact.companyemail"></ion-option-button>
+
+            </ion-item>
+            <!--            <div class="noresult" ng-show="noresult">No result found</div>-->
+            <div class="noresult">No result found</div>
+        </ion-list>
+    </ion-content>
+</ion-view>

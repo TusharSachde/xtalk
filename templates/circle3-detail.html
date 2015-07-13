@@ -1,0 +1,59 @@
+<ion-view view-title="SpingR">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ln-share small-icon">
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+
+        <div class="vcard specialcard">
+            <div class="company" style="background-image: url('{{contactdetails.companylogo|serverimage}}');"></div>
+            <div class="in-vcard">
+                <h1 ng-bind="contactdetails.name"></h1>
+                <h2 ng-bind="contactdetails.designation"></h2>
+                <h2 ng-bind="contactdetails.companyname"></h2>
+                <h2 ng-bind="contactdetails.companycity"></h2>
+            </div>
+        </div>
+
+        <div class="vcard withheading">
+            <div class="heading">People who know</div>
+            <div class="picture" style="background-image: url('{{contactdetails.image|serverimageprofile}}');"></div>
+
+            <button class="button button-clear button-positive text-center button-block">
+                <i class="icon ln-comments"></i> Sping {{contactdetails.name}}
+            </button>
+
+            <div class="row">
+                <div class="col">
+                    <span class="spacing one"><i class="icon positive circle-single"></i> {{user1name}}</span>
+                    <span class="spacing two"><i class="icon positive circle-double"></i> {{user2name}}</span> 
+<!--
+                    <span class="spacing one"><i class="icon positive circle-single"></i> Sita</span>
+                    <span class="spacing one"><i class="icon positive circle-single"></i> Hanuman</span>
+-->
+                </div>
+
+            </div>
+<!--
+            <div class="row">
+                <div class="col">
+                    <span class="spacing one"><i class="icon positive circle-single"></i> Bheem</span>
+                    <span class="spacing two"><i class="icon positive circle-double"></i> Krishna</span> 
+                    <span class="spacing one"><i class="icon positive circle-single"></i> Arjun</span>
+                    <span class="spacing one"><i class="icon positive circle-single"></i> Karan</span>
+                    <span class="spacing one positive"><i class="icon ion-plus"></i> 1 More</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <span class="spacing one"><i class="icon positive circle-single"></i> Shiva</span>
+                    <span class="spacing two"><i class="icon positive circle-double"></i> Ganpati</span> 
+                    <span class="spacing one"><i class="icon positive circle-single"></i> Parvati</span>
+                </div>
+            </div>
+-->
+
+        </div>
+    </ion-content>
+</ion-view>
