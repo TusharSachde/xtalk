@@ -3,7 +3,7 @@
     <ion-nav-buttons side="left">
         <a class="button button-icon ion-ios-close-empty" href="#/tab/spingbook"></a>
     </ion-nav-buttons>
-   
+
     <ion-nav-buttons side="right">
         <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showcirclesearch();" ng-if="filterbtn == false;"></button>
 
@@ -15,7 +15,7 @@
     <ion-nav-title>
         <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
         <div class="animate-if headersearch" ng-if="search == true;">
-<!--            <input type="text" ng-keypress="filtertoggle($event);">-->
+            <!--            <input type="text" ng-keypress="filtertoggle($event);">-->
             <input type="text" ng-model="searchquery.search" ng-change="level2search();">
             <i class="icon ion-close-circled" ng-click="searchquery.search='';level2search();"></i>
         </div>
@@ -46,6 +46,8 @@
                 <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(contact.companyemail);" ng-if="contact.companyemail"></ion-option-button>
 
             </ion-item>
+            <!--            <div class="noresult" ng-show="noresult">No result found</div>-->
+            <div class="noresult">No result found</div>
         </ion-list>
     </ion-content>
 </ion-view>

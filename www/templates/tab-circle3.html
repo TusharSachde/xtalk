@@ -15,8 +15,8 @@
     <ion-nav-title>
         <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
         <div class="animate-if headersearch" ng-if="search == true;">
-<!--            <input type="text" ng-keypress="filtertoggle($event);">-->
-           <input type="text" ng-model="searchquery.search" ng-change="level3search();">
+            <!--            <input type="text" ng-keypress="filtertoggle($event);">-->
+            <input type="text" ng-model="searchquery.search" ng-change="level3search();">
             <i class="icon ion-close-circled" ng-click="searchquery.search='';level3search();"></i>
         </div>
     </ion-nav-title>
@@ -32,7 +32,7 @@
 
                     <p class="stable">
                         {{contact.companyname}}
-                        <br><span class="spacing"><i class="icon positive circle-single"></i> {{contact.user1name}}</span>  <span class="spacing"><i class="icon positive circle-double"></i> {{contact.user2name}}</span>
+                        <br><span class="spacing"><i class="icon positive circle-single"></i> {{contact.user1name}}</span> <span class="spacing"><i class="icon positive circle-double"></i> {{contact.user2name}}</span>
                     </p>
 
                     <div class="company" style="background-image: url('{{contact.companylogo|serverimage}}');" ng-if="contact.companylogo"></div>
@@ -45,6 +45,8 @@
                 <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(contact.companyemail);" ng-if="contact.companyemail"></ion-option-button>
 
             </ion-item>
+            <!--            <div class="noresult" ng-show="noresult">No result found</div>-->
+            <div class="noresult">No result found</div>
         </ion-list>
     </ion-content>
 </ion-view>

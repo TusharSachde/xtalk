@@ -1074,22 +1074,22 @@ angular.module('starter.controllers', ['contactsync', 'ngCordova'])
     }
 
     $scope.level2search = function () {
-        MyServices.getlevel2contacts($scope.searchquery.search).success(level2callback);
+//        MyServices.getlevel2contacts($scope.searchquery.search).success(level2callback);
     }
     $scope.level3search = function () {
-        MyServices.getlevel3contacts($scope.searchquery.search).success(level3callback);
+//        MyServices.getlevel3contacts($scope.searchquery.search).success(level3callback);
     }
     var level2callback = function (data, status) {
         $scope.circle2contacts = data;
         console.log($scope.circle2contacts);
     };
-    MyServices.getlevel2contacts($scope.searchquery.search).success(level2callback);
+//    MyServices.getlevel2contacts($scope.searchquery.search).success(level2callback);
 
     var level3callback = function (data, status) {
         $scope.circle3contacts = data;
         console.log($scope.circle3contacts);
     };
-    MyServices.getlevel3contacts($scope.searchquery.search).success(level3callback);
+//    MyServices.getlevel3contacts($scope.searchquery.search).success(level3callback);
 
     $scope.backtospingbook = function () {
         $location.url('/tab/spingbook');
