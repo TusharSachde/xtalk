@@ -28,7 +28,6 @@
     "cordova-plugin-file",
     "cordova-plugin-file-transfer",
     "cordova-plugin-inappbrowser",
-    "phonegap-plugin-push",
     {
       "locator": "https://github.com/asanka-x/Phonegap-SMS.git",
       "id": "info.asankan.phonegap.smsplugin"
@@ -38,5 +37,8 @@
       "id": "com.teamnemitoff.phonedialer"
     }
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios",
+    "android"
+  ]
 }
