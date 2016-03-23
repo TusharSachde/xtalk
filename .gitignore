@@ -3,3 +3,4 @@ node_modules/
 *.bin
 plugins/
 platforms/
+plugins/
