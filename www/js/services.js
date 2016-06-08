@@ -65,5 +65,11 @@ angular.module('starter.services', [])
             }
             return null;
         }
-    };
+    },
+    returnfunction.verifyOTP = function(otpdetails) {
+            return $http.post(adminurl + "otp/checkOtp", otpdetails);
+        },
+        returnfunction.register = function(phone) {
+            return $http.post(adminurl + "otp/save", phone);
+        };
 });
