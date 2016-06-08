@@ -1,6 +1,6 @@
-var serveradmin = "http://wohlig.co.in/spingr/";
-var adminurl = serveradmin + "index.php/json/";
-var imgpath = serveradmin + "uploads/";
+var serveradmin = "http://localhost:1337/";
+var adminurl = serveradmin;
+// var imgpath = serveradmin + "uploads/";
 var mycard1 = {};
 var personalcontact = '';
 var contact = [];
@@ -121,7 +121,7 @@ angular.module('starter.services', [])
                             myval.name = contacts[i].name.formatted;
                             myval.name = myval.name.replace(/['"]/g, '');
                         }
-                        
+
                         if (contacts[i].photos.value) {
                             myval.photoUrl = contacts[i].photos.value;
                         }
@@ -181,23 +181,24 @@ angular.module('starter.services', [])
             smsplugin.startReception(successCallback, failureCallback);
         }
     };
-    returnfunction.verifyOTP = function (userotp, personalcontact) {
-        return $http.get(adminurl + "verifyotp", {
-            params: {
-                newotp: userotp,
-                phone: personalcontact
-            }
-        });
+    returnfunction.verifyOTP = function (otpdetails) {
+          return $http.post(adminurl + "otp/checkOtp", otpdetails);
     };
     returnfunction.register = function (phone) {
-        return $http.get(adminurl + "register", {
-            params: {
-                phone: phone
-            }
-        });
+        // return $http.get(adminurl + "register", {
+        //     params: {
+        //         phone: phone
+        //     }
+        // });
+          // return $http.post(adminurl + "mycard", card);
+          return $http.post(adminurl + "otp/save", phone);
     }
     returnfunction.createCard = function (card) {
         return $http.post(adminurl + "mycard", card);
+
+    }
+    returnfunction.getProfile = function () {
+        return $http.post(adminurl + "user/getProfile");
 
     }
     returnfunction.sendContacts = function (contacts) {
