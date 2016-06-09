@@ -71,6 +71,9 @@ angular.module('starter.services', [])
     returnfunction.register = function(phone) {
         return $http.post(adminurl + "otp/save", phone);
     };
+    returnfunction.saveUser = function(phone) {
+        return $http.post(adminurl + "user/save", phone);
+    };
 
     returnfunction.getProfile = function() {
         return $http.post(adminurl + "user/getProfile");

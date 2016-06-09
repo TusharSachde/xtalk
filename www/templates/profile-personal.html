@@ -1,39 +1,37 @@
 <ion-view view-title="SpingR">
     <ion-content class="padding">
+      <form ng-submit="personalDetails();">
         <div class="card-effect personal-card">
             <div class="addlogo">Upload profile picture</div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Birth Date">
+                    <input type="text" placeholder="Birth Date" ng-model="personal.birthDate">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Anniversary">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Company Name">
+                    <input type="text" placeholder="Anniversary" ng-model="personal.anniversary">
                 </label>
             </div>
         </div>
 
         <div class="card-effect">
             <div class="heading">
-                Office Address
+                Residential Address
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Address">
+                    <input type="text" placeholder="Address" ng-model="personal.residentialAddress.address">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="City / District">
+                    <input type="text" placeholder="City / District" ng-model="personal.residentialAddress.city">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="State / Province">
+                    <input type="text" placeholder="State / Province" ng-model="personal.residentialAddress.state">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Pincode / Zipcode">
+                    <input type="text" placeholder="Pincode / Zipcode" ng-model="personal.residentialAddress.pincode">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Country">
+                    <input type="text" placeholder="Country" ng-model="personal.residentialAddress.country">
                 </label>
             </div>
         </div>
@@ -43,29 +41,31 @@
             </div>
             <div class="list">
                 <label class="item item-input">
-                    <input type="text" placeholder="Mobile Number">
+                    <input type="text" placeholder="Mobile Number" ng-model="personal.contactPersonalDetails.mobileNumber">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Home Landline">
+                    <input type="text" placeholder="Home Landline" ng-model="personal.contactPersonalDetails.homeLandline">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Twitter Handle">
+                    <input type="text" placeholder="Twitter Handle" ng-model="personal.contactPersonalDetails.twitterhandle">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Facebook Page">
+                    <input type="text" placeholder="Facebook Page" ng-model="personal.contactPersonalDetails.facebookpage">
                 </label>
                 <label class="item item-input">
-                    <input type="email" placeholder="Email ID">
+                    <input type="email" placeholder="Email ID" ng-model="personal.contactPersonalDetails.email">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Website">
+                    <input type="text" placeholder="Website" ng-model="personal.contactPersonalDetails.website">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Record GPS">
+                    <input type="text" placeholder="Record GPS" ng-model="personal.contactPersonalDetails.recordgps">
                 </label>
             </div>
         </div>
 
-        <a class="button button-positive button-outline button-block" href="#/profile/sharewith">Save &amp; Proceed</a>
+        <!-- <a class="button button-positive button-outline button-block" href="#/profile/sharewith">Save &amp; Proceed</a> -->
+        <button class="button button-positive button-outline button-block">Save &amp; Proceed</button>
+      </form>
     </ion-content>
 </ion-view>

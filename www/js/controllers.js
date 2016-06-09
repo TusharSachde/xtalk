@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate, $ionicPopup, $ionicLoading, MyServices,$location) {
+.controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate, $ionicPopup, $ionicLoading, MyServices, $location) {
 
     $scope.startloading = function() {
         $ionicLoading.show({
@@ -38,7 +38,7 @@ angular.module('starter.controllers', [])
     //
     // };
     var errorCallback = function() {
-      console.log("In err");
+        console.log("In err");
 
         $scope.showAlert = function() {
             var alertPopup = $ionicPopup.alert({
@@ -51,30 +51,40 @@ angular.module('starter.controllers', [])
         };
 
     };
+    var getProfileCallback = function(data, status) {
+        console.log(data);
+        if (data.value === true) {
+            $.jStorage.set("user", data);
+            $location.path("/profile/mycard");
+        } else {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Oops!',
+                template: 'Something went wrong'
+            });
+        }
+
+    };
     var verifyCallback = function(data, status) {
-       console.log("verify");
-       console.log(data);
-       if (data.value === true) {
-           $ionicLoading.hide();
-           $location.path("/profile/mycard");
-       } else {
-           var alertPopup = $ionicPopup.alert({
-               title: 'INCORRECT OTP',
-               template: 'Please enter the correct OTP'
-           });
-       }
-   };
-    $scope.sendObj={};
+        console.log("verify");
+        console.log(data);
+        if (data.value === true) {
+            MyServices.getProfile().success(getProfileCallback).error(errorCallback);
+            $ionicLoading.hide();
+            $location.path("/profile/mycard");
+        } else {
+            var alertPopup = $ionicPopup.alert({
+                title: 'INCORRECT OTP',
+                template: 'Please enter the correct OTP'
+            });
+        }
+    };
+    $scope.sendObj = {};
     $scope.checkotp = function(otp) {
-      $scope.otp=otp;
-console.log("kdfjshgdsu");
-console.log($scope.contact);
-console.log($scope.otp);
-$scope.sendObj.contact=$scope.contact.contact;
-$scope.sendObj.otp=$scope.otp;
-console.log($scope.sendObj);
-//         $scope.startloading();
-          MyServices.verifyOTP($scope.sendObj).success(verifyCallback).error(errorCallback);
+        $scope.otp = otp;
+        $scope.sendObj.contact = $scope.contact.contact;
+        $scope.sendObj.otp = $scope.otp;
+        //         $scope.startloading();
+        MyServices.verifyOTP($scope.sendObj).success(verifyCallback).error(errorCallback);
         // MyServices.getProfile().success(profileCallback).error(errorCallback);
 
     };
@@ -83,9 +93,18 @@ console.log($scope.sendObj);
     // FIRST API
     var registerSuccess = function(data, status) {
         console.log(data);
-
+        console.log($scope.contact.contact);
+        $.jStorage.set("usercontact", $scope.contact.contact);
+        if ($.jStorage.get("usercontact") !== null) {
+            $ionicSlideBoxDelegate.next();
+        } else {
+            var alertPopup = $ionicPopup.alert({
+                title: 'INCORRECT DATA',
+                template: 'Incorrect number '
+            });
+        }
         //userid = parseInt(data.id);
-        $ionicSlideBoxDelegate.next();
+        //
         // MyServices.readsms(readsmsCallback);
     };
     $scope.contact = {};
@@ -112,7 +131,51 @@ console.log($scope.sendObj);
     };
 })
 
-.controller('ProfileCtrl', function($scope, $ionicLoading, MyServices) {})
+.controller('ProfileCtrl', function($scope, $ionicLoading, MyServices) {
+    $scope.mycard = {};
+    $scope.officeAddress = {};
+    $scope.contactDetails = {};
+    $scope.residentialAddress = {};
+    $scope.contactPersonalDetails = {};
+    $scope.personal = {};
+    $scope.overAllProfile = {};
+    $scope.user = $.jStorage.get("user").data._id;
+    $scope.mycard._id = $scope.user;
+    var errorCallback = function() {
+        console.log("In err");
+        $scope.showAlert = function() {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Oops Sorry',
+                template: 'Something went wrong!'
+            });
+            alertPopup.then(function(res) {});
+        };
+    };
+    var myCardCallback = function(data, status) {
+        console.log("first submitted");
+        console.log(data);
+        // if (data.value === true) {
+        //     $ionicLoading.hide();
+        //     $location.path("/profile/mycard");
+        // } else {
+        //     var alertPopup = $ionicPopup.alert({
+        //         title: 'INCORRECT OTP',
+        //         template: 'Please enter the correct OTP'
+        //     });
+        // }
+    };
+    $scope.submitMyCard = function() {
+        console.log($scope.mycard);
+        MyServices.saveUser($scope.mycard).success(myCardCallback).error(errorCallback);
+    };
+    // $scope.personalDetails = function() {
+    //   console.log($scope.mycard);
+    //   console.log($scope.personal);
+    //   // $scope.overAllProfile = angular.extend($scope.mycard, $scope.personal);
+    //   // console.log($scope.overAllProfile);
+    // };
+
+})
 
 .controller('Circle1Ctrl', function($scope, $ionicLoading, MyServices) {})
 
