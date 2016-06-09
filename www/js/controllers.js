@@ -1,7 +1,12 @@
 angular.module('starter.controllers', [])
 
-.controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate, $ionicPopup) {
+.controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate, $ionicPopup, $ionicLoading, MyServices,$location) {
 
+    $scope.startloading = function() {
+        $ionicLoading.show({
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
+        });
+    };
     $scope.next = function() {
         $ionicSlideBoxDelegate.next();
     };
@@ -14,6 +19,82 @@ angular.module('starter.controllers', [])
         $scope.slideIndex = index;
     };
 
+    // SECOND API FOR OTP
+    $scope.verifyOtpDetail = {};
+    // var profileCallback = function(data, status) {
+    //     console.log(data);
+    //     if (data.value == true) {
+    //         $.jStorage.set("user", data.data);
+    //         $scope.verifyOtpDetail.otp = $scope.otp.number;
+    //         $scope.verifyOtpDetail.contact = data.data.contact;
+    //         MyServices.verifyOTP($scope.verifyOtpDetail).success(verifyCallback).error(errorCallback);
+    //     } else {
+    //         var alertPopup = $ionicPopup.alert({
+    //             title: 'INCORRECT DATA',
+    //             template: 'Incorrect number '
+    //         });
+    //           $ionicLoading.hide();
+    //     }
+    //
+    // };
+    var errorCallback = function() {
+      console.log("In err");
+
+        $scope.showAlert = function() {
+            var alertPopup = $ionicPopup.alert({
+                title: 'INCORRECT OTP',
+                template: 'Please enter the correct OTP'
+            });
+            alertPopup.then(function(res) {
+                //console.log('Thank you for not eating my delicious ice cream cone');
+            });
+        };
+
+    };
+    var verifyCallback = function(data, status) {
+       console.log("verify");
+       console.log(data);
+       if (data.value === true) {
+           $ionicLoading.hide();
+           $location.path("/profile/mycard");
+       } else {
+           var alertPopup = $ionicPopup.alert({
+               title: 'INCORRECT OTP',
+               template: 'Please enter the correct OTP'
+           });
+       }
+   };
+    $scope.sendObj={};
+    $scope.checkotp = function(otp) {
+      $scope.otp=otp;
+console.log("kdfjshgdsu");
+console.log($scope.contact);
+console.log($scope.otp);
+$scope.sendObj.contact=$scope.contact.contact;
+$scope.sendObj.otp=$scope.otp;
+console.log($scope.sendObj);
+//         $scope.startloading();
+          MyServices.verifyOTP($scope.sendObj).success(verifyCallback).error(errorCallback);
+        // MyServices.getProfile().success(profileCallback).error(errorCallback);
+
+    };
+    $ionicLoading.hide();
+
+    // FIRST API
+    var registerSuccess = function(data, status) {
+        console.log(data);
+
+        //userid = parseInt(data.id);
+        $ionicSlideBoxDelegate.next();
+        // MyServices.readsms(readsmsCallback);
+    };
+    $scope.contact = {};
+    $scope.phonesubmit = function(phoneno) {
+        personalcontact = phoneno.phone;
+        $scope.contact.contact = personalcontact;
+        console.log($scope.contact);
+        MyServices.register($scope.contact).success(registerSuccess);
+    }
     $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
             title: "Didn't get the OTP ?",
@@ -31,31 +112,31 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ProfileCtrl', function($scope) {})
+.controller('ProfileCtrl', function($scope, $ionicLoading, MyServices) {})
 
-.controller('Circle1Ctrl', function($scope) {})
+.controller('Circle1Ctrl', function($scope, $ionicLoading, MyServices) {})
 
-.controller('Circle2Ctrl', function($scope) {})
+.controller('Circle2Ctrl', function($scope, $ionicLoading, MyServices) {})
 
-.controller('Circle3Ctrl', function($scope) {})
+.controller('Circle3Ctrl', function($scope, $ionicLoading, MyServices) {})
 
-.controller('TabCtrl', function($scope, $location) {
+.controller('TabCtrl', function($scope, $location, $ionicLoading, MyServices) {
 
 })
 
-.controller('ProfileShareCtrl', function($scope, MyServices) {
+.controller('ProfileShareCtrl', function($scope, MyServices, $ionicLoading) {
     $scope.contacts = MyServices.all();
 })
 
-.controller('ProfileGetCtrl', function($scope, MyServices) {
+.controller('ProfileGetCtrl', function($scope, MyServices, $ionicLoading) {
     $scope.contacts = MyServices.all();
 })
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, $ionicLoading, MyServices) {})
 
-.controller('ChatsCtrl', function($scope) {})
+.controller('ChatsCtrl', function($scope, $ionicLoading, MyServices) {})
 
-.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location) {
+.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading) {
 
     $scope.search = false;
     $scope.filterbtn = false;
@@ -181,11 +262,11 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('InSpingbookCtrl', function($scope, MyServices, $stateParams) {
+.controller('InSpingbookCtrl', function($scope, MyServices, $stateParams, $ionicLoading) {
     $scope.contact = MyServices.get($stateParams.Id);
 })
 
-.controller('NewsCtrl', function($scope) {
+.controller('NewsCtrl', function($scope, $ionicLoading, MyServices) {
     $scope.settings = {
         enableNews: true
     };
