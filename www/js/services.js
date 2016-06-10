@@ -1,4 +1,5 @@
-var serveradmin = "http://192.168.1.104:1337/";
+// var serveradmin = "http://192.168.1.105:1337/";
+var serveradmin = "http://localhost:1337/";
 var adminurl = serveradmin;
 // var imgpath = serveradmin + "uploads/";
 var mycard1 = {};
@@ -72,11 +73,15 @@ angular.module('starter.services', [])
         return $http.post(adminurl + "otp/save", phone);
     };
     returnfunction.saveUser = function(phone) {
-        return $http.post(adminurl + "user/save", phone);
+        return $http.post(adminurl + "user/editProfile", phone);
     };
 
-    returnfunction.getProfile = function() {
-        return $http.post(adminurl + "user/getProfile");
+    returnfunction.getUserDetails = function(user) {
+        return $http.post(adminurl + "user/getUserDetails",user);
+
+    };
+    returnfunction.getProfile = function(user) {
+        return $http.post(adminurl + "user/getProfile",user);
 
     };
     return returnfunction;

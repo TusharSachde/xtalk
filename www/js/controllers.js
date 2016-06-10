@@ -113,7 +113,7 @@ angular.module('starter.controllers', [])
         $scope.contact.contact = personalcontact;
         console.log($scope.contact);
         MyServices.register($scope.contact).success(registerSuccess);
-    }
+    };
     $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
             title: "Didn't get the OTP ?",
@@ -127,11 +127,11 @@ angular.module('starter.controllers', [])
                 console.log('OTP Resent !');
             }
 
-        )
+        );
     };
 })
 
-.controller('ProfileCtrl', function($scope, $ionicLoading, MyServices) {
+.controller('ProfileCtrl', function($scope, $ionicLoading, MyServices, $location, $ionicPopup) {
     $scope.mycard = {};
     $scope.officeAddress = {};
     $scope.contactDetails = {};
@@ -139,8 +139,12 @@ angular.module('starter.controllers', [])
     $scope.contactPersonalDetails = {};
     $scope.personal = {};
     $scope.overAllProfile = {};
+    $scope.userid = {};
     $scope.user = $.jStorage.get("user").data._id;
-    $scope.mycard._id = $scope.user;
+
+    $scope.userid._id = $scope.user;
+    console.log($scope.userid._id);
+
     var errorCallback = function() {
         console.log("In err");
         $scope.showAlert = function() {
@@ -151,30 +155,61 @@ angular.module('starter.controllers', [])
             alertPopup.then(function(res) {});
         };
     };
+    var getUserCallback = function(data, status) {
+        console.log(data);
+        $scope.mycard.officeAddress = data.data.officeAddress;
+        $scope.mycard.contactDetails = data.data.contactDetails;
+        $scope.mycard.name = data.data.name;
+        $scope.mycard.designation = data.data.designation;
+        $scope.mycard.companyName = data.data.companyName;
+        $scope.mycard.lineOfBusiness = data.data.lineOfBusiness;
+        $scope.personal.contactPersonalDetails = data.data.contactPersonalDetails;
+        $scope.personal.residentialAddress = data.data.residentialAddress;
+        $scope.personal.birthDate = data.data.birthDate;
+        $scope.personal.anniversary = data.data.anniversary;
+
+    };
+
+    MyServices.getUserDetails($scope.userid).success(getUserCallback).error(errorCallback);
     var myCardCallback = function(data, status) {
         console.log("first submitted");
         console.log(data);
-        // if (data.value === true) {
-        //     $ionicLoading.hide();
-        //     $location.path("/profile/mycard");
-        // } else {
-        //     var alertPopup = $ionicPopup.alert({
-        //         title: 'INCORRECT OTP',
-        //         template: 'Please enter the correct OTP'
-        //     });
-        // }
+        if (data.value === true) {
+            $ionicLoading.hide();
+            $location.path("/profile/personal");
+        } else {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Oops!',
+                template: 'Something went wrong'
+            });
+        }
     };
+    var personalCallback = function(data, status) {
+        console.log("second submitted");
+        console.log(data);
+        if (data.value === true) {
+            $ionicLoading.hide();
+            $location.path("/profile/sharewith");
+        } else {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Oops!',
+                template: 'Something went wrong'
+            });
+        }
+    };
+    $scope.user = $.jStorage.get("user").data._id;
+    $scope.mycard._id = $scope.user;
     $scope.submitMyCard = function() {
         console.log($scope.mycard);
+        $scope.mycard._id = $scope.user;
         MyServices.saveUser($scope.mycard).success(myCardCallback).error(errorCallback);
     };
-    // $scope.personalDetails = function() {
-    //   console.log($scope.mycard);
-    //   console.log($scope.personal);
-    //   // $scope.overAllProfile = angular.extend($scope.mycard, $scope.personal);
-    //   // console.log($scope.overAllProfile);
-    // };
+    $scope.personalDetails = function() {
+        $scope.personal._id = $scope.user;
+        MyServices.saveUser($scope.personal).success(personalCallback).error(errorCallback);
 
+    };
+    // GET PROFILE
 })
 
 .controller('Circle1Ctrl', function($scope, $ionicLoading, MyServices) {})
@@ -188,7 +223,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ProfileShareCtrl', function($scope, MyServices, $ionicLoading) {
-    $scope.contacts = MyServices.all();
+    // $scope.contacts = MyServices.all();
 })
 
 .controller('ProfileGetCtrl', function($scope, MyServices, $ionicLoading) {
