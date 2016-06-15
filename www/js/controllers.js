@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
 .controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate, $ionicPopup, $ionicLoading, MyServices, $state) {
 
@@ -176,6 +176,59 @@ angular.module('starter.controllers', [])
 
 .controller('ProfileShareCtrl', function($scope, MyServices, $ionicLoading) {
     // $scope.contacts = MyServices.all();
+
+    var options = new ContactFindOptions();
+    options.multiple = true;
+    options.hasPhoneNumber = true;
+    var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
+    navigator.contacts.find(fields, function(contacts) {
+        console.log(contacts);
+        if (contacts) {
+            _.each(contacts, function(z) {
+                var myval = {
+                    name: "",
+                    email: "",
+                    contact: "",
+                    photo: "",
+                };
+                if (z.phoneNumbers && z.name && z.name.formatted && z.name.formatted != "") {
+                    if (z.emails) {
+                        myval.email = z.emails[0].value;
+                    }
+
+                    if (z.name.formatted) {
+                        myval.name = z.name.formatted;
+                        myval.name = myval.name.replace(/['"]/g, '');
+                        myval.name = myval.name.trim();
+                    } else {
+                        myval.name = z.displayName;
+                        myval.name = myval.name.trim();
+                    }
+                    if (z.photos) {
+                        myval.photo = z.photos[0].value;
+                    }
+                    if (z.phoneNumbers) {
+                        _.each(z.phoneNumbers, function(n) {
+                            myval.contact = n.value;
+                            myval.contact = myval.contact.replace(/[ -]/g, '');
+                            myval.contact = myval.contact.replace(/[']/g, '');
+                            myconarr.push(_.cloneDeep(myval));
+                        });
+                    }
+
+                }
+            })
+            console.log(myconarr.length);
+            myconarr = _.uniq(myconarr, function(n) {
+                return (n.name + "-" + n.contact);
+            });
+            console.log(myconarr.length);
+            console.log(myconarr);
+            // callback(myconarr);
+        }
+    }, function(contactError) {
+        console.log(contactError);
+    }, options);
 })
 
 .controller('ProfileGetCtrl', function($scope, MyServices, $ionicLoading) {

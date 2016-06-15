@@ -2,7 +2,7 @@
 <widget id="com.wohlig.spingr" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>SpingR</name>
   <description>SpingR for Contact Sync</description>
-  <author href="http://www.wohlig.com" email="info@wohlig.com">Wohlig Technology</author>
+  <author email="info@wohlig.com" href="http://www.wohlig.com">Wohlig Technology</author>
   <content src="index.html"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
@@ -69,19 +69,19 @@
   <preference name="StatusBarOverlaysWebView" value="true"/>
   <preference name="StatusBarBackgroundColor" value="#ffffff"/>
   <preference name="StatusBarStyle" value="lightcontent"/>
-  <preference name="AutoHideSplashScreen" value="false"/>
+  <preference name="AutoHideSplashScreen" value="true"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>
-  <preference name="SplashScreenDelay" value="5000"/>
+  <preference name="SplashScreenDelay" value="4000"/>
   <preference name="SplashScreenBackgroundColor" value="#ffffff"/>
   <preference name="SplashMaintainAspectRatio" value="true"/>
   <preference name="SplashScreen" value="screen"/>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
   <splash src="res/screen/splash.png"/>
   <feature name="StatusBar">
-    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+    <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
   <feature name="Keyboard">
-    <param name="ios-package" value="IonicKeyboard" onload="true"/>
+    <param name="ios-package" onload="true" value="IonicKeyboard"/>
   </feature>
   <feature name="SplashScreen">
     <param name="ios-package" value="CDVSplashScreen"/>
@@ -93,4 +93,5 @@
   <feature name="SocialSharing">
     <param name="android-package" value="nl.xservices.plugins.SocialSharing"/>
   </feature>
+  <plugin name="cordova-plugin-contacts" spec="~2.0.1"/>
 </widget>
