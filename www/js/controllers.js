@@ -1,18 +1,26 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
 
-.controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate, $ionicPopup) {
+.controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate, $ionicPopup, MyServices) {
+
+    $scope.register = {};
+    $scope.register.countrycode = "+91";
 
     $scope.next = function() {
         $ionicSlideBoxDelegate.next();
     };
+
     $scope.previous = function() {
         $ionicSlideBoxDelegate.previous();
     };
 
-    // Called each time the slide changes
-    $scope.slideChanged = function(index) {
-        $scope.slideIndex = index;
+    $scope.disableSwipe = function() {
+        // $ionicSlideBoxDelegate.enableSlide(false);
     };
+
+    $scope.getOtp = function() {
+        console.log($scope.register);
+        // MyServices.
+    }
 
     $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
@@ -23,11 +31,10 @@ angular.module('starter.controllers', [])
                 type: 'button-positive button-outline'
             }],
         });
-        alertPopup.then(function(res) {
-                console.log('OTP Resent !');
-            }
 
-        )
+        alertPopup.then(function(res) {
+            console.log('OTP Resent !');
+        })
     };
 })
 

@@ -1,6 +1,21 @@
 angular.module('starter.services', [])
 
 .factory('MyServices', function() {
+
+    return {
+        all: function() {
+            return contacts;
+        },
+        get: function(Id) {
+            for (var i = 0; i < contacts.length; i++) {
+                if (contacts[i].id === parseInt(Id)) {
+                    return contacts[i];
+                }
+            }
+            return null;
+        }
+    };
+
     var contacts = [{
         id: 0,
         name: 'Chintan Shah',
@@ -53,17 +68,4 @@ angular.module('starter.services', [])
         designation: 'Director'
     }];
 
-    return {
-        all: function() {
-            return contacts;
-        },
-        get: function(Id) {
-            for (var i = 0; i < contacts.length; i++) {
-                if (contacts[i].id === parseInt(Id)) {
-                    return contacts[i];
-                }
-            }
-            return null;
-        }
-    };
 });
