@@ -1,78 +1,75 @@
 <ion-view view-title="SpingR">
-    <ion-content class="padding">
-        <form ng-submit="submitMyCard();">
-            <div class="card-effect myprofile-card">
-                <div class="addlogo">Add company logo</div>
-                <div class="list">
-                    <label class="item item-input">
-                        <input type="text" placeholder="Your name" ng-model="mycard.name">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Your designation" ng-model="mycard.designation">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Company name" ng-model="mycard.companyName">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Line of business" ng-model="mycard.lineOfBusiness">
-                    </label>
-                </div>
+   <ion-content class="padding">
+      <form ng-submit="submitMyCard();">
+         <div class="card-effect myprofile-card">
+            <div class="addlogo">Add company logo</div>
+            <div class="list">
+               <label class="item item-input">
+                  <input type="text" placeholder="Your name" ng-model="mycard.name">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Your designation" ng-model="mycard.designation">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Company name" ng-model="mycard.companyName">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Line of business" ng-model="mycard.lineOfBusiness">
+               </label>
             </div>
-
-            <div class="card-effect">
-                <div class="heading">
-                    Office Address
-                </div>
-                <div class="list">
-                    <label class="item item-input">
-                        <input type="text" placeholder="Address" ng-model="mycard.officeAddress.address">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="City/District" ng-model="mycard.officeAddress.city">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="State/Provision" ng-model="mycard.officeAddress.state">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="PinCode/Zipcode" ng-model="mycard.officeAddress.pincode">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Country" ng-model="mycard.officeAddress.country">
-                    </label>
-                </div>
+         </div>
+         <div class="card-effect">
+            <div class="heading">
+               Office Address
             </div>
-            <div class="card-effect">
-                <div class="heading">
-                    Contact Details
-                </div>
-                <div class="list">
-                    <label class="item item-input">
-                        <input type="text" placeholder="Mobile Number" ng-model="mycard.contactDetails.mobileNumber">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Direct Landline" ng-model="mycard.contactDetails.directLandline">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Board Landline" ng-model="mycard.contactDetails.boardLandline">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Extension" ng-model="mycard.contactDetails.extension">
-                    </label>
-                    <label class="item item-input">
-                        <input type="email" placeholder="Email ID" ng-model="mycard.contactDetails.email">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Website" ng-model="mycard.contactDetails.website">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" placeholder="Record GPS" ng-model="mycard.contactDetails.recordgps">
-                    </label>
-                </div>
+            <div class="list">
+               <label class="item item-input">
+                  <input type="text" placeholder="Address" ng-model="mycard.officeAddress.address">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="City/District" ng-model="mycard.officeAddress.city">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="State/Provision" ng-model="mycard.officeAddress.state">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="PinCode/Zipcode" ng-model="mycard.officeAddress.pincode">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Country" ng-model="mycard.officeAddress.country">
+               </label>
             </div>
-            <!-- <button class="button button-positive button-outline button-block" href="#/profile/personal">Save &amp; Proceed</button> -->
-            <button class="button button-positive button-outline button-block" type="submit">Save &amp; Proceed</button>
-        </form>
-
-
-    </ion-content>
+         </div>
+         <div class="card-effect">
+            <div class="heading">
+               Contact Details
+            </div>
+            <div class="list">
+               <label class="item item-input">
+                  <input type="text" placeholder="Mobile Number" ng-model="mycard.contactDetails.mobileNumber">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Direct Landline" ng-model="mycard.contactDetails.directLandline">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Board Landline" ng-model="mycard.contactDetails.boardLandline">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Extension" ng-model="mycard.contactDetails.extension">
+               </label>
+               <label class="item item-input">
+                  <input type="email" placeholder="Email ID" ng-model="mycard.contactDetails.email">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Website" ng-model="mycard.contactDetails.website">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Record GPS" ng-model="mycard.contactDetails.recordgps">
+               </label>
+            </div>
+         </div>
+         <!-- <button class="button button-positive button-outline button-block" href="#/profile/personal">Save &amp; Proceed</button> -->
+         <button class="button button-positive button-outline button-block" type="submit">Save &amp; Proceed</button>
+      </form>
+   </ion-content>
 </ion-view>

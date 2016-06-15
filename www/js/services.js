@@ -1,6 +1,4 @@
-// var serveradmin = "http://192.168.1.105:1337/";
-var serveradmin = "http://localhost:1337/";
-var adminurl = serveradmin;
+var adminurl = "http://192.168.1.137:1337/";
 // var imgpath = serveradmin + "uploads/";
 var mycard1 = {};
 var personalcontact = '';
@@ -13,6 +11,25 @@ var x = 0;
 angular.module('starter.services', [])
 
 .factory('MyServices', function($http) {
+
+    return {
+        verifyOTP: function(otpdetails, callback) {
+            $http.post(adminurl + "otp/checkOtp", otpdetails).success(callback);
+        },
+        register: function(phone, callback) {
+            $http.post(adminurl + "otp/save", phone).success(callback);
+        },
+        saveUser: function(phone, callback) {
+            $http.post(adminurl + "user/editProfile", phone).success(callback);
+        },
+        getUserDetails: function(user, callback) {
+            $http.post(adminurl + "user/getUserDetails", user).success(callback);
+        },
+        getProfile: function(callback) {
+            $http.post(adminurl + "user/getProfile").success(callback);
+        },
+    };
+
     var contacts = [{
         id: 0,
         name: 'Chintan Shah',
@@ -64,25 +81,4 @@ angular.module('starter.services', [])
         email: 'nileshhalde@gmail.com',
         designation: 'Director'
     }];
-    var returnfunction = {};
-
-    returnfunction.verifyOTP = function(otpdetails) {
-        return $http.post(adminurl + "otp/checkOtp", otpdetails);
-    };
-    returnfunction.register = function(phone) {
-        return $http.post(adminurl + "otp/save", phone);
-    };
-    returnfunction.saveUser = function(phone) {
-        return $http.post(adminurl + "user/editProfile", phone);
-    };
-
-    returnfunction.getUserDetails = function(user) {
-        return $http.post(adminurl + "user/getUserDetails",user);
-
-    };
-    returnfunction.getProfile = function(user) {
-        return $http.post(adminurl + "user/getProfile",user);
-
-    };
-    return returnfunction;
 });
