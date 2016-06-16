@@ -1,35 +1,35 @@
 <ion-view view-title="Share Profile">
-    <ion-nav-bar class="bar-positive has-tabs-top" align-title="center">
-        <ion-nav-back-button>
-            Back
-        </ion-nav-back-button>
-        <ion-nav-buttons side="right">
-            <a class="button button-clear" href="#/profile/get">
-        Share
-        </a>
-        </ion-nav-buttons>
-    </ion-nav-bar>
-    <ion-content class="padding">
-        <p class="text-center">
-            You have <span class="bold">752</span> contacts in your phone book out of which <span class="bold">312</span> contacts are on SPingr. Your Business card will be updated into their SPingr. If you don’t want your details to get updated into their SPingr then deselect the from the list.
-        </p>
-        <div class="heading">Share my profile with</div>
+   <ion-nav-bar class="bar-positive has-tabs-top" align-title="center">
+      <ion-nav-back-button>
+         Back
+      </ion-nav-back-button>
+      <ion-nav-buttons side="right">
+         <a class="button button-clear" ng-click="shareContacts();">Share</a>
+      </ion-nav-buttons>
+   </ion-nav-bar>
+   <ion-content class="padding">
+      <p class="text-center">
+         You have <span class="bold">{{total.myContacts}}</span> contacts in your phone book out of which <span class="bold">{{total.spingrContacts}}</span> contacts are on SPingr. Your Business card will be updated into their SPingr. If you don’t want
+         your details to get updated into their SPingr then deselect the from the list.
+      </p>
+      <div class="heading">Share my profile with</div>
 
-        <ion-list>
-            <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in contacts" type="item-text-wrap">
+      <ion-list>
+         <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in spingrContacts" type="item-text-wrap">
 
-                <label class="checkbox">
-                    <input type="checkbox" checked>
-                </label>
+            <label class="checkbox" ng-init="contact.share=true">
+               <input type="checkbox" ng-model="contact.share">
+            </label>
 
-                <div class="picture" style="background-image: url('{{contact.image}}');"></div>
+            <div class="picture" style="background-image: url('{{contact.user.profilePicture}}');" ng-if="contact.user.profilePicture"></div>
+            <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture"></div>
 
-                <div class="card-style">
-                    <h2 class="positive">{{contact.name}}</h2>
-                    <p class="stable">{{contact.company}}</p>
-                </div>
-            </ion-item>
-        </ion-list>
+            <div class="card-style">
+               <h2 class="positive">{{contact.user.name}}</h2>
+               <p class="stable">{{contact.user.companyName}}</p>
+            </div>
+         </ion-item>
+      </ion-list>
 
-    </ion-content>
+   </ion-content>
 </ion-view>

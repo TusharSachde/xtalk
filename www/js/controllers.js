@@ -33,7 +33,9 @@ angular.module('starter.controllers', ['ngCordova'])
         MyServices.register($scope.personal, function(data) {
             console.log(data);
             if (data.value != false) {
+                $scope.personal.otp = data.data.otp;
                 $ionicSlideBoxDelegate.next();
+                $scope.checkotp();
             } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'INCORRECT DATA',
@@ -106,30 +108,25 @@ angular.module('starter.controllers', ['ngCordova'])
             template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
-    $scope.startloading();
 
-    MyServices.getProfile(function(data, status) {
-        console.log(data);
-        if (data.value === false) {
-            $state.go('enter');
-        } else {
-
-        }
-    });
-
-    MyServices.getUserDetails($scope.userid, function(data, status) {
-        console.log(data);
-        if (data.value != false) {
-            $scope.mycard = data.data;
-            $scope.personal = data.data;
-        } else if (data.value == false && data.data == "User not logged in") {
-            $state.go('enter');
-        }
-        $ionicLoading.hide();
-    })
+    setTimeout(function() {
+        $scope.startloading();
+        MyServices.getProfile(function(data, status) {
+            console.log(data);
+            if (data.value === false) {
+                $state.go('enter');
+            } else {
+                delete data.data._id;
+                $scope.mycard = data.data;
+                $scope.personal = data.data;
+                $scope.mycard.contactDetails.mobileNumber = data.data.contact;
+                $scope.mycard.contactPersonalDetails.mobileNumber = data.data.contact;
+            }
+            $ionicLoading.hide();
+        });
+    }, 1000);
 
     $scope.submitMyCard = function() {
-        console.log($scope.mycard);
         MyServices.saveUser($scope.mycard, function(data, status) {
             console.log(data);
             if (data.value === true) {
@@ -145,7 +142,6 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     $scope.personalDetails = function() {
-        $scope.personal._id = $scope.user;
         MyServices.saveUser($scope.personal, function(data, status) {
             console.log("second submitted");
             console.log(data);
@@ -159,7 +155,6 @@ angular.module('starter.controllers', ['ngCordova'])
                 });
             }
         });
-
     };
     // GET PROFILE
 })
@@ -174,8 +169,19 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('ProfileShareCtrl', function($scope, MyServices, $ionicLoading) {
-    // $scope.contacts = MyServices.all();
+.controller('ProfileShareCtrl', function($scope, MyServices, $ionicLoading, $state) {
+
+    $scope.contacts = contacts;
+    $scope.total = {};
+    $scope.total.myContacts = 0;
+    $scope.total.spingrContacts = 0;
+
+    $scope.startloading = function() {
+        $ionicLoading.show({
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
+        });
+    };
+    $scope.startloading();
 
     var options = new ContactFindOptions();
     options.multiple = true;
@@ -187,15 +193,16 @@ angular.module('starter.controllers', ['ngCordova'])
             _.each(contacts, function(z) {
                 var myval = {
                     name: "",
-                    email: "",
+                    contactDetails: {
+                        email: ""
+                    },
                     contact: "",
-                    photo: "",
+                    profilePicture: "",
                 };
                 if (z.phoneNumbers && z.name && z.name.formatted && z.name.formatted != "") {
                     if (z.emails) {
-                        myval.email = z.emails[0].value;
+                        myval.contactDetails.email = z.emails[0].value;
                     }
-
                     if (z.name.formatted) {
                         myval.name = z.name.formatted;
                         myval.name = myval.name.replace(/['"]/g, '');
@@ -205,30 +212,72 @@ angular.module('starter.controllers', ['ngCordova'])
                         myval.name = myval.name.trim();
                     }
                     if (z.photos) {
-                        myval.photo = z.photos[0].value;
+                        myval.profilePicture = z.photos[0].value;
                     }
                     if (z.phoneNumbers) {
                         _.each(z.phoneNumbers, function(n) {
                             myval.contact = n.value;
                             myval.contact = myval.contact.replace(/[ -]/g, '');
                             myval.contact = myval.contact.replace(/[']/g, '');
+                            myval.contact = myval.contact.trim();
+                            myval.contact = myval.contact.split(" ").join('');
+                            if (myval.contact.length > 10)
+                                myval.contact = myval.contact.substring(myval.contact.length - 10);
                             myconarr.push(_.cloneDeep(myval));
                         });
                     }
-
                 }
             })
             console.log(myconarr.length);
-            myconarr = _.uniq(myconarr, function(n) {
-                return (n.name + "-" + n.contact);
-            });
+            myconarr = _.uniq(myconarr, 'contact');
             console.log(myconarr.length);
             console.log(myconarr);
-            // callback(myconarr);
+            $scope.total.myContacts = myconarr.length;
+            saveContacts(myconarr)
         }
     }, function(contactError) {
+        $ionicLoading.hide();
         console.log(contactError);
     }, options);
+
+    function saveContacts(contacts) {
+        MyServices.saveContacts(contacts, function(data) {
+            $ionicLoading.hide();
+            console.log(data);
+            if (data.value != false) {
+                $scope.total.spingrContacts = data.data.length;
+                $scope.spingrContacts = data.data;
+            }
+        })
+    }
+
+    // saveContacts([{
+    //     "contact": "9029145077",
+    //     "contactDetails": {
+    //         "email": "dhaval@wohlig.com"
+    //     },
+    //     "name": "Dhaval Gala",
+    //     "profilePicture": ""
+    // }]);
+
+    $scope.shareContacts = function() {
+        var shareArr = [];
+        _.each($scope.spingrContacts, function(n) {
+            if (n.share == true) {
+                shareArr.push(n.user);
+            }
+        })
+        console.log(shareArr);
+        if (shareArr.length > 0) {
+            MyServices.sendNotification(shareArr, function(data) {
+                console.log(data);
+                if (data.value != false) {
+                    $state.go('profileget');
+                }
+            });
+        }
+    }
+
 })
 
 .controller('ProfileGetCtrl', function($scope, MyServices, $ionicLoading) {
@@ -243,6 +292,22 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.search = false;
     $scope.filterbtn = false;
+
+    $scope.startloading = function() {
+        $ionicLoading.show({
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
+        });
+    };
+    $scope.startloading();
+
+    MyServices.getContacts(function(data) {
+        console.log(data);
+        if (data.value != false) {
+            $scope.myContacts = data.data;
+        }
+        $ionicLoading.hide();
+    })
+
     $scope.showsearch = function() {
         console.log('Search Clicked');
         $scope.search = !$scope.search;

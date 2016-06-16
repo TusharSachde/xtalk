@@ -6,8 +6,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
         }
         if (window.StatusBar) {
-            StatusBar.styleLightContent();
-            StatusBar.overlaysWebView(true);
+            StatusBar.styleDefault();
+            StatusBar.backgroundColorByHexString("#7B2E9A");
         }
     });
 })
@@ -18,7 +18,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $stateProvider
 
-    .state('enter', {
+        .state('enter', {
         url: "/enter",
         controller: 'EnterCtrl',
         templateUrl: "templates/enter.html"
