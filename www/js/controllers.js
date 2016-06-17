@@ -62,19 +62,12 @@ angular.module('starter.controllers', ['ngCordova'])
         });
     };
 
-    // function getProfile() {
-    //     MyServices.getProfile(function(data, status) {
-    //         console.log(data);
-    //         if (data.value === true) {
-    //             $location.path("/profile/mycard");
-    //         } else {
-    //             var alertPopup = $ionicPopup.alert({
-    //                 title: 'Oops!',
-    //                 template: 'Something went wrong'
-    //             });
-    //         }
-    //     });
-    // }
+    MyServices.getProfile(function(data, status) {
+        console.log(data);
+        if (data.value != false) {
+            $state.go('tab.spingbook');
+        }
+    });
 
     $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
@@ -247,6 +240,8 @@ angular.module('starter.controllers', ['ngCordova'])
             if (data.value != false) {
                 $scope.total.spingrContacts = data.data.length;
                 $scope.spingrContacts = data.data;
+            } else if (data.value == false && data.data && data.data.length == 0) {
+                $state.go('profileget');
             }
         })
     }
@@ -280,18 +275,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('ProfileGetCtrl', function($scope, MyServices, $ionicLoading) {
-    $scope.contacts = MyServices.all();
-})
-
-.controller('DashCtrl', function($scope, $ionicLoading, MyServices) {})
-
-.controller('ChatsCtrl', function($scope, $ionicLoading, MyServices) {})
-
-.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading) {
-
-    $scope.search = false;
-    $scope.filterbtn = false;
+.controller('ProfileGetCtrl', function($scope, MyServices, $ionicLoading, $state) {
+    // $scope.contacts = MyServices.all();
 
     $scope.startloading = function() {
         $ionicLoading.show({
@@ -299,6 +284,62 @@ angular.module('starter.controllers', ['ngCordova'])
         });
     };
     $scope.startloading();
+
+    MyServices.getMyRequests(function(data) {
+        console.log(data);
+        if (data.value != false) {
+            $scope.myRequests = data.data;
+            if ($scope.myRequests.length == 0) {
+                $state.go('tab.spingbook');
+            }
+        }
+        $ionicLoading.hide();
+    })
+
+    $scope.addContact = function(contact, $index) {
+        $scope.startloading();
+        var obj = {};
+        obj._id = contact._id;
+        obj.user = contact.from._id;
+        obj.name = contact.from.name;
+        obj.contact = contact.from.contact;
+        MyServices.acceptShare(obj, function(data) {
+            console.log(data);
+            if (data.value != false) {
+                $scope.myRequests.splice($index, 1);
+                if ($scope.myRequests.length == 0) {
+                    $state.go('tab.spingbook');
+                }
+            }
+            $ionicLoading.hide();
+        });
+    }
+
+})
+
+.controller('DashCtrl', function($scope, $ionicLoading, MyServices) {})
+
+.controller('ChatsCtrl', function($scope, $ionicLoading, MyServices) {})
+
+.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter) {
+
+    $scope.search = false;
+    $scope.filterbtn = false;
+    $scope.searchquery = {};
+    $scope.searchquery.user = {};
+
+    $scope.startloading = function() {
+        $ionicLoading.show({
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
+        });
+    };
+    $scope.startloading();
+
+    $scope.nameSearch = function() {
+        console.log("here", $scope.searchquery.search);
+        $scope.phone.number = '';
+        $scope.searchquery.user.contact = '';
+    }
 
     MyServices.getContacts(function(data) {
         console.log(data);
@@ -356,13 +397,18 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.phonenum = function(number) {
         console.log("number presses " + number);
         $scope.phone.number += "" + number;
+        $scope.searchquery.$ = '';
+        $scope.searchquery.user.contact = $scope.phone.number;
     };
     $scope.phoneback = function() {
         $scope.phone.number = $scope.phone.number.slice(0, -1);
+        $scope.searchquery.$ = '';
+        $scope.searchquery.user.contact = $scope.phone.number;
     };
 
     $scope.phonedelete = function() {
         $scope.phone.number = "";
+        $scope.searchquery.user.contact = $scope.phone.number;
     };
 
 
@@ -430,11 +476,65 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('InSpingbookCtrl', function($scope, MyServices, $stateParams, $ionicLoading) {
-    $scope.contact = MyServices.get($stateParams.Id);
+.controller('InSpingbookCtrl', function($scope, MyServices, $stateParams, $ionicLoading, $ionicPlatform, $state, $ionicHistory) {
+    // $scope.contact = MyServices.get($stateParams.Id);
+    console.log($state.current.name);
+    $ionicPlatform.registerBackButtonAction(function(e) {
+        if ($state.current.name == "tab.spingbook-detail") {
+            $ionicHistory.goBack();
+        } else {
+            e.preventDefault();
+        }
+    }, 100);
+
+    $scope.startloading = function() {
+        $ionicLoading.show({
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
+        });
+    };
+    $scope.startloading();
+
+    MyServices.getDetail($stateParams.id, function(data) {
+        console.log(data);
+        if (data.value != false)
+            $scope.contactDetail = data.data;
+        $ionicLoading.hide();
+    })
 })
 
 .controller('NewsCtrl', function($scope, $ionicLoading, MyServices) {
+
+    $scope.startloading = function() {
+        $ionicLoading.show({
+            template: '<ion-spinner class="spinner-light"></ion-spinner>'
+        });
+    };
+    $scope.startloading();
+
+    MyServices.getMyRequests(function(data) {
+        console.log(data);
+        if (data.value != false) {
+            $scope.myRequests = data.data;
+        }
+        $ionicLoading.hide();
+    })
+
+    $scope.addContact = function(contact, $index) {
+        $scope.startloading();
+        var obj = {};
+        obj._id = contact._id;
+        obj.user = contact.from._id;
+        obj.name = contact.from.name;
+        obj.contact = contact.from.contact;
+        MyServices.acceptShare(obj, function(data) {
+            console.log(data);
+            if (data.value != false) {
+                $scope.myRequests.splice($index, 1);
+            }
+            $ionicLoading.hide();
+        });
+    }
+
     $scope.settings = {
         enableNews: true
     };

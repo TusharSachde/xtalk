@@ -1,9 +1,24 @@
 <ion-view view-title="SpingR">
-  <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableNews">
-        Enable Notification
-    </ion-toggle>
-    </ion-list>
-  </ion-content>
+   <ion-content>
+      <ion-list ng-if="myRequests.length>0">
+         <ion-item class="item-avatar2 withbutton" ng-repeat="contact in myRequests" type="item-text-wrap">
+            <div class="picture" style="background-image: url('{{contact.form.profilePicture}}');" ng-if="contact.form.profilePicture"></div>
+            <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.form.profilePicture"></div>
+
+            <div class="card-style">
+               <h2 class="positive">{{contact.from.name}}</h2>
+               <p class="stable">{{contact.from.companyName}}</p>
+               <div class="buttoner">
+                  <button class="button button-outline button-positive button-small" ng-click="addContact(contact)">ADD</button>
+                  <button class="button button-outline button-positive button-small">ADD &amp; SHARE</button>
+               </div>
+            </div>
+         </ion-item>
+      </ion-list>
+      <ion-list ng-if="myRequests.length==0">
+         <ion-item>
+            <p class="text-center">No newsfeed yet</p>
+         </ion-item>
+      </ion-list>
+   </ion-content>
 </ion-view>

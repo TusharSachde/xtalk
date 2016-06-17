@@ -11,7 +11,7 @@
    <ion-nav-title>
       <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
       <div class="animate-if headersearch" ng-if="search == true;">
-         <input type="text" ng-keypress="filtertoggle($event);">
+         <input type="search" ng-model="searchquery.$" ng-change="nameSearch();">
       </div>
    </ion-nav-title>
 
@@ -97,17 +97,17 @@
 
    <ion-content>
       <ion-list>
-         <ion-item class="item-remove-animate item-avatar2" collection-repeat="contact in myContacts" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.number);" href="#/tab/spingbook/{{contact.id}}">
+         <ion-item class="item-remove-animate item-avatar2" collection-repeat="contact in myContacts | filter:searchquery:strict" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.user.contact);">
 
-            <div class="picture" style="background-image: url('{{contact.user.profilePicture}}');" ng-if="contact.user.profilePicture"></div>
-            <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture"></div>
+            <div class="picture" style="background-image: url('{{contact.user.profilePicture}}');" ng-if="contact.user.profilePicture" ui-sref="tab.spingbook-detail({id:contact.user._id})"></div>
+            <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture" ui-sref="tab.spingbook-detail({id:contact.user._id})"></div>
 
-            <div class="card-style">
-               <h2 class="positive">{{contact.user.name}}</h2>
+            <div class="card-style" ui-sref="tab.spingbook-detail({id:contact.user._id})">
+               <h2 class="positive" ng-bind-html="contact.user.name|addhighlight:searchquery.$"></h2>
 
                <p class="stable">
                   {{contact.user.companyName}}
-                  <br>{{contact.user.officeAddress.city}}
+                  <br>{{contact.user.officeAddress.city}} <span ng-bind-html="contact.user.contact|addnumhighlight:searchquery.user.contact"></span>
                </p>
 
                <div class="company" style="background-image: url('{{contact.user.companyLogo}}');" ng-if="contact.user.companyLogo"></div>
@@ -115,10 +115,10 @@
             </div>
 
             <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
-            <ion-option-button class="button-large button-positive ln-phone" ng-click="call(contact.number);">
+            <ion-option-button class="button-large button-positive ln-phone" ng-click="call(contact.user.contact);">
             </ion-option-button>
-            <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(contact.number);"></ion-option-button>
-            <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(contact.email);"></ion-option-button>
+            <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(contact.user.contact);"></ion-option-button>
+            <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(contact.user.contactDetails.email);" ng-if="contact.user.contactDetails.email"></ion-option-button>
 
          </ion-item>
       </ion-list>

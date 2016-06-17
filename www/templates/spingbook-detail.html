@@ -1,29 +1,31 @@
 <ion-view view-title="SpingR">
-    <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ln-share small-icon">
-        </button>
-    </ion-nav-buttons>
-    <ion-content class="padding">
-        <div class="vcard">
-           
-            <div class="picture" style="background-image: url('{{contact.image}}');"></div>
-            <div class="company" style="background-image: url('{{contact.logo}}');"></div>
-            
-            <div class="in-vcard">
-                <h1 ng-bind="contact.name"></h1>
-                <h2>Alias Name <i class="icon ln-pencil"></i></h2>
-            </div>
-            <div class="in-vcard">
-                <h1 ng-bind="contact.designation">Designation</h1>
-                <h2 ng-bind="contact.company"></h2>
-                <h2 ng-bind="contact.area"></h2>
-            </div>
-            <div class="in-vcard">
-                <h3 ng-bind="contact.number"></h3>
-                <h3 ng-bind="contact.number"></h3>
-                <h3 ng-bind="contact.email"></h3>
-            </div>
+   <ion-nav-buttons side="right">
+      <button class="button button-icon button-clear ln-share small-icon">
+      </button>
+   </ion-nav-buttons>
+   <ion-content class="padding">
+      <div class="vcard">
 
-        </div>
-    </ion-content>
+         <div class="picture" style="background-image: url('{{contactDetail.profilePicture}}');" ng-if="contactDetail.profilePicture"></div>
+         <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contactDetail.profilePicture"></div>
+         <div class="company" style="background-image: url('{{contactDetail.companyLogo}}');" ng-if="contactDetail.companyLogo"></div>
+         <div class="company" style="background-image: url('img/spingr.png');" ng-if="!contactDetail.companyLogo"></div>
+
+         <div class="in-vcard">
+            <h1 ng-bind="contactDetail.name"></h1>
+            <h2>Alias Name <i class="icon ln-pencil"></i></h2>
+         </div>
+         <div class="in-vcard">
+            <h1 ng-bind="contactDetail.designation">Designation</h1>
+            <h2 ng-bind="contactDetail.companyName"></h2>
+            <h2 ng-bind="contactDetail.officeAddress.city"></h2>
+         </div>
+         <div class="in-vcard">
+            <h3 ng-bind="contactDetail.contact"></h3>
+            <h3 ng-bind="contactDetail.contactDetails.mobileNumber"></h3>
+            <h3 ng-bind="contactDetail.contactDetails.email"></h3>
+         </div>
+
+      </div>
+   </ion-content>
 </ion-view>

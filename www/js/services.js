@@ -38,6 +38,17 @@ angular.module('starter.services', [])
                 "request": request
             }).success(callback);
         },
+        getMyRequests: function(callback) {
+            $http.post(adminurl + "notification/findPending").success(callback);
+        },
+        acceptShare: function(contact, callback) {
+            $http.post(adminurl + "notification/acceptShare", contact).success(callback);
+        },
+        getDetail: function(id, callback) {
+            $http.post(adminurl + "user/getOne", {
+                "_id": id
+            }).success(callback);
+        },
         all: function() {
             return contacts;
         }

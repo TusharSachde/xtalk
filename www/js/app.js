@@ -10,19 +10,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             StatusBar.backgroundColorByHexString("#7B2E9A");
         }
     });
+
+    $ionicPlatform.registerBackButtonAction(function(event) {
+        event.preventDefault();
+    }, 100);
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
     //$ionicConfigProvider.views.transition('none');
     $httpProvider.defaults.withCredentials = true;
+    $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.swipeBackEnabled(false);
-    $stateProvider
 
+    $stateProvider
         .state('enter', {
-        url: "/enter",
-        controller: 'EnterCtrl',
-        templateUrl: "templates/enter.html"
-    })
+            url: "/enter",
+            controller: 'EnterCtrl',
+            templateUrl: "templates/enter.html"
+        })
 
     .state('profile', {
         url: "/profile",
@@ -110,6 +115,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
+    .state('tab.spingbook-detail', {
+        url: '/spingbook-detail/:id',
+        views: {
+            'tab-spingbook': {
+                templateUrl: 'templates/spingbook-detail.html',
+                controller: 'InSpingbookCtrl'
+            }
+        }
+    })
+
     .state('circle', {
         url: "/circle",
         abstract: true,
@@ -190,4 +205,44 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/enter');
 
+})
+
+.filter('addhighlight', function() {
+    return function(str, searchkey) {
+        var newstr = str;
+        var num = 0;
+
+        if (searchkey && searchkey != "") {
+            var re = new RegExp(searchkey, "i");
+            num = str.search(re);
+            newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, searchkey.length) + "</span>");
+        }
+        return newstr;
+    }
+})
+
+.filter('numsearch', function() {
+    return function(item, str) {
+        var re = new RegExp("(.*?)" + str + "(.*?)", "i");
+        var newitem = _.filter(item, function(n) {
+            return re.test(n.number);
+        });
+        newitem = _.sortByOrder(newitem, ['name'], [true]);
+        return newitem;
+    }
+})
+
+.filter('addnumhighlight', function() {
+    return function(str, searchkey) {
+        str = str + "";
+
+        var newstr = str;
+        var num = 0;
+        if (searchkey && searchkey != "") {
+            var re = new RegExp(searchkey);
+            num = str.search(re);
+            newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, searchkey.length) + "</span>");
+        }
+        return newstr;
+    }
 });
