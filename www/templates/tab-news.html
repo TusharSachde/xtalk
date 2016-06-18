@@ -1,21 +1,24 @@
 <ion-view view-title="SpingR">
    <ion-content>
-      <ion-list ng-if="myRequests.length>0">
-         <ion-item class="item-avatar2 withbutton" ng-repeat="contact in myRequests" type="item-text-wrap">
-            <div class="picture" style="background-image: url('{{contact.form.profilePicture}}');" ng-if="contact.form.profilePicture"></div>
-            <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.form.profilePicture"></div>
+      <ion-list ng-if="newsLetter.length>0">
+         <ion-item class="item-avatar2 withbutton" ng-repeat="contact in newsLetter" type="item-text-wrap">
+            <div class="picture" style="background-image: url('{{contact.obj.profilePicture | uploadpath}}');" ng-if="contact.obj.profilePicture"></div>
+            <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.obj.profilePicture"></div>
 
-            <div class="card-style">
-               <h2 class="positive">{{contact.from.name}}</h2>
-               <p class="stable">{{contact.from.companyName}}</p>
+            <div class="card-style" ng-if="contact.status=='Pending'">
+               <h2 class="positive">{{contact.obj.name}} has shared his contact with you</h2>
+               <p class="stable">{{contact.obj.companyName}}</p>
                <div class="buttoner">
                   <button class="button button-outline button-positive button-small" ng-click="addContact(contact)">ADD</button>
                   <button class="button button-outline button-positive button-small">ADD &amp; SHARE</button>
                </div>
             </div>
+            <div class="card-style" ng-if="contact.status=='Accepted'">
+               <h2 class="positive">{{contact.obj.name}} has accepted your share request</h2>
+            </div>
          </ion-item>
       </ion-list>
-      <ion-list ng-if="myRequests.length==0">
+      <ion-list ng-if="newsLetter.length==0">
          <ion-item>
             <p class="text-center">No newsfeed yet</p>
          </ion-item>

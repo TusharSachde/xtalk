@@ -3,7 +3,7 @@
    <ion-nav-buttons side="right">
       <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showsearch();" ng-if="filterbtn == false;"></button>
 
-      <button class="button button-icon ln-funnel small-icon animate-if" ng-click="openfilter();" ng-if="filterbtn == true;"></button>
+      <!-- <button class="button button-icon ln-funnel small-icon animate-if" ng-click="openfilter();" ng-if="filterbtn == true;"></button> -->
 
       <button class="button button-icon ion-android-more-vertical small-icon" ng-click="openPopover();"></button>
    </ion-nav-buttons>
@@ -11,7 +11,7 @@
    <ion-nav-title>
       <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
       <div class="animate-if headersearch" ng-if="search == true;">
-         <input type="search" ng-model="searchquery.$" ng-change="nameSearch();">
+         <input type="search" ng-model="searchquery.$" ng-change="nameSearch();" id="focusme">
       </div>
    </ion-nav-title>
 
@@ -99,7 +99,7 @@
       <ion-list>
          <ion-item class="item-remove-animate item-avatar2" collection-repeat="contact in myContacts | filter:searchquery:strict" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.user.contact);">
 
-            <div class="picture" style="background-image: url('{{contact.user.profilePicture}}');" ng-if="contact.user.profilePicture" ui-sref="tab.spingbook-detail({id:contact.user._id})"></div>
+            <div class="picture" style="background-image: url('{{contact.user.profilePicture | uploadpath}}');" ng-if="contact.user.profilePicture" ui-sref="tab.spingbook-detail({id:contact.user._id})"></div>
             <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture" ui-sref="tab.spingbook-detail({id:contact.user._id})"></div>
 
             <div class="card-style" ui-sref="tab.spingbook-detail({id:contact.user._id})">
@@ -110,7 +110,7 @@
                   <br>{{contact.user.officeAddress.city}} <span ng-bind-html="contact.user.contact|addnumhighlight:searchquery.user.contact"></span>
                </p>
 
-               <div class="company" style="background-image: url('{{contact.user.companyLogo}}');" ng-if="contact.user.companyLogo"></div>
+               <div class="company" style="background-image: url('{{contact.user.companyLogo | uploadpath}}');" ng-if="contact.user.companyLogo"></div>
                <div class="company" style="background-image: url('img/spingr.png');" ng-if="!contact.user.companyLogo"></div>
             </div>
 

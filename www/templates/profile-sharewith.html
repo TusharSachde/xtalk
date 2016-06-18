@@ -14,20 +14,25 @@
       </p>
       <div class="heading">Share my profile with</div>
 
-      <ion-list>
-         <ion-item class=" item-avatar2 item-checkbox" ng-repeat="contact in spingrContacts" type="item-text-wrap">
+      <ion-list ng-if="spingrContacts.length>0">
+         <ion-item class=" item-avatar2 item-checkbox" collection-repeat="contact in spingrContacts | orderBy:'user.name'" type="item-text-wrap">
 
-            <label class="checkbox" ng-init="contact.share=true">
+            <label class="checkbox">
                <input type="checkbox" ng-model="contact.share">
             </label>
 
-            <div class="picture" style="background-image: url('{{contact.user.profilePicture}}');" ng-if="contact.user.profilePicture"></div>
+            <div class="picture" style="background-image: url('{{contact.user.profilePicture | uploadpath}}');" ng-if="contact.user.profilePicture"></div>
             <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture"></div>
 
             <div class="card-style">
                <h2 class="positive">{{contact.user.name}}</h2>
                <p class="stable">{{contact.user.companyName}}</p>
             </div>
+         </ion-item>
+      </ion-list>
+      <ion-list ng-if="spingrContacts.length==0">
+         <ion-item>
+            <p>You have shared your profile with all your contacts</p>
          </ion-item>
       </ion-list>
 

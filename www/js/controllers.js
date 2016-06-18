@@ -86,7 +86,7 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 })
 
-.controller('ProfileCtrl', function($scope, $ionicLoading, MyServices, $location, $ionicPopup, $state) {
+.controller('ProfileCtrl', function($scope, $ionicLoading, MyServices, $location, $ionicPopup, $state, $cordovaImagePicker, $cordovaFileTransfer) {
     $scope.mycard = {};
     $scope.officeAddress = {};
     $scope.contactDetails = {};
@@ -102,29 +102,27 @@ angular.module('starter.controllers', ['ngCordova'])
         });
     };
 
-    setTimeout(function() {
-        $scope.startloading();
-        MyServices.getProfile(function(data, status) {
-            console.log(data);
-            if (data.value === false) {
-                $state.go('enter');
-            } else {
-                delete data.data._id;
-                $scope.mycard = data.data;
-                $scope.personal = data.data;
-                $scope.mycard.contactDetails.mobileNumber = data.data.contact;
-                $scope.mycard.contactPersonalDetails.mobileNumber = data.data.contact;
-            }
-            $ionicLoading.hide();
-        });
-    }, 1000);
+    $scope.startloading();
+    MyServices.getProfile(function(data, status) {
+        console.log(data);
+        if (data.value === false) {
+            $state.go('enter');
+        } else {
+            delete data.data._id;
+            $scope.mycard = data.data;
+            $scope.personal = data.data;
+            $scope.mycard.contactDetails.mobileNumber = data.data.contact;
+            $scope.mycard.contactPersonalDetails.mobileNumber = data.data.contact;
+        }
+        $ionicLoading.hide();
+    });
 
     $scope.submitMyCard = function() {
         MyServices.saveUser($scope.mycard, function(data, status) {
             console.log(data);
             if (data.value === true) {
                 $ionicLoading.hide();
-                $location.path("/profile/personal");
+                $state.go("profile.personal");
             } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Oops!',
@@ -140,7 +138,12 @@ angular.module('starter.controllers', ['ngCordova'])
             console.log(data);
             if (data.value === true) {
                 $ionicLoading.hide();
-                $location.path("/profile/sharewith");
+                if (!$.jStorage.get('toSpingbook') || $.jStorage.get('toSpingbook') == false) {
+                    $state.go('sharewith');
+                } else {
+                    $.jStorage.set('toSpingbook', false);
+                    $state.go('tab.spingbook');
+                }
             } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Oops!',
@@ -149,7 +152,61 @@ angular.module('starter.controllers', ['ngCordova'])
             }
         });
     };
-    // GET PROFILE
+
+    var options = {
+        maximumImagesCount: 1,
+        quality: 100
+    };
+
+    $scope.uploadProfilePic = function() {
+        $cordovaImagePicker.getPictures(options).then(function(resultImage) {
+            // Success! Image data is here
+            console.log(resultImage);
+            $scope.imagetobeup = resultImage[0];
+            $scope.uploadPhoto(adminurl + "upload/", function(data) {
+                console.log(data);
+                console.log(JSON.parse(data.response));
+                var parsedImage = JSON.parse(data.response);
+                $scope.personal.profilePicture = parsedImage.data[0];
+            });
+        }, function(err) {
+            // An error occured. Show a message to the user
+        });
+    }
+
+    $scope.uploadCompanyLogo = function() {
+        $cordovaImagePicker.getPictures(options).then(function(resultImage) {
+            // Success! Image data is here
+            console.log(resultImage);
+            $scope.imagetobeup = resultImage[0];
+            $scope.uploadPhoto(adminurl + "upload/", function(data) {
+                console.log(data);
+                console.log(JSON.parse(data.response));
+                var parsedImage = JSON.parse(data.response);
+                $scope.mycard.companyLogo = parsedImage.data[0];
+            });
+        }, function(err) {
+            // An error occured. Show a message to the user
+        });
+    }
+
+    $scope.uploadPhoto = function(serverpath, callback) {
+        console.log("function called");
+        $scope.startloading();
+        $cordovaFileTransfer.upload(serverpath, $scope.imagetobeup, options)
+            .then(function(result) {
+                console.log(result);
+                callback(result);
+                $ionicLoading.hide();
+                //$scope.addretailer.store_image = $scope.filename2;
+            }, function(err) {
+                // Error
+                console.log(err);
+            }, function(progress) {
+                // constant progress updates
+            });
+    };
+
 })
 
 .controller('Circle1Ctrl', function($scope, $ionicLoading, MyServices) {})
@@ -168,80 +225,100 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.total = {};
     $scope.total.myContacts = 0;
     $scope.total.spingrContacts = 0;
+    var myconarr = [];
 
     $scope.startloading = function() {
         $ionicLoading.show({
             template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
-    $scope.startloading();
 
-    var options = new ContactFindOptions();
-    options.multiple = true;
-    options.hasPhoneNumber = true;
-    var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
-    navigator.contacts.find(fields, function(contacts) {
-        console.log(contacts);
-        if (contacts) {
-            _.each(contacts, function(z) {
-                var myval = {
-                    name: "",
-                    contactDetails: {
-                        email: ""
-                    },
-                    contact: "",
-                    profilePicture: "",
-                };
-                if (z.phoneNumbers && z.name && z.name.formatted && z.name.formatted != "") {
-                    if (z.emails) {
-                        myval.contactDetails.email = z.emails[0].value;
+    $scope.startloading();
+    if (!$.jStorage.get("contactSynced") || $.jStorage.get("contactSynced") == false) {
+        var options = new ContactFindOptions();
+        options.multiple = true;
+        options.hasPhoneNumber = true;
+        var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
+        navigator.contacts.find(fields, function(contacts) {
+            if (contacts) {
+                _.each(contacts, function(z) {
+                    var myval = {
+                        name: "",
+                        contactDetails: {
+                            email: ""
+                        },
+                        contact: "",
+                        profilePicture: "",
+                    };
+                    if (z.phoneNumbers && z.name && z.name.formatted && z.name.formatted != "") {
+                        if (z.emails) {
+                            myval.contactDetails.email = z.emails[0].value;
+                        }
+                        if (z.name.formatted) {
+                            myval.name = z.name.formatted;
+                            myval.name = myval.name.replace(/['"]/g, '');
+                            myval.name = myval.name.trim();
+                        } else {
+                            myval.name = z.displayName;
+                            myval.name = myval.name.trim();
+                        }
+                        if (z.photos) {
+                            myval.profilePicture = z.photos[0].value;
+                        }
+                        if (z.phoneNumbers) {
+                            _.each(z.phoneNumbers, function(n) {
+                                myval.contact = n.value;
+                                myval.contact = myval.contact.replace(/[ -]/g, '');
+                                myval.contact = myval.contact.replace(/[']/g, '');
+                                myval.contact = myval.contact.trim();
+                                myval.contact = myval.contact.split(" ").join('');
+                                if (myval.contact.length > 10)
+                                    myval.contact = myval.contact.substring(myval.contact.length - 10);
+                                myconarr.push(_.cloneDeep(myval));
+                            });
+                        }
                     }
-                    if (z.name.formatted) {
-                        myval.name = z.name.formatted;
-                        myval.name = myval.name.replace(/['"]/g, '');
-                        myval.name = myval.name.trim();
-                    } else {
-                        myval.name = z.displayName;
-                        myval.name = myval.name.trim();
-                    }
-                    if (z.photos) {
-                        myval.profilePicture = z.photos[0].value;
-                    }
-                    if (z.phoneNumbers) {
-                        _.each(z.phoneNumbers, function(n) {
-                            myval.contact = n.value;
-                            myval.contact = myval.contact.replace(/[ -]/g, '');
-                            myval.contact = myval.contact.replace(/[']/g, '');
-                            myval.contact = myval.contact.trim();
-                            myval.contact = myval.contact.split(" ").join('');
-                            if (myval.contact.length > 10)
-                                myval.contact = myval.contact.substring(myval.contact.length - 10);
-                            myconarr.push(_.cloneDeep(myval));
-                        });
-                    }
-                }
-            })
-            console.log(myconarr.length);
-            myconarr = _.uniq(myconarr, 'contact');
-            console.log(myconarr.length);
-            console.log(myconarr);
-            $scope.total.myContacts = myconarr.length;
-            saveContacts(myconarr)
-        }
-    }, function(contactError) {
-        $ionicLoading.hide();
-        console.log(contactError);
-    }, options);
+                })
+                myconarr = _.uniq(myconarr, 'contact');
+                $scope.total.myContacts = myconarr.length;
+                saveContacts(myconarr)
+            }
+        }, function(contactError) {
+            $ionicLoading.hide();
+            console.log(contactError);
+        }, options);
+    } else {
+        MyServices.getSpingrContacts(function(data) {
+            console.log(data);
+            if (data.value != false) {
+                $scope.total.spingrContacts = data.data.length;
+                $scope.spingrContacts = data.data;
+                _.each(data.data, function(n) {
+                    n.share = true;
+                });
+            } else if (data.value == false && data.data && data.data.length == 0) {
+                $scope.spingrContacts = [];
+                // $state.go('profileget');
+            }
+            $ionicLoading.hide();
+        })
+    }
 
     function saveContacts(contacts) {
         MyServices.saveContacts(contacts, function(data) {
             $ionicLoading.hide();
             console.log(data);
             if (data.value != false) {
+                $.jStorage.set("contactSynced", true);
                 $scope.total.spingrContacts = data.data.length;
                 $scope.spingrContacts = data.data;
+                _.each(data.data, function(n) {
+                    n.share = true;
+                });
             } else if (data.value == false && data.data && data.data.length == 0) {
-                $state.go('profileget');
+                $.jStorage.set("contactSynced", true);
+                $scope.spingrContacts = [];
+                // $state.go('profileget');
             }
         })
     }
@@ -270,6 +347,8 @@ angular.module('starter.controllers', ['ngCordova'])
                     $state.go('profileget');
                 }
             });
+        } else {
+            $state.go('profileget');
         }
     }
 
@@ -290,7 +369,8 @@ angular.module('starter.controllers', ['ngCordova'])
         if (data.value != false) {
             $scope.myRequests = data.data;
             if ($scope.myRequests.length == 0) {
-                $state.go('tab.spingbook');
+                $scope.myRequests = [];
+                // $state.go('tab.spingbook');
             }
         }
         $ionicLoading.hide();
@@ -321,7 +401,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('ChatsCtrl', function($scope, $ionicLoading, MyServices) {})
 
-.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter) {
+.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter, $state) {
 
     $scope.search = false;
     $scope.filterbtn = false;
@@ -347,11 +427,22 @@ angular.module('starter.controllers', ['ngCordova'])
             $scope.myContacts = data.data;
         }
         $ionicLoading.hide();
-    })
+    });
+
+    $scope.goToMyCard = function() {
+        $.jStorage.set('toSpingbook', true);
+        $scope.closePopover();
+        $state.go('profile.mycard');
+    }
 
     $scope.showsearch = function() {
         console.log('Search Clicked');
         $scope.search = !$scope.search;
+        if ($scope.search) {
+            setTimeout(function() {
+                document.getElementById("focusme").focus();
+            }, 500);
+        }
     };
 
     $scope.filtertoggle = function(keyEvent) {
@@ -363,7 +454,7 @@ angular.module('starter.controllers', ['ngCordova'])
         }
     };
 
-    $scope.contacts = MyServices.all();
+    // $scope.contacts = MyServices.all();
     $scope.showdailer = false;
     $scope.hidedialer = function() {
         $scope.showdailer = false;
@@ -509,27 +600,30 @@ angular.module('starter.controllers', ['ngCordova'])
             template: '<ion-spinner class="spinner-light"></ion-spinner>'
         });
     };
-    $scope.startloading();
 
-    MyServices.getMyRequests(function(data) {
-        console.log(data);
-        if (data.value != false) {
-            $scope.myRequests = data.data;
-        }
-        $ionicLoading.hide();
-    })
+    function getNewsLetter() {
+        $scope.startloading();
+        MyServices.getNewsLetter(function(data) {
+            console.log(data);
+            if (data.value != false) {
+                $scope.newsLetter = data.data;
+            }
+            $ionicLoading.hide();
+        })
+    }
+    getNewsLetter();
 
     $scope.addContact = function(contact, $index) {
         $scope.startloading();
         var obj = {};
         obj._id = contact._id;
-        obj.user = contact.from._id;
-        obj.name = contact.from.name;
-        obj.contact = contact.from.contact;
+        obj.user = contact.obj._id;
+        obj.name = contact.obj.name;
+        obj.contact = contact.obj.contact;
         MyServices.acceptShare(obj, function(data) {
             console.log(data);
             if (data.value != false) {
-                $scope.myRequests.splice($index, 1);
+                getNewsLetter();
             }
             $ionicLoading.hide();
         });

@@ -1,71 +1,74 @@
 <ion-view view-title="SpingR">
-    <ion-content class="padding">
-      <form ng-submit="personalDetails();">
-        <div class="card-effect personal-card">
-            <div class="addlogo">Upload profile picture</div>
-            <div class="list">
-                <label class="item item-input">
-                    <input type="text" placeholder="Birth Date" ng-model="personal.birthDate">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Anniversary" ng-model="personal.anniversary">
-                </label>
+   <ion-content class="padding">
+      <form ng-submit="personalDetails();" name="pinfo">
+         <div class="card-effect personal-card">
+            <div class="addlogo" ng-click="uploadProfilePic();" ng-if="!personal.profilePicture">Upload profile picture</div>
+            <div class="addlogo" ng-click="uploadProfilePic();" ng-if="personal.profilePicture">
+               <img ng-src="{{personal.profilePicture | uploadpath}}" width="104">
             </div>
-        </div>
+            <div class="list">
+               <label class="item item-input">
+                  <input type="text" placeholder="Birth Date" ng-model="personal.birthDate">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Anniversary" ng-model="personal.anniversary">
+               </label>
+            </div>
+         </div>
 
-        <div class="card-effect">
+         <div class="card-effect">
             <div class="heading">
-                Residential Address
+               Residential Address
             </div>
             <div class="list">
-                <label class="item item-input">
-                    <input type="text" placeholder="Address" ng-model="personal.residentialAddress.address">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="City / District" ng-model="personal.residentialAddress.city">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="State / Province" ng-model="personal.residentialAddress.state">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Pincode / Zipcode" ng-model="personal.residentialAddress.pincode">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Country" ng-model="personal.residentialAddress.country">
-                </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Address" ng-model="personal.residentialAddress.address">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="City / District" ng-model="personal.residentialAddress.city">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="State / Province" ng-model="personal.residentialAddress.state">
+               </label>
+               <label class="item item-input">
+                  <input type="tel" placeholder="Pincode / Zipcode" ng-model="personal.residentialAddress.pincode" ng-minlength="6" ng-maxlength="6">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Country" ng-model="personal.residentialAddress.country">
+               </label>
             </div>
-        </div>
-        <div class="card-effect">
+         </div>
+         <div class="card-effect">
             <div class="heading">
-                Contact Details
+               Contact Details
             </div>
             <div class="list">
-                <label class="item item-input">
-                    <input type="text" placeholder="Mobile Number" ng-model="personal.contactPersonalDetails.mobileNumber">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Home Landline" ng-model="personal.contactPersonalDetails.homeLandline">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Twitter Handle" ng-model="personal.contactPersonalDetails.twitterhandle">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Facebook Page" ng-model="personal.contactPersonalDetails.facebookpage">
-                </label>
-                <label class="item item-input">
-                    <input type="email" placeholder="Email ID" ng-model="personal.contactPersonalDetails.email">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Website" ng-model="personal.contactPersonalDetails.website">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Record GPS" ng-model="personal.contactPersonalDetails.recordgps">
-                </label>
+               <label class="item item-input">
+                  <input type="tel" placeholder="Mobile Number" ng-model="personal.contactPersonalDetails.mobileNumber" ng-minlength="10" ng-maxlength="10">
+               </label>
+               <label class="item item-input">
+                  <input type="tel" placeholder="Home Landline" ng-model="personal.contactPersonalDetails.homeLandline">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Twitter Handle" ng-model="personal.contactPersonalDetails.twitterhandle">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Facebook Page" ng-model="personal.contactPersonalDetails.facebookpage">
+               </label>
+               <label class="item item-input">
+                  <input type="email" placeholder="Email ID" ng-model="personal.contactPersonalDetails.email">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Website" ng-model="personal.contactPersonalDetails.website">
+               </label>
+               <label class="item item-input">
+                  <input type="text" placeholder="Record GPS" ng-model="personal.contactPersonalDetails.recordgps">
+               </label>
             </div>
-        </div>
+         </div>
 
-        <!-- <a class="button button-positive button-outline button-block" href="#/profile/sharewith">Save &amp; Proceed</a> -->
-        <button class="button button-positive button-outline button-block">Save &amp; Proceed</button>
+         <!-- <a class="button button-positive button-outline button-block" href="#/profile/sharewith">Save &amp; Proceed</a> -->
+         <button class="button button-positive button-outline button-block" type="submit" ng-disabled="pinfo.$invalid">Save &amp; Proceed</button>
       </form>
-    </ion-content>
+   </ion-content>
 </ion-view>

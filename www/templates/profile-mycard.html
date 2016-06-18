@@ -1,17 +1,20 @@
 <ion-view view-title="SpingR">
    <ion-content class="padding">
-      <form ng-submit="submitMyCard();">
+      <form ng-submit="submitMyCard();" name="mcard">
          <div class="card-effect myprofile-card">
-            <div class="addlogo">Add company logo</div>
+            <div class="addlogo" ng-click="uploadCompanyLogo();" ng-if="!mycard.companyLogo">Add company logo</div>
+            <div class="addlogo" ng-click="uploadCompanyLogo();" ng-if="mycard.companyLogo">
+               <img ng-src="{{mycard.companyLogo | uploadpath}}" width="104">
+            </div>
             <div class="list">
                <label class="item item-input">
-                  <input type="text" placeholder="Your name" ng-model="mycard.name">
+                  <input type="text" placeholder="Your name*" ng-model="mycard.name" required>
                </label>
                <label class="item item-input">
                   <input type="text" placeholder="Your designation" ng-model="mycard.designation">
                </label>
                <label class="item item-input">
-                  <input type="text" placeholder="Company name" ng-model="mycard.companyName">
+                  <input type="text" placeholder="Company name*" ng-model="mycard.companyName" required>
                </label>
                <label class="item item-input">
                   <input type="text" placeholder="Line of business" ng-model="mycard.lineOfBusiness">
@@ -33,7 +36,7 @@
                   <input type="text" placeholder="State/Provision" ng-model="mycard.officeAddress.state">
                </label>
                <label class="item item-input">
-                  <input type="text" placeholder="PinCode/Zipcode" ng-model="mycard.officeAddress.pincode">
+                  <input type="tel" placeholder="PinCode/Zipcode" ng-model="mycard.officeAddress.pincode" ng-minlength="6" ng-maxlength="6">
                </label>
                <label class="item item-input">
                   <input type="text" placeholder="Country" ng-model="mycard.officeAddress.country">
@@ -46,16 +49,16 @@
             </div>
             <div class="list">
                <label class="item item-input">
-                  <input type="text" placeholder="Mobile Number" ng-model="mycard.contactDetails.mobileNumber">
+                  <input type="tel" placeholder="Mobile Number" ng-model="mycard.contactDetails.mobileNumber" ng-minlength="10" ng-maxlength="10">
                </label>
                <label class="item item-input">
-                  <input type="text" placeholder="Direct Landline" ng-model="mycard.contactDetails.directLandline">
+                  <input type="tel" placeholder="Direct Landline" ng-model="mycard.contactDetails.directLandline">
                </label>
                <label class="item item-input">
-                  <input type="text" placeholder="Board Landline" ng-model="mycard.contactDetails.boardLandline">
+                  <input type="tel" placeholder="Board Landline" ng-model="mycard.contactDetails.boardLandline">
                </label>
                <label class="item item-input">
-                  <input type="text" placeholder="Extension" ng-model="mycard.contactDetails.extension">
+                  <input type="tel" placeholder="Extension" ng-model="mycard.contactDetails.extension">
                </label>
                <label class="item item-input">
                   <input type="email" placeholder="Email ID" ng-model="mycard.contactDetails.email">
@@ -69,7 +72,7 @@
             </div>
          </div>
          <!-- <button class="button button-positive button-outline button-block" href="#/profile/personal">Save &amp; Proceed</button> -->
-         <button class="button button-positive button-outline button-block" type="submit">Save &amp; Proceed</button>
+         <button class="button button-positive button-outline button-block" type="submit" ng-disabled="mcard.$invalid">Save &amp; Proceed</button>
       </form>
    </ion-content>
 </ion-view>

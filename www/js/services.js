@@ -1,5 +1,6 @@
 var adminurl = "http://192.168.1.129:1337/";
-// var imgpath = serveradmin + "uploads/";
+var adminurl = "http://192.168.1.114:1337/";
+var imgpath = adminurl + "upload/readFile?file=";
 var mycard1 = {};
 var personalcontact = '';
 var contact = [];
@@ -48,6 +49,12 @@ angular.module('starter.services', [])
             $http.post(adminurl + "user/getOne", {
                 "_id": id
             }).success(callback);
+        },
+        getNewsLetter: function(callback) {
+            $http.post(adminurl + "notification/getNewsLetter").success(callback);
+        },
+        getSpingrContacts: function(callback) {
+            $http.post(adminurl + "user/getSpingrContacts").success(callback);
         },
         all: function() {
             return contacts;

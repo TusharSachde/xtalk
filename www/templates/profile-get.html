@@ -14,10 +14,10 @@
       </p>
       <div class="heading">Share my profile with</div>
 
-      <ion-list>
-         <ion-item class="item-avatar2 withbutton" ng-repeat="contact in myRequests" type="item-text-wrap">
+      <ion-list ng-if="myRequests.length>0">
+         <ion-item class="item-avatar2 withbutton" collection-repeat="contact in myRequests" type="item-text-wrap">
 
-            <div class="picture" style="background-image: url('{{contact.form.profilePicture}}');" ng-if="contact.form.profilePicture"></div>
+            <div class="picture" style="background-image: url('{{contact.form.profilePicture | uploadpath}}');" ng-if="contact.form.profilePicture"></div>
             <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.form.profilePicture"></div>
 
             <div class="card-style">
@@ -29,6 +29,11 @@
                </div>
             </div>
 
+         </ion-item>
+      </ion-list>
+      <ion-list ng-if="myRequests.length==0">
+         <ion-item>
+            <p>No one have shared their profile with you</p>
          </ion-item>
       </ion-list>
 

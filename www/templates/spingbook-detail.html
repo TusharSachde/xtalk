@@ -6,9 +6,9 @@
    <ion-content class="padding">
       <div class="vcard">
 
-         <div class="picture" style="background-image: url('{{contactDetail.profilePicture}}');" ng-if="contactDetail.profilePicture"></div>
+         <div class="picture" style="background-image: url('{{contactDetail.profilePicture | uploadpath}}');" ng-if="contactDetail.profilePicture"></div>
          <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contactDetail.profilePicture"></div>
-         <div class="company" style="background-image: url('{{contactDetail.companyLogo}}');" ng-if="contactDetail.companyLogo"></div>
+         <div class="company" style="background-image: url('{{contactDetail.companyLogo | uploadpath}}');" ng-if="contactDetail.companyLogo"></div>
          <div class="company" style="background-image: url('img/spingr.png');" ng-if="!contactDetail.companyLogo"></div>
 
          <div class="in-vcard">

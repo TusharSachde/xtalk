@@ -245,4 +245,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
         return newstr;
     }
+})
+
+.filter('uploadpath', function() {
+    return function(image) {
+        if (image && image != "") {
+            if (image.indexOf('content:') == -1) {
+                return imgpath + image;
+            } else {
+                return image;
+            }
+        }
+    }
 });
