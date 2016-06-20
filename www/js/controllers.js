@@ -456,6 +456,8 @@ angular.module('starter.controllers', ['ngCordova'])
         console.log(data);
         if (data.value != false) {
             $scope.myContacts = data.data;
+        } else if (data.value == false && data.data == "User not logged in") {
+            $state.go('enter');
         }
         $ionicLoading.hide();
     });
