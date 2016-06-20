@@ -50,6 +50,9 @@ angular.module('starter.services', [])
                 "_id": id
             }).success(callback);
         },
+        getUserDetails: function(callback) {
+            $http.post(adminurl + "user/getUserDetails").success(callback);
+        },
         getNewsLetter: function(callback) {
             $http.post(adminurl + "notification/getNewsLetter").success(callback);
         },

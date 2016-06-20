@@ -103,7 +103,9 @@
             <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture" ui-sref="tab.spingbook-detail({id:contact.user._id})"></div>
 
             <div class="card-style" ui-sref="tab.spingbook-detail({id:contact.user._id})">
-               <h2 class="positive" ng-bind-html="contact.user.name|addhighlight:searchquery.$"></h2>
+               <h2 class="positive" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$"></h2>
+               <h2 class="positive" ng-bind-html="contact.user.name|addhighlight:searchquery.user.name" ng-if="searchquery.user.name"></h2>
+               <h2 class="positive" ng-bind-html="contact.user.name" ng-if="!searchquery.user.name && !searchquery.$"></h2>
 
                <p class="stable">
                   {{contact.user.companyName}}

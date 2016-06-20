@@ -79,14 +79,12 @@ angular.module('starter.controllers', ['ngCordova'])
             }],
         });
         alertPopup.then(function(res) {
-                console.log('OTP Resent !');
-            }
-
-        );
+            console.log('OTP Resent !');
+        });
     };
 })
 
-.controller('ProfileCtrl', function($scope, $ionicLoading, MyServices, $location, $ionicPopup, $state, $cordovaImagePicker, $cordovaFileTransfer) {
+.controller('ProfileCtrl', function($scope, $ionicLoading, MyServices, $location, $ionicPopup, $state, $cordovaImagePicker, $cordovaFileTransfer, $cordovaDatePicker, $filter) {
     $scope.mycard = {};
     $scope.officeAddress = {};
     $scope.contactDetails = {};
@@ -103,7 +101,7 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     $scope.startloading();
-    MyServices.getProfile(function(data, status) {
+    MyServices.getUserDetails(function(data, status) {
         console.log(data);
         if (data.value === false) {
             $state.go('enter');
@@ -113,6 +111,12 @@ angular.module('starter.controllers', ['ngCordova'])
             $scope.personal = data.data;
             $scope.mycard.contactDetails.mobileNumber = data.data.contact;
             $scope.mycard.contactPersonalDetails.mobileNumber = data.data.contact;
+            if (data.data && data.data.birthDate) {
+                $scope.personal.birthDate = $filter('date')(data.data.birthDate, 'mediumDate');
+            }
+            if (data.data && data.data.anniversary) {
+                $scope.personal.anniversary = $filter('date')(data.data.anniversary, 'mediumDate');
+            }
         }
         $ionicLoading.hide();
     });
@@ -206,6 +210,33 @@ angular.module('starter.controllers', ['ngCordova'])
                 // constant progress updates
             });
     };
+
+    var dateoptions = {
+        mode: 'date',
+        allowOldDates: true,
+        allowFutureDates: false,
+        androidTheme: 5,
+        maxDate: new Date(),
+        minDate: new Date(),
+    };
+
+    $scope.changeBirthDate = function() {
+        $cordovaDatePicker.show(dateoptions).then(function(date) {
+            console.log(date);
+            if (date) {
+                $scope.personal.birthDate = $filter('date')(date, 'mediumDate');
+            }
+        });
+    }
+
+    $scope.changeAnniversary = function() {
+        $cordovaDatePicker.show(dateoptions).then(function(date) {
+            console.log(date);
+            if (date) {
+                $scope.personal.anniversary = $filter('date')(date, 'mediumDate');
+            }
+        });
+    }
 
 })
 
@@ -548,12 +579,12 @@ angular.module('starter.controllers', ['ngCordova'])
     });
 
     $scope.openadvance = function() {
+        $scope.closePopover();
         $scope.oModal2.show();
     }
     $scope.closeadvance = function() {
         $scope.oModal2.hide();
     };
-
 
     $scope.searchpage = function() {
         $location.url('/circle/circle1');
@@ -563,6 +594,12 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.spingpage = function() {
         $location.url('/tab/spingbook');
         console.log('spingpage');
+    }
+
+    $scope.clearAdvance = function() {
+        $scope.searchquery = {};
+        $scope.searchquery.user = {};
+        $scope.closeadvance();
     }
 
 })

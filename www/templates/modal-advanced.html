@@ -1,43 +1,43 @@
 <ion-modal-view>
-    <ion-header-bar class="bar-positive">
-        <h1 class="title">Advanced Search</h1>
-        <div class="buttons button-right">
-            <button class="button button-clear" ng-click="closeadvance();">Close</button>
-        </div>
-    </ion-header-bar>
+   <ion-header-bar class="bar-positive">
+      <h1 class="title">Advanced Search</h1>
+      <div class="buttons button-right">
+         <button class="button button-clear" ng-click="clearAdvance();">Close</button>
+      </div>
+   </ion-header-bar>
 
-    <ion-content>
-        <div class="card-effect nobg">
-            <div class="list">
-                <label class="item item-input">
-                    <input type="text" placeholder="Name">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Organisation">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Designation">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="City">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Country">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Occupation">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Blood Group">
-                </label>
-                <label class="item item-input">
-                    <input type="text" placeholder="Keywords">
-                </label>
-            </div>
-        </div>
-
-        <div class="padding">
-            <button class="button button-positive button-outline button-block" ng-click="closeadvance();">Search</button>
-        </div>
-    </ion-content>
+   <ion-content>
+      <div class="card-effect nobg">
+         <div class="list">
+            <label class="item item-input">
+               <input type="text" placeholder="Name" ng-model="searchquery.user.name">
+            </label>
+            <label class="item item-input">
+               <input type="text" placeholder="Organisation" ng-model="searchquery.user.companyName">
+            </label>
+            <label class="item item-input">
+               <input type="text" placeholder="Designation" ng-model="searchquery.user.designation">
+            </label>
+            <label class="item item-input">
+               <input type="text" placeholder="City" ng-model="searchquery.user.officeAddress.city">
+            </label>
+            <label class="item item-input">
+               <input type="text" placeholder="Country" ng-model="searchquery.user.officeAddress.country">
+            </label>
+            <label class="item item-input">
+               <input type="text" placeholder="Occupation" ng-model="searchquery.user.lineOfBusiness">
+            </label>
+            <!-- <label class="item item-input">
+               <input type="text" placeholder="Blood Group" ng-model="searchquery">
+            </label>
+            <label class="item item-input">
+               <input type="text" placeholder="Keywords" ng-model="searchquery">
+            </label> -->
+         </div>
+      </div>
+      <div class="padding">
+         <button class="button button-positive button-outline button-block" ng-click="closeadvance();">Search</button>
+         <button class="button button-positive button-outline button-block" ng-click="clearAdvance();">Clear</button>
+      </div>
+   </ion-content>
 </ion-modal-view>
