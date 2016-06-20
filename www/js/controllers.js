@@ -27,15 +27,32 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.slideIndex = index;
     };
 
+    function readSMS() {
+        if (smsplugin) {
+            smsplugin.startReception(function(data) {
+                console.log(data);
+                $scope.personal.otp = data.substring(data.length - 4, data.length);
+                console.log($scope.personal.otp);
+                $scope.checkotp();
+                smsplugin.stopReception(function(result) {}, function(error) {});
+            }, function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        }
+    }
+
     // FIRST API
     $scope.phoneSubmit = function() {
         $scope.startloading();
         MyServices.register($scope.personal, function(data) {
             console.log(data);
             if (data.value != false) {
-                $scope.personal.otp = data.data.otp;
                 $ionicSlideBoxDelegate.next();
+                $scope.personal.otp = data.data.otp;
                 $scope.checkotp();
+                // readSMS();
             } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'INCORRECT DATA',

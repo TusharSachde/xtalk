@@ -98,4 +98,5 @@
     <plugin name="cordova-plugin-image-picker" spec="~1.1.1" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.5.1" />
     <plugin name="cordova-plugin-datepicker" spec="~0.9.3" />
+    <plugin name="info.asankan.phonegap.smsplugin" spec="https://github.com/asanka-x/Phonegap-SMS.git" />
 </widget>
