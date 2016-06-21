@@ -8,10 +8,10 @@
             </div>
             <div class="list">
                <label class="item item-input">
-                  <input type="text" placeholder="Birth Date" ng-model="personal.birthDate" ng-click="changeBirthDate();" readonly>
+                  <input type="text" onfocus="this.type='date'" placeholder="Birth Date" ng-model="personal.birthDate" max="{{maxAllowedDate}}" ng-change="changeFormatB();">
                </label>
                <label class="item item-input">
-                  <input type="text" placeholder="Anniversary" ng-model="personal.anniversary" ng-click="changeAnniversary();" readonly>
+                  <input type="text" onfocus="this.type='date'" placeholder="Anniversary" ng-model="personal.anniversary" max="{{maxAllowedDate}}" ng-change="changeFormatA();">
                </label>
             </div>
          </div>

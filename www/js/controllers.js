@@ -122,7 +122,7 @@ angular.module('starter.controllers', ['ngCordova'])
     MyServices.getUserDetails(function(data, status) {
         console.log(data);
         if (data.value === false) {
-            $state.go('enter');
+            $statxe.go('enter');
         } else {
             delete data.data._id;
             $scope.mycard = data.data;
@@ -130,10 +130,10 @@ angular.module('starter.controllers', ['ngCordova'])
             $scope.mycard.contactDetails.mobileNumber = data.data.contact;
             $scope.mycard.contactPersonalDetails.mobileNumber = data.data.contact;
             if (data.data && data.data.birthDate) {
-                $scope.personal.birthDate = $filter('date')(data.data.birthDate, 'mediumDate');
+                $scope.personal.birthDate = $filter('date')(data.data.birthDate, 'MM/dd/yyyy');
             }
             if (data.data && data.data.anniversary) {
-                $scope.personal.anniversary = $filter('date')(data.data.anniversary, 'mediumDate');
+                $scope.personal.anniversary = $filter('date')(data.data.anniversary, 'MM/dd/yyyy');
             }
         }
         $ionicLoading.hide();
@@ -230,33 +230,21 @@ angular.module('starter.controllers', ['ngCordova'])
                 // constant progress updates
             });
     };
+    var newDate = new Date()
+    $scope.maxAllowedDate = $filter('date')(newDate, 'yyyy-MM-dd');
+    console.log($scope.maxAllowedDate);
 
-    var dateoptions = {
-        mode: 'date',
-        allowOldDates: true,
-        allowFutureDates: false,
-        androidTheme: 5,
-        maxDate: new Date(),
-        minDate: new Date(),
-    };
-
-    $scope.changeBirthDate = function() {
-        $cordovaDatePicker.show(dateoptions).then(function(date) {
-            console.log(date);
-            if (date) {
-                $scope.personal.birthDate = $filter('date')(date, 'mediumDate');
-            }
-        });
-    }
-
-    $scope.changeAnniversary = function() {
-        $cordovaDatePicker.show(dateoptions).then(function(date) {
-            console.log(date);
-            if (date) {
-                $scope.personal.anniversary = $filter('date')(date, 'mediumDate');
-            }
-        });
-    }
+    // $scope.changeFormatA = function() {
+    //     if ($scope.personal && $scope.personal.anniversary) {
+    //         $scope.personal.anniversary = $filter('date')($scope.personal.anniversary, 'dd-MM-yyyy');
+    //     }
+    // }
+    //
+    // $scope.changeFormatB = function() {
+    //     if ($scope.personal && $scope.personal.birthDate) {
+    //         $scope.personal.birthDate = $filter('date')($scope.personal.birthDate, 'dd-MM-yyyy');
+    //     }
+    // }
 
 })
 
