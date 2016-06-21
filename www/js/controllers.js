@@ -96,6 +96,7 @@ angular.module('starter.controllers', ['ngCordova'])
             }],
         });
         alertPopup.then(function(res) {
+            $scope.phoneSubmit();
             console.log('OTP Resent !');
         });
     };
@@ -213,7 +214,9 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.uploadPhoto = function(serverpath, callback) {
         console.log("function called");
-        $scope.startloading();
+        if ($scope.imagetobeup) {
+            $scope.startloading();
+        }
         $cordovaFileTransfer.upload(serverpath, $scope.imagetobeup, options)
             .then(function(result) {
                 console.log(result);
