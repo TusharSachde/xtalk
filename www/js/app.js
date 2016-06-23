@@ -249,7 +249,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 .filter('uploadpath', function() {
     return function(image) {
         if (image && image != "") {
-            if (image.indexOf('content:') == -1) {
+            if (image.indexOf('content:') == -1 && image.indexOf('/var/mobile') == -1) {
                 return imgpath + image;
             } else {
                 return "img/spingr.png";
