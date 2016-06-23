@@ -122,7 +122,7 @@ angular.module('starter.controllers', ['ngCordova'])
     MyServices.getUserDetails(function(data, status) {
         console.log(data);
         if (data.value === false) {
-            $statxe.go('enter');
+            $state.go('enter');
         } else {
             delete data.data._id;
             $scope.mycard = data.data;
