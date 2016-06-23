@@ -50,9 +50,9 @@ angular.module('starter.controllers', ['ngCordova'])
             console.log(data);
             if (data.value != false) {
                 $ionicSlideBoxDelegate.next();
-                // $scope.personal.otp = data.data.otp;
+                $scope.personal.otp = data.data.otp;
                 // $scope.checkotp();
-                readSMS();
+                // readSMS();
             } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'INCORRECT DATA',
@@ -311,9 +311,12 @@ angular.module('starter.controllers', ['ngCordova'])
                                 myval.contact = myval.contact.replace(/[']/g, '');
                                 myval.contact = myval.contact.trim();
                                 myval.contact = myval.contact.split(" ").join('');
-                                if (myval.contact.length > 10)
+                                if (myval.contact.length > 10) {
                                     myval.contact = myval.contact.substring(myval.contact.length - 10);
-                                myconarr.push(_.cloneDeep(myval));
+                                }
+                                if (myval.name != "Identified As Spam") {
+                                    myconarr.push(_.cloneDeep(myval));
+                                }
                             });
                         }
                     }
