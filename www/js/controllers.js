@@ -50,9 +50,9 @@ angular.module('starter.controllers', ['ngCordova'])
             console.log(data);
             if (data.value != false) {
                 $ionicSlideBoxDelegate.next();
-                $scope.personal.otp = data.data.otp;
-                $scope.checkotp();
-                // readSMS();
+                // $scope.personal.otp = data.data.otp;
+                // $scope.checkotp();
+                readSMS();
             } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'INCORRECT DATA',
@@ -434,6 +434,25 @@ angular.module('starter.controllers', ['ngCordova'])
         });
     }
 
+    $scope.addShareContact = function(contact, $index) {
+        $scope.startloading();
+        var obj = {};
+        obj._id = contact._id;
+        obj.user = contact.from._id;
+        obj.name = contact.from.name;
+        obj.contact = contact.from.contact;
+        MyServices.addAndShare(obj, function(data) {
+            console.log(data);
+            if (data.value != false) {
+                $scope.myRequests.splice($index, 1);
+                if ($scope.myRequests.length == 0) {
+                    $state.go('tab.spingbook');
+                }
+            }
+            $ionicLoading.hide();
+        });
+    }
+
 })
 
 .controller('DashCtrl', function($scope, $ionicLoading, MyServices) {})
@@ -474,6 +493,20 @@ angular.module('starter.controllers', ['ngCordova'])
         $.jStorage.set('toSpingbook', true);
         $scope.closePopover();
         $state.go('profile.mycard');
+    }
+
+    $scope.goToDetail = function(contact) {
+        console.log(contact);
+        var id = 0;
+        if (contact.request && contact.accepted) {
+            id = 1;
+        } else if (contact.request) {
+            id = 2;
+        }
+        $state.go("tab.spingbook-detail", {
+            id: contact.user._id,
+            show: id
+        });
     }
 
     $scope.showsearch = function() {
@@ -668,6 +701,22 @@ angular.module('starter.controllers', ['ngCordova'])
         obj.name = contact.obj.name;
         obj.contact = contact.obj.contact;
         MyServices.acceptShare(obj, function(data) {
+            console.log(data);
+            if (data.value != false) {
+                getNewsLetter();
+            }
+            $ionicLoading.hide();
+        });
+    }
+
+    $scope.addShareContact = function(contact, $index) {
+        $scope.startloading();
+        var obj = {};
+        obj._id = contact._id;
+        obj.user = contact.obj._id;
+        obj.name = contact.obj.name;
+        obj.contact = contact.obj.contact;
+        MyServices.addAndShare(obj, function(data) {
             console.log(data);
             if (data.value != false) {
                 getNewsLetter();

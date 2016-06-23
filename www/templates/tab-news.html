@@ -10,7 +10,7 @@
                <p class="stable">{{contact.obj.companyName}}</p>
                <div class="buttoner">
                   <button class="button button-outline button-positive button-small" ng-click="addContact(contact)">ADD</button>
-                  <button class="button button-outline button-positive button-small">ADD &amp; SHARE</button>
+                  <button class="button button-outline button-positive button-small" ng-click="addShareContact(contact)">ADD &amp; SHARE</button>
                </div>
             </div>
             <div class="card-style" ng-if="contact.status=='Accepted'">

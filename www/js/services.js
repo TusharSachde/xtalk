@@ -1,5 +1,6 @@
 var adminurl = "http://192.168.1.129:1337/";
-var adminurl = "http://192.168.1.114:1337/";
+// var adminurl = "http://192.168.1.114:1337/";
+// var adminurl = "http://104.199.163.247/";
 var imgpath = adminurl + "upload/readFile?file=";
 var mycard1 = {};
 var personalcontact = '';
@@ -44,6 +45,9 @@ angular.module('starter.services', [])
         },
         acceptShare: function(contact, callback) {
             $http.post(adminurl + "notification/acceptShare", contact).success(callback);
+        },
+        addAndShare: function(contact, callback) {
+            $http.post(adminurl + "notification/addAndShare", contact).success(callback);
         },
         getDetail: function(id, callback) {
             $http.post(adminurl + "user/getOne", {

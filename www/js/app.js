@@ -116,7 +116,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.spingbook-detail', {
-        url: '/spingbook-detail/:id',
+        url: '/spingbook-detail/:id/:show',
         views: {
             'tab-spingbook': {
                 templateUrl: 'templates/spingbook-detail.html',
@@ -235,7 +235,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 .filter('addnumhighlight', function() {
     return function(str, searchkey) {
         str = str + "";
-
         var newstr = str;
         var num = 0;
         if (searchkey && searchkey != "") {
@@ -253,7 +252,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             if (image.indexOf('content:') == -1) {
                 return imgpath + image;
             } else {
-                return image;
+                return "img/spingr.png";
             }
         }
     }
