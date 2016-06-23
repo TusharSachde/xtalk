@@ -50,9 +50,9 @@ angular.module('starter.controllers', ['ngCordova'])
             console.log(data);
             if (data.value != false) {
                 $ionicSlideBoxDelegate.next();
-                $scope.personal.otp = data.data.otp;
+                // $scope.personal.otp = data.data.otp;
                 // $scope.checkotp();
-                // readSMS();
+                readSMS();
             } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'INCORRECT DATA',
