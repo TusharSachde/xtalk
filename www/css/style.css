@@ -19,6 +19,11 @@
   font-weight: 400;
 }
 @font-face {
+  font-family: 'Lato-Light';
+  src: url('../fonts/OpenSans-Bold.ttf');
+  font-weight: 300;
+}
+@font-face {
   font-family: 'Open Sans Light';
   src: url('../fonts/OpenSans-Light.ttf');
 }
@@ -661,4 +666,70 @@ span.linked {
 input[disabled], select[disabled], textarea[disabled], input[readonly]:not(.cloned-text-input), textarea[readonly]:not(.cloned-text-input), select[readonly] {
     background-color: #ffffff;
     cursor: not-allowed;
+}
+/*.cardinfo{
+  text-align: right;
+  float: right;
+  display: inline-block;
+}*/
+/*.brand-card{
+
+  width: 33%;
+}*/
+h4.brand-name {
+  color: #094e75;
+ font-size: 19px;
+ display: inline-block;
+
+}
+
+.brand-info{
+  float: right;
+      text-align: right;
+}
+.contact-desc{
+  font-size: 12px;
+  float: right;
+margin-top: 15px;
+color: #bcbcbc;
+}
+.margin0{
+  margin: 0px;
+}
+h5.cardinfo{
+  font-weight: 300;
+  color:#727272;
+  font-size: 16px;
+}
+.content{
+  padding: 2px;
+}
+.brand-logo{
+  margin-top: 29px;
+}
+.profileicon .full-image{
+  border-radius: 100%;
+  width: 26px;
+  height: 26px;
+
+}
+.profile-name{
+  margin-top: 4px;
+margin-left: -12px;
+}
+.drpbtn{
+  font-size: 15px;
+}
+.ln-chevron-down:before {
+  font-size: 18px;
+  float: right;
+  margin-top: 6px;
+  color:#9c9c9c;
+}
+
+.profileicon{
+    text-align: center;
+}
+.divide{
+  border-top: 1px solid #9c9c9c;
 }

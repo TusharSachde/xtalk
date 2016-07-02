@@ -1,103 +1,206 @@
 <ion-view>
 
-   <ion-nav-buttons side="right">
-      <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showsearch();" ng-if="filterbtn == false;"></button>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showsearch();" ng-if="filterbtn == false;"></button>
 
-      <!-- <button class="button button-icon ln-funnel small-icon animate-if" ng-click="openfilter();" ng-if="filterbtn == true;"></button> -->
+        <!-- <button class="button button-icon ln-funnel small-icon animate-if" ng-click="openfilter();" ng-if="filterbtn == true;"></button> -->
 
-      <button class="button button-icon ion-android-more-vertical small-icon" ng-click="openPopover();"></button>
-   </ion-nav-buttons>
+        <button class="button button-icon ion-android-more-vertical small-icon" ng-click="openPopover();"></button>
+    </ion-nav-buttons>
 
-   <ion-nav-title>
-      <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
-      <div class="animate-if headersearch" ng-if="search == true;">
-         <input type="search" ng-model="searchquery.$" ng-change="nameSearch();" id="focusme">
-      </div>
-   </ion-nav-title>
+    <ion-nav-title>
+        <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
+        <div class="animate-if headersearch" ng-if="search == true;">
+            <input type="search" ng-model="searchquery.$" ng-change="nameSearch();" id="focusme">
+        </div>
+    </ion-nav-title>
 
-   <!--  Dialer UI  -->
-   <div class="dialer" ng-class="{'showen': showdailer==true}">
-      <!--DIAL BUTTON-->
-      <button class="button button-round button-fixed ln-icons button-positive dialUP" ng-click="showdailer = !showdailer;"></button>
-      <!--DIAL BUTTON-->
-      <div class="dialer-bar">
-         <input type="text" class="phone number" ng-model="phone.number" disabled>
-         <button class="button-icon button ln-delete" ng-click="phoneback();" on-hold="phonedelete();"></button>
-      </div>
-      <div class="row">
-         <div class="col button" ng-click="phonenum(1);" on-hold="phonenum('#');">
-            <div class="number-holder">
-               <h2 class="positive">1</h2><span class="light-content">#</span>
+    <!--  Dialer UI  -->
+    <div class="dialer" ng-class="{'showen': showdailer==true}">
+        <!--DIAL BUTTON-->
+        <button class="button button-round button-fixed ln-icons button-positive dialUP" ng-click="showdailer = !showdailer;"></button>
+        <!--DIAL BUTTON-->
+        <div class="dialer-bar">
+            <input type="text" class="phone number" ng-model="phone.number" disabled>
+            <button class="button-icon button ln-delete" ng-click="phoneback();" on-hold="phonedelete();"></button>
+        </div>
+        <div class="row">
+            <div class="col button" ng-click="phonenum(1);" on-hold="phonenum('#');">
+                <div class="number-holder">
+                    <h2 class="positive">1</h2><span class="light-content">#</span>
+                </div>
             </div>
-         </div>
-         <div class="col button" ng-click="phonenum(2);">
-            <div class="number-holder">
-               <h2 class="positive">2</h2><span class="light-content">ABC</span>
+            <div class="col button" ng-click="phonenum(2);">
+                <div class="number-holder">
+                    <h2 class="positive">2</h2><span class="light-content">ABC</span>
+                </div>
             </div>
-         </div>
-         <div class="col button" ng-click="phonenum(3);">
-            <div class="number-holder">
-               <h2 class="positive">3</h2><span class="light-content">DEF</span>
+            <div class="col button" ng-click="phonenum(3);">
+                <div class="number-holder">
+                    <h2 class="positive">3</h2><span class="light-content">DEF</span>
+                </div>
             </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col button" ng-click="phonenum(4);">
-            <div class="number-holder">
-               <h2 class="positive">4</h2><span class="light-content">GHI</span>
+        </div>
+        <div class="row">
+            <div class="col button" ng-click="phonenum(4);">
+                <div class="number-holder">
+                    <h2 class="positive">4</h2><span class="light-content">GHI</span>
+                </div>
             </div>
-         </div>
-         <div class="col button" ng-click="phonenum(5);">
-            <div class="number-holder">
-               <h2 class="positive">5</h2><span class="light-content">JKL</span>
+            <div class="col button" ng-click="phonenum(5);">
+                <div class="number-holder">
+                    <h2 class="positive">5</h2><span class="light-content">JKL</span>
+                </div>
             </div>
-         </div>
-         <div class="col button" ng-click="phonenum(6);">
-            <div class="number-holder">
-               <h2 class="positive">6</h2><span class="light-content">MNO</span>
+            <div class="col button" ng-click="phonenum(6);">
+                <div class="number-holder">
+                    <h2 class="positive">6</h2><span class="light-content">MNO</span>
+                </div>
             </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col button" ng-click="phonenum(7);">
-            <div class="number-holder">
-               <h2 class="positive">7</h2><span class="light-content">PQRS</span>
+        </div>
+        <div class="row">
+            <div class="col button" ng-click="phonenum(7);">
+                <div class="number-holder">
+                    <h2 class="positive">7</h2><span class="light-content">PQRS</span>
+                </div>
             </div>
-         </div>
-         <div class="col button" ng-click="phonenum(8);">
-            <div class="number-holder">
-               <h2 class="positive">8</h2><span class="light-content">TUV</span>
+            <div class="col button" ng-click="phonenum(8);">
+                <div class="number-holder">
+                    <h2 class="positive">8</h2><span class="light-content">TUV</span>
+                </div>
             </div>
-         </div>
-         <div class="col button" ng-click="phonenum(9);">
-            <div class="number-holder">
-               <h2 class="positive">9</h2><span class="light-content">WXYZ</span>
+            <div class="col button" ng-click="phonenum(9);">
+                <div class="number-holder">
+                    <h2 class="positive">9</h2><span class="light-content">WXYZ</span>
+                </div>
             </div>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col button" ng-click="phonenum('*');">
-            <div class="number-holder number-center">
-               <h2 class="positive" style="margin-top: 5px;">*</h2>
+        </div>
+        <div class="row">
+            <div class="col button" ng-click="phonenum('*');">
+                <div class="number-holder number-center">
+                    <h2 class="positive" style="margin-top: 5px;">*</h2>
+                </div>
             </div>
-         </div>
-         <div class="col button" ng-click="phonenum(0);" on-hold="phonenum('+');">
-            <div class="number-holder">
-               <h2 class="positive">0</h2><span class="light-content">+</span>
+            <div class="col button" ng-click="phonenum(0);" on-hold="phonenum('+');">
+                <div class="number-holder">
+                    <h2 class="positive">0</h2><span class="light-content">+</span>
+                </div>
             </div>
-         </div>
-         <div class="col button button-balanced" ng-click="call(phone.number);">
-            <div class="number-holder number-center">
-               <h2 class="positive icon ion-ios-telephone"></h2>
+            <div class="col button button-balanced" ng-click="call(phone.number);">
+                <div class="number-holder number-center">
+                    <h2 class="positive icon ion-ios-telephone"></h2>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
-   <!--  Dialer UI  -->
+        </div>
+    </div>
+    <!--  Dialer UI  -->
 
-   <ion-content>
-      <ion-list>
-         <ion-item class="item-remove-animate item-avatar2" collection-repeat="contact in myContacts | filter:searchquery:strict" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.user.contact);">
+    <ion-content>
+        <ion-list>
+
+            <div class="card">
+                <div class="item item-text-wrap content">
+
+
+                    <div class="content">
+                        <div class="row">
+                            <div class="col col-40">
+                                <div class="brand-logo">
+                                    <img src="img/fplogo.png" alt="" class="full-image">
+                                </div>
+                            </div>
+
+
+
+                            <div class="col col-60">
+                                <div class="brand-info">
+                                    <h4 class="margin0 brand-name">flipkart</h4>
+                                    <h5 class="cardinfo">App Developer</h5>
+
+                                    <div class="contact-desc">
+                                        <span>tushar@wohlig.com</span>
+                                        <span>916723727</span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    <div class="divide">
+                          <div class="card-footer">
+                        <div class="row">
+                          <div class="col-20 profileicon">
+                            <img src="img/download.png" alt="" class="full-image">
+
+                          </div>
+                          <div class="col-60">
+                            <div class="profile-name">Mahesh Maurya</div>
+                          </div>
+                          <div class="col-20">
+                          <div class="drpbtn">
+                              <i class="ln-chevron-down"></i>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>     </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                        <div class="item item-text-wrap content">
+
+
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col col-40">
+                                        <div class="brand-logo">
+                                            <img src="img/fplogo.png" alt="" class="full-image">
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col col-60">
+                                        <div class="brand-info">
+                                            <h4 class="margin0 brand-name">flipkart</h4>
+                                            <h5 class="cardinfo">App Developer</h5>
+
+                                            <div class="contact-desc">
+                                                <span>tushar@wohlig.com</span>
+                                                <span>916723727</span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            <div class="divide">
+                                  <div class="card-footer">
+                                <div class="row">
+                                  <div class="col-20 profileicon">
+                                    <img src="img/download.png" alt="" class="full-image">
+
+                                  </div>
+                                  <div class="col-60">
+                                    <div class="profile-name">Mahesh Maurya</div>
+                                  </div>
+                                  <div class="col-20">
+                                  <div class="drpbtn">
+                                      <i class="ln-chevron-down"></i>
+                                  </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>     </div>
+                              </div>
+                            </div>
+
+
+            <!-- amazon -->
+
+            <!-- <ion-item class="item-remove-animate item-avatar2" collection-repeat="contact in myContacts | filter:searchquery:strict" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.user.contact);">
 
             <div class="picture" style="background-image: url('{{contact.user.profilePicture | uploadpath}}');" ng-if="contact.user.profilePicture" ng-click="goToDetail(contact);"></div>
             <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture" ng-click="goToDetail(contact);"></div>
@@ -123,7 +226,7 @@
             <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(contact.user.contact);"></ion-option-button>
             <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(contact.user.contactDetails.email);" ng-if="contact.user.contactDetails.email"></ion-option-button>
 
-         </ion-item>
-      </ion-list>
-   </ion-content>
+         </ion-item> -->
+        </ion-list>
+    </ion-content>
 </ion-view>

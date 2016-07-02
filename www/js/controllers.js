@@ -50,9 +50,9 @@ angular.module('starter.controllers', ['ngCordova'])
             console.log(data);
             if (data.value != false) {
                 $ionicSlideBoxDelegate.next();
-                // $scope.personal.otp = data.data.otp;
-                // $scope.checkotp();
-                readSMS();
+                $scope.personal.otp = data.data.otp;
+                $scope.checkotp();
+                // readSMS();
             } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'INCORRECT DATA',
@@ -79,12 +79,12 @@ angular.module('starter.controllers', ['ngCordova'])
         });
     };
 
-    MyServices.getProfile(function(data, status) {
-        console.log(data);
-        if (data.value != false) {
-            $state.go('tab.spingbook');
-        }
-    });
+    // MyServices.getProfile(function(data, status) {
+    //     console.log(data);
+    //     if (data.value != false) {
+    //         $state.go('tab.spingbook');
+    //     }
+    // });
 
     $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
