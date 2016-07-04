@@ -108,7 +108,7 @@
     <ion-content>
         <ion-list>
 
-            <div class="card">
+            <!-- <div class="card">
                 <div class="item item-text-wrap spingr-card">
                   <div class="brand-info">
                       <img src="img/fplogo.png" class="brand-logo">
@@ -135,6 +135,44 @@
                            <div class="socio tw"><i class="icon ion-social-twitter"></i></div>
                            <div class="socio likd"><i class="icon ion-social-linkedin"></i></div>
                            <div class="socio yt"><i class="icon ion-social-youtube"></i></div>
+                         </div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+            </div> -->
+
+            <div class="card" ng-repeat="contact in myContacts | filter:searchquery:strict">
+                <div class="item item-text-wrap spingr-card">
+                  <div class="brand-info">
+                      <img src="img/fplogo.png" class="brand-logo" ng-click="goToDetail(contact);">
+                      <h4 class="brand-name positive">{{contact.user.companyName}}</h4>
+                      <h5 class="card-info">Update your designation</h5>
+                      <div class="contact-desc">
+                          <a ng-href="mailto:{{contact.user.contactDetails.email}}">{{contact.user.contactDetails.email}}</a>
+                          <a href ng-click="call(contact.user.contact);" ng-bind-html="contact.user.contact|addnumhighlight:searchquery.user.contact"></a>
+                      </div>
+                  </div>
+
+                  <div class="card-end" ng-click="toggleSpingrCard()" ng-class="{'open-card':openCard==true}">
+                    <div class="profile-pic" style="background-image: url('{{contact.user.profilePicture | uploadpath}}');" ng-if="contact.user.profilePicture" ng-click="goToDetail(contact);"></div>
+                    <div class="profile-pic" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture" ng-click="goToDetail(contact);"></div>
+                    <div class="other-part">
+                       <p>
+                         <span class="positive bigr" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$"></span>
+                         <span class="positive bigr" ng-bind-html="contact.user.name|addhighlight:searchquery.user.name" ng-if="searchquery.user.name"></span>
+                         <span class="positive bigr" ng-bind-html="contact.user.name" ng-if="!searchquery.user.name && !searchquery.$"></span>
+                         <i class="ln-chevron-down go-right"></i>
+                       </p>
+                       <div class="should-hide">
+                         <p>Update your designation</p>
+                         <p class="bigr tp-pd"><span class="positive">{{contact.user.companyName}}</span></p>
+                         <p>{{contact.user.officeAddress.city}}</p>
+                         <p class="ph-nbr"><a ng-href="tel:{{contact.user.contact}}">{{contact.user.contact}}</a></p>
+                         <p><a ng-href="mailto:{{contact.user.contactDetails.email}}"><span class="positive">{{contact.user.contactDetails.email}}</span></a></p>
+                         <div class="social-clicks">
+                           <div class="socio fb"><i class="icon ion-social-facebook"></i></div>
+                           <div class="socio tw"><i class="icon ion-social-twitter"></i></div>
                          </div>
                        </div>
                     </div>
