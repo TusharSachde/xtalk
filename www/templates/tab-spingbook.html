@@ -108,10 +108,10 @@
     <ion-content>
         <ion-list>
 
-            <!-- <div class="card">
+            <div class="card">
                 <div class="item item-text-wrap spingr-card">
                   <div class="brand-info">
-                      <img src="img/fplogo.png" class="brand-logo">
+                      <div class="brand-logo" style="background-image:url('img/fplogo.png');"></div>
                       <h4 class="brand-name positive">flipkart</h4>
                       <h5 class="card-info">App Developer</h5>
                       <div class="contact-desc">
@@ -140,12 +140,12 @@
                     </div>
                   </div>
                 </div>
-            </div> -->
+            </div>
 
             <div class="card" ng-repeat="contact in myContacts | filter:searchquery:strict">
                 <div class="item item-text-wrap spingr-card">
                   <div class="brand-info">
-                      <img src="img/fplogo.png" class="brand-logo" ng-click="goToDetail(contact);">
+                      <div class="brand-logo" style="background-image:url('img/fplogo.png');" ng-click="goToDetail(contact);"></div>
                       <h4 class="brand-name positive">{{contact.user.companyName}}</h4>
                       <h5 class="card-info">Update your designation</h5>
                       <div class="contact-desc">

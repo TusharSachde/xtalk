@@ -717,13 +717,15 @@ h5.card-info {
     padding: 0;
 }
 .brand-logo {
-    width: 100px;
-    height: auto;
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
+  width: 100px;
+  height: auto;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  bottom: 10px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .profileicon .full-image {
     border-radius: 100%;
