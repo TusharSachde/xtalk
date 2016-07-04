@@ -50,9 +50,9 @@ angular.module('starter.controllers', ['ngCordova'])
             console.log(data);
             if (data.value != false) {
                 $ionicSlideBoxDelegate.next();
-                $scope.personal.otp = data.data.otp;
-                $scope.checkotp();
-                // readSMS();
+                // $scope.personal.otp = data.data.otp;
+                // $scope.checkotp();
+                readSMS();
             } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'INCORRECT DATA',
@@ -79,12 +79,12 @@ angular.module('starter.controllers', ['ngCordova'])
         });
     };
 
-    // MyServices.getProfile(function(data, status) {
-    //     console.log(data);
-    //     if (data.value != false) {
-    //         $state.go('tab.spingbook');
-    //     }
-    // });
+    MyServices.getProfile(function(data, status) {
+        console.log(data);
+        if (data.value != false) {
+            $state.go('tab.spingbook');
+        }
+    });
 
     $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
@@ -462,10 +462,11 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('ChatsCtrl', function($scope, $ionicLoading, MyServices) {})
 
-.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter, $state) {
+.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter, $state, $ionicScrollDelegate, $cordovaInAppBrowser) {
     $scope.openCard = false;
-    $scope.toggleSpingrCard = function() {
-      $scope.openCard = !$scope.openCard;
+    $scope.toggleSpingrCard = function(index) {
+        $scope.openCardNo = index;
+        $scope.openCard = !$scope.openCard;
     };
 
     $scope.search = false;
@@ -481,9 +482,10 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.startloading();
 
     $scope.nameSearch = function() {
-        console.log("here", $scope.searchquery.search);
+        console.log("here", $scope.searchquery);
         $scope.phone.number = '';
         $scope.searchquery.user.contact = '';
+        $ionicScrollDelegate.scrollTop();
     }
 
     MyServices.getContacts(function(data) {
@@ -571,6 +573,7 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.phone.number += "" + number;
         $scope.searchquery.$ = '';
         $scope.searchquery.user.contact = $scope.phone.number;
+        $ionicScrollDelegate.scrollTop();
     };
     $scope.phoneback = function() {
         $scope.phone.number = $scope.phone.number.slice(0, -1);
@@ -650,6 +653,23 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.searchquery = {};
         $scope.searchquery.user = {};
         $scope.closeadvance();
+    }
+
+    $scope.openInBrowser = function(link) {
+        console.log(link);
+        var options = {
+            location: 'yes',
+            clearcache: 'yes',
+            toolbar: 'no'
+        };
+
+        $cordovaInAppBrowser.open(link, '_blank', options)
+            .then(function(event) {
+                // success
+            })
+            .catch(function(event) {
+                // error
+            });
     }
 
 })
