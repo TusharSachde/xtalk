@@ -463,6 +463,10 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('ChatsCtrl', function($scope, $ionicLoading, MyServices) {})
 
 .controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter, $state) {
+    $scope.openCard = false;
+    $scope.toggleSpingrCard = function() {
+      $scope.openCard = !$scope.openCard;
+    };
 
     $scope.search = false;
     $scope.filterbtn = false;

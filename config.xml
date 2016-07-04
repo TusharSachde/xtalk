@@ -11,6 +11,11 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <access origin="tel:*" launch-external="yes"/>
+    <access origin="geo:*" launch-external="yes"/>
+    <access origin="mailto:*" launch-external="yes"/>
+    <access origin="sms:*" launch-external="yes"/>
+    <access origin="market:*" launch-external="yes"/>
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -67,12 +72,12 @@
     <preference name="KeepRunning" value="true" />
     <preference name="LoadUrlTimeoutValue" value="20000" />
     <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="StatusBarBackgroundColor" value="#ffffff" />
+    <preference name="StatusBarBackgroundColor" value="#9b59b6" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreenDelay" value="4000" />
-    <preference name="SplashScreenBackgroundColor" value="#ffffff" />
+    <preference name="SplashScreenBackgroundColor" value="#9b59b6" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="SplashScreen" value="screen" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
