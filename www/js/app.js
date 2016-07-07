@@ -19,7 +19,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
     //$ionicConfigProvider.views.transition('none');
     $httpProvider.defaults.withCredentials = true;
-    $ionicConfigProvider.views.maxCache(0);
+    $ionicConfigProvider.views.maxCache(1);
     $ionicConfigProvider.views.swipeBackEnabled(false);
 
     $stateProvider
@@ -250,7 +250,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     return function(image) {
         if (image && image != "") {
             if (image.indexOf('content:') == -1 && image.indexOf('/var/mobile') == -1) {
-                return imgpath + image;
+                return imgpath + image + "&height=100";
             } else {
                 return "img/spingr.png";
             }
