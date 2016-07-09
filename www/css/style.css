@@ -617,6 +617,7 @@ input.mobileno {
 }
 .personal-card.card-effect {
     padding-left: 130px;
+    min-height: 130px;
 }
 .myprofile-card .addlogo {
     position: absolute;
