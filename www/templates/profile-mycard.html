@@ -3,8 +3,8 @@
       <form ng-submit="submitMyCard();" name="mcard">
          <div class="card-effect myprofile-card">
             <div class="addlogo" ng-click="uploadCompanyLogo();" ng-if="!mycard.companyLogo">Add company logo</div>
-            <div class="addlogo" ng-click="uploadCompanyLogo();" ng-if="mycard.companyLogo">
-               <img ng-src="{{mycard.companyLogo | uploadpath}}" width="104">
+            <div class="addlogo" ng-click="uploadCompanyLogo();" ng-if="mycard.companyLogo" style="background-image:url({{mycard.companyLogo | uploadpath}});">
+               <!-- <img ng-src="{{mycard.companyLogo | uploadpath}}" width="104"> -->
             </div>
             <div class="list">
                <label class="item item-input">
