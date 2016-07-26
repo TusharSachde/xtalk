@@ -718,15 +718,15 @@ h5.card-info {
     padding: 0;
 }
 .brand-logo {
-  width: 100px;
-  height: auto;
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  bottom: 10px;
-  background-size: contain;
-  background-position: left center;
-  background-repeat: no-repeat;
+    width: 100px;
+    height: auto;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    bottom: 10px;
+    background-size: contain;
+    background-position: left center;
+    background-repeat: no-repeat;
 }
 .profileicon .full-image {
     border-radius: 100%;
@@ -743,14 +743,12 @@ h5.card-info {
 .ln-chevron-down {
     font-size: 18px;
     margin-top: 5px;
-    color: #9c9c9c;
 }
 .profileicon {
     text-align: center;
 }
 .card-end {
     padding: 10px;
-    border-top: 1px solid #f3f5f6;
     position: relative;
     min-height: 53px;
 }
@@ -766,6 +764,9 @@ h5.card-info {
     height: 32px;
     background-color: #f3f5f6;
     border-radius: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .other-part {
     padding-left: 42px;
@@ -784,16 +785,16 @@ h5.card-info {
     text-align: center;
 }
 .fb {
-  background-color: #3b5998;
+    background-color: #3b5998;
 }
 .tw {
-  background-color: #2eacf5;
+    background-color: #2eacf5;
 }
 .yt {
-  background-color: #d90300;
+    background-color: #d90300;
 }
 .likd {
-  background-color: #0274b3;
+    background-color: #0274b3;
 }
 .social-clicks {
     margin-top: 15px;
@@ -806,19 +807,19 @@ h5.card-info {
     overflow: hidden;
 }
 .open-card .should-hide {
-  height: 184px;
+    height: 184px;
 }
-.card-end > *, .should-hide, .go-right {
-  transition: all 300ms ease;
-  -webkit-transition: all 300ms ease;
+.card-end> *, .should-hide, .go-right {
+    transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
 }
 .open-card .profile-pic {
-  height: 42px;
-  width: 42px;
+    height: 42px;
+    width: 42px;
 }
-.open-card .other-part{
-  padding-left: 52px;
-  margin-top: 0;
+.open-card .other-part {
+    padding-left: 52px;
+    margin-top: 0;
 }
 p.bigr, .bigr {
     font-size: 16px;
@@ -828,4 +829,35 @@ p.bigr, .bigr {
 }
 .open-card .go-right {
     transform: rotate(180deg);
+}
+.alt-colors .card {
+    margin: 10px;
+}
+.alt-colors .card:nth-child(odd) {
+    background-color: #41cbc7;
+}
+.alt-colors .card:nth-child(odd) .card-end {
+    border-top: 1px solid #29aba7;
+}
+.alt-colors .card:nth-child(odd) .highlight {
+    background-color: #29aba7;
+}
+.alt-colors .item {
+    background-color: transparent;
+    color: white;
+}
+.alt-colors .item p {
+    color: white;
+}
+.alt-colors .card:nth-child(even) {
+    background-color: #4d9dd0;
+}
+.alt-colors .card:nth-child(even) .card-end {
+    border-top: 1px solid #3d86b5;
+}
+.alt-colors .card:nth-child(even) .highlight {
+    background-color: #3d86b5;
+}
+.alt-colors h1, .alt-colors h2, .alt-colors h3, .alt-colors h4, .alt-colors h5, .alt-colors h6 {
+  color: white;
 }

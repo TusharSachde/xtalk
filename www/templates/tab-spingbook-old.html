@@ -106,13 +106,48 @@
     <!--  Dialer UI  -->
 
     <ion-content>
-        <ion-list class="alt-colors">
+        <ion-list>
+
+            <!-- <div class="card">
+                <div class="item item-text-wrap spingr-card">
+                  <div class="brand-info">
+                      <div class="brand-logo" style="background-image:url('img/fplogo.png');"></div>
+                      <h4 class="brand-name positive">flipkart</h4>
+                      <h5 class="card-info">App Developer</h5>
+                      <div class="contact-desc">
+                          <a href="mailto:tushar@wohlig.com">tushar@wohlig.com</a>
+                          <a href="tel:+919067237279">+919067237279</a>
+                      </div>
+                  </div>
+
+                  <div class="card-end" ng-click="toggleSpingrCard()" ng-class="{'open-card':openCard==true && openCardNo==$index}">
+                    <div class="profile-pic"></div>
+                    <div class="other-part">
+                       <p><span class="positive bigr">Mahesh Maurya</span> <i class="ln-chevron-down go-right"></i></p>
+                       <div class="should-hide">
+                         <p>App Developer</p>
+                         <p class="bigr tp-pd"><span class="positive">Flipkart</span></p>
+                         <p>Address</p>
+                         <p class="ph-nbr"><a href="tel:+919067237279">+919067237279</a>, <a href="tel:+919067237279">+919067237279</a></p>
+                         <p><a href="mailto:tushar@wohlig.com"><span class="positive">tushar@wohlig.com</span></a></p>
+                         <div class="social-clicks">
+                           <div class="socio fb"><i class="icon ion-social-facebook"></i></div>
+                           <div class="socio tw"><i class="icon ion-social-twitter"></i></div>
+                           <div class="socio likd"><i class="icon ion-social-linkedin"></i></div>
+                           <div class="socio yt"><i class="icon ion-social-youtube"></i></div>
+                         </div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+            </div> -->
+
             <div class="card" ng-repeat="contact in myContacts | filter:searchquery:strict">
                 <div class="item item-text-wrap spingr-card">
                   <div class="brand-info">
                       <div class="brand-logo" style="background-image:url('{{contact.user.companyLogo | uploadpath}}');" ng-click="goToDetail(contact);" ng-if="contact.user.companyLogo"></div>
                       <div class="brand-logo" style="background-image:url('img/fplogo.png');" ng-click="goToDetail(contact);" ng-if="!contact.user.companyLogo"></div>
-                      <h4 class="brand-name ">{{contact.user.companyName}}</h4>
+                      <h4 class="brand-name positive">{{contact.user.companyName}}</h4>
                       <h5 class="card-info" ng-if="contact.user.designation">{{contact.user.designation}}</h5>
                       <div class="contact-desc">
                           <a ng-href="mailto:{{contact.user.contactDetails.email}}">{{contact.user.contactDetails.email}}</a>
@@ -125,17 +160,17 @@
                     <div class="profile-pic" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture" ng-click="goToDetail(contact);"></div>
                     <div class="other-part">
                        <p>
-                         <span class="bigr" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$"></span>
-                         <span class="bigr" ng-bind-html="contact.user.name|addhighlight:searchquery.user.name" ng-if="searchquery.user.name"></span>
-                         <span class="bigr" ng-bind-html="contact.user.name" ng-if="!searchquery.user.name && !searchquery.$"></span>
+                         <span class="positive bigr" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$"></span>
+                         <span class="positive bigr" ng-bind-html="contact.user.name|addhighlight:searchquery.user.name" ng-if="searchquery.user.name"></span>
+                         <span class="positive bigr" ng-bind-html="contact.user.name" ng-if="!searchquery.user.name && !searchquery.$"></span>
                          <i class="ln-chevron-down go-right"></i>
                        </p>
                        <div class="should-hide">
                          <p ng-if="contact.user.designation">{{contact.user.designation}}</p>
-                         <p class="bigr tp-pd"><span class="">{{contact.user.companyName}}</span></p>
+                         <p class="bigr tp-pd"><span class="positive">{{contact.user.companyName}}</span></p>
                          <p>{{contact.user.officeAddress.city}}</p>
                          <p class="ph-nbr"><a ng-href="tel:{{contact.user.contact}}">{{contact.user.contact}}</a></p>
-                         <p><a ng-href="mailto:{{contact.user.contactDetails.email}}"><span class="">{{contact.user.contactDetails.email}}</span></a></p>
+                         <p><a ng-href="mailto:{{contact.user.contactDetails.email}}"><span class="positive">{{contact.user.contactDetails.email}}</span></a></p>
                          <div class="social-clicks">
                            <div class="socio fb" ng-if="contact.user.contactPersonalDetails.facebookpage" ng-click="openInBrowser(contact.user.contactPersonalDetails.facebookpage)"><i class="icon ion-social-facebook"></i></div>
                            <div class="socio tw" ng-if="contact.user.contactPersonalDetails.twitterhandle" ng-click="openInBrowser(contact.user.contactPersonalDetails.twitterhandle)"><i class="icon ion-social-twitter"></i></div>
@@ -145,6 +180,36 @@
                   </div>
                 </div>
             </div>
+
+            <!-- amazon -->
+
+            <!-- <ion-item class="item-remove-animate item-avatar2" collection-repeat="contact in myContacts | filter:searchquery:strict" type="item-text-wrap" ng-click="hidedialer();" on-hold="call(contact.user.contact);">
+
+            <div class="picture" style="background-image: url('{{contact.user.profilePicture | uploadpath}}');" ng-if="contact.user.profilePicture" ng-click="goToDetail(contact);"></div>
+            <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture" ng-click="goToDetail(contact);"></div>
+
+            <div class="card-style" ng-click="goToDetail(contact);">
+               <h2 class="positive" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$"></h2>
+               <h2 class="positive" ng-bind-html="contact.user.name|addhighlight:searchquery.user.name" ng-if="searchquery.user.name"></h2>
+               <h2 class="positive" ng-bind-html="contact.user.name" ng-if="!searchquery.user.name && !searchquery.$"></h2>
+
+               <p class="stable">
+                  {{contact.user.companyName}}
+                  <br>{{contact.user.officeAddress.city}}
+                  <span ng-bind-html="contact.user.contact|addnumhighlight:searchquery.user.contact"></span>
+               </p>
+
+               <div class="company" style="background-image: url('{{contact.user.companyLogo | uploadpath}}');" ng-if="contact.user.companyLogo"></div>
+               <div class="company" style="background-image: url('img/spingr.png');" ng-if="!contact.user.companyLogo"></div>
+            </div>
+
+            <ion-option-button class="button-large button-positive ln-comments"></ion-option-button>
+            <ion-option-button class="button-large button-positive ln-phone" ng-click="call(contact.user.contact);">
+            </ion-option-button>
+            <ion-option-button class="button-large button-positive ln-comment" ng-click="sms(contact.user.contact);"></ion-option-button>
+            <ion-option-button class="button-large button-positive ln-envelope" ng-click="mail(contact.user.contactDetails.email);" ng-if="contact.user.contactDetails.email"></ion-option-button>
+
+         </ion-item> -->
         </ion-list>
     </ion-content>
 </ion-view>
