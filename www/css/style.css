@@ -1137,8 +1137,7 @@ p.bigr,
 
 .share-icon {
     height: 18px;
-    margin-right: 10px;
-    float: right;
+    margin-left: 10px;
 }
 
 .text-icon {

@@ -143,11 +143,11 @@
             </div> -->
             <div class="">
                 <div class="card profile-card item"  ng-repeat="users in user ">
-                    <img ng-src="{{users.image}}" alt="img/spingr.png" class="profile-photo" ui-sref="spingbook-detail-new"/>
+                    <img ng-src="{{users.image}}" alt="img/spingr.png" class="profile-photo" ui-sref="tab.spingbook-detail-new"/>
                     <div class="profile-detail">
-                        <h3 class="pro-name" ui-sref="spingbook-detail-new">{{users.name}}</h3>
+                        <h3 class="pro-name" ui-sref="tab.spingbook-detail-new">{{users.name}}</h3>
                         <h4 class="pro-detail">{{users.designation}}</h3>
-                        <h5 class="pro-detail">{{users.phone}}</h5>
+                        <h5 class="pro-detail"><a ng-href="tel:{{users.phone}}" style="text-decoration:none">{{users.phone}}</a></h5>
                         <h5 class=" " ><a class="pro-detail" href="mailto:{{users.email}}" target="" style="text-decoration:none" >{{users.email}}</a></h5>
                     </div>
                     <img ng-src="{{users.company}}" alt="img/spingr.png" class="profile-logo" />

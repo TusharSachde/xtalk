@@ -7,7 +7,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
         if (window.StatusBar) {
             StatusBar.styleDefault();
-            StatusBar.backgroundColorByHexString("#7B2E9A");
+            StatusBar.backgroundColorByHexString("#1EA0D1");
         }
     });
 
@@ -134,6 +134,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
+    .state('tab.spingbook-detail-new', {
+        url: '/spingbook-detail-new',
+        views: {
+            'tab-spingbook': {
+                templateUrl: 'templates/spingbook-detail-new.html',
+                controller: 'SpingbookDetailNewCtrl'
+            }
+        }
+
+            })
+
     .state('circle', {
         url: "/circle",
         abstract: true,
@@ -150,11 +161,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
-    .state('spingbook-detail-new', {
-                url: '/spingbook-detail-new',
-                templateUrl: 'templates/spingbook-detail-new.html',
-                controller: 'SpingbookDetailNewCtrl'
-            })
+
 
     .state('circle.circle2', {
         url: '/circle2',
