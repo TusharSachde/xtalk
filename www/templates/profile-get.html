@@ -1,41 +1,37 @@
 <ion-view view-title="Get Profile">
-   <ion-nav-bar class="bar-positive has-tabs-top" align-title="center">
-      <ion-nav-back-button>
-         Back
-      </ion-nav-back-button>
-      <ion-nav-buttons side="right">
-         <a class="button button-clear" href="#/tab/spingbook">Done</a>
-      </ion-nav-buttons>
-   </ion-nav-bar>
-   <ion-content class="padding">
-      <p class="text-center">
-         Congratulations… Now you have proper profile of <span class="bold">320</span> of your contacts in your SPingbook Following people have shared their profile with you click on Add button to add these contacts to your SPingrbook, click on Add &amp;
-         Share button to add these contacts as well as share your profile with them.
-      </p>
-      <div class="heading">Share my profile with</div>
-
-      <ion-list ng-if="myRequests.length>0">
-         <ion-item class="item-avatar2 withbutton" collection-repeat="contact in myRequests" type="item-text-wrap">
-
-            <div class="picture" style="background-image: url('{{contact.form.profilePicture | uploadpath}}');" ng-if="contact.form.profilePicture"></div>
-            <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.form.profilePicture"></div>
-
-            <div class="card-style">
-               <h2 class="positive">{{contact.from.name}}</h2>
-               <p class="stable">{{contact.from.companyName}}</p>
-               <div class="buttoner">
-                  <button class="button button-outline button-positive button-small" ng-click="addContact(contact)">ADD</button>
-                  <button class="button button-outline button-positive button-small" ng-click="addShareContact(contact)">ADD &amp; SHARE</button>
-               </div>
-            </div>
-
-         </ion-item>
-      </ion-list>
-      <ion-list ng-if="myRequests.length==0">
-         <ion-item>
-            <p>No one have shared their profile with you</p>
-         </ion-item>
-      </ion-list>
-
-   </ion-content>
+    <ion-nav-bar class="bar-light has-tabs-top" align-title="center">
+        <ion-nav-back-button>
+            Back
+        </ion-nav-back-button>
+        <ion-nav-buttons side="right">
+            <a class="button button-clear" href="#/tab/spingbook">Done</a>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content class="padding">
+        <p class="text-center">
+            Congratulations… Now you have proper profile of <span class="bold">320</span> of your contacts in your SPingbook
+            Following people have shared their profile with you click on Add button to add these contacts to your SPingrbook,
+            click on Add &amp; Share button to add these contacts as well as share your profile with them.
+        </p>
+        <div class="heading">Share my profile with</div>
+        <ion-list ng-if="myRequests.length>0">
+            <ion-item class="item-avatar2 withbutton" collection-repeat="contact in myRequests" type="item-text-wrap">
+                <div class="picture" style="background-image: url('{{contact.form.profilePicture | uploadpath}}');" ng-if="contact.form.profilePicture"></div>
+                <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.form.profilePicture"></div>
+                <div class="card-style">
+                    <h2 class="positive">{{contact.from.name}}</h2>
+                    <p class="stable">{{contact.from.companyName}}</p>
+                    <div class="buttoner">
+                        <button class="button button-outline button-positive button-small" ng-click="addContact(contact)">ADD</button>
+                        <button class="button button-outline button-positive button-small" ng-click="addShareContact(contact)">ADD &amp; SHARE</button>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-list ng-if="myRequests.length==0">
+            <ion-item>
+                <p>No one have shared their profile with you</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-view>
