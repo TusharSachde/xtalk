@@ -1,5 +1,6 @@
-<ion-view view-title="SpingR">
-   <ion-content>
+<ion-view view-title="" class="background">
+
+   <ion-content >
       <ion-list ng-if="newsLetter.length>0">
          <ion-item class="item-avatar2 withbutton" ng-repeat="contact in newsLetter" type="item-text-wrap">
             <div class="picture" style="background-image: url('{{contact.obj.profilePicture | uploadpath}}');" ng-if="contact.obj.profilePicture"></div>

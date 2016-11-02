@@ -547,6 +547,43 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('ChatsCtrl', function($scope, $ionicLoading, MyServices) {})
 
 .controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter, $state, $ionicScrollDelegate, $cordovaInAppBrowser) {
+    $scope.user = [
+        {
+        name: "Amit Shah",
+        company: "img/snapdeal.png",
+        designation: "Marketing Manager",
+        email: "sping@app.com",
+        image: "img/a.png",
+        phone:"9876543210"
+
+      },
+        {
+        name: "Priya Mishra",
+        company: "img/snapdeal.png",
+        designation: "Sales Manager",
+        email: "sping@app.com",
+        image: "img/b.png",
+        phone:"9876543210"
+
+      },
+        {
+        name: "Sudip Singh",
+        company: "img/snapdeal.png",
+        designation: "Marketing Manager",
+        email: "sping@app.com",
+        image: "img/c.png",
+        phone:"9876543210"
+
+      },
+        {
+        name: "Raj Mahajan",
+        company: "img/snapdeal.png",
+        designation: "Sales Manager",
+        email: "sping@app.com",
+        image: "img/d.png",
+        phone:"9876543210"
+
+      } ];
     $scope.openCard = false;
     $scope.toggleSpingrCard = function(index) {
         $scope.openCardNo = index;

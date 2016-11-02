@@ -155,7 +155,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl: 'templates/spingbook-detail-new.html',
                 controller: 'SpingbookDetailNewCtrl'
             })
-            
+
     .state('circle.circle2', {
         url: '/circle2',
         views: {

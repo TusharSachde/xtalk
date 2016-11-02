@@ -1,12 +1,13 @@
-<ion-view>
+<ion-view class="background">
     <ion-nav-buttons side="right">
         <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showsearch();" ng-if="filterbtn == false;"></button>
         <!-- <button class="button button-icon ln-funnel small-icon animate-if" ng-click="openfilter();" ng-if="filterbtn == true;"></button> -->
         <button class="button button-icon ion-android-more-vertical small-icon" ng-click="openPopover();"></button>
     </ion-nav-buttons>
     <ion-nav-title>
-        <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
-        <div class="animate-if headersearch" ng-if="search == true;">
+        <!-- <h1 class="title animate-if" ng-if="search == false;">SpingR</h1> -->
+        <img src="img/spingr1.png" alt="" class="title animate-if app-logo" ng-if="search == false;"/>
+        <div class="animate-if headersearch " ng-if="search == true;">
             <input type="search" ng-model="searchquery.$" ng-change="nameSearch();" id="focusme">
         </div>
     </ion-nav-title>
@@ -99,9 +100,9 @@
         </div>
     </div>
     <!--  Dialer UI  -->
-    <ion-content>
-        <ion-list class="alt-colors">
-            <div class="card" ng-repeat="contact in myContacts | filter:searchquery:strict">
+    <ion-content >
+        <ion-list class="">
+            <!-- <div class="card" ng-repeat="contact in myContacts | filter:searchquery:strict">
                 <div class="item item-text-wrap spingr-card">
                     <div class="brand-info">
                         <div class="brand-logo" style="background-image:url('{{contact.user.companyLogo | uploadpath}}');" ng-click="goToDetail(contact);"
@@ -139,19 +140,31 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="">
-                    <img src="img/a.png" alt="profile pic" />
-                    <div>
-                        <h3>Amit Shah</h3>
-                        <h3>Myntra</h3>
-                        <h4>Marketing Manager</h4>
-                        <h4>spingr@app.com</h4>
+            </div> -->
+            <div class="">
+                <div class="card profile-card item"  ng-repeat="users in user ">
+                    <img ng-src="{{users.image}}" alt="{{users.name}}" class="profile-photo" /ui-sref="spingbook-detail">
+                    <div class="profile-detail">
+                        <h3 class="pro-name" ui-sref="spingbook-detail-new">{{users.name}}</h3>
+                        <h4 class="pro-detail">{{users.designation}}</h3>
+                        <h5 class="pro-detail">{{users.phone}}</h5>
+                        <h5 class=" " ><a class="pro-detail" href="mailto:{{users.email}}" target="" style="text-decoration:none" >{{users.email}}</a></h5>
                     </div>
-                    <img src="img/snapdeal.png" />
+                    <img ng-src="{{users.company}}" alt="logo" class="profile-logo" />
                 </div>
-            </div>
+                </div>
+            <div class="">
+                <div class="card profile-card item"  ng-repeat="contact in myContacts | filter:searchquery:strict">
+                    <img ng-src="{{contact.user.profilePicture | uploadpath}}" alt="{{contact.user.name}}" class="profile-photo" /ui-sref="spingbook-detail-new">
+                    <div class="profile-detail">
+                        <h3 class="pro-name" ui-sref="spingbook-detail-new">{{contact.user.name}}</h3>
+                        <h4 class="pro-detail">{{contact.user.designation}}</h3>
+                        <h5 class="pro-detail">{{contact.user.contact}}</h5>
+                        <h5 class=" " ><a class="pro-detail" href="mailto:{{contact.user.contactDetails.email}}" target="" style="text-decoration:none" >{{contact.user.contactDetails.email}}</a></h5>
+                    </div>
+                    <img ng-src="{{users.company}}" alt="logo" class="profile-logo" />
+                </div>
+                </div>
         </ion-list>
     </ion-content>
 </ion-view>

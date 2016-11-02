@@ -3,14 +3,34 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
-<ion-nav-bar class="bar-light has-tabs-top" align-title="center">
+<!-- <ion-nav-bar class="bar-light has-tabs-top" align-title="center">
     <ion-nav-back-button>
         Back
+
     </ion-nav-back-button>
+    <ion-nav-title>
+      <h1 class="text-center" ui-sref="app.home"><img src="img/spingr1.png" class="logo"></h1>
+
+    </ion-nav-title> -->
     <!-- <ion-nav-buttons side="left">
         <a class="button button-icon circle-single small-icon" href="#/circle/circle1"></a>
     </ion-nav-buttons> -->
+<!-- </ion-nav-bar> -->
+<ion-nav-bar class="bar bar-light  " align-title="center">
+  <ion-nav-buttons side="left" class="color-white">
+
+  </ion-nav-buttons>
+  <ion-nav-title>
+    <h1 class="text-center"><img src="img/spingr1.png" class="logo"></h1>
+
+  </ion-nav-title>
+  <ion-nav-buttons side="right"  >
+
+
+  </ion-nav-buttons>
 </ion-nav-bar>
+<ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+</ion-pane>
 <ion-tabs class="tabs-striped tabs-top tabs-background-light tabs-color-positive">
     <ion-tab title="Newsfeed" href="#/tab/news">
         <ion-nav-view name="tab-news"></ion-nav-view>
