@@ -526,14 +526,14 @@ input.mobileno {
 
 .headersearch {
     width: 100%;
-    color: white;
-    border-bottom: 1px solid white;
+    color: #1EA0D1;
+    border-bottom: 1px solid #1EA0D1;
 }
 
 .headersearch input {
     background-color: transparent;
     width: 100%;
-    color: white;
+    color: #1EA0D1;
 }
 
 .animate-if.ng-enter,
@@ -846,7 +846,7 @@ h4.brand-name,
 }
 
 h5.card-info {
-    font-size: 14px;
+    font-size: 14pxhea
     font-weight: normal;
     margin-top: 5px;
     color: inherit;
