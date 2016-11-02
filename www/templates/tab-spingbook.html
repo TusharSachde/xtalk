@@ -153,11 +153,12 @@
                     <img ng-src="{{users.company}}" alt="logo" class="profile-logo" />
                 </div>
                 </div>
-            <div class="">
+            <!-- <div class="">
                 <div class="card profile-card item"  ng-repeat="contact in myContacts | filter:searchquery:strict">
-                    <div style="background-image: url('{{contact.user.profilePicture | uploadpath}}');" ng-if="contact.user.profilePicture"
-                        ng-click="goToDetail(contact);" class="profile-photo" ></div>
-                    <div class="profile-photo" style="background-image: url('img/spingr.png');" ng-if="!contact.user.profilePicture" ng-click="goToDetail(contact);"></div>
+                    <img ng-src="{{contact.user.profilePicture | uploadpath}}"  class="profile-photo"  ng-if="contact.user.profilePicture"
+                        ng-click="goToDetail(contact);"  ui-sref="spingbook-detail-new"/>
+                    <img src="img/spingr.png" alt="{{users.name}}" class="profile-photo" ui-sref="spingbook-detail-new" ng-if="!contact.user.profilePicture"  ng-click="goToDetail(contact);"/>
+
                     <div class="profile-detail">
                         <span class="pro-name" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$"></span>
                         <span class="pro-name" ng-bind-html="contact.user.name|addhighlight:searchquery.user.name" ng-if="searchquery.user.name"></span>
@@ -166,12 +167,14 @@
                         <h5 class="pro-detail"<a style="text-decoration:none" ng-href="tel:{{contact.user.contact}}">{{contact.user.contact}}</a></h5>
                         <h5 class=" " ><a ng-href="mailto:{{contact.user.contactDetails.email}}"><span class="pro-detail" style="text-decoration:none" >{{contact.user.contactDetails.email}}</span></a></h5>
                     </div>
-                    <img ng-src="{{users.company}}" alt="logo" class="profile-logo" />
-                    <div class="profile-logo" style="background-image:url('{{contact.user.companyLogo | uploadpath}}');" ng-click="goToDetail(contact);"
-                        ng-if="contact.user.companyLogo"></div>
-                    <div class="profile-logo" style="background-image:url('img/fplogo.png');" ng-click="goToDetail(contact);" ng-if="!contact.user.companyLogo"></div>
+                    <img ng-src="{{contact.user.companyLogo | uploadpath}}" class="profile-logo" ng-click="goToDetail(contact);"
+                        ng-if="contact.user.companyLogo" />
+                    <img src="img/fplogo.png" class="profile-logo" ng-click="goToDetail(contact);"
+                        ng-if="!contact.user.companyLogo" />
+
+
                 </div>
-                </div>
+                </div> -->
         </ion-list>
     </ion-content>
 </ion-view>
