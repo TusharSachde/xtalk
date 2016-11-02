@@ -22,7 +22,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     $ionicConfigProvider.views.maxCache(1);
     $ionicConfigProvider.views.swipeBackEnabled(false);
 
+
+
+
     $stateProvider
+    .state('app', {
+            url: '/app',
+            abstract: true,
+            templateUrl: 'templates/menu.html',
+            controller: 'AppCtrl'
+        })
         .state('enter', {
             url: "/enter",
             controller: 'EnterCtrl',
@@ -141,7 +150,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
-
+    .state('spingbook-detail-new', {
+                url: '/spingbook-detail-new',
+                templateUrl: 'templates/spingbook-detail-new.html',
+                controller: 'SpingbookDetailNewCtrl'
+            })
+            
     .state('circle.circle2', {
         url: '/circle2',
         views: {
@@ -191,6 +205,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         }
     })
+    .state('app.spingbook', {
+            url: '/spingbook',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/spingbook.html',
+                    controller: 'Spingbook1Ctrl'
+                }
+            }
+        })
 
     .state('circle.circle3-detail', {
         url: '/circle3/:Id',

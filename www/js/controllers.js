@@ -101,6 +101,46 @@ angular.module('starter.controllers', ['ngCordova'])
         });
     };
 })
+.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+
+  // With the new view caching in Ionic, Controllers are only called
+  // when they are recreated or on app start, instead of every page change.
+  // To listen for when this page is active (for example, to refresh data),
+  // listen for the $ionicView.enter event:
+  //$scope.$on('$ionicView.enter', function(e) {
+  //});
+
+  // Form data for the login modal
+  $scope.loginData = {};
+
+  // Create the login modal that we will use later
+  // $ionicModal.fromTemplateUrl('templates/login.html', {
+  //   scope: $scope
+  // }).then(function(modal) {
+  //   $scope.modal = modal;
+  // });
+
+  // Triggered in the login modal to close it
+  $scope.closeLogin = function() {
+    $scope.modal.hide();
+  };
+
+  // Open the login modal
+  $scope.login = function() {
+    $scope.modal.show();
+  };
+
+  // Perform the login action when the user submits the login form
+  $scope.doLogin = function() {
+    console.log('Doing login', $scope.loginData);
+
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+    $timeout(function() {
+      $scope.closeLogin();
+    }, 1000);
+  };
+})
 
 .controller('ProfileCtrl', function($scope, $ionicLoading, MyServices, $location, $ionicPopup, $state, $cordovaImagePicker, $cordovaFileTransfer, $cordovaDatePicker, $filter) {
     $scope.mycard = {};
@@ -256,6 +296,50 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('TabCtrl', function($scope, $location, $ionicLoading, MyServices) {
 
+})
+.controller('SpingbookDetailNewCtrl', function($scope, $location, $ionicLoading, MyServices ,$ionicHistory) {
+    $scope.goBack = function() {
+         $ionicHistory.goBack();
+      };
+})
+.controller('Spingbook1Ctrl', function($scope, $location, $ionicLoading, MyServices) {
+    $scope.user = [
+        {
+        name: "Amit Shah",
+        company: "img/snapdeal.png",
+        designation: "Marketing Manager",
+        email: "sping@app.com",
+        image: "img/a.png",
+        phone:"9876543210"
+
+      },
+        {
+        name: "Priya Mishra",
+        company: "img/snapdeal.png",
+        designation: "Sales Manager",
+        email: "sping@app.com",
+        image: "img/b.png",
+        phone:"9876543210"
+
+      },
+        {
+        name: "Sudip Singh",
+        company: "img/snapdeal.png",
+        designation: "Marketing Manager",
+        email: "sping@app.com",
+        image: "img/c.png",
+        phone:"9876543210"
+
+      },
+        {
+        name: "Raj Mahajan",
+        company: "img/snapdeal.png",
+        designation: "Sales Manager",
+        email: "sping@app.com",
+        image: "img/d.png",
+        phone:"9876543210"
+
+      } ];
 })
 
 .controller('ProfileShareCtrl', function($scope, MyServices, $ionicLoading, $state) {

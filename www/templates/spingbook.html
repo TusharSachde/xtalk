@@ -1,0 +1,41 @@
+<ion-view >
+    <!-- <ion-nav-buttons side="right">
+        <button class="button button-icon ion-ios-search small-icon animate-if" ng-click="showsearch();" ng-if="filterbtn == false;"></button> -->
+
+        <!-- <button class="button button-icon ln-funnel small-icon animate-if" ng-click="openfilter();" ng-if="filterbtn == true;"></button> -->
+
+        <!-- <button class="button button-icon ion-android-more-vertical small-icon" ng-click="openPopover();"></button> -->
+        <!-- <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
+        <div class="animate-if headersearch" ng-if="search == true;">
+            <input type="search" ng-model="searchquery.$" ng-change="nameSearch();" id="focusme">
+        </div>
+    </ion-nav-buttons>
+
+    <ion-nav-title>
+        <h1 class="title animate-if" ng-if="search == false;">SpingR</h1>
+        <div class="animate-if headersearch" ng-if="search == true;">
+            <input type="search" ng-model="searchquery.$" ng-change="nameSearch();" id="focusme">
+        </div>
+    </ion-nav-title> -->
+
+</div>
+
+<ion-content class=" background" >
+    <div class="">
+        <div class="card profile-card item"  ng-repeat="users in user ">
+            <img ng-src="{{users.image}}" alt="{{users.name}}" class="profile-photo" /ui-sref="spingbook-detail-new">
+            <div class="profile-detail">
+                <h3 class="pro-name" ui-sref="spingbook-detail-new">{{users.name}}</h3>
+                <h4 class="pro-detail">{{users.designation}}</h3>
+                <h5 class="pro-detail">{{users.phone}}</h5>
+                <h5 class=" " ><a class="pro-detail" href="mailto:{{users.email}}" target="" style="text-decoration:none" >{{users.email}}</a></h5>
+            </div>
+            <img ng-src="{{users.company}}" alt="logo" class="profile-logo" />
+        </div>
+        </div>
+
+
+
+</ion-content>
+
+</ion-view>

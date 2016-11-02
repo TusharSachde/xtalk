@@ -1,0 +1,52 @@
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-pane ion-side-menu-content>
+    <ion-nav-bar class="bar bar-light  nav-title-slide-ios">
+      <ion-nav-buttons side="left" class="color-white">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-title>
+        <h1 class="text-center" ui-sref="app.home"><img src="img/spingr1.png" class="logo"></h1>
+        <!-- <h1 class="title animate-if" ng-if="search == false;"><img src="img/spingr1.png" class="logo"></h1>
+        <div class="animate-if headersearch" ng-if="search == true;">
+            <input type="search" ng-model="searchquery.$" ng-change="nameSearch();" id="focusme">
+        </div> -->
+      </ion-nav-title>
+      <ion-nav-buttons side="right"  >
+        <h3 class="ion-ios-search {{getCross}} search-margin" ng-click="whenClose();" menu-toggle="right">
+        </h3>
+
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+  </ion-pane>
+
+
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-profile">
+            <span class="text-center" text-align="center">Menu<span>
+    </ion-header-bar>
+
+    <ion-content>
+      <ion-list >
+        <ion-item menu-close href="#/app/news" class ="sidemenu-item">
+          <!-- <i class= "fa fa-user font-item"></i> -->
+          <label for="" class="sidemenu-label">news feed</label>
+        </ion-item>
+        <ion-item menu-close href="#/app/spingbook"  class ="sidemenu-item">
+          <!-- <i class= "fa fa-briefcase  font-item"></i> -->
+          <label for="" class="sidemenu-label">Sping book</label>
+        </ion-item>
+        <ion-item menu-close href="#/app/app-previewbranch"  class ="sidemenu-item">
+          <!-- <i class= "fa fa-building font-item"></i> -->
+          <label for="" class="sidemenu-label">Chat</label>
+        </ion-item>
+        <ion-item menu-close href="#/app/app-previewbusiness" class ="sidemenu-item">
+          <!-- <img src="/img/loyalty.png" class="loyalty-icon"></i> -->
+          <label for="" class="sidemenu-label">Dash Board</label>
+        </ion-item>
+
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
