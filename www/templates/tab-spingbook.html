@@ -141,15 +141,15 @@
                     </div>
                 </div>
             </div> -->
-            <!-- <div class="">
-                <div class="card profile-card item"  ng-repeat="users in user track by $index" >
+            <div class="">
+                <!-- <div class="card profile-card item"  ng-repeat="users in user track by $index" >
                     <img ng-src="{{users.image}}" alt="img/spingr.png" class="profile-photo"  ng-click="openprofile1();"/>
                     <div class="profile-detail">
                         <h4 class="pro-name" ui-sref="tab.spingbook-detail-new">{{users.name}}</h4>
                         <h5 class="pro-detail">{{users.designation}}</h5>
                         <h6 class="pro-detail"><a ng-href="tel:{{users.phone}}" style="text-decoration:none">{{users.phone}}</a></h6>
                         <h6 class=" " ><a class="pro-detail" ng-href="mailto:{{users.email}}" target="" style="text-decoration:none" >{{users.email}}</a></h6>
-                    </div>
+                    </div> 
                     <img ng-src="{{users.company}}" alt="img/spingr.png" class="profile-logo" />
                 </div>
                 </div> -->
@@ -199,28 +199,7 @@
                   </div>
 
                 </div>
-            <!-- <div class="">
-                <div class="card profile-card item"  ng-repeat="contact in myContacts | filter:searchquery:strict">
-                    <img ng-src="{{contact.user.profilePicture | uploadpath}}"  class="profile-photo"  ng-if="contact.user.profilePicture"
-                        ng-click="goToDetail(contact);"  ui-sref="spingbook-detail-new"/>
-                    <img src="img/spingr.png" alt="{{users.name}}" class="profile-photo" ui-sref="spingbook-detail-new" ng-if="!contact.user.profilePicture"  ng-click="goToDetail(contact);"/>
 
-                    <div class="profile-detail">
-                        <span class="pro-name" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$"></span>
-                        <span class="pro-name" ng-bind-html="contact.user.name|addhighlight:searchquery.user.name" ng-if="searchquery.user.name"></span>
-                        <span class="pro-name" ng-bind-html="contact.user.name" ng-if="!searchquery.user.name && !searchquery.$"></span>
-                        <h4 class="pro-detail" ng-if="contact.user.designation">{{contact.user.designation}}</h3>
-                        <h5 class="pro-detail"<a style="text-decoration:none" ng-href="tel:{{contact.user.contact}}">{{contact.user.contact}}</a></h5>
-                        <h5 class=" " ><a ng-href="mailto:{{contact.user.contactDetails.email}}"><span class="pro-detail" style="text-decoration:none" >{{contact.user.contactDetails.email}}</span></a></h5>
-                    </div>
-                    <img ng-src="{{contact.user.companyLogo | uploadpath}}" class="profile-logo" ng-click="goToDetail(contact);"
-                        ng-if="contact.user.companyLogo" />
-                    <img src="img/fplogo.png" class="profile-logo" ng-click="goToDetail(contact);"
-                        ng-if="!contact.user.companyLogo" />
-
-
-                </div>
-                </div> -->
         </ion-list>
     </ion-content>
 </ion-view>
