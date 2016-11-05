@@ -278,8 +278,7 @@ input.phone.number {
     font-size: 32px;
     color: #1EA0D1 !important;
     width: 80%!important;
-    margin-top: 5px
-    
+    margin-top: 5px ;
 }
 
 .small-icon:before {
@@ -1070,6 +1069,10 @@ p.bigr,
     vertical-align: top;
     border-radius: 50%;
     width: 75px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 
@@ -1205,4 +1208,17 @@ p.bigr,
 }
 .mobile-input{
   padding: 5px!important;
+}
+.logo-div{
+  float: right!important;
+}
+.down-arrow{
+  text-align: center!important;
+  margin-top: 60px!important;
+  display: block!important;
+  color: #adadad!important;
+  font-size: 18px;
+}
+.rotate{
+  transform: rotate(180deg);
 }

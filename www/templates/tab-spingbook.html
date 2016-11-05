@@ -141,24 +141,32 @@
                     </div>
                 </div>
             </div> -->
-            <div class="">
-                <!-- <div class="card profile-card item"  ng-repeat="users in user track by $index" >
+            <!-- <div class="">
+                <div class="card profile-card item"  ng-repeat="users in user track by $index" >
+
                     <img ng-src="{{users.image}}" alt="img/spingr.png" class="profile-photo"  ng-click="openprofile1();"/>
                     <div class="profile-detail">
                         <h4 class="pro-name" ui-sref="tab.spingbook-detail-new">{{users.name}}</h4>
                         <h5 class="pro-detail">{{users.designation}}</h5>
                         <h6 class="pro-detail"><a ng-href="tel:{{users.phone}}" style="text-decoration:none">{{users.phone}}</a></h6>
                         <h6 class=" " ><a class="pro-detail" ng-href="mailto:{{users.email}}" target="" style="text-decoration:none" >{{users.email}}</a></h6>
-                    </div> 
-                    <img ng-src="{{users.company}}" alt="img/spingr.png" class="profile-logo" />
+                    </div>
+                    <div class="logo-div">
+                      <img ng-src="{{users.company}}" alt="img/spingr.png" class="profile-logo" />
+                      <label for="" class="ion-chevron-down down-arrow" ></label>
+                    </div>
                 </div>
                 </div> -->
                 <div class="card profile-card item " ng-class="$index == profileDetail ? 'detail-card': ''" ng-repeat="contact in myContacts | filter:searchquery:strict">
                     <!-- <img src="img/snapdeal.png" alt="logo"  ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"/> -->
-                    <img ng-src="{{contact.user.companyLogo | uploadpath}}" ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"
-                        ng-if="contact.user.companyLogo" />
-                    <img src="img/fplogo.png" ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"
-                        ng-if="!contact.user.companyLogo" />
+                    <div class="logo-div">
+                      <img ng-src="{{contact.user.companyLogo | uploadpath}}" ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"
+                          ng-if="contact.user.companyLogo" />
+                      <img src="img/fplogo.png" ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"
+                          ng-if="!contact.user.companyLogo" />
+                      <label for="" class="ion-chevron-down down-arrow" ng-click="openprofile($index);" ng-class="{'rotate':$index == profileDetail}"></label>
+                    </div>
+
                   <div ng-class="{'detail':$index == profileDetail}" >
                       <!-- <img ng-src="{{users.image}}" alt="img/spingr.png"  class="profile-photo" ng-click="openprofile($index);"/> -->
                       <img ng-src="{{contact.user.profilePicture | uploadpath}}"  class="profile-photo"  ng-if="contact.user.profilePicture"

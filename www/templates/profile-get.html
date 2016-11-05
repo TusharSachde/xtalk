@@ -21,16 +21,19 @@
         <div class="heading">Share my profile with</div>
         <ion-list ng-if="myRequests.length>0">
             <ion-item class="item-avatar2 withbutton" collection-repeat="contact in myRequests" type="item-text-wrap">
-                <div class="picture" style="background-image: url('{{contact.form.profilePicture | uploadpath}}');" ng-if="contact.form.profilePicture"></div>
-                <div class="picture" style="background-image: url('img/spingr.png');" ng-if="!contact.form.profilePicture"></div>
-                <div class="card-style">
-                    <h2 class="positive">{{contact.from.name}}</h2>
+              <div class="card-style">
+                <div class="profile-photo dis-card" style="background-image: url('{{contact.form.profilePicture | uploadpath}}');" ng-if="contact.form.profilePicture"></div>
+                <div class="profile-photo dis-card" style="background-image: url('img/spingr.png');" ng-if="!contact.form.profilePicture"></div>
+                <div class=" dis-card">
+                    <h2 class="positive ">{{contact.from.name}}</h2>
                     <p class="stable">{{contact.from.companyName}}</p>
                     <div class="buttoner">
                         <button class="button button-outline button-positive button-small" ng-click="addContact(contact)">ADD</button>
                         <button class="button button-outline button-positive button-small" ng-click="addShareContact(contact)">ADD &amp; SHARE</button>
                     </div>
                 </div>
+              </div>
+
             </ion-item>
         </ion-list>
         <ion-list ng-if="myRequests.length==0">
