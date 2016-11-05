@@ -559,10 +559,10 @@ input.mobileno {
 }
 
 .popover {
-    top: 10px;
-    left: auto;
+    top: 4%!important;
+    left: auto!important;
     right: 10px;
-    height: 160px;
+    height: 160px!important;
     width: 220px;
     -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
     -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.3s;
