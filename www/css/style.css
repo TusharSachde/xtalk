@@ -502,7 +502,7 @@ input.mobileno {
 }
 
 .withbutton .card-style {
-    padding: 5px 5px 5px 50px;
+    padding: 5px 5px 5px 5px;
 }
 
 .withbutton .picture {
@@ -784,6 +784,8 @@ span.linked {
 .dialUP {
     position: absolute;
     top: -70px;
+    border-radius: 50%!important;
+    float: right!important;
 }
 
 .highlight {
@@ -1064,13 +1066,13 @@ p.bigr,
     display: inline-block;
     vertical-align: top;
     border-radius: 50%;
+    width: 75px;
 }
 
 
 .profile-detail {
     margin-left: 10px;
     display: inline-block;
-    margin-bottom: 5px;
 }
 
 .profile-logo {
@@ -1084,6 +1086,7 @@ p.bigr,
     padding: 10px 0px 10px 5px;
     box-shadow: 2px 2px 8px #9A9790;
     margin: 10px;
+    padding: 10px 5px!important;
 }
 
 .pro-name {
@@ -1107,8 +1110,9 @@ p.bigr,
 }
 
 .share-logo {
-    height: 20px;
+    height: 25px;
     margin: 1px;
+    display: inline-block;
 }
 
 .detail-companylogo {
@@ -1173,11 +1177,29 @@ p.bigr,
 }
 
 .mail-color {
-    color: #1EA0D1;
+    color: #1EA0D1 !important;
 }
 .app-logo{
-    left: 20%!important;
+  margin:0px auto !important;
 }
 .save-button{
     color: #1EA0D1!important;
+}
+.dis-card{
+  display: inline-block!important;
+  margin-left: 5px!important;
+}
+.mobile-color{
+  color: white!important;
+}
+.news-text{
+  width: 60%!important;
+  white-space: normal !important;
+}
+.border-mobile{
+  border: 1px solid #1EA0D1;
+  margin: 5px !important;
+}
+.mobile-input{
+  padding: 5px!important;
 }

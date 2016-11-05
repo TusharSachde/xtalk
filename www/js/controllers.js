@@ -554,7 +554,8 @@ angular.module('starter.controllers', ['ngCordova'])
         designation: "Marketing Manager",
         email: "sping@app.com",
         image: "img/a.png",
-        phone:"9876543210"
+        phone:"9876543210",
+        index: "1"
 
       },
         {
@@ -563,7 +564,8 @@ angular.module('starter.controllers', ['ngCordova'])
         designation: "Sales Manager",
         email: "sping@app.com",
         image: "img/b.png",
-        phone:"9876543210"
+        phone:"9876543210",
+        index: "2"
 
       },
         {
@@ -572,7 +574,8 @@ angular.module('starter.controllers', ['ngCordova'])
         designation: "Marketing Manager",
         email: "sping@app.com",
         image: "img/c.png",
-        phone:"9876543210"
+        phone:"9876543210",
+        index: "3"
 
       },
         {
@@ -581,7 +584,9 @@ angular.module('starter.controllers', ['ngCordova'])
         designation: "Sales Manager",
         email: "sping@app.com",
         image: "img/d.png",
-        phone:"9876543210"
+        phone:"9876543210",
+        index: "4"
+
 
       } ];
     $scope.openCard = false;
@@ -589,6 +594,30 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.openCardNo = index;
         $scope.openCard = !$scope.openCard;
     };
+    // $scope.classdetail="profile-detail ";
+    // $scope.classlogo="profile-logo";
+    // $scope.openprofile= false;
+    // $scope.companyLogo = "";
+    // $scope.openprofile1 = function(){
+    //   // $scope.openprofile= !$scope.openprofile;
+    //   if($scope.classdetail == "profile-detail" ) {
+    //     $scope.classdetail = "profile-detail";
+    //     $scope.companyLogo = "class-lag-gaya";
+    //   }
+    //   else {
+    //           $scope.classdetail = "profile-detail";
+    //   }
+    // };
+    $scope.profileDetail =-1;
+    $scope.openprofile = function(index){
+      console.log(index);
+      if($scope.profileDetail !== index){
+        $scope.profileDetail = index;
+      }else {
+        $scope.card = "";
+        $scope.profileDetail =-1;
+      }
+    }
 
     $scope.search = false;
     $scope.filterbtn = false;
@@ -665,16 +694,16 @@ angular.module('starter.controllers', ['ngCordova'])
         console.log('Dialer Hidden');
     };
     $scope.call = function(number) {
-        phonedialer.dial(
-            number,
-            function(err) {
-                if (err == "empty") console.log("Unknown phone number");
-                else console.log("Dialer Error:" + err);
-            },
-            function(success) {
-                console.log('Dialing succeeded');
-            }
-        );
+        // phonedialer.dial(
+        //     number,
+        //     function(err) {
+        //         if (err == "empty") console.log("Unknown phone number");
+        //         else console.log("Dialer Error:" + err);
+        //     },
+        //     function(success) {
+        //         console.log('Dialing succeeded');
+        //     }
+        // );
         //document.location.href = "tel:" + number;
         console.log('Calling');
     };
