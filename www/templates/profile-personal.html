@@ -1,6 +1,6 @@
 <ion-view view-title="" class="background">
    <ion-content class="padding ">
-      <form ng-submit="personalDetails();" name="pinfo">
+      <form ng-submit="personalDetails(); " name="pinfo">
          <div class="card-effect personal-card">
             <div class="addlogo" ng-click="uploadProfilePic();" ng-if="!personal.profilePicture">Upload profile picture</div>
             <div class="addlogo" ng-click="uploadProfilePic();" ng-if="personal.profilePicture" style="background-image: url({{personal.profilePicture | uploadpath}});">
@@ -68,7 +68,7 @@
          </div>
 
          <!-- <a class="button button-positive button-outline button-block" href="#/profile/sharewith">Save &amp; Proceed</a> -->
-         <button class="button button-light  button-block save-button" type="submit" ng-disabled="pinfo.$invalid">Save &amp; Proceed</button>
+         <button class="button button-light  button-block save-button" type="submit" ng-disabled="pinfo.$invalid" >Save &amp; Proceed</button>
       </form>
    </ion-content>
 </ion-view>
