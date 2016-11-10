@@ -164,10 +164,15 @@ angular.module('starter.controllers', ['ngCordova'])
         if (data.value === false) {
             $state.go('enter');
         } else {
+            $.jStorage.set("id", data.data._id);
+            console.log($.jStorage.get("id"));
             delete data.data._id;
+            console.log(data.data._id);
+
             $scope.mycard = data.data;
             $scope.personal = data.data;
             $scope.mycard.contactDetails.mobileNumber = data.data.contact;
+            $.jStorage.set("mobilenumber", data.data.contact);
             $scope.mycard.contactPersonalDetails.mobileNumber = data.data.contact;
             if (data.data && data.data.birthDate) {
                 $scope.personal.birthDate = $filter('date')(data.data.birthDate, 'MM/dd/yyyy');
@@ -348,10 +353,8 @@ angular.module('starter.controllers', ['ngCordova'])
                 $ionicLoading.hide();
                 if (!$.jStorage.get('toSpingbook') || $.jStorage.get('toSpingbook') == false) {
                   // console.log("loading5");
-
-                    // $state.go('sharewith');
-                    // $scope.shareContacts();
-                    shareContacts();
+                    $state.go('sharewith');
+                    // shareContacts();
                 } else {
                     $.jStorage.set('toSpingbook', false);
                     $state.go('tab.spingbook');
@@ -767,20 +770,7 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.openCardNo = index;
         $scope.openCard = !$scope.openCard;
     };
-    // $scope.classdetail="profile-detail ";
-    // $scope.classlogo="profile-logo";
-    // $scope.openprofile= false;
-    // $scope.companyLogo = "";
-    // $scope.openprofile1 = function(){
-    //   // $scope.openprofile= !$scope.openprofile;
-    //   if($scope.classdetail == "profile-detail" ) {
-    //     $scope.classdetail = "profile-detail";
-    //     $scope.companyLogo = "class-lag-gaya";
-    //   }
-    //   else {
-    //           $scope.classdetail = "profile-detail";
-    //   }
-    // };
+
     $scope.profileDetail =-1;
     $scope.openprofile = function(index){
       console.log(index);
@@ -813,7 +803,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     MyServices.getContacts(function(data) {
         console.log(data);
-        if (data.value != false) {
+        if (data.value != false ) {
           console.log("in conatcts got all ");
             $scope.myContacts = data.data;
         } else if (data.value == false && data.data == "User not logged in") {
