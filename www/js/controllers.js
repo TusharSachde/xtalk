@@ -52,7 +52,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 $ionicSlideBoxDelegate.next();
                 // $scope.personal.otp = data.data.otp;
                 // $scope.checkotp();
-                readSMS();
+                // readSMS();
             } else {
                 var alertPopup = $ionicPopup.alert({
                     title: 'INCORRECT DATA',
@@ -214,63 +214,63 @@ angular.module('starter.controllers', ['ngCordova'])
     if (!$.jStorage.get("contactSynced") || $.jStorage.get("contactSynced") == false) {
       console.log("loading");
 
-        var options = new ContactFindOptions();
-        options.multiple = true;
-        options.hasPhoneNumber = true;
-        var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
-        navigator.contacts.find(fields, function(contacts) {
-            if (contacts) {
-              console.log("loading1");
-
-                _.each(contacts, function(z) {
-                    var myval = {
-                        name: "",
-                        contactDetails: {
-                            email: ""
-                        },
-                        contact: "",
-                        profilePicture: "",
-                    };
-                    if (z.phoneNumbers && z.name && z.name.formatted && z.name.formatted != "") {
-                        if (z.emails) {
-                            myval.contactDetails.email = z.emails[0].value;
-                        }
-                        if (z.name.formatted) {
-                            myval.name = z.name.formatted;
-                            myval.name = myval.name.replace(/['"]/g, '');
-                            myval.name = myval.name.trim();
-                        } else {
-                            myval.name = z.displayName;
-                            myval.name = myval.name.trim();
-                        }
-                        if (z.photos) {
-                            myval.profilePicture = z.photos[0].value;
-                        }
-                        if (z.phoneNumbers) {
-                            _.each(z.phoneNumbers, function(n) {
-                                myval.contact = n.value;
-                                myval.contact = myval.contact.replace(/[ -]/g, '');
-                                myval.contact = myval.contact.replace(/[']/g, '');
-                                myval.contact = myval.contact.trim();
-                                myval.contact = myval.contact.split(" ").join('');
-                                if (myval.contact.length > 10) {
-                                    myval.contact = myval.contact.substring(myval.contact.length - 10);
-                                }
-                                if (myval.name != "Identified As Spam") {
-                                    myconarr.push(_.cloneDeep(myval));
-                                }
-                            });
-                        }
-                    }
-                })
-                myconarr = _.uniq(myconarr, 'contact');
-                $scope.total.myContacts = myconarr.length;
-                saveContacts(myconarr)
-            }
-        }, function(contactError) {
-            $ionicLoading.hide();
-            console.log(contactError);
-        }, options);
+        // var options = new ContactFindOptions();
+        // options.multiple = true;
+        // options.hasPhoneNumber = true;
+        // var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
+        // navigator.contacts.find(fields, function(contacts) {
+        //     if (contacts) {
+        //       console.log("loading1");
+        //
+        //         _.each(contacts, function(z) {
+        //             var myval = {
+        //                 name: "",
+        //                 contactDetails: {
+        //                     email: ""
+        //                 },
+        //                 contact: "",
+        //                 profilePicture: "",
+        //             };
+        //             if (z.phoneNumbers && z.name && z.name.formatted && z.name.formatted != "") {
+        //                 if (z.emails) {
+        //                     myval.contactDetails.email = z.emails[0].value;
+        //                 }
+        //                 if (z.name.formatted) {
+        //                     myval.name = z.name.formatted;
+        //                     myval.name = myval.name.replace(/['"]/g, '');
+        //                     myval.name = myval.name.trim();
+        //                 } else {
+        //                     myval.name = z.displayName;
+        //                     myval.name = myval.name.trim();
+        //                 }
+        //                 if (z.photos) {
+        //                     myval.profilePicture = z.photos[0].value;
+        //                 }
+        //                 if (z.phoneNumbers) {
+        //                     _.each(z.phoneNumbers, function(n) {
+        //                         myval.contact = n.value;
+        //                         myval.contact = myval.contact.replace(/[ -]/g, '');
+        //                         myval.contact = myval.contact.replace(/[']/g, '');
+        //                         myval.contact = myval.contact.trim();
+        //                         myval.contact = myval.contact.split(" ").join('');
+        //                         if (myval.contact.length > 10) {
+        //                             myval.contact = myval.contact.substring(myval.contact.length - 10);
+        //                         }
+        //                         if (myval.name != "Identified As Spam") {
+        //                             myconarr.push(_.cloneDeep(myval));
+        //                         }
+        //                     });
+        //                 }
+        //             }
+        //         })
+        //         myconarr = _.uniq(myconarr, 'contact');
+        //         $scope.total.myContacts = myconarr.length;
+        //         saveContacts(myconarr)
+        //     }
+        // }, function(contactError) {
+        //     $ionicLoading.hide();
+        //     console.log(contactError);
+        // }, options);
     } else {
       console.log("loading2");
 
@@ -294,7 +294,8 @@ angular.module('starter.controllers', ['ngCordova'])
         MyServices.saveContacts(contacts, function(data) {
             $ionicLoading.hide();
             console.log(data);
-            if (data.value != false) {
+            if (data.value) {
+                $.jStorage.set("contactSaved", data.data);
                 $.jStorage.set("contactSynced", true);
                 $scope.total.spingrContacts = data.data.length;
                 $scope.spingrContacts = data.data;
@@ -515,66 +516,125 @@ angular.module('starter.controllers', ['ngCordova'])
     if (!$.jStorage.get("contactSynced") || $.jStorage.get("contactSynced") == false) {
         console.log("share1");
 
-        var options = new ContactFindOptions();
-        options.multiple = true;
-        options.hasPhoneNumber = true;
-        var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
-        navigator.contacts.find(fields, function(contacts) {
-            if (contacts) {
-              console.log("share2");
-
-                _.each(contacts, function(z) {
-                    var myval = {
-
-                        name: "",
-                        contactDetails: {
-                            email: ""
-                        },
-                        contact: "",
-                        profilePicture: "",
-                    };
-                    if (z.phoneNumbers && z.name && z.name.formatted && z.name.formatted != "") {
-                        if (z.emails) {
-                            myval.contactDetails.email = z.emails[0].value;
-                        }
-                        if (z.name.formatted) {
-                            myval.name = z.name.formatted;
-                            myval.name = myval.name.replace(/['"]/g, '');
-                            myval.name = myval.name.trim();
-                        } else {
-                            myval.name = z.displayName;
-                            myval.name = myval.name.trim();
-                        }
-                        if (z.photos) {
-                            myval.profilePicture = z.photos[0].value;
-                        }
-                        if (z.phoneNumbers) {
-                            _.each(z.phoneNumbers, function(n) {
-                                myval.contact = n.value;
-                                myval.contact = myval.contact.replace(/[ -]/g, '');
-                                myval.contact = myval.contact.replace(/[']/g, '');
-                                myval.contact = myval.contact.trim();
-                                myval.contact = myval.contact.split(" ").join('');
-                                if (myval.contact.length > 10) {
-                                    myval.contact = myval.contact.substring(myval.contact.length - 10);
-                                }
-                                if (myval.name != "Identified As Spam") {
-                                    myconarr.push(_.cloneDeep(myval));
-                                }
-                            });
-                        }
-                    }
-                })
-                console.log("share6");
-
-                myconarr = _.uniq(myconarr, 'contact');
-                $scope.total.myContacts = myconarr.length;
-                saveContacts(myconarr)
-            }
-        }, function(contactError) {
-            $ionicLoading.hide();
-            console.log(contactError);
-        }, options);
+        // var options = new ContactFindOptions();
+        // options.multiple = true;
+        // options.hasPhoneNumber = true;
+        // var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
+        // navigator.contacts.find(fields, function(contacts) {
+        //     if (contacts) {
+        //       console.log("share2");
+        //
+        //         _.each(contacts, function(z) {
+        //             var myval = {
+        //
+        //                 name: "",
+        //                 contactDetails: {
+        //                     email: ""
+        //                 },
+        //                 contact: "",
+        //                 profilePicture: "",
+        //             };
+        //             if (z.phoneNumbers && z.name && z.name.formatted && z.name.formatted != "") {
+        //                 if// var options = new ContactFindOptions();
+        // options.multiple = true;
+        // options.hasPhoneNumber = true;
+        // var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.phoneNumbers, navigator.contacts.fieldType.emails, navigator.contacts.fieldType.organizations, navigator.contacts.fieldType.photos];
+        // navigator.contacts.find(fields, function(contacts) {
+        //     if (contacts) {
+        //       console.log("share2");
+        //
+        //         _.each(contacts, function(z) {
+        //             var myval = {
+        //
+        //                 name: "",
+        //                 contactDetails: {
+        //                     email: ""
+        //                 },
+        //                 contact: "",
+        //                 profilePicture: "",
+        //             };
+        //             if (z.phoneNumbers && z.name && z.name.formatted && z.name.formatted != "") {
+        //                 if (z.emails) {
+        //                     myval.contactDetails.email = z.emails[0].value;
+        //                 }
+        //                 if (z.name.formatted) {
+        //                     myval.name = z.name.formatted;
+        //                     myval.name = myval.name.replace(/['"]/g, '');
+        //                     myval.name = myval.name.trim();
+        //                 } else {
+        //                     myval.name = z.displayName;
+        //                     myval.name = myval.name.trim();
+        //                 }
+        //                 if (z.photos) {
+        //                     myval.profilePicture = z.photos[0].value;
+        //                 }
+        //                 if (z.phoneNumbers) {
+        //                     _.each(z.phoneNumbers, function(n) {
+        //                         myval.contact = n.value;
+        //                         myval.contact = myval.contact.replace(/[ -]/g, '');
+        //                         myval.contact = myval.contact.replace(/[']/g, '');
+        //                         myval.contact = myval.contact.trim();
+        //                         myval.contact = myval.contact.split(" ").join('');
+        //                         if (myval.contact.length > 10) {
+        //                             myval.contact = myval.contact.substring(myval.contact.length - 10);
+        //                         }
+        //                         if (myval.name != "Identified As Spam") {
+        //                             myconarr.push(_.cloneDeep(myval));
+        //                         }
+        //                     });
+        //                 }
+        //             }
+        //         })
+        //         console.log("share6");
+        //
+        //         myconarr = _.uniq(myconarr, 'contact');
+        //         $scope.total.myContacts = myconarr.length;
+        //         saveContacts(myconarr)
+        //     }
+        // }, function(contactError) {
+        //     $ionicLoading.hide();
+        //     console.log(contactError);
+        // }, opti (z.emails) {
+        //                     myval.contactDetails.email = z.emails[0].value;
+        //                 }
+        //                 if (z.name.formatted) {
+        //                     myval.name = z.name.formatted;
+        //                     myval.name = myval.name.replace(/['"]/g, '');
+        //                     myval.name = myval.name.trim();
+        //                 } else {
+        //                     myval.name = z.displayName;
+        //                     myval.name = myval.name.trim();
+        //                 }
+        //                 if (z.photos) {
+        //                     myval.profilePicture = z.photos[0].value;
+        //                 }
+        //                 if (z.phoneNumbers) {
+        //                     _.each(z.phoneNumbers, function(n) {
+        //                         myval.contact = n.value;
+        //                         myval.contact = myval.contact.replace(/[ -]/g, '');
+        //                         myval.contact = myval.contact.replace(/[']/g, '');
+        //                         myval.contact = myval.contact.trim();
+        //                         myval.contact = myval.contact.split(" ").join('');
+        //                         if (myval.contact.length > 10) {
+        //                             myval.contact = myval.contact.substring(myval.contact.length - 10);
+        //                         }
+        //                         if (myval.name != "Identified As Spam") {
+        //                             myconarr.push(_.cloneDeep(myval));
+        //                         }
+        //                     });
+        //                 }
+        //             }
+        //         })
+        //         console.log("share6");
+        //
+        //         myconarr = _.uniq(myconarr, 'contact');
+        //         $scope.total.myContacts = myconarr.length;
+        //         saveContacts(myconarr)
+        //     }
+        // }, function(contactError) {
+        //     $ionicLoading.hide();
+        //     console.log(contactError);
+        // }, options);
     } else {
       console.log("share4");
 
@@ -808,7 +868,6 @@ angular.module('starter.controllers', ['ngCordova'])
             $scope.myContacts = data.data;
         } else if (data.value == false && data.data == "User not logged in") {
           console.log("in conatcts nothing");
-
             $state.go('enter');
         }
         $ionicLoading.hide();

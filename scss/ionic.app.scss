@@ -11,7 +11,7 @@ $light: #fff !default;
 $stable: #8f8f8f !default;
 $positive: #1EA0D1 !default;
 $calm: #11c1f3 !default;
-$balanced: #59B661 !default; 
+$balanced: #59B661 !default;
 $energized: #ffc900 !default;
 $assertive: #ef473a !default;
 $royal: #1abc9c !default;
@@ -39,5 +39,6 @@ $button-border-width: 1px !default;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // $fa-font-path:  "../lib/fontawesome/fonts" !default;
 // Include all of Ionic
+@import "www/css/style";
 @import "www/lib/ionic/scss/ionic";
 // @import "www/lib/lib/font-awesome/css/font-awesome.css";
