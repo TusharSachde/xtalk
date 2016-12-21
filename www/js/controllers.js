@@ -864,17 +864,23 @@ angular.module('starter.controllers', ['ngCordova'])
       return lowerStr.indexOf(expected.toLowerCase()) === 0;
     };
 
-    MyServices.getContacts(function(data) {
-        console.log(data);
-        if (data.value !== false ) {
-          console.log("in conatcts got all ");
-            $scope.myContacts = data.data;
-        } else if (data.value === false && data.data === "User not logged in") {
-          console.log("in conatcts nothing");
-            $state.go('enter');
-        }
-        $ionicLoading.hide();
-    });
+    if($.jStorage.get("myContacts")) {
+      $scope.myContacts = $.jStorage.get("myContacts");
+      $ionicLoading.hide();
+    } else {
+      MyServices.getContacts(function(data) {
+          console.log(data);
+          if (data.value !== false ) {
+            console.log("in conatcts got all ");
+              $scope.myContacts = data.data;
+              $.jStorage.set("myContacts", data.data);
+          } else if (data.value === false && data.data === "User not logged in") {
+              console.log("in conatcts nothing");
+              $state.go('enter');
+          }
+          $ionicLoading.hide();
+      });
+    }
 
     $scope.goToMyCard = function() {
         $.jStorage.set('toSpingbook', true);

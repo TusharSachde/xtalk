@@ -156,7 +156,7 @@
                       <label for="" class="ion-chevron-down down-arrow" ></label>
                     </div>
                 </div>
-                </div> -->
+              </div> -->
                 <div class="card profile-card item" ng-class="$index == profileDetail ? 'detail-card': ''" ng-repeat="contact in myContacts | filter:searchquery:startsWith">
                     <!-- <img src="img/snapdeal.png" alt="logo"  ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"/> -->
                     <div class="logo-div">
@@ -169,9 +169,9 @@
 
                   <div ng-class="{'detail':$index == profileDetail}" >
                       <!-- <img ng-src="{{users.image}}" alt="img/spingr.png"  class="profile-photo" ng-click="openprofile($index);"/> -->
-                      <img ng-src="{{contact.user.profilePicture | uploadpath}}"  class="profile-photo"  ng-if="contact.user.profilePicture"
+                      <img ng-src="{{contact.user.profilePicture | uploadpath}}" class="profile-photo" ng-if="contact.user.profilePicture"
                           ng-click="openprofile($index);"  />
-                      <img src="img/spingr.png" alt="{{users.name}}" class="profile-photo"  ng-if="!contact.user.profilePicture"  ng-click="openprofile($index);"/>
+                      <img src="img/spingr.png" alt="{{users.name}}" class="profile-photo" ng-if="!contact.user.profilePicture" ng-click="openprofile($index);"/>
                       <div ng-class="$index == profileDetail ? 'list-detail': ''" class="profile-detail" >
                           <!-- <h3 class="pro-name" ng-click="openprofile($index);">{{users.name}}</h3> -->
                           <span class="pro-name" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$" ng-click="openprofile($index);"></span>
@@ -185,7 +185,7 @@
 
                           <a href="sms:{{contact.user.contact}}"><img src="img/chat-icon.png" alt="chat" class="share-icon" ng-show="$index === profileDetail"/></a></div>
                           <!-- <h5 class="pro-name text-icon" ><a class="mail-color" ng-href="mailto:{{users.email}}" target="" style="text-decoration:none">{{users.email}}</a></h5> -->
-                          <h4 class="pro-name text-icon" ><a ng-href="mailto:{{contact.user.contactDetails.email}}"><span class="pro-detail mail-color" style="text-decoration:none" >{{contact.user.contactDetails.email}}</span></a></h4>
+                          <h4 class="pro-name text-icon"><a ng-href="mailto:{{contact.user.contactDetails.email}}"><span class="pro-detail mail-color" style="text-decoration:none" >{{contact.user.contactDetails.email}}</span></a></h4>
                           <!-- <h5 class="pro-name text-icon">priya@snapdeal.com</h5> -->
                           <!-- <h5 class="pro-detail detail-address" ng-show="$index === profileDetail">cama industrial estate goregoan Mumbai,Maharastra</h5> -->
                           <h4 class="pro-detail detail-address" ng-show="$index === profileDetail">

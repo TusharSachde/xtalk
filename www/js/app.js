@@ -248,7 +248,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, searchkey.length) + "</span>");
         }
         return newstr;
-    }
+    };
 })
 
 .filter('numsearch', function() {
