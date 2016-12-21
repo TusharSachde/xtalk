@@ -13,7 +13,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.disableSwipe = function() {
         $ionicSlideBoxDelegate.enableSlide(false);
-    }
+    };
 
     $scope.next = function() {
         $ionicSlideBoxDelegate.next();
@@ -48,7 +48,7 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.startloading();
         MyServices.register($scope.personal, function(data) {
             console.log(data);
-            if (data.value != false) {
+            if (data.value !== false) {
                 $ionicSlideBoxDelegate.next();
                 // $scope.personal.otp = data.data.otp;
                 // $scope.checkotp();
@@ -60,7 +60,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 });
             }
             $ionicLoading.hide();
-        })
+        });
     };
 
     // SECOND API FOR OTP
@@ -282,12 +282,12 @@ angular.module('starter.controllers', ['ngCordova'])
                 _.each(data.data, function(n) {
                     n.share = true;
                 });
-            } else if (data.value == false && data.data && data.data.length == 0) {
+            } else if (data.value === false && data.data && data.data.length === 0) {
                 $scope.spingrContacts = [];
                 // $state.go('profileget');
             }
             $ionicLoading.hide();
-        })
+        });
     }
 
     function saveContacts(contacts) {
@@ -297,17 +297,18 @@ angular.module('starter.controllers', ['ngCordova'])
             if (data.value) {
                 $.jStorage.set("contactSaved", data.data);
                 $.jStorage.set("contactSynced", true);
+                console.log("All contacts: " + $.jStorage.get("contactSaved"));
                 $scope.total.spingrContacts = data.data.length;
                 $scope.spingrContacts = data.data;
                 _.each(data.data, function(n) {
                     n.share = true;
                 });
-            } else if (data.value == false && data.data && data.data.length == 0) {
+            } else if (data.value === false && data.data && data.data.length === 0) {
                 $.jStorage.set("contactSynced", true);
                 $scope.spingrContacts = [];
                 // $state.go('profileget');
             }
-        })
+        });
     }
 
     // saveContacts([{
@@ -763,15 +764,15 @@ angular.module('starter.controllers', ['ngCordova'])
         obj.contact = contact.from.contact;
         MyServices.addAndShare(obj, function(data) {
             console.log(data);
-            if (data.value != false) {
+            if (data.value !== false) {
                 $scope.myRequests.splice($index, 1);
-                if ($scope.myRequests.length == 0) {
+                if ($scope.myRequests.length === 0) {
                     $state.go('tab.spingbook');
                 }
             }
             $ionicLoading.hide();
         });
-    }
+    };
 
 })
 
@@ -828,16 +829,16 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.openCard = !$scope.openCard;
     };
 
-    $scope.profileDetail =-1;
+    $scope.profileDetail = -1;
     $scope.openprofile = function(index){
       console.log(index);
       if($scope.profileDetail !== index){
         $scope.profileDetail = index;
-      }else {
+      } else {
         $scope.card = "";
-        $scope.profileDetail =-1;
+        $scope.profileDetail = -1;
       }
-    }
+    };
 
     $scope.search = false;
     $scope.filterbtn = false;
@@ -856,14 +857,19 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.phone.number = '';
         $scope.searchquery.user.contact = '';
         $ionicScrollDelegate.scrollTop();
-    }
+    };
+
+    $scope.startsWith = function (actual, expected) {
+      var lowerStr = (actual + "").toLowerCase();
+      return lowerStr.indexOf(expected.toLowerCase()) === 0;
+    };
 
     MyServices.getContacts(function(data) {
         console.log(data);
-        if (data.value != false ) {
+        if (data.value !== false ) {
           console.log("in conatcts got all ");
             $scope.myContacts = data.data;
-        } else if (data.value == false && data.data == "User not logged in") {
+        } else if (data.value === false && data.data === "User not logged in") {
           console.log("in conatcts nothing");
             $state.go('enter');
         }
@@ -874,7 +880,7 @@ angular.module('starter.controllers', ['ngCordova'])
         $.jStorage.set('toSpingbook', true);
         $scope.closePopover();
         $state.go('profile.mycard');
-    }
+    };
 
     $scope.goToDetail = function(contact) {
         console.log(contact);
@@ -888,7 +894,7 @@ angular.module('starter.controllers', ['ngCordova'])
             id: contact.user._id,
             show: id
         });
-    }
+    };
 
     $scope.showsearch = function() {
         console.log('Search Clicked');
@@ -989,7 +995,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.openfilter = function() {
         $scope.oModal1.show();
-    }
+    };
     $scope.closefilter = function() {
         $scope.oModal1.hide();
     };
@@ -1006,7 +1012,7 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.openadvance = function() {
         $scope.closePopover();
         $scope.oModal2.show();
-    }
+    };
     $scope.closeadvance = function() {
         $scope.oModal2.hide();
     };
@@ -1014,7 +1020,7 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.searchpage = function() {
         $location.url('/circle/circle1');
         console.log('searchpage');
-    }
+    };
 
     $scope.spingpage = function() {
         $location.url('/tab/spingbook');

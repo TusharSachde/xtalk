@@ -8,7 +8,7 @@
         <!-- <h1 class="title animate-if" ng-if="search == false;">SpingR</h1> -->
         <img src="img/spingr1.png" alt="" class="title animate-if app-logo " ng-if="search == false;"/>
         <div class="animate-if headersearch mail-color" ng-if="search == true;">
-            <input type="search"  ng-model="searchquery.$" class=" mail-color"ng-change="nameSearch();" id="focusme">
+            <input type="search" ng-model="searchquery.$" class="mail-color" ng-change="nameSearch();" id="focusme">
         </div>
     </ion-nav-title>
     <!--  Dialer UI  -->
@@ -157,7 +157,7 @@
                     </div>
                 </div>
                 </div> -->
-                <div class="card profile-card item " ng-class="$index == profileDetail ? 'detail-card': ''" ng-repeat="contact in myContacts | filter:searchquery:strict">
+                <div class="card profile-card item" ng-class="$index == profileDetail ? 'detail-card': ''" ng-repeat="contact in myContacts | filter:searchquery:startsWith">
                     <!-- <img src="img/snapdeal.png" alt="logo"  ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"/> -->
                     <div class="logo-div">
                       <img ng-src="{{contact.user.companyLogo | uploadpath}}" ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"

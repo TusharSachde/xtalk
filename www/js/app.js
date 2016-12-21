@@ -259,7 +259,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         });
         newitem = _.sortByOrder(newitem, ['name'], [true]);
         return newitem;
-    }
+    };
 })
 
 .filter('addnumhighlight', function() {
@@ -267,23 +267,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         str = str + "";
         var newstr = str;
         var num = 0;
-        if (searchkey && searchkey != "") {
+        if (searchkey && searchkey !== "") {
             var re = new RegExp(searchkey);
             num = str.search(re);
             newstr = str.replace(re, "<span class='highlight'>" + str.substr(num, searchkey.length) + "</span>");
         }
         return newstr;
-    }
+    };
 })
 
 .filter('uploadpath', function() {
     return function(image) {
-        if (image && image != "") {
+        if (image && image !== "") {
             if (image.indexOf('content:') == -1 && image.indexOf('/var/mobile') == -1) {
                 return imgpath + image + "&height=100";
             } else {
                 return "img/spingr.png";
             }
         }
-    }
+    };
 });
