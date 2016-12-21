@@ -595,11 +595,8 @@ angular.module('starter.controllers', ['ngCordova'])
         //     $ionicLoading.hide();
         //     console.log(contactError);
         // }, opti (z.emails) {
-        //                     myval.contactDetails.email = z.emails[0].value;
-        //                 }
-        //                 if (z.name.formatted) {
-        //                     myval.name = z.name.formatted;
-        //                     myval.name = myval.name.replace(/['"]/g, '');
+        //                      myval.name = myval.name.replace(/['"]/g, '');
+        //                      myval.name = myval.name.replace(/['"]/g, '');
         //                     myval.name = myval.name.trim();
         //                 } else {
         //                     myval.name = z.displayName;
