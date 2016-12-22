@@ -5,3 +5,4 @@ plugins/
 platforms/
 plugins/
 bower_components/
+npm-debug.log
