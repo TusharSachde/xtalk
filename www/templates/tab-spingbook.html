@@ -157,7 +157,7 @@
                     </div>
                 </div>
               </div> -->
-                <div class="card profile-card item" ng-class="$index == profileDetail ? 'detail-card': ''" ng-repeat="contact in myContacts | filter:searchquery:startsWith">
+                <div class="card profile-card item" ng-class="$index == profileDetail ? 'detail-card': ''" collection-repeat="contact in myContacts | filter:searchquery:startsWith">
                     <!-- <img src="img/snapdeal.png" alt="logo"  ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"/> -->
                     <div class="logo-div">
                       <img ng-src="{{contact.user.companyLogo | uploadpath}}" ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"
