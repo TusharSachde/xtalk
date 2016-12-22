@@ -171,13 +171,13 @@
                   <div>
                       <!-- <img ng-src="{{users.image}}" alt="img/spingr.png"  class="profile-photo" ng-click="openprofile($index);"/> -->
                       <img ng-src="{{contact.user.profilePicture | uploadpath}}" class="profile-photo" ng-if="contact.user.profilePicture"
-                          ng-click="openprofile($index);"  />
-                      <img src="img/spingr.png" alt="{{users.name}}" class="profile-photo" ng-if="!contact.user.profilePicture" ng-click="openprofile($index);"/>
+                          ng-click="openprofile($index); toggleHeight(contact);"  />
+                      <img src="img/spingr.png" alt="{{users.name}}" class="profile-photo" ng-if="!contact.user.profilePicture" ng-click="openprofile($index); toggleHeight(contact);"/>
                       <div ng-class="$index == profileDetail ? 'list-detail': ''" class="profile-detail" >
                           <!-- <h3 class="pro-name" ng-click="openprofile($index);">{{users.name}}</h3> -->
-                          <span class="pro-name" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$" ng-click="openprofile($index);"></span>
-                          <span class="pro-name" ng-bind-html="contact.user.name|addhighlight:searchquery.user.name" ng-if="searchquery.user.name" ng-click="openprofile($index);"></span>
-                          <span class="pro-name" ng-bind-html="contact.user.name" ng-if="!searchquery.user.name && !searchquery.$" ng-click="openprofile($index);"></span>
+                          <span class="pro-name" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$" ng-click="openprofile($index); toggleHeight(contact);"></span>
+                          <span class="pro-name" ng-bind-html="contact.user.name|addhighlight:searchquery.user.name" ng-if="searchquery.user.name" ng-click="openprofile($index); toggleHeight(contact);"></span>
+                          <span class="pro-name" ng-bind-html="contact.user.name" ng-if="!searchquery.user.name && !searchquery.$" ng-click="openprofile($index); toggleHeight(contact);"></span>
                           <h3 class="pro-detail" ng-show="$index === profileDetail">{{contactDetail.companyName}}</h3>
                           <h4 class="pro-detail" ng-if="contact.user.designation">{{contact.user.designation}}</h3>
                               <!-- <h5 class="pro-detail">{{users.designation}}</h5> -->
