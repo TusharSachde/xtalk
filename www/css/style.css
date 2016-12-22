@@ -1006,6 +1006,10 @@ p.bigr,
     transform: rotate(180deg);
 }
 
+.card {
+    margin: 10px;
+}
+
 .alt-colors .card {
     margin: 10px;
 }

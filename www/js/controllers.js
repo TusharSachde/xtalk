@@ -2,145 +2,145 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('EnterCtrl', function($scope, $ionicSlideBoxDelegate, $ionicPopup, $ionicLoading, MyServices, $state) {
 
-    $scope.personal = {};
-    $scope.verify = {};
+        $scope.personal = {};
+        $scope.verify = {};
 
-    $scope.startloading = function() {
-        $ionicLoading.show({
-            template: '<ion-spinner class="spinner-light"></ion-spinner>'
-        });
-    };
-
-    $scope.disableSwipe = function() {
-        $ionicSlideBoxDelegate.enableSlide(false);
-    };
-
-    $scope.next = function() {
-        $ionicSlideBoxDelegate.next();
-    };
-    $scope.previous = function() {
-        $ionicSlideBoxDelegate.previous();
-    };
-
-    // Called each time the slide changes
-    $scope.slideChanged = function(index) {
-        $scope.slideIndex = index;
-    };
-
-    function readSMS() {
-        if (smsplugin) {
-            smsplugin.startReception(function(data) {
-                console.log(data);
-                $scope.personal.otp = data.substring(data.length - 4, data.length);
-                console.log($scope.personal.otp);
-                $scope.checkotp();
-                smsplugin.stopReception(function(result) {}, function(error) {});
-            }, function(err) {
-                if (err) {
-                    console.log(err);
-                }
+        $scope.startloading = function() {
+            $ionicLoading.show({
+                template: '<ion-spinner class="spinner-light"></ion-spinner>'
             });
-        }
-    }
+        };
 
-    // FIRST API
-    $scope.phoneSubmit = function() {
-        $scope.startloading();
-        MyServices.register($scope.personal, function(data) {
+        $scope.disableSwipe = function() {
+            $ionicSlideBoxDelegate.enableSlide(false);
+        };
+
+        $scope.next = function() {
+            $ionicSlideBoxDelegate.next();
+        };
+        $scope.previous = function() {
+            $ionicSlideBoxDelegate.previous();
+        };
+
+        // Called each time the slide changes
+        $scope.slideChanged = function(index) {
+            $scope.slideIndex = index;
+        };
+
+        function readSMS() {
+            if (smsplugin) {
+                smsplugin.startReception(function(data) {
+                    console.log(data);
+                    $scope.personal.otp = data.substring(data.length - 4, data.length);
+                    console.log($scope.personal.otp);
+                    $scope.checkotp();
+                    smsplugin.stopReception(function(result) {}, function(error) {});
+                }, function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            }
+        }
+
+        // FIRST API
+        $scope.phoneSubmit = function() {
+            $scope.startloading();
+            MyServices.register($scope.personal, function(data) {
+                console.log(data);
+                if (data.value !== false) {
+                    $ionicSlideBoxDelegate.next();
+                    // $scope.personal.otp = data.data.otp;
+                    // $scope.checkotp();
+                    // readSMS();
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'INCORRECT DATA',
+                        template: 'Incorrect number'
+                    });
+                }
+                $ionicLoading.hide();
+            });
+        };
+
+        // SECOND API FOR OTP
+        $scope.checkotp = function() {
+            $scope.startloading();
+            MyServices.verifyOTP($scope.personal, function(data, status) {
+                if (data.value === true) {
+                    $state.go("profile.mycard");
+                } else {
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'INCORRECT OTP',
+                        template: 'Please enter the correct OTP'
+                    });
+                }
+                $ionicLoading.hide();
+            });
+        };
+
+        MyServices.getProfile(function(data, status) {
             console.log(data);
             if (data.value !== false) {
-                $ionicSlideBoxDelegate.next();
-                // $scope.personal.otp = data.data.otp;
-                // $scope.checkotp();
-                // readSMS();
-            } else {
-                var alertPopup = $ionicPopup.alert({
-                    title: 'INCORRECT DATA',
-                    template: 'Incorrect number'
-                });
+                $state.go('tab.spingbook');
             }
-            $ionicLoading.hide();
         });
-    };
 
-    // SECOND API FOR OTP
-    $scope.checkotp = function() {
-        $scope.startloading();
-        MyServices.verifyOTP($scope.personal, function(data, status) {
-            if (data.value === true) {
-                $state.go("profile.mycard");
-            } else {
-                var alertPopup = $ionicPopup.alert({
-                    title: 'INCORRECT OTP',
-                    template: 'Please enter the correct OTP'
-                });
-            }
-            $ionicLoading.hide();
-        });
-    };
+        $scope.showAlert = function() {
+            var alertPopup = $ionicPopup.alert({
+                title: "Didn't get the OTP ?",
+                template: 'Please try resending the OTP.',
+                buttons: [{
+                    text: 'Resend',
+                    type: 'button-positive button-outline'
+                }],
+            });
+            alertPopup.then(function(res) {
+                $scope.phoneSubmit();
+                console.log('OTP Resent !');
+            });
+        };
+    })
+    .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
-    MyServices.getProfile(function(data, status) {
-        console.log(data);
-        if (data.value != false) {
-            $state.go('tab.spingbook');
-        }
-    });
+        // With the new view caching in Ionic, Controllers are only called
+        // when they are recreated or on app start, instead of every page change.
+        // To listen for when this page is active (for example, to refresh data),
+        // listen for the $ionicView.enter event:
+        //$scope.$on('$ionicView.enter', function(e) {
+        //});
 
-    $scope.showAlert = function() {
-        var alertPopup = $ionicPopup.alert({
-            title: "Didn't get the OTP ?",
-            template: 'Please try resending the OTP.',
-            buttons: [{
-                text: 'Resend',
-                type: 'button-positive button-outline'
-            }],
-        });
-        alertPopup.then(function(res) {
-            $scope.phoneSubmit();
-            console.log('OTP Resent !');
-        });
-    };
-})
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+        // Form data for the login modal
+        $scope.loginData = {};
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+        // Create the login modal that we will use later
+        // $ionicModal.fromTemplateUrl('templates/login.html', {
+        //   scope: $scope
+        // }).then(function(modal) {
+        //   $scope.modal = modal;
+        // });
 
-  // Form data for the login modal
-  $scope.loginData = {};
+        // Triggered in the login modal to close it
+        $scope.closeLogin = function() {
+            $scope.modal.hide();
+        };
 
-  // Create the login modal that we will use later
-  // $ionicModal.fromTemplateUrl('templates/login.html', {
-  //   scope: $scope
-  // }).then(function(modal) {
-  //   $scope.modal = modal;
-  // });
+        // Open the login modal
+        $scope.login = function() {
+            $scope.modal.show();
+        };
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
+        // Perform the login action when the user submits the login form
+        $scope.doLogin = function() {
+            console.log('Doing login', $scope.loginData);
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-})
+            // Simulate a login delay. Remove this and replace with your login
+            // code if using a login system
+            $timeout(function() {
+                $scope.closeLogin();
+            }, 1000);
+        };
+    })
 
 .controller('ProfileCtrl', function($scope, $ionicLoading, MyServices, $location, $ionicPopup, $state, $cordovaImagePicker, $cordovaFileTransfer, $cordovaDatePicker, $filter) {
     $scope.mycard = {};
@@ -212,7 +212,7 @@ angular.module('starter.controllers', ['ngCordova'])
     //
     $scope.startloading();
     if (!$.jStorage.get("contactSynced") || $.jStorage.get("contactSynced") === false) {
-      console.log("loading");
+        console.log("loading");
 
         // var options = new ContactFindOptions();
         // options.multiple = true;
@@ -272,7 +272,7 @@ angular.module('starter.controllers', ['ngCordova'])
         //     console.log(contactError);
         // }, options);
     } else {
-      console.log("loading2");
+        console.log("loading2");
 
         MyServices.getSpingrContacts(function(data) {
             console.log(data);
@@ -321,8 +321,8 @@ angular.module('starter.controllers', ['ngCordova'])
     //     "profilePicture": ""
     // }]);
 
-    function shareContacts () {
-      console.log("loading3");
+    function shareContacts() {
+        console.log("loading3");
 
         var shareArr = [];
         _.each($scope.spingrContacts, function(n) {
@@ -351,13 +351,13 @@ angular.module('starter.controllers', ['ngCordova'])
             console.log("second submitted");
             console.log(data);
             if (data.value === true) {
-              console.log("loading4");
+                console.log("loading4");
 
                 $ionicLoading.hide();
                 if (!$.jStorage.get('toSpingbook') || $.jStorage.get('toSpingbook') === false) {
-                  // console.log("loading5");
+                    // console.log("loading5");
                     $state.go('sharewith');
-                    // shareContacts();
+                    shareContacts();
                 } else {
                     $.jStorage.set('toSpingbook', false);
                     $state.go('tab.spingbook');
@@ -453,51 +453,47 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('TabCtrl', function($scope, $location, $ionicLoading, MyServices) {
 
-})
-.controller('SpingbookDetailNewCtrl', function($scope, $location, $ionicLoading, MyServices ,$ionicHistory) {
-    $scope.goBack = function() {
-         $ionicHistory.goBack();
-      };
-})
-.controller('Spingbook1Ctrl', function($scope, $location, $ionicLoading, MyServices) {
-    $scope.user = [
-        {
-        name: "Amit Shah",
-        company: "img/snapdeal.png",
-        designation: "Marketing Manager",
-        email: "sping@app.com",
-        image: "img/a.png",
-        phone:"9876543210"
+    })
+    .controller('SpingbookDetailNewCtrl', function($scope, $location, $ionicLoading, MyServices, $ionicHistory) {
+        $scope.goBack = function() {
+            $ionicHistory.goBack();
+        };
+    })
+    .controller('Spingbook1Ctrl', function($scope, $location, $ionicLoading, MyServices) {
+        $scope.user = [{
+            name: "Amit Shah",
+            company: "img/snapdeal.png",
+            designation: "Marketing Manager",
+            email: "sping@app.com",
+            image: "img/a.png",
+            phone: "9876543210"
 
-      },
-        {
-        name: "Priya Mishra",
-        company: "img/snapdeal.png",
-        designation: "Sales Manager",
-        email: "sping@app.com",
-        image: "img/b.png",
-        phone:"9876543210"
+        }, {
+            name: "Priya Mishra",
+            company: "img/snapdeal.png",
+            designation: "Sales Manager",
+            email: "sping@app.com",
+            image: "img/b.png",
+            phone: "9876543210"
 
-      },
-        {
-        name: "Sudip Singh",
-        company: "img/snapdeal.png",
-        designation: "Marketing Manager",
-        email: "sping@app.com",
-        image: "img/c.png",
-        phone:"9876543210"
+        }, {
+            name: "Sudip Singh",
+            company: "img/snapdeal.png",
+            designation: "Marketing Manager",
+            email: "sping@app.com",
+            image: "img/c.png",
+            phone: "9876543210"
 
-      },
-        {
-        name: "Raj Mahajan",
-        company: "img/snapdeal.png",
-        designation: "Sales Manager",
-        email: "sping@app.com",
-        image: "img/d.png",
-        phone:"9876543210"
+        }, {
+            name: "Raj Mahajan",
+            company: "img/snapdeal.png",
+            designation: "Sales Manager",
+            email: "sping@app.com",
+            image: "img/d.png",
+            phone: "9876543210"
 
-      } ];
-})
+        }];
+    })
 
 .controller('ProfileShareCtrl', function($scope, MyServices, $ionicLoading, $state) {
 
@@ -575,7 +571,7 @@ angular.module('starter.controllers', ['ngCordova'])
         //     console.log(contactError);
         // }, options);
     } else {
-      console.log("share4");
+        console.log("share4");
 
         MyServices.getSpingrContacts(function(data) {
             console.log(data);
@@ -594,13 +590,13 @@ angular.module('starter.controllers', ['ngCordova'])
     }
 
     function saveContacts(contacts) {
-      console.log("share5");
+        console.log("share5");
 
         MyServices.saveContacts(contacts, function(data) {
             $ionicLoading.hide();
             console.log(data);
             if (data.value !== false) {
-              console.log("share7");
+                console.log("share7");
 
                 $.jStorage.set("contactSynced", true);
                 $scope.total.spingrContacts = data.data.length;
@@ -628,22 +624,22 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.shareContacts = function() {
         var shareArr = [];
         _.each($scope.spingrContacts, function(n) {
-          console.log("share8");
+            console.log("share8");
 
             if (n.share === true) {
-              console.log("share9");
+                console.log("share9");
 
                 shareArr.push(n.user);
             }
         });
         console.log(shareArr);
         if (shareArr.length > 0) {
-          console.log("share10");
+            console.log("share10");
 
             MyServices.sendNotification(shareArr, function(data) {
                 console.log(data);
                 if (data.value !== false) {
-                  console.log("share11");
+                    console.log("share11");
 
                     $state.go('profileget');
                 }
@@ -722,48 +718,44 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('ChatsCtrl', function($scope, $ionicLoading, MyServices) {})
 
 .controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter, $state, $ionicScrollDelegate, $cordovaInAppBrowser) {
-    $scope.user = [
-        {
+    $scope.user = [{
         name: "Amit Shah",
         company: "img/snapdeal.png",
         designation: "Marketing Manager",
         email: "sping@app.com",
         image: "img/a.png",
-        phone:"9876543210",
+        phone: "9876543210",
         index: "1"
 
-      },
-        {
+    }, {
         name: "Priya Mishra",
         company: "img/snapdeal.png",
         designation: "Sales Manager",
         email: "sping@app.com",
         image: "img/b.png",
-        phone:"9876543210",
+        phone: "9876543210",
         index: "2"
 
-      },
-        {
+    }, {
         name: "Sudip Singh",
         company: "img/snapdeal.png",
         designation: "Marketing Manager",
         email: "sping@app.com",
         image: "img/c.png",
-        phone:"9876543210",
+        phone: "9876543210",
         index: "3"
 
-      },
-        {
+    }, {
         name: "Raj Mahajan",
         company: "img/snapdeal.png",
         designation: "Sales Manager",
         email: "sping@app.com",
         image: "img/d.png",
-        phone:"9876543210",
+        phone: "9876543210",
         index: "4"
 
 
-      } ];
+    }];
     $scope.openCard = false;
     $scope.toggleSpingrCard = function(index) {
         $scope.openCardNo = index;
@@ -771,14 +763,14 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     $scope.profileDetail = -1;
-    $scope.openprofile = function(index){
-      console.log(index);
-      if($scope.profileDetail !== index){
-        $scope.profileDetail = index;
-      } else {
-        $scope.card = "";
-        $scope.profileDetail = -1;
-      }
+    $scope.openprofile = function(index) {
+        console.log(index);
+        if ($scope.profileDetail !== index) {
+            $scope.profileDetail = index;
+        } else {
+            $scope.card = "";
+            $scope.profileDetail = -1;
+        }
     };
 
     $scope.search = false;
@@ -800,27 +792,49 @@ angular.module('starter.controllers', ['ngCordova'])
         $ionicScrollDelegate.scrollTop();
     };
 
-    $scope.startsWith = function (actual, expected) {
-      var lowerStr = (actual + "").toLowerCase();
-      return lowerStr.indexOf(expected.toLowerCase()) === 0;
+    $scope.startsWith = function(actual, expected) {
+        var lowerStr = (actual + "").toLowerCase();
+        return lowerStr.indexOf(expected.toLowerCase()) === 0;
     };
 
-    if($.jStorage.get("myContacts")) {
-      $scope.myContacts = $.jStorage.get("myContacts");
-      $ionicLoading.hide();
+    $scope.contact = {};
+    $scope.contact.height = 100;
+    var last_expanded = {},
+        last_index = -1;
+
+    $scope.toggleHeight = function(contact) {
+        contact.height = contact.height === 100 ? 180 : 100;
+        if (last_expanded) {
+            last_expanded.height = 100;
+        }
+        last_expanded = contact.height === 100 ? {} : contact;
+        $ionicScrollDelegate.resize();
+    };
+
+    if ($.jStorage.get("myContacts")) {
+        $scope.myContacts = $.jStorage.get("myContacts");
+        $scope.myContacts = $.jStorage.get("myContacts").map(function(contact) {
+            contact.height = 100;
+            return contact;
+        });
+        $ionicLoading.hide();
     } else {
-      MyServices.getContacts(function(data) {
-          console.log(data);
-          if (data.value !== false ) {
-            console.log("in conatcts got all ");
-              $scope.myContacts = data.data;
-              $.jStorage.set("myContacts", data.data);
-          } else if (data.value === false && data.data === "User not logged in") {
-              console.log("in conatcts nothing");
-              $state.go('enter');
-          }
-          $ionicLoading.hide();
-      });
+        MyServices.getContacts(function(data) {
+            console.log(data);
+            if (data.value !== false) {
+                console.log("in conatcts got all ");
+                $scope.myContacts = data.data;
+                $scope.myContacts = data.data.map(function(contact) {
+                    contact.height = 100;
+                    return contact;
+                });
+                $.jStorage.set("myContacts", data.data);
+            } else if (data.value === false && data.data === "User not logged in") {
+                console.log("in conatcts nothing");
+                $state.go('enter');
+            }
+            $ionicLoading.hide();
+        });
     }
 
     $scope.goToMyCard = function() {
@@ -972,13 +986,13 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.spingpage = function() {
         $location.url('/tab/spingbook');
         console.log('spingpage');
-    }
+    };
 
     $scope.clearAdvance = function() {
         $scope.searchquery = {};
         $scope.searchquery.user = {};
         $scope.closeadvance();
-    }
+    };
 
     $scope.openInBrowser = function(link) {
         console.log(link);
@@ -995,7 +1009,7 @@ angular.module('starter.controllers', ['ngCordova'])
             .catch(function(event) {
                 // error
             });
-    }
+    };
 
 })
 
@@ -1019,10 +1033,10 @@ angular.module('starter.controllers', ['ngCordova'])
 
     MyServices.getDetail($stateParams.id, function(data) {
         console.log(data);
-        if (data.value != false)
+        if (data.value !== false)
             $scope.contactDetail = data.data;
         $ionicLoading.hide();
-    })
+    });
 })
 
 .controller('NewsCtrl', function($scope, $ionicLoading, MyServices) {
@@ -1037,11 +1051,11 @@ angular.module('starter.controllers', ['ngCordova'])
         $scope.startloading();
         MyServices.getNewsLetter(function(data) {
             console.log(data);
-            if (data.value != false) {
+            if (data.value !== false) {
                 $scope.newsLetter = data.data;
             }
             $ionicLoading.hide();
-        })
+        });
     }
     getNewsLetter();
 
@@ -1054,12 +1068,12 @@ angular.module('starter.controllers', ['ngCordova'])
         obj.contact = contact.obj.contact;
         MyServices.acceptShare(obj, function(data) {
             console.log(data);
-            if (data.value != false) {
+            if (data.value !== false) {
                 getNewsLetter();
             }
             $ionicLoading.hide();
         });
-    }
+    };
 
     $scope.addShareContact = function(contact, $index) {
         $scope.startloading();
@@ -1070,12 +1084,12 @@ angular.module('starter.controllers', ['ngCordova'])
         obj.contact = contact.obj.contact;
         MyServices.addAndShare(obj, function(data) {
             console.log(data);
-            if (data.value != false) {
+            if (data.value !== false) {
                 getNewsLetter();
             }
             $ionicLoading.hide();
         });
-    }
+    };
 
     $scope.settings = {
         enableNews: true
