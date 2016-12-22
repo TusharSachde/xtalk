@@ -1008,6 +1008,7 @@ p.bigr,
 
 .card {
     margin: 10px;
+    min-height: calc(100% - 10px);
 }
 
 .alt-colors .card {
@@ -1145,7 +1146,7 @@ p.bigr,
 }
 
 .list-detail {
-    margin-top: 25px;
+    /*margin-top: 25px;*/
     min-width: 70%;
 }
 
@@ -1225,4 +1226,8 @@ p.bigr,
 }
 .rotate{
   transform: rotate(180deg);
+}
+.collection-spacing {
+  display: block;
+  height: 10px;
 }

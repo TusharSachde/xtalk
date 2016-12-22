@@ -157,7 +157,8 @@
                     </div>
                 </div>
               </div> -->
-                <div class="card profile-card item" ng-class="$index == profileDetail ? 'detail-card': ''" collection-repeat="contact in myContacts | filter:searchquery" item-height="contact.height">
+              <div class="card-body" collection-repeat="contact in myContacts | filter:searchquery" item-height="contact.height">
+                <div class="card profile-card item" ng-class="$index == profileDetail ? 'detail-card': ''">
                     <!-- <img src="img/snapdeal.png" alt="logo"  ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"/> -->
                     <div class="logo-div">
                       <img ng-src="{{contact.user.companyLogo | uploadpath}}" ng-class="$index == profileDetail ? 'detail-companylogo': 'profile-logo'"
@@ -167,7 +168,7 @@
                       <label for="" class="ion-chevron-down down-arrow" ng-click="openprofile($index); toggleHeight(contact);" ng-class="{'rotate':$index == profileDetail}"></label>
                     </div>
 
-                  <div ng-class="{'detail':$index == profileDetail}" >
+                  <div>
                       <!-- <img ng-src="{{users.image}}" alt="img/spingr.png"  class="profile-photo" ng-click="openprofile($index);"/> -->
                       <img ng-src="{{contact.user.profilePicture | uploadpath}}" class="profile-photo" ng-if="contact.user.profilePicture"
                           ng-click="openprofile($index);"  />
@@ -207,6 +208,8 @@
                   </div>
 
                 </div>
+                <div class="collection-spacing"></div>
+              </div>
 
         </ion-list>
     </ion-content>

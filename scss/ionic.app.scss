@@ -39,6 +39,7 @@ $button-border-width: 1px !default;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // $fa-font-path:  "../lib/fontawesome/fonts" !default;
 // Include all of Ionic
-@import "www/css/style";
 @import "www/lib/ionic/scss/ionic";
+@import "www/css/style";
+ 
 // @import "www/lib/lib/font-awesome/css/font-awesome.css";

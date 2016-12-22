@@ -799,22 +799,23 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.contact = {};
     $scope.contact.height = 100;
+    var cheight = 140;
     var last_expanded = {},
         last_index = -1;
 
     $scope.toggleHeight = function(contact) {
-        contact.height = contact.height === 100 ? 180 : 100;
+        contact.height = contact.height === cheight ? 190 : cheight;
         if (last_expanded) {
-            last_expanded.height = 100;
+            last_expanded.height = cheight;
         }
-        last_expanded = contact.height === 100 ? {} : contact;
+        last_expanded = contact.height === cheight ? {} : contact;
         $ionicScrollDelegate.resize();
     };
 
     if ($.jStorage.get("myContacts")) {
         $scope.myContacts = $.jStorage.get("myContacts");
         $scope.myContacts = $.jStorage.get("myContacts").map(function(contact) {
-            contact.height = 100;
+            contact.height = cheight;
             return contact;
         });
         $ionicLoading.hide();
@@ -825,7 +826,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 console.log("in conatcts got all ");
                 $scope.myContacts = data.data;
                 $scope.myContacts = data.data.map(function(contact) {
-                    contact.height = 100;
+                    contact.height = cheight;
                     return contact;
                 });
                 $.jStorage.set("myContacts", data.data);
