@@ -81,7 +81,7 @@
   <preference name="SplashMaintainAspectRatio" value="true"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
-  <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
+  <icon src="resources/ios/icon/icon-small@3x.png"/>
   <splash src="res/screen/splash.png"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
