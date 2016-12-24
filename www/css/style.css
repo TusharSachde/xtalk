@@ -1103,6 +1103,7 @@ p.bigr,
 .pro-name {
     color: #1EA0D1;
     line-height: 15px;
+    font-size: 18px;
 }
 
 .pro-detail {
@@ -1151,12 +1152,15 @@ p.bigr,
 }
 
 .share-icon {
-    height: 18px;
+    height: 20px;
     margin-left: 10px;
 }
 
 .text-icon {
-    margin-bottom: 7px;
+    margin: 7px 0;
+    h4 {
+      font-size: 16px;
+    }
 }
 
 .detail-dis {
@@ -1189,6 +1193,7 @@ p.bigr,
 
 .mail-color {
     color: #1EA0D1 !important;
+    font-size: 14px;
 }
 .app-logo{
   margin:0px auto !important;

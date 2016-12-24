@@ -10733,7 +10733,8 @@ p.bigr,
 
 .pro-name {
   color: #1EA0D1;
-  line-height: 15px; }
+  line-height: 15px;
+  font-size: 18px; }
 
 .pro-detail {
   color: #6B696A;
@@ -10772,11 +10773,13 @@ p.bigr,
   min-width: 70%; }
 
 .share-icon {
-  height: 18px;
+  height: 20px;
   margin-left: 10px; }
 
 .text-icon {
-  margin-bottom: 7px; }
+  margin: 7px 0; }
+  .text-icon h4 {
+    font-size: 16px; }
 
 .detail-dis {
   display: inline-block;
@@ -10801,7 +10804,8 @@ p.bigr,
   margin-top: 40px; }
 
 .mail-color {
-  color: #1EA0D1 !important; }
+  color: #1EA0D1 !important;
+  font-size: 14px; }
 
 .app-logo {
   margin: 0px auto !important; }

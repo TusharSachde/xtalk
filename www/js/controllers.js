@@ -159,30 +159,52 @@ angular.module('starter.controllers', ['ngCordova'])
     };
 
     $scope.startloading();
-    MyServices.getUserDetails(function(data, status) {
-        console.log(data);
-        if (data.value === false) {
-            $state.go('enter');
-        } else {
-            $.jStorage.set("id", data.data._id);
-            console.log($.jStorage.get("id"));
-            delete data.data._id;
-            console.log(data.data._id);
 
-            $scope.mycard = data.data;
-            $scope.personal = data.data;
-            $scope.mycard.contactDetails.mobileNumber = data.data.contact;
-            $.jStorage.set("mobilenumber", data.data.contact);
-            $scope.mycard.contactPersonalDetails.mobileNumber = data.data.contact;
-            if (data.data && data.data.birthDate) {
-                $scope.personal.birthDate = $filter('date')(data.data.birthDate, 'MM/dd/yyyy');
+    $scope.getUserDetails = function() {
+        if ($.jStorage.get("userData")) {
+            console.log($.jStorage.get("userData"));
+            $scope.mycard = $.jStorage.get("userData");
+            $scope.personal = $.jStorage.get("userData");
+            $scope.mycard.contactDetails.mobileNumber = $.jStorage.get("userData").contact;
+            $.jStorage.set("mobilenumber", $.jStorage.get("userData").contact);
+            $scope.mycard.contactPersonalDetails.mobileNumber = $.jStorage.get("userData").contact;
+            if ($.jStorage.get("userData") && $.jStorage.get("userData").birthDate) {
+                $scope.personal.birthDate = $filter('date')($.jStorage.get("userData").birthDate, 'MM/dd/yyyy');
             }
-            if (data.data && data.data.anniversary) {
-                $scope.personal.anniversary = $filter('date')(data.data.anniversary, 'MM/dd/yyyy');
+            if ($.jStorage.get("userData") && $.jStorage.get("userData").anniversary) {
+                $scope.personal.anniversary = $filter('date')($.jStorage.get("userData").anniversary, 'MM/dd/yyyy');
             }
+            $ionicLoading.hide();
+        } else {
+            MyServices.getUserDetails(function(data, status) {
+                console.log(data);
+                if (data.value === false) {
+                    $state.go('enter');
+                } else {
+                    $.jStorage.set("id", data.data._id);
+                    $.jStorage.set("userData", data.data);
+                    console.log($.jStorage.get("id"));
+                    delete data.data._id;
+                    console.log(data.data._id);
+
+                    $scope.mycard = data.data;
+                    $scope.personal = data.data;
+                    $scope.mycard.contactDetails.mobileNumber = data.data.contact;
+                    $.jStorage.set("mobilenumber", data.data.contact);
+                    $scope.mycard.contactPersonalDetails.mobileNumber = data.data.contact;
+                    if (data.data && data.data.birthDate) {
+                        $scope.personal.birthDate = $filter('date')(data.data.birthDate, 'MM/dd/yyyy');
+                    }
+                    if (data.data && data.data.anniversary) {
+                        $scope.personal.anniversary = $filter('date')(data.data.anniversary, 'MM/dd/yyyy');
+                    }
+                }
+                $ionicLoading.hide();
+            });
         }
-        $ionicLoading.hide();
-    });
+    };
+
+    $scope.getUserDetails();
 
     $scope.submitMyCard = function() {
         MyServices.saveUser($scope.mycard, function(data, status) {
