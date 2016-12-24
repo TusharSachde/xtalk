@@ -198,8 +198,8 @@ angular.module('starter.controllers', ['ngCordova'])
                     if (data.data && data.data.anniversary) {
                         $scope.personal.anniversary = $filter('date')(data.data.anniversary, 'MM/dd/yyyy');
                     }
+                    $ionicLoading.hide();
                 }
-                $ionicLoading.hide();
             });
         }
     };
@@ -293,6 +293,7 @@ angular.module('starter.controllers', ['ngCordova'])
         //     $ionicLoading.hide();
         //     console.log(contactError);
         // }, options);
+        $ionicLoading.hide();
     } else {
         console.log("loading2");
 
@@ -739,7 +740,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('ChatsCtrl', function($scope, $ionicLoading, MyServices) {})
 
-.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter, $state, $ionicScrollDelegate, $cordovaInAppBrowser) {
+.controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter, $state, $timeout, $ionicScrollDelegate, $cordovaInAppBrowser) {
 
     console.log("in spingbook");
     $scope.user = [{
@@ -1010,10 +1011,13 @@ angular.module('starter.controllers', ['ngCordova'])
 
     $scope.openadvance = function() {
         $scope.closePopover();
-        $scope.oModal2.show();
+        $timeout(function(){
+            $scope.oModal2.show();
+        }, 0);
     };
     $scope.closeadvance = function() {
         $scope.oModal2.hide();
+        console.log('modal closed');
     };
 
     $scope.searchpage = function() {
@@ -1029,7 +1033,7 @@ angular.module('starter.controllers', ['ngCordova'])
     $scope.clearAdvance = function() {
         $scope.searchquery = {};
         $scope.searchquery.user = {};
-        $scope.closeadvance();
+        // $scope.closeadvance();
     };
 
     $scope.openInBrowser = function(link) {
