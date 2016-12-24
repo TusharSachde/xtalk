@@ -719,7 +719,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('SpingbookCtrl', function($scope, MyServices, $ionicPopover, $ionicModal, $location, $ionicLoading, $filter, $state, $ionicScrollDelegate, $cordovaInAppBrowser) {
 
-  console.log("in spingbook");
+    console.log("in spingbook");
     $scope.user = [{
         name: "Amit Shah",
         company: "img/snapdeal.png",
@@ -902,7 +902,14 @@ angular.module('starter.controllers', ['ngCordova'])
         //         console.log('Dialing succeeded');
         //     }
         // );
-        //document.location.href = "tel:" + number;
+        // document.location.href = "tel:" + number;
+        window.plugins.CallNumber.callNumber(function() {
+            //success logic goes here
+            console.log("call true");
+        }, function() {
+            //error logic goes here
+            console.log("call false");
+        }, number);
         console.log('Calling');
     };
     $scope.sms = function(number) {
