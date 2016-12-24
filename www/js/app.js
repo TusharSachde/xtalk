@@ -80,8 +80,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         url: "/tab",
         abstract: true,
         controller: 'TabCtrl',
-        templateUrl: "templates/tabs.html"
-
+        templateUrl: "templates/tabs.html",
+        cache: false
     })
 
     .state('tab.dash', {
@@ -121,7 +121,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl: 'templates/tab-spingbook.html',
                 controller: 'SpingbookCtrl'
             }
-        }
+        },
+        cache: false
     })
 
     .state('tab.spingbook-detail', {
