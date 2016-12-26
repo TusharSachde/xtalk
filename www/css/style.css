@@ -530,11 +530,12 @@ input.mobileno {
     width: 100%;
     color: #1EA0D1;
     border-bottom: 1px solid #1EA0D1;
+    position: relative;
 }
 
 .headersearch input {
     background-color: transparent;
-    width: 100%;
+    width: 85%;
     color: #1EA0D1;
 }
 
@@ -1154,6 +1155,15 @@ p.bigr,
 .share-icon {
     height: 20px;
     margin-left: 10px;
+}
+
+.cancel-icon {
+  width: 25px;
+  height: 38px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-bottom: 1px solid;
 }
 
 .text-icon {

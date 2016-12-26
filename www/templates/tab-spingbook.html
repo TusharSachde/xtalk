@@ -9,6 +9,7 @@
         <img src="img/spingr1.png" alt="" class="title animate-if app-logo " ng-if="search == false;"/>
         <div class="animate-if headersearch mail-color" ng-if="search == true;">
             <input type="search" ng-model="searchquery.$" class="mail-color" id="focusme">
+            <div class="cancel-icon" ng-click="searchquery.$ = ''"><i class="icon ion-close-round"></i></div>
         </div>
     </ion-nav-title>
     <!--  Dialer UI  -->
@@ -172,7 +173,7 @@
                       <!-- <img ng-src="{{users.image}}" alt="img/spingr.png"  class="profile-photo" ng-click="openprofile($index);"/> -->
                       <img ng-src="{{contact.user.profilePicture | uploadpath}}" class="profile-photo" ng-if="contact.user.profilePicture"
                           ng-click="openprofile($index); toggleHeight(contact);"  />
-                      <img src="img/spingr.png" alt="{{users.name}}" class="profile-photo" ng-if="!contact.user.profilePicture" ng-click="openprofile($index); toggleHeight(contact);"/>
+                      <img src="img/download.png" alt="{{users.name}}" class="profile-photo" ng-if="!contact.user.profilePicture" ng-click="openprofile($index); toggleHeight(contact);"/>
                       <div ng-class="$index == profileDetail ? 'list-detail': ''" class="profile-detail" >
                           <!-- <h3 class="pro-name" ng-click="openprofile($index);">{{users.name}}</h3> -->
                           <span class="pro-name" ng-bind-html="contact.user.name|addhighlight:searchquery.$" ng-if="searchquery.$" ng-click="openprofile($index); toggleHeight(contact);"></span>
@@ -192,11 +193,11 @@
                           <h4 class="pro-detail detail-address" ng-show="$index === profileDetail">
                             {{contact.user.officeAddress.city}}</h4>
                           <div ng-class="$index == profileDetail ? 'share-margin': ''">
-                              <div class="share-logo" ng-if="contact.user.contactPersonalDetails.facebookpage" ng-click="openInBrowser(contact.user.contactPersonalDetails.facebookpage)"><img src="img/fb-icon.png" alt="fb" class="share-logo"  ng-show="$index === profileDetail"/>
+                              <!-- <div class="share-logo" ng-if="contact.user.contactPersonalDetails.facebookpage" ng-click="openInBrowser(contact.user.contactPersonalDetails.facebookpage)"><img src="img/fb-icon.png" alt="fb" class="share-logo"  ng-show="$index === profileDetail"/>
                               </div>
                               <div class="share-logo" ng-if="contact.user.contactPersonalDetails.twitterhandle" ng-click="openInBrowser(contact.user.contactPersonalDetails.twitterhandle)">
                               <img src="img/Twitter-icon.png" alt="twitter" class="share-logo" ng-show="$index === profileDetail"/>
-                              </div>
+                              </div> -->
                               <!-- <img src="img/fb-icon.png" alt="fb" class="share-logo"  ng-show="$index === profileDetail"/>
                               <img src="img/Twitter-icon.png" alt="twitter" class="share-logo" ng-show="$index === profileDetail"/> -->
                               <!-- <img src="img/youtube.png" alt="youtube" class="share-logo" ng-show="$index === profileDetail"/> -->

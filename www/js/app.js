@@ -283,7 +283,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             if (image.indexOf('content:') == -1 && image.indexOf('/var/mobile') == -1) {
                 return imgpath + image + "&height=100";
             } else {
-                return "img/spingr.png";
+                return "img/download.png";
             }
         }
     };
