@@ -1205,7 +1205,9 @@ p.bigr,
     font-size: 14px;
 }
 .app-logo{
-  margin:0px auto !important;
+  width: 80px;
+  height: 50px !important;
+  margin: 0px auto !important;
 }
 .save-button{
     color: #1EA0D1!important;
