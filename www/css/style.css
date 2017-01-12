@@ -1140,6 +1140,15 @@ p.bigr,
     width: 70%;
 }
 
+.officeAddress {
+    width: 90%;
+    margin: 0 10px !important;
+    position: absolute;
+    bottom: 5px;
+    color: #1EA0D1;
+    font-size: 14px !important;
+}
+
 .detail-card {
     padding: 20px 10px 10px 20px;
 }
