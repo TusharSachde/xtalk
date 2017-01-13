@@ -181,6 +181,7 @@
                           <span class="pro-name" ng-bind-html="contact.user.name" ng-if="!searchquery.user.name && !searchquery.$" ng-click="openprofile($index); toggleHeight(contact);"></span>
                           <h3 class="pro-detail" ng-show="$index === profileDetail">{{contactDetail.companyName}}</h3>
                           <h4 class="pro-detail" ng-if="contact.user.designation">{{contact.user.designation}}</h3>
+                          <h4 class="pro-detail" ng-if="contact.user.companyName">{{contact.user.companyName}}</h4>
                               <!-- <h5 class="pro-detail">{{users.designation}}</h5> -->
                           <!-- <div class="text-icon"><h5 ng-class="$index == profileDetail ? 'detail-dis': ''" class="pro-detail"><a ng-href="tel:{{users.phone}}" style="text-decoration:none">{{users.phone}}</a></h5> -->
                             <div class="text-icon"><h4 ng-class="$index == profileDetail ? 'detail-dis': ''" class="pro-detail mail-color"><a style="text-decoration:none" ng-class="$index == profileDetail ? 'detail-dis': ''"  ng-href="tel:{{contact.user.contact}}"> {{contact.user.contact}}</a></h4>
